@@ -1,0 +1,106 @@
+<md-content>
+  <div layout="column">
+
+    <!-- Header -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+             md-colors="{'border-color': 'background-300'}">
+      <h3>Race Settings</h3>
+      <div class="hint layout-margin-top">
+        <ul class="no-margin no-padding">
+          <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">Add, edit, or remove an entire race.</span>
+          </li>
+          <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">Note that some edit options are only available for custom races.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Select Races in Settlement -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+        md-colors="{'border-color': 'background-300'}">
+      <div layout="row" layout-align="space-between center">
+        <h4>Allowed Races:</h4>
+        <md-button class="md-icon-button icon-button-override no-margin-horizontal no-padding inherit-width"
+            md-no-ink aria-label="Help Text">
+          <md-tooltip class="tooltip-override layout-padding-vertical" md-direction="left">
+            * Set all of the races that may appear in the settlement.<br>
+            * Setting the race available does not automatically guarantee appearance of the race.<br>
+            * Appearance percent can be set in population settings.<br>
+          </md-tooltip>
+          <i class="material-icons">help_outline</i>
+        </md-button>
+      </div>
+      <md-input-container class="no-padding no-margin">
+        <md-select ng-model="vm.selectedRaces" aria-label="Selected Races"
+                   ng-change="vm.updateAllowedRaces(vm.selectedRaces)"
+                   md-selected-text="'Selected: ' + vm.selectedRaces.length + ' (Minimum 1)'"
+                   ng-model-options="{trackBy: '$value.id'}"  multiple>
+          <md-option ng-value="race" ng-repeat="race in vm.raceSelection | orderBy: ['-isAllowed', 'name']"
+                     ng-disabled="vm.selectedRaces.length === 1 && race.name === vm.selectedRaces[0].name">
+            <span>{{race.name}}</span>
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </section>
+
+    <!-- Select Race to Edit -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+        md-colors="{'border-color': 'background-300'}" ng-if="vm.checkForCustomObjects(vm.raceSelection)">
+      <!-- Race Selection  -->
+      <div layout="row" layout-align="space-between center">
+        <h4>Choose Race to Edit:</h4>
+        <md-button class="md-icon-button icon-button-override no-margin-horizontal no-padding inherit-width"
+            md-no-ink aria-label="Help Text">
+          <md-tooltip class="tooltip-override layout-padding-vertical" md-direction="left">
+            * Removing a race will also affect any related subraces and other settings related to that race.<br>
+            * Removing a race or subrace cannot be undone.
+          </md-tooltip>
+          <i class="material-icons">help_outline</i>
+        </md-button>
+      </div>
+      <md-input-container class="no-padding">
+        <md-select ng-model="vm.tempObject" ng-model-options="{trackBy: '$value.id'}" aria-label="Race Editing"
+                   placeholder="Select a Race:" ng-change="vm.setEditObject(vm.tempObject)"
+                    ng-class="{'no-margin': '!vm.editObject.id', 'no-margin-top': 'vm.editObject.id'}">
+          <md-option ng-value="race" ng-repeat="race in vm.raceSelection | orderBy: 'name'"
+                     ng-if="race.id.indexOf('cust') > -1">
+            <span>{{race.name}}</span>
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <!-- Race Name Edit -->
+      <div class="layout-margin-top" layout="column" layout-align="start stretch" ng-if="vm.editObject.id">
+        <dg-object-edit object="vm.editObject" group="null" parent="null"
+            on-save="vm.updateCustomObject(vm.editObject, null, true)" edit-types="['input', 'delete', 'save']"
+            on-delete="vm.deleteCustomObject(vm.editObject, null, true)"></dg-object-edit>
+      </div>
+    </section>
+
+    <!-- Add Race -->
+    <section class="layout-padding-well">
+      <!-- Add Race -->
+      <div layout="column" layout-align="start stretch">
+        <h4>Add New Race:</h4>
+        <div class="layout-margin-vertical layout-padding-vertical hint border-bottom-1"
+             md-colors="{'border-color': 'background-300'}">
+          Here you can add a new custom race and set whether the race is allowed in the current settlement.
+          <div class="hint layout-margin-top" ng-if="vm.appConfigSettings.global.useSubraces">
+            This system requires there to be at least one subrace, so it populates some defaults. Any of the subraces
+            can be deleted, but if you wish to delete all of the default subraces, a new subrace must be created first.
+          </div>
+        </div>
+        <dg-object-edit class="layout-margin-vertical" object="vm.newObject" group="null" parent="null" hide-frame="true"
+            default-text="Enter Race Name..." toggle-message="Add to Allowed Races?" edit-types="['single-allowed', 'hint', 'input']"
+            hint-message="* If this is not selected, this race will have to be added in the Allowed Races dropdown.">
+        </dg-object-edit>
+        <md-button class="md-raised md-primary no-margin-horizontal no-margin-bottom" ng-click="vm.addCustomRace()"
+            ng-disabled="vm.newObject.name === ''">submit new race</md-button>
+      </div>
+    </section>
+
+  </div>
+</md-content>
