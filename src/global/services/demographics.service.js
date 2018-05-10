@@ -4,6 +4,915 @@ app.service('Demographics', function () {
   var service_ = this;
 
   /**
+   * This is to help filter objects by tag or tag type
+   */
+  service_.tagTypes = {
+    basic: {
+      isAllowed: false,
+      name: 'Basic',
+      type: 'tagType',
+      key: 'basic',
+      id: 'tag-type-001'
+    },
+    source: {
+      isAllowed: false,
+      name: 'Source',
+      type: 'tagType',
+      key: 'source',
+      id: 'tag-type-002'
+    },
+    creatureType: {
+      isAllowed: false,
+      name: 'Creature Type',
+      type: 'tagType',
+      key: 'creatureType',
+      id: 'tag-type-003'
+    },
+    creatureSubtype: {
+      isAllowed: false,
+      name: 'Creature Subtype',
+      type: 'tagType',
+      key: 'creatureSubtype',
+      id: 'tag-type-004'
+    },
+    alignment: {
+      isAllowed: false,
+      name: 'Alignment',
+      type: 'tagType',
+      key: 'alignment',
+      id: 'tag-type-005'
+    },
+    climate: {
+      isAllowed: false,
+      name: 'Climate',
+      type: 'tagType',
+      key: 'climate',
+      id: 'tag-type-006'
+    },
+    terrain: {
+      isAllowed: false,
+      name: 'Terrain',
+      type: 'tagType',
+      key: 'terrain',
+      id: 'tag-type-007'
+    }
+  };
+
+  /**
+   * weight is not used. These are always placed either automatically or manually.
+   */
+  service_.defaultTagList = {
+    'dflt': {
+      isAllowed: false,
+      name: 'Default',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.basic],
+      key: 'dflt',
+      id: 'tag-dflt'
+    },
+    'cust': {
+      isAllowed: false,
+      name: 'Custom',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.basic],
+      key: 'cust',
+      id: 'tag-cust'
+    },
+    'phb': {
+      isAllowed: false,
+      name: 'Player\'s Handbook',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'phb',
+      id: 'tag-core-1'
+    },
+    'mm': {
+      isAllowed: false,
+      name: 'Monster Manual',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'mm',
+      id: 'tag-core-2'
+    },
+    'dmg': {
+      isAllowed: false,
+      name: 'Dungeon Master\'s Guide',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'dmg',
+      id: 'tag-core-3'
+    },
+    'elm': {
+      isAllowed: false,
+      name: 'Elemental Evil Player\'s Companion',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'elm',
+      id: 'tag-supp-01'
+    },
+    'scg': {
+      isAllowed: false,
+      name: 'Sword Coast Adventure Guide',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'scg',
+      id: 'tag-supp-02'
+    },
+    'vol': {
+      isAllowed: false,
+      name: 'Volo\'s Guide to Monsters',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'vol',
+      id: 'tag-supp-03'
+    },
+    'xan': {
+      isAllowed: false,
+      name: 'Xanathar\'s Guide to Everything',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'xan',
+      id: 'tag-supp-04'
+    },
+    'psz': {
+      isAllowed: false,
+      name: 'Plane Shift: Zendikar',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'psz',
+      id: 'tag-misc-001'
+    },
+    'ttp': {
+      isAllowed: false,
+      name: 'The Tortle Package',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'ttp',
+      id: 'tag-misc-002'
+    },
+    'ua': {
+      isAllowed: true,
+      name: 'Unearthed Arcana',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'ua',
+      id: 'tag-ua-001'
+    },
+    'uacdv': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Class Design Variants',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uacdv',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA3_ClassDesignVariants.pdf',
+      id: 'tag-ua-002'
+    },
+    'uacr': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Classics Revisited',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uacr',
+      src: 'http://media.wizards.com/2015/downloads/dnd/04_UA_Classics_Revisited.pdf',
+      id: 'tag-ua-003'
+    },
+    'uaeb': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Eberron',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uaeb',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Eberron_v1.pdf',
+      id: 'tag-ua-004'
+    },
+    'uagh': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Gothic Heroes',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uagh',
+      src: 'https://dnd.wizards.com/sites/default/files/media/upload/articles/UA%20Gothic%20Characters.pdf',
+      id: 'tag-ua-005'
+    },
+    'uamm': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Modern Magic',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uamm',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA_ModernMagic.pdf',
+      id: 'tag-ua-006'
+    },
+    'uaps': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Psionics & The Mystic',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uamm',
+      src: 'http://media.wizards.com/2016/downloads/Psionics_and_Mystic_V2.pdf',
+      id: 'tag-ua-007'
+    },
+    'uarmpc': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Psionics & The Mystic',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uarmpc',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Rune_Magic_Prestige_Class.pdf',
+      id: 'tag-ua-008'
+    },
+    'uaro': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Ranger Options',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uaro',
+      src: 'http://media.wizards.com/2015/downloads/dnd/DX_0907_UA_RangerOptions.pdf',
+      id: 'tag-ua-009'
+    },
+    'uatom': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: That Old Black Magic',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uatom',
+      src: 'https://media.wizards.com/2015/downloads/dnd/07_UA_That_Old_Black_Magic.pdf',
+      id: 'tag-ua-010'
+    },
+    'uawb': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Waterborne Adventures',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.source],
+      key: 'uawb',
+      src: 'https://media.wizards.com/2015/downloads/ dnd /UA_ Waterborne_v3.pdf',
+      id: 'tag-ua-011'
+    },
+    'abr': {
+      isAllowed: true,
+      name: 'Aberration',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'abr',
+      id: 'tag-monstertype-01'
+    },
+    'bst': {
+      isAllowed: true,
+      name: 'Beast',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'bst',
+      id: 'tag-monstertype-02'
+    },
+    'cel': {
+      isAllowed: true,
+      name: 'Celestial',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'cel',
+      id: 'tag-monstertype-03'
+    },
+    'con': {
+      isAllowed: true,
+      name: 'Construct',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'con',
+      id: 'tag-monstertype-04'
+    },
+    'dra': {
+      isAllowed: true,
+      name: 'Dragon',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'dra',
+      id: 'tag-monstertype-05'
+    },
+    'ele': {
+      isAllowed: true,
+      name: 'Elemental',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'ele',
+      id: 'tag-monstertype-06'
+    },
+    'fey': {
+      isAllowed: true,
+      name: 'Fey',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'fey',
+      id: 'tag-monstertype-07'
+    },
+    'fnd': {
+      isAllowed: true,
+      name: 'Fiend',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'fnd',
+      id: 'tag-monstertype-08'
+    },
+    'gnt': {
+      isAllowed: true,
+      name: 'Giant',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'gnt',
+      id: 'tag-monstertype-09'
+    },
+    'hum': {
+      isAllowed: true,
+      name: 'Humanoid',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'hum',
+      id: 'tag-monstertype-10'
+    },
+    'mon': {
+      isAllowed: true,
+      name: 'Monstrosity',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'mon',
+      id: 'tag-monstertype-11'
+    },
+    'ooz': {
+      isAllowed: true,
+      name: 'Ooze',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'ooz',
+      id: 'tag-monstertype-12'
+    },
+    'plt': {
+      isAllowed: true,
+      name: 'Plant',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'plt',
+      id: 'tag-monstertype-13'
+    },
+    'und': {
+      isAllowed: true,
+      name: 'Undead',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureType],
+      key: 'und',
+      id: 'tag-monstertype-14'
+    },
+    'ang': {
+      isAllowed: true,
+      name: 'Angel',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureSubtype],
+      key: 'ang',
+      id: 'tag-subtype-01'
+    },
+    'dmn': {
+      isAllowed: true,
+      name: 'Demon',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureSubtype],
+      key: 'dmn',
+      id: 'tag-subtype-02'
+    },
+    'dvl': {
+      isAllowed: true,
+      name: 'Devil',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureSubtype],
+      key: 'dvl',
+      id: 'tag-subtype-03'
+    },
+    'gob': {
+      isAllowed: true,
+      name: 'Goblinoid',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureSubtype],
+      key: 'gob',
+      id: 'tag-subtype-04'
+    },
+    'rep': {
+      isAllowed: true,
+      name: 'Reptilian',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureSubtype],
+      key: 'rep',
+      id: 'tag-subtype-05'
+    },
+    'shp': {
+      isAllowed: true,
+      name: 'Shapechanger',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureSubtype],
+      key: 'shp',
+      id: 'tag-subtype-06'
+    },
+    'yug': {
+      isAllowed: true,
+      name: 'Yugoloth',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.creatureSubtype],
+      key: 'yug',
+      id: 'tag-subtype-07'
+    },
+    'law': {
+      isAllowed: true,
+      name: 'Lawful',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'law',
+      id: 'tag-align-01'
+    },
+    'ntr': {
+      isAllowed: true,
+      name: 'Neutral',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'ntr',
+      id: 'tag-align-02'
+    },
+    'cht': {
+      isAllowed: true,
+      name: 'Chaotic',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'cht',
+      id: 'tag-align-03'
+    },
+    'god': {
+      isAllowed: true,
+      name: 'Good',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'god',
+      id: 'tag-align-04'
+    },
+    'evl': {
+      isAllowed: true,
+      name: 'Evil',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'evl',
+      id: 'tag-align-05'
+    },
+    'lg': {
+      isAllowed: true,
+      name: 'Lawful Good',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'lg',
+      id: 'tag-align-06'
+    },
+    'ng': {
+      isAllowed: true,
+      name: 'Neutral Good',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'ng',
+      id: 'tag-align-07'
+    },
+    'cg': {
+      isAllowed: true,
+      name: 'Chaotic Good',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'cg',
+      id: 'tag-align-08'
+    },
+    'ln': {
+      isAllowed: true,
+      name: 'Lawful Neutral',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'ln',
+      id: 'tag-align-09'
+    },
+    'tn': {
+      isAllowed: true,
+      name: 'True Neutral',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'tn',
+      id: 'tag-align-10'
+    },
+    'cn': {
+      isAllowed: true,
+      name: 'Chaotic Neutral',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'cn',
+      id: 'tag-align-11'
+    },
+    'le': {
+      isAllowed: true,
+      name: 'Lawful Evil',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'le',
+      id: 'tag-align-12'
+    },
+    'ne': {
+      isAllowed: true,
+      name: 'Neutral Evil',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'ne',
+      id: 'tag-align-13'
+    },
+    'ce': {
+      isAllowed: true,
+      name: 'Chaotic Evil',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'ce',
+      id: 'tag-align-14'
+    },
+    'aa': {
+      isAllowed: true,
+      name: 'Any Alignment',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'aa',
+      id: 'tag-align-15'
+    },
+    'ag': {
+      isAllowed: true,
+      name: 'Any Good',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'ag',
+      id: 'tag-align-16'
+    },
+    'an': {
+      isAllowed: true,
+      name: 'Any Neutral',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'an',
+      id: 'tag-align-17'
+    },
+    'ae': {
+      isAllowed: true,
+      name: 'Any Evil',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'ae',
+      id: 'tag-align-18'
+    },
+    'al': {
+      isAllowed: true,
+      name: 'Any Lawful',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'al',
+      id: 'tag-align-19'
+    },
+    'ac': {
+      isAllowed: true,
+      name: 'Any Chaotic',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.alignment],
+      key: 'ac',
+      id: 'tag-align-20'
+    },
+    'cany': {
+      isAllowed: true,
+      name: 'Any Climate',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.climate],
+      key: 'cany',
+      id: 'tag-climate-01'
+    },
+    'carc': {
+      isAllowed: true,
+      name: 'Arctic',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.climate],
+      key: 'carc',
+      id: 'tag-climate-02'
+    },
+    'ccld': {
+      isAllowed: true,
+      name: 'Cold',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.climate],
+      key: 'ccld',
+      id: 'tag-climate-03'
+    },
+    'ctmp': {
+      isAllowed: true,
+      name: 'Temperate',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.climate],
+      key: 'ctmp',
+      id: 'tag-climate-04'
+    },
+    'cwrm': {
+      isAllowed: true,
+      name: 'Warm',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.climate],
+      key: 'cwrm',
+      id: 'tag-climate-05'
+    },
+    'ctrp': {
+      isAllowed: true,
+      name: 'Tropical',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.climate],
+      key: 'ctrp',
+      id: 'tag-climate-06'
+    },
+    'tany': {
+      isAllowed: true,
+      name: 'Any Terrain',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tany',
+      id: 'tag-terrain-01'
+    },
+    'taqu': {
+      isAllowed: true,
+      name: 'Aquatic',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'taqu',
+      id: 'tag-terrain-02'
+    },
+    'tcst': {
+      isAllowed: true,
+      name: 'Coastal',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tcst',
+      id: 'tag-terrain-03'
+    },
+    'ttun': {
+      isAllowed: true,
+      name: 'Tundra',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'ttun',
+      id: 'tag-terrain-04'
+    },
+    'tpln': {
+      isAllowed: true,
+      name: 'Plains',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tpln',
+      id: 'tag-terrain-05'
+    },
+    'thil': {
+      isAllowed: true,
+      name: 'Hills',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'thil',
+      id: 'tag-terrain-06'
+    },
+    'tmtn': {
+      isAllowed: true,
+      name: 'Mountains',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tmtn',
+      id: 'tag-terrain-07'
+    },
+    'tdst': {
+      isAllowed: true,
+      name: 'Desert',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tdst',
+      id: 'tag-terrain-08'
+    },
+    'tgrs': {
+      isAllowed: true,
+      name: 'Grasslands',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tgrs',
+      id: 'tag-terrain-09'
+    },
+    'tmsh': {
+      isAllowed: true,
+      name: 'Marsh',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tmsh',
+      id: 'tag-terrain-10'
+    },
+    'tsvh': {
+      isAllowed: true,
+      name: 'Savannah',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tsvh',
+      id: 'tag-terrain-11'
+    },
+    'tfst': {
+      isAllowed: true,
+      name: 'Forest',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tfst',
+      id: 'tag-terrain-12'
+    },
+    'tswm': {
+      isAllowed: true,
+      name: 'Swamp',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tswm',
+      id: 'tag-terrain-13'
+    },
+    'tjng': {
+      isAllowed: true,
+      name: 'Jungle',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tjng',
+      id: 'tag-terrain-14'
+    },
+    'tudr': {
+      isAllowed: true,
+      name: 'Underdark',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'tudr',
+      id: 'tag-terrain-15'
+    },
+    'turb': {
+      isAllowed: true,
+      name: 'Urban',
+      type: 'tag',
+      tagTypes: [service_.tagTypes.terrain],
+      key: 'turb',
+      id: 'tag-terrain-16'
+    }
+  };
+
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
+  service_.defaultAlignments = [
+    {
+      isAllowed: true,
+      name: 'Lawful Good',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.lg.id
+      ],
+      weight: {
+        default: 35,
+        custom: 35
+      },
+      id: 'pcal-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Neutral Good',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id
+      ],
+      weight: {
+        default: 4,
+        custom: 4
+      },
+      id: 'pcal-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Chaotic Good',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.cg.id
+      ],
+      weight: {
+        default: 2,
+        custom: 2
+      },
+      id: 'pcal-003'
+    },
+    {
+      isAllowed: true,
+      name: 'Lawful Neutral',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.ln.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'pcal-004'
+    },
+    {
+      isAllowed: true,
+      name: 'True Neutral',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id
+      ],
+      weight: {
+        default: 2,
+        custom: 2
+      },
+      id: 'pcal-005'
+    },
+    {
+      isAllowed: true,
+      name: 'LChaotic Neutral',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.cn.id
+      ],
+      weight: {
+        default: 1,
+        custom: 1
+      },
+      id: 'pcal-006'
+    },
+    {
+      isAllowed: true,
+      name: 'Lawful Evil',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id
+      ],
+      weight: {
+        default: 26,
+        custom: 26
+      },
+      id: 'pcal-007'
+    },
+    {
+      isAllowed: true,
+      name: 'Neutral Evil',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id
+      ],
+      weight: {
+        default: 8,
+        custom: 8
+      },
+      id: 'pcal-008'
+    },
+    {
+      isAllowed: true,
+      name: 'Chaotic Evil',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id
+      ],
+      weight: {
+        default: 2,
+        custom: 2
+      },
+      id: 'pcal-009'
+    }
+  ];
+
+  /**
    * weight should add up to 100. They can be used as a percentage OR weighted random value.
    */
   service_.defaultAgeCategories = [
@@ -752,7 +1661,7 @@ app.service('Demographics', function () {
         service_.defaultTagList.rep.id,
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.tn.id,
-        service_.defaultTagList.ctmp.id
+        service_.defaultTagList.ctmp.id,
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.ctrp.id,
         service_.defaultTagList.tfst.id,
@@ -2061,219 +2970,7 @@ app.service('Demographics', function () {
   /**
    * weight should add up to 100. Only used as weighted random value.
    */
-  service_.defaultPowerCenters = [
-    {
-      isAllowed: true,
-      name: 'Conventional',
-      type: 'powerCenter',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
-      ],
-      weight: {
-        default: 65,
-        custom: 65
-      },
-      chanceForExtraMonstrous: 5,
-      key: 'conventional',
-      id: 'pctr-001'
-    },
-    {
-      isAllowed: true,
-      name: 'Nonstandard',
-      type: 'powerCenter',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
-      ],
-      weight: {
-        default: 30,
-        custom: 30
-      },
-      chanceForExtraMonstrous: 0,
-      key: 'nonstandard',
-      id: 'pctr-002'
-    },
-    {
-      isAllowed: true,
-      name: 'Magical',
-      type: 'powerCenter',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
-      ],
-      weight: {
-        default: 5,
-        custom: 5
-      },
-      chanceForExtraMonstrous: 0,
-      key: 'magical',
-      id: 'pctr-003'
-    },
-  ];
-
-  /**
-   * weight should add up to 100. Only used as weighted random value.
-   */
-  service_.defaultPowerCenterAlignments [
-    {
-      isAllowed: true,
-      name: 'Lawful Good',
-      type: 'alignment',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
-        service_.defaultTagList.law.id,
-        service_.defaultTagList.god.id,
-        service_.defaultTagList.lg.id
-      ],
-      weight: {
-        default: 35,
-        custom: 35
-      },
-      id: 'pcal-001'
-    },
-    {
-      isAllowed: true,
-      name: 'Neutral Good',
-      type: 'alignment',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
-        service_.defaultTagList.ntr.id,
-        service_.defaultTagList.god.id,
-        service_.defaultTagList.ng.id
-      ],
-      weight: {
-        default: 4,
-        custom: 4
-      },
-      id: 'pcal-002'
-    },
-    {
-      isAllowed: true,
-      name: 'Chaotic Good',
-      type: 'alignment',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
-        service_.defaultTagList.cht.id,
-        service_.defaultTagList.god.id,
-        service_.defaultTagList.cg.id
-      ],
-      weight: {
-        default: 2,
-        custom: 2
-      },
-      id: 'pcal-003'
-    },
-    {
-      isAllowed: true,
-      name: 'Lawful Neutral',
-      type: 'alignment',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
-        service_.defaultTagList.law.id,
-        service_.defaultTagList.ntr.id,
-        service_.defaultTagList.ln.id
-      ],
-      weight: {
-        default: 20,
-        custom: 20
-      },
-      id: 'pcal-004'
-    },
-    {
-      isAllowed: true,
-      name: 'True Neutral',
-      type: 'alignment',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
-        service_.defaultTagList.ntr.id,
-        service_.defaultTagList.tn.id
-      ],
-      weight: {
-        default: 2,
-        custom: 2
-      },
-      id: 'pcal-005'
-    },
-    {
-      isAllowed: true,
-      name: 'LChaotic Neutral',
-      type: 'alignment',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
-        service_.defaultTagList.cht.id,
-        service_.defaultTagList.ntr.id,
-        service_.defaultTagList.cn.id
-      ],
-      weight: {
-        default: 1,
-        custom: 1
-      },
-      id: 'pcal-006'
-    },
-    {
-      isAllowed: true,
-      name: 'Lawful Evil',
-      type: 'alignment',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
-        service_.defaultTagList.law.id,
-        service_.defaultTagList.evl.id,
-        service_.defaultTagList.le.id
-      ],
-      weight: {
-        default: 26,
-        custom: 26
-      },
-      id: 'pcal-007'
-    },
-    {
-      isAllowed: true,
-      name: 'Neutral Evil',
-      type: 'alignment',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
-        service_.defaultTagList.ntr.id,
-        service_.defaultTagList.evl.id,
-        service_.defaultTagList.ne.id
-      ],
-      weight: {
-        default: 8,
-        custom: 8
-      },
-      id: 'pcal-008'
-    },
-    {
-      isAllowed: true,
-      name: 'Chaotic Evil',
-      type: 'alignment',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
-        service_.defaultTagList.cht.id,
-        service_.defaultTagList.evl.id,
-        service_.defaultTagList.ce.id
-      ],
-      weight: {
-        default: 2,
-        custom: 2
-      },
-      id: 'pcal-009'
-    }
-  ];
-
-  /**
-   * weight should add up to 100. Only used as weighted random value.
-   */
-  service_.defaultPowerCenterTypes = {
+  service_.defaultPowerCenters = {
     'conventional': [
       {
         isAllowed: true,
@@ -2519,6 +3216,60 @@ app.service('Demographics', function () {
       }
     ]
   };
+
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
+  service_.defaultPowerCenterTypes = [
+    {
+      isAllowed: true,
+      name: 'Conventional',
+      type: 'powerCenter',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
+      ],
+      weight: {
+        default: 65,
+        custom: 65
+      },
+      chanceForExtraMonstrous: 5,
+      key: 'conventional',
+      id: 'pctr-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Nonstandard',
+      type: 'powerCenter',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
+      ],
+      weight: {
+        default: 30,
+        custom: 30
+      },
+      chanceForExtraMonstrous: 0,
+      key: 'nonstandard',
+      id: 'pctr-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Magical',
+      type: 'powerCenter',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      chanceForExtraMonstrous: 0,
+      key: 'magical',
+      id: 'pctr-003'
+    },
+  ];
 
   /**
    * weight should add up to 100. They can be used as a percentage OR weighted random value.
@@ -5596,617 +6347,6 @@ app.service('Demographics', function () {
       id: 'sett-008'
     }
   ];
-
-  /**
-   * weight is not used. These are always placed either automatically or manually.
-   */
-  service_.defaultTagList = {
-    'dflt': {
-      isAllowed: false,
-      name: 'Default',
-      type: 'tag',
-      key: 'dflt',
-      id: 'tag-dflt'
-    },
-    'cust': {
-      isAllowed: false,
-      name: 'Custom',
-      type: 'tag',
-      key: 'cust',
-      id: 'tag-cust'
-    },
-    'phb': {
-      isAllowed: false,
-      name: 'Player\'s Handbook',
-      type: 'tag',
-      key: 'phb',
-      id: 'tag-core-1'
-    },
-    'mm': {
-      isAllowed: false,
-      name: 'Monster Manual',
-      type: 'tag',
-      key: 'mm',
-      id: 'tag-core-2'
-    },
-    'dmg': {
-      isAllowed: false,
-      name: 'Dungeon Master\'s Guide',
-      type: 'tag',
-      key: 'dmg',
-      id: 'tag-core-3'
-    },
-    'elm': {
-      isAllowed: false,
-      name: 'Elemental Evil Player\'s Companion',
-      type: 'tag',
-      key: 'elm',
-      id: 'tag-supp-01'
-    },
-    'scg': {
-      isAllowed: false,
-      name: 'Sword Coast Adventure Guide',
-      type: 'tag',
-      key: 'scg',
-      id: 'tag-supp-02'
-    },
-    'vol': {
-      isAllowed: false,
-      name: 'Volo\'s Guide to Monsters',
-      type: 'tag',
-      key: 'vol',
-      id: 'tag-supp-03'
-    },
-    'xan': {
-      isAllowed: false,
-      name: 'Xanathar\'s Guide to Everything',
-      type: 'tag',
-      key: 'xan',
-      id: 'tag-supp-04'
-    },
-    'psz': {
-      isAllowed: false,
-      name: 'Plane Shift: Zendikar',
-      type: 'tag',
-      key: 'psz',
-      id: 'tag-misc-001'
-    },
-    'ttp': {
-      isAllowed: false,
-      name: 'The Tortle Package',
-      type: 'tag',
-      key: 'ttp',
-      id: 'tag-misc-002'
-    },
-    'ua': {
-      isAllowed: true,
-      name: 'Unearthed Arcana',
-      type: 'tag',
-      key: 'ua',
-      id: 'tag-ua-001'
-    },
-    'uacdv': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: Class Design Variants',
-      type: 'tag',
-      key: 'uacdv',
-      src: 'http://media.wizards.com/2015/downloads/dnd/UA3_ClassDesignVariants.pdf',
-      id: 'tag-ua-002'
-    },
-    'uacr': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: Classics Revisited',
-      type: 'tag',
-      key: 'uacr',
-      src: 'http://media.wizards.com/2015/downloads/dnd/04_UA_Classics_Revisited.pdf',
-      id: 'tag-ua-003'
-    },
-    'uaeb': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: Eberron',
-      type: 'tag',
-      key: 'uaeb',
-      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Eberron_v1.pdf',
-      id: 'tag-ua-004'
-    },
-    'uagh': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: Gothic Heroes',
-      type: 'tag',
-      key: 'uagh',
-      src: 'https://dnd.wizards.com/sites/default/files/media/upload/articles/UA%20Gothic%20Characters.pdf',
-      id: 'tag-ua-005'
-    },
-    'uamm': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: Modern Magic',
-      type: 'tag',
-      key: 'uamm',
-      src: 'http://media.wizards.com/2015/downloads/dnd/UA_ModernMagic.pdf',
-      id: 'tag-ua-006'
-    },
-    'uaps': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: Psionics & The Mystic',
-      type: 'tag',
-      key: 'uamm',
-      src: 'http://media.wizards.com/2016/downloads/Psionics_and_Mystic_V2.pdf',
-      id: 'tag-ua-007'
-    },
-    'uarmpc': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: Psionics & The Mystic',
-      type: 'tag',
-      key: 'uarmpc',
-      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Rune_Magic_Prestige_Class.pdf',
-      id: 'tag-ua-008'
-    },
-    'uaro': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: Ranger Options',
-      type: 'tag',
-      key: 'uaro',
-      src: 'http://media.wizards.com/2015/downloads/dnd/DX_0907_UA_RangerOptions.pdf',
-      id: 'tag-ua-009'
-    },
-    'uatom': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: That Old Black Magic',
-      type: 'tag',
-      key: 'uatom',
-      src: 'https://media.wizards.com/2015/downloads/dnd/07_UA_That_Old_Black_Magic.pdf',
-      id: 'tag-ua-010'
-    },
-    'uawb': {
-      isAllowed: false,
-      name: 'Unearthed Arcana: Waterborne Adventures',
-      type: 'tag',
-      key: 'uawb',
-      src: 'https://media.wizards.com/2015/downloads/ dnd /UA_ Waterborne_v3.pdf',
-      id: 'tag-ua-011'
-    },
-    'abr': {
-      isAllowed: true,
-      name: 'Aberration',
-      type: 'tag',
-      key: 'abr',
-      id: 'tag-monstertype-01'
-    },
-    'bst': {
-      isAllowed: true,
-      name: 'Beast',
-      type: 'tag',
-      key: 'bst',
-      id: 'tag-monstertype-02'
-    },
-    'cel': {
-      isAllowed: true,
-      name: 'Celestial',
-      type: 'tag',
-      key: 'cel',
-      id: 'tag-monstertype-03'
-    },
-    'con': {
-      isAllowed: true,
-      name: 'Construct',
-      type: 'tag',
-      key: 'con',
-      id: 'tag-monstertype-04'
-    },
-    'dra': {
-      isAllowed: true,
-      name: 'Dragon',
-      type: 'tag',
-      key: 'dra',
-      id: 'tag-monstertype-05'
-    },
-    'ele': {
-      isAllowed: true,
-      name: 'Elemental',
-      type: 'tag',
-      key: 'ele',
-      id: 'tag-monstertype-06'
-    },
-    'fey': {
-      isAllowed: true,
-      name: 'Fey',
-      type: 'tag',
-      key: 'fey',
-      id: 'tag-monstertype-07'
-    },
-    'fnd': {
-      isAllowed: true,
-      name: 'Fiend',
-      type: 'tag',
-      key: 'fnd',
-      id: 'tag-monstertype-08'
-    },
-    'gnt': {
-      isAllowed: true,
-      name: 'Giant',
-      type: 'tag',
-      key: 'gnt',
-      id: 'tag-monstertype-09'
-    },
-    'hum': {
-      isAllowed: true,
-      name: 'Humanoid',
-      type: 'tag',
-      key: 'hum',
-      id: 'tag-monstertype-10'
-    },
-    'mon': {
-      isAllowed: true,
-      name: 'Monstrosity',
-      type: 'tag',
-      key: 'mon',
-      id: 'tag-monstertype-11'
-    },
-    'ooz': {
-      isAllowed: true,
-      name: 'Ooze',
-      type: 'tag',
-      key: 'ooz',
-      id: 'tag-monstertype-12'
-    },
-    'plt': {
-      isAllowed: true,
-      name: 'Plant',
-      type: 'tag',
-      key: 'plt',
-      id: 'tag-monstertype-13'
-    },
-    'und': {
-      isAllowed: true,
-      name: 'Undead',
-      type: 'tag',
-      key: 'und',
-      id: 'tag-monstertype-14'
-    },
-    'ang': {
-      isAllowed: true,
-      name: 'Angel',
-      type: 'tag',
-      key: 'ang',
-      id: 'tag-subtype-01'
-    },
-    'dmn': {
-      isAllowed: true,
-      name: 'Demon',
-      type: 'tag',
-      key: 'dmn',
-      id: 'tag-subtype-02'
-    },
-    'dvl': {
-      isAllowed: true,
-      name: 'Devil',
-      type: 'tag',
-      key: 'dvl',
-      id: 'tag-subtype-03'
-    },
-    'gob': {
-      isAllowed: true,
-      name: 'Goblinoid',
-      type: 'tag',
-      key: 'gob',
-      id: 'tag-subtype-04'
-    },
-    'rep': {
-      isAllowed: true,
-      name: 'Reptilian',
-      type: 'tag',
-      key: 'rep',
-      id: 'tag-subtype-05'
-    },
-    'shp': {
-      isAllowed: true,
-      name: 'Shapechanger',
-      type: 'tag',
-      key: 'shp',
-      id: 'tag-subtype-06'
-    },
-    'yug': {
-      isAllowed: true,
-      name: 'Yugoloth',
-      type: 'tag',
-      key: 'yug',
-      id: 'tag-subtype-07'
-    },
-    'law': {
-      isAllowed: true,
-      name: 'Lawful',
-      type: 'tag',
-      key: 'law',
-      id: 'tag-align-01'
-    },
-    'ntr': {
-      isAllowed: true,
-      name: 'Neutral',
-      type: 'tag',
-      key: 'ntr',
-      id: 'tag-align-02'
-    },
-    'cht': {
-      isAllowed: true,
-      name: 'Chaotic',
-      type: 'tag',
-      key: 'cht',
-      id: 'tag-align-03'
-    },
-    'god': {
-      isAllowed: true,
-      name: 'Good',
-      type: 'tag',
-      key: 'god',
-      id: 'tag-align-04'
-    },
-    'evl': {
-      isAllowed: true,
-      name: 'Evil',
-      type: 'tag',
-      key: 'evl',
-      id: 'tag-align-05'
-    },
-    'lg': {
-      isAllowed: true,
-      name: 'Lawful Good',
-      type: 'tag',
-      key: 'lg',
-      id: 'tag-align-06'
-    },
-    'ng': {
-      isAllowed: true,
-      name: 'Neutral Good',
-      type: 'tag',
-      key: 'ng',
-      id: 'tag-align-07'
-    },
-    'cg': {
-      isAllowed: true,
-      name: 'Chaotic Good',
-      type: 'tag',
-      key: 'cg',
-      id: 'tag-align-08'
-    },
-    'ln': {
-      isAllowed: true,
-      name: 'Lawful Neutral',
-      type: 'tag',
-      key: 'ln',
-      id: 'tag-align-09'
-    },
-    'tn': {
-      isAllowed: true,
-      name: 'True Neutral',
-      type: 'tag',
-      key: 'tn',
-      id: 'tag-align-10'
-    },
-    'cn': {
-      isAllowed: true,
-      name: 'Chaotic Neutral',
-      type: 'tag',
-      key: 'cn',
-      id: 'tag-align-11'
-    },
-    'le': {
-      isAllowed: true,
-      name: 'Lawful Evil',
-      type: 'tag',
-      key: 'le',
-      id: 'tag-align-12'
-    },
-    'ne': {
-      isAllowed: true,
-      name: 'Neutral Evil',
-      type: 'tag',
-      key: 'ne',
-      id: 'tag-align-13'
-    },
-    'ce': {
-      isAllowed: true,
-      name: 'Chaotic Evil',
-      type: 'tag',
-      key: 'ce',
-      id: 'tag-align-14'
-    },
-    'aa': {
-      isAllowed: true,
-      name: 'Any Alignment',
-      type: 'tag',
-      key: 'aa',
-      id: 'tag-align-15'
-    },
-    'ag': {
-      isAllowed: true,
-      name: 'Any Good',
-      type: 'tag',
-      key: 'ag',
-      id: 'tag-align-16'
-    },
-    'an': {
-      isAllowed: true,
-      name: 'Any Neutral',
-      type: 'tag',
-      key: 'an',
-      id: 'tag-align-17'
-    },
-    'ae': {
-      isAllowed: true,
-      name: 'Any Evil',
-      type: 'tag',
-      key: 'ae',
-      id: 'tag-align-18'
-    },
-    'al': {
-      isAllowed: true,
-      name: 'Any Lawful',
-      type: 'tag',
-      key: 'al',
-      id: 'tag-align-19'
-    },
-    'ac': {
-      isAllowed: true,
-      name: 'Any Chaotic',
-      type: 'tag',
-      key: 'ac',
-      id: 'tag-align-20'
-    },
-    'cany': {
-      isAllowed: true,
-      name: 'Any Climate',
-      type: 'tag',
-      key: 'cany',
-      id: 'tag-climate-01'
-    },
-    'carc': {
-      isAllowed: true,
-      name: 'Arctic',
-      type: 'tag',
-      key: 'carc',
-      id: 'tag-climate-02'
-    },
-    'ccld': {
-      isAllowed: true,
-      name: 'Cold',
-      type: 'tag',
-      key: 'ccld',
-      id: 'tag-climate-03'
-    },
-    'ctmp': {
-      isAllowed: true,
-      name: 'Temperate',
-      type: 'tag',
-      key: 'ctmp',
-      id: 'tag-climate-04'
-    },
-    'cwrm': {
-      isAllowed: true,
-      name: 'Warm',
-      type: 'tag',
-      key: 'cwrm',
-      id: 'tag-climate-05'
-    },
-    'ctrp': {
-      isAllowed: true,
-      name: 'Tropical',
-      type: 'tag',
-      key: 'ctrp',
-      id: 'tag-climate-06'
-    },
-    'tany': {
-      isAllowed: true,
-      name: 'Any Terrain',
-      type: 'tag',
-      key: 'tany',
-      id: 'tag-terrain-01'
-    },
-    'taqu': {
-      isAllowed: true,
-      name: 'Aquatic',
-      type: 'tag',
-      key: 'taqu',
-      id: 'tag-terrain-02'
-    },
-    'tcst': {
-      isAllowed: true,
-      name: 'Coastal',
-      type: 'tag',
-      key: 'tcst',
-      id: 'tag-terrain-03'
-    },
-    'ttun': {
-      isAllowed: true,
-      name: 'Tundra',
-      type: 'tag',
-      key: 'ttun',
-      id: 'tag-terrain-04'
-    },
-    'tpln': {
-      isAllowed: true,
-      name: 'Plains',
-      type: 'tag',
-      key: 'tpln',
-      id: 'tag-terrain-05'
-    },
-    'thil': {
-      isAllowed: true,
-      name: 'Hills',
-      type: 'tag',
-      key: 'thil',
-      id: 'tag-terrain-06'
-    },
-    'tmtn': {
-      isAllowed: true,
-      name: 'Mountains',
-      type: 'tag',
-      key: 'tmtn',
-      id: 'tag-terrain-07'
-    },
-    'tdst': {
-      isAllowed: true,
-      name: 'Desert',
-      type: 'tag',
-      key: 'tdst',
-      id: 'tag-terrain-08'
-    },
-    'tgrs': {
-      isAllowed: true,
-      name: 'Grasslands',
-      type: 'tag',
-      key: 'tgrs',
-      id: 'tag-terrain-09'
-    },
-    'tmsh': {
-      isAllowed: true,
-      name: 'Marsh',
-      type: 'tag',
-      key: 'tmsh',
-      id: 'tag-terrain-10'
-    },
-    'tsvh': {
-      isAllowed: true,
-      name: 'Savannah',
-      type: 'tag',
-      key: 'tsvh',
-      id: 'tag-terrain-11'
-    },
-    'tfst': {
-      isAllowed: true,
-      name: 'Forest',
-      type: 'tag',
-      key: 'tfst',
-      id: 'tag-terrain-12'
-    },
-    'tswm': {
-      isAllowed: true,
-      name: 'Swamp',
-      type: 'tag',
-      key: 'tswm',
-      id: 'tag-terrain-13'
-    },
-    'tjng': {
-      isAllowed: true,
-      name: 'Jungle',
-      type: 'tag',
-      key: 'tjng',
-      id: 'tag-terrain-14'
-    },
-    'tudr': {
-      isAllowed: true,
-      name: 'Underdark',
-      type: 'tag',
-      key: 'tudr',
-      id: 'tag-terrain-15'
-    },
-    'turb': {
-      isAllowed: true,
-      name: 'Urban',
-      type: 'tag',
-      key: 'turb',
-      id: 'tag-terrain-16'
-    }
-  };
 
   /**
    * weight should add up to 100. Only used as weighted random value.

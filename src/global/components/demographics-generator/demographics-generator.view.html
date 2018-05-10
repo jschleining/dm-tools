@@ -1,56 +1,79 @@
 <div id="demographics-generator" layout="row" layout-align="center stretch" flex>
 
-  <md-sidenav id="md-sidenav-right" class="md-sidenav-right" md-component-id="md-sidenav-right" md-whiteframe="4">
-    <div ng-include="vm.settingsTemplate"></div>
-  </md-sidenav>
+  <!--<md-sidenav id="md-sidenav-right" class="md-sidenav-right" md-component-id="md-sidenav-right" md-whiteframe="4">-->
+    <!--<div ng-include="vm.settingsTemplate"></div>-->
+  <!--</md-sidenav>-->
 
-  <section id="main" class="layout-padding-well" flex="75"></section>
+  <section id="main" class="layout-padding-well" flex="75">
+    <div layout="column">
+      <md-input-container class="no-margin no-padding">
+        <md-select class="no-padding" ng-model="vm.testDisplay" placeholder="test">
+          <md-option ng-repeat="arrayName in vm.test" ng-value="arrayName">{{arrayName}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <div class="layout-padding-well border-bottom-1" ng-repeat="obj in vm.localData[vm.testDisplay]"
+           ng-model-options="{trackBy: 'obj.id'}" md-colors="{'border-color': 'background-300'}" layout="column"
+           layout-align="start stretch">
+        <div>{{obj.name}}: {{obj.id}}</div>
+        <div class="layout-margin-left" layout="row" layout-wrap>
+          <div class="hint layout-margin-left layout-margin-top layout-padding-horizontal border-all-1 round-edges" ng-repeat="tag in obj.tags track by $index"
+               ng-if="obj.tags" md-colors="{'background-color': 'background-50', 'border-color': 'background-300'}">
+            {{ vm.getTag(tag).name }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
   <section id="sidebar" class="layout-padding-well border-left-1" md-colors="{'border-color': 'background-300'}" flex="25">
-    <h4>Settings:</h4>
-    <div class="layout-margin-top layout-padding-vertical hint border-bottom-1" md-colors="{'border-color': 'background-300'}">
-      Opening any setting will reset the generator.
-    </div>
-    <div class="layout-padding-4" layout="row" layout-wrap>
-      <div class="layout-padding-4" flex="100" layout="column" layout-align="start stretch">
-        <md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('globalSettings')">global settings</md-button>
-      </div>
-      <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">
-        <md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('settlementSettings', {
-        action: 'populateEditArray', object: vm.settlementSelection})">settlement</md-button>
-      </div>
-      <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">
-        <md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('powerCenterSettings', {
-        action: 'populateEditArray', object: vm.powerCenterSelection})">power ctr</md-button>
-      </div>
-      <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">
-        <md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('authoritySettings', {
-        action: 'populateEditArray', object: vm.authoritySelection})">authorities</md-button>
-      </div>
-      <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">
-        <md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('raceSettings')">races</md-button>
-      </div>
-      <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">
-        <md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('racialMixSettings', {
-        action: 'populateEditArray', object: vm.racialMixSelection})">racial mix</md-button>
-      </div>
-    </div>
+    <!--<h4>Settings:</h4>-->
+    <!--<div class="layout-margin-top layout-padding-vertical hint border-bottom-1" md-colors="{'border-color': 'background-300'}">-->
+      <!--Opening any setting will reset the generator.-->
+    <!--</div>-->
+    <!--<div class="layout-padding-4" layout="row" layout-wrap>-->
+      <!--<div class="layout-padding-4" flex="100" layout="column" layout-align="start stretch">-->
+        <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('globalSettings')">global settings</md-button>-->
+      <!--</div>-->
+      <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">-->
+        <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('settlementSettings', {-->
+        <!--action: 'populateEditArray', object: vm.settlementSelection})">settlement</md-button>-->
+      <!--</div>-->
+      <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">-->
+        <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('powerCenterSettings', {-->
+        <!--action: 'populateEditArray', object: vm.powerCenterSelection})">power ctr</md-button>-->
+      <!--</div>-->
+      <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">-->
+        <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('authoritySettings', {-->
+        <!--action: 'populateEditArray', object: vm.authoritySelection})">authorities</md-button>-->
+      <!--</div>-->
+      <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">-->
+        <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('raceSettings')">races</md-button>-->
+      <!--</div>-->
+      <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">-->
+        <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('racialMixSettings', {-->
+        <!--action: 'populateEditArray', object: vm.racialMixSelection})">racial mix</md-button>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div class="layout-padding-4 border-top-1" layout="row" layout-wrap md-colors="{'border-color': 'background-300'}">
-      <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch" ng-if="vm.appConfigSettings.global.useSubraces">
-        <md-button class="md-raised md-accent no-margin" ng-click="vm.openSettingsSidebar('subraceSettings')">subraces</md-button>
-      </div>
-      <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch" ng-if="vm.appConfigSettings.global.useAgeCategories">
-        <md-button class="md-raised md-accent no-margin" ng-click="vm.openSettingsSidebar('ageSettings')">age</md-button>
-      </div>
-      <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch" ng-if="vm.appConfigSettings.global.useSocialClass">
-        <md-button class="md-raised md-accent no-margin" ng-click="vm.openSettingsSidebar('socialClassSettings', {
-        action: 'populateEditArray', object: vm.socialClassSelection})">social cls</md-button>
-      </div>
-      <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch" ng-if="vm.appConfigSettings.global.useProfessions">
-        <md-button class="md-raised md-accent no-margin" ng-click="vm.openSettingsSidebar('professionSettings', {
-        action: 'populateEditArray', object: vm.professionSelection})">professions</md-button>
-      </div>
-    </div>
+    <!--<div class="layout-padding-4 border-top-1" layout="row" layout-wrap md-colors="{'border-color': 'background-300'}">-->
+      <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch" ng-if="vm.appConfigSettings.global.useSubraces">-->
+        <!--<md-button class="md-raised md-accent no-margin" ng-click="vm.openSettingsSidebar('subraceSettings')">subraces</md-button>-->
+      <!--</div>-->
+      <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch" ng-if="vm.appConfigSettings.global.useAgeCategories">-->
+        <!--<md-button class="md-raised md-accent no-margin" ng-click="vm.openSettingsSidebar('ageSettings')">age</md-button>-->
+      <!--</div>-->
+      <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch" ng-if="vm.appConfigSettings.global.useSocialClass">-->
+        <!--<md-button class="md-raised md-accent no-margin" ng-click="vm.openSettingsSidebar('socialClassSettings', {-->
+        <!--action: 'populateEditArray', object: vm.socialClassSelection})">social cls</md-button>-->
+      <!--</div>-->
+      <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch" ng-if="vm.appConfigSettings.global.useProfessions">-->
+        <!--<md-button class="md-raised md-accent no-margin" ng-click="vm.openSettingsSidebar('professionSettings', {-->
+        <!--action: 'populateEditArray', object: vm.professionSelection})">professions</md-button>-->
+      <!--</div>-->
+    <!--</div>-->
 
 
   </section>
