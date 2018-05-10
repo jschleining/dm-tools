@@ -1,0 +1,37 @@
+@import "../styles/mixins.styles.less";
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+  cursor: pointer;
+}
+
+.local-tag {
+  background-color: antiquewhite;
+  cursor: default;
+  border-radius: 24px;
+  position: relative;
+}
+
+.no-input-spacer .md-errors-spacer {
+  display: none;
+}
+
+.tooltip-override {
+  .size-multiplier-x(30, 8);
+  .size-multiplier-y(4, 4);
+
+  height: auto !important;
+  max-width: @size-x-result !important;
+  line-height: @size-y-result !important;
+  white-space: normal !important;
+}
+
+.icon-button-override {
+  min-height: initial !important;
+  height: initial !important;
+
+  i {
+    vertical-align: middle !important;
+  }
+}

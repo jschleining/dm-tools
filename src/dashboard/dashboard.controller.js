@@ -5,7 +5,6 @@ var app = angular.module('dashboardModule', [
 
 app.controller('DashboardController', ['Utilities', function (Utilities) {
   var vm_ = this;
-  vm_.total = 0;
   vm_.numberOfDice = 1;
   vm_.min = 1;
   vm_.max = null;
@@ -39,6 +38,7 @@ app.controller('DashboardController', ['Utilities', function (Utilities) {
       selected: false
     }
   ];
+  vm_.total = 0;
 
   vm_.rollDice = rollDice_;
 
@@ -51,9 +51,9 @@ app.controller('DashboardController', ['Utilities', function (Utilities) {
 
   }
 
-  function rollDice_() {
-    var min = vm_.numberOfDice;
-    var max = vm_.numberOfDice * vm_.diceType;
+  function rollDice_(quantity, type) {
+    var min = quantity;
+    var max = quantity * type;
     vm_.total = Utilities.getRandom(min, max);
   }
 }]);

@@ -1,4 +1,3 @@
-@import "../styles/helper.styles.less";
 @import "../styles/mixins.styles.less";
 
 @font-face {
@@ -83,12 +82,6 @@ md-button {
   .md-caption();
 }
 
-[ng-click],
-[data-ng-click],
-[x-ng-click] {
-  cursor: pointer;
-}
-
 // Global height and background styles.
 // TODO(jcarter): Replace this background color with ngMaterial color mixin.
 #outer-wrap {
@@ -129,28 +122,5 @@ md-button {
 
   md-whiteframe {
     background-color: @color-white;
-  }
-}
-
-.no-input-spacer .md-errors-spacer {
-  display: none;
-}
-
-.tooltip-override {
-  .size-multiplier-x(30, 8);
-  .size-multiplier-y(4, 4);
-
-  height: auto !important;
-  max-width: @size-x-result !important;
-  line-height: @size-y-result !important;
-  white-space: normal !important;
-}
-
-.icon-button-override {
-  min-height: initial !important;
-  height: initial !important;
-
-  i {
-    vertical-align: middle !important;
   }
 }

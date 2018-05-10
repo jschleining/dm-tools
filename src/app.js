@@ -4,7 +4,8 @@ var app = angular.module('dmTools', [
   'ui.grid',
   'angularMoment',
   'headerModule',
-  'dashboardModule'
+  'dashboardModule',
+  'demographicsModule'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
@@ -28,6 +29,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
             'workspace@': {
               templateUrl: 'dashboard/dashboard.view.html',
               controller: 'DashboardController',
+              controllerAs: 'vm'
+            }
+          }
+        }).
+        state('root.demographics', {
+          url: '/demographics',
+          views: {
+            'workspace@': {
+              templateUrl: 'demographics/demographics.view.html',
+              controller: 'DemographicsController',
               controllerAs: 'vm'
             }
           }

@@ -3,452 +3,9 @@ var app = angular.module('dmTools');
 app.service('Demographics', function () {
   var service_ = this;
 
-  service_.customIdCounter = 1000;
-  service_.defaultTagList = {
-    'dflt': {
-      name: 'Default',
-      isAllowed: false,
-      type: 'tag',
-      key: 'dflt',
-      id: 'tag-dflt'
-    },
-    'cust': {
-      name: 'Custom',
-      isAllowed: false,
-      type: 'tag',
-      key: 'cust',
-      id: 'tag-cust'
-    },
-    'phb': {
-      name: 'Player\'s Handbook',
-      isAllowed: false,
-      type: 'tag',
-      key: 'phb',
-      id: 'tag-core-1'
-    },
-    'dmg': {
-      name: 'Dungeon Master\'s Guide',
-      isAllowed: false,
-      type: 'tag',
-      key: 'dmg',
-      id: 'tag-core-3'
-    },
-    'elm': {
-      name: 'Elemental Evil Player\'s Companion',
-      isAllowed: false,
-      type: 'tag',
-      key: 'elm',
-      id: 'tag-supp-01'
-    },
-    'scg': {
-      name: 'Sword Coast Adventure Guide',
-      isAllowed: false,
-      type: 'tag',
-      key: 'scg',
-      id: 'tag-supp-02'
-    },
-    'vol': {
-      name: 'Volo\'s Guide to Monsters',
-      isAllowed: false,
-      type: 'tag',
-      key: 'vol',
-      id: 'tag-supp-03'
-    },
-    'xan': {
-      name: 'Xanathar\'s Guide to Everything',
-      isAllowed: false,
-      type: 'tag',
-      key: 'xan',
-      id: 'tag-supp-04'
-    },
-    'psz': {
-      name: 'Plane Shift: Zendikar',
-      isAllowed: false,
-      type: 'tag',
-      key: 'psz',
-      id: 'tag-misc-001'
-    },
-    'ttp': {
-      name: 'The Tortle Package',
-      isAllowed: false,
-      type: 'tag',
-      key: 'ttp',
-      id: 'tag-misc-002'
-    },
-    'ua': {
-      name: 'Unearthed Arcana',
-      isAllowed: true,
-      type: 'tag',
-      key: 'ua',
-      id: 'tag-ua-001'
-    },
-    'uacdv': {
-      name: 'Unearthed Arcana: Class Design Variants',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uacdv',
-      src: 'http://media.wizards.com/2015/downloads/dnd/UA3_ClassDesignVariants.pdf',
-      id: 'tag-ua-002'
-    },
-    'uacr': {
-      name: 'Unearthed Arcana: Classics Revisited',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uacr',
-      src: 'http://media.wizards.com/2015/downloads/dnd/04_UA_Classics_Revisited.pdf',
-      id: 'tag-ua-003'
-    },
-    'uaeb': {
-      name: 'Unearthed Arcana: Eberron',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uaeb',
-      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Eberron_v1.pdf',
-      id: 'tag-ua-004'
-    },
-    'uagh': {
-      name: 'Unearthed Arcana: Gothic Heroes',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uagh',
-      src: 'https://dnd.wizards.com/sites/default/files/media/upload/articles/UA%20Gothic%20Characters.pdf',
-      id: 'tag-ua-005'
-    },
-    'uamm': {
-      name: 'Unearthed Arcana: Modern Magic',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uamm',
-      src: 'http://media.wizards.com/2015/downloads/dnd/UA_ModernMagic.pdf',
-      id: 'tag-ua-006'
-    },
-    'uaps': {
-      name: 'Unearthed Arcana: Psionics & The Mystic',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uamm',
-      src: 'http://media.wizards.com/2016/downloads/Psionics_and_Mystic_V2.pdf',
-      id: 'tag-ua-007'
-    },
-    'uarmpc': {
-      name: 'Unearthed Arcana: Psionics & The Mystic',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uarmpc',
-      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Rune_Magic_Prestige_Class.pdf',
-      id: 'tag-ua-008'
-    },
-    'uaro': {
-      name: 'Unearthed Arcana: Ranger Options',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uaro',
-      src: 'http://media.wizards.com/2015/downloads/dnd/DX_0907_UA_RangerOptions.pdf',
-      id: 'tag-ua-009'
-    },
-    'uatom': {
-      name: 'Unearthed Arcana: That Old Black Magic',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uatom',
-      src: 'https://media.wizards.com/2015/downloads/dnd/07_UA_That_Old_Black_Magic.pdf',
-      id: 'tag-ua-010'
-    },
-    'uawb': {
-      name: 'Unearthed Arcana: Waterborne Adventures',
-      isAllowed: false,
-      type: 'tag',
-      key: 'uawb',
-      src: 'https://media.wizards.com/2015/downloads/ dnd /UA_ Waterborne_v3.pdf',
-      id: 'tag-ua-011'
-    },
-    'abr': {
-      name: 'Aberration',
-      isAllowed: true,
-      type: 'tag',
-      key: 'abr',
-      id: 'tag-subtype-01'
-    },
-    'bst': {
-      name: 'Beast',
-      isAllowed: true,
-      type: 'tag',
-      key: 'bst',
-      id: 'tag-subtype-02'
-    },
-    'cel': {
-      name: 'Celestial',
-      isAllowed: true,
-      type: 'tag',
-      key: 'cel',
-      id: 'tag-subtype-03'
-    },
-    'con': {
-      name: 'Construct',
-      isAllowed: true,
-      type: 'tag',
-      key: 'con',
-      id: 'tag-subtype-04'
-    },
-    'dra': {
-      name: 'Dragon',
-      isAllowed: true,
-      type: 'tag',
-      key: 'dra',
-      id: 'tag-subtype-05'
-    },
-    'ele': {
-      name: 'Elemental',
-      isAllowed: true,
-      type: 'tag',
-      key: 'ele',
-      id: 'tag-subtype-06'
-    },
-    'fey': {
-      name: 'Fey',
-      isAllowed: true,
-      type: 'tag',
-      key: 'fey',
-      id: 'tag-subtype-07'
-    },
-    'fnd': {
-      name: 'Fiend',
-      isAllowed: true,
-      type: 'tag',
-      key: 'fnd',
-      id: 'tag-subtype-08'
-    },
-    'gnt': {
-      name: 'Giant',
-      isAllowed: true,
-      type: 'tag',
-      key: 'gnt',
-      id: 'tag-subtype-09'
-    },
-    'hum': {
-      name: 'Humanoid',
-      isAllowed: true,
-      type: 'tag',
-      key: 'hum',
-      id: 'tag-subtype-10'
-    },
-    'mon': {
-      name: 'Monstrosity',
-      isAllowed: true,
-      type: 'tag',
-      key: 'mon',
-      id: 'tag-subtype-11'
-    },
-    'ooz': {
-      name: 'Ooze',
-      isAllowed: true,
-      type: 'tag',
-      key: 'ooz',
-      id: 'tag-subtype-12'
-    },
-    'plt': {
-      name: 'Plant',
-      isAllowed: true,
-      type: 'tag',
-      key: 'plt',
-      id: 'tag-subtype-13'
-    },
-    'und': {
-      name: 'Undead',
-      isAllowed: true,
-      type: 'tag',
-      key: 'und',
-      id: 'tag-subtype-14'
-    },
-    'dmn': {
-      name: 'Demon',
-      isAllowed: true,
-      type: 'tag',
-      key: 'dmn',
-      id: 'tag-subtype-15'
-    },
-    'dvl': {
-      name: 'Devil',
-      isAllowed: true,
-      type: 'tag',
-      key: 'dvl',
-      id: 'tag-subtype-16'
-    },
-    'gob': {
-      name: 'Goblinoid',
-      isAllowed: true,
-      type: 'tag',
-      key: 'gob',
-      id: 'tag-subtype-17'
-    },
-    'shp': {
-      name: 'Shapechanger',
-      isAllowed: true,
-      type: 'tag',
-      key: 'shp',
-      id: 'tag-subtype-18'
-    },
-    'ttn': {
-      name: 'Titan',
-      isAllowed: true,
-      type: 'tag',
-      key: 'ttn',
-      id: 'tag-subtype-19'
-    },
-    'yug': {
-      name: 'Yugoloth',
-      isAllowed: true,
-      type: 'tag',
-      key: 'yug',
-      id: 'tag-subtype-20'
-    },
-    'law': {
-      name: 'Lawful',
-      isAllowed: true,
-      type: 'tag',
-      key: 'law',
-      id: 'tag-align-01'
-    },
-    'ntr': {
-      name: 'Neutral',
-      isAllowed: true,
-      type: 'tag',
-      key: 'ntr',
-      id: 'tag-align-02'
-    },
-    'cht': {
-      name: 'Chaotic',
-      isAllowed: true,
-      type: 'tag',
-      key: 'cht',
-      id: 'tag-align-03'
-    },
-    'god': {
-      name: 'Good',
-      isAllowed: true,
-      type: 'tag',
-      key: 'god',
-      id: 'tag-align-04'
-    },
-    'evl': {
-      name: 'Evil',
-      isAllowed: true,
-      type: 'tag',
-      key: 'evl',
-      id: 'tag-align-05'
-    },
-    'lg': {
-      name: 'Lawful Good',
-      isAllowed: true,
-      type: 'tag',
-      key: 'lg',
-      id: 'tag-align-06'
-    },
-    'ng': {
-      name: 'Neutral Good',
-      isAllowed: true,
-      type: 'tag',
-      key: 'ng',
-      id: 'tag-align-07'
-    },
-    'cg': {
-      name: 'Chaotic Good',
-      isAllowed: true,
-      type: 'tag',
-      key: 'cg',
-      id: 'tag-align-08'
-    },
-    'ln': {
-      name: 'Lawful Neutral',
-      isAllowed: true,
-      type: 'tag',
-      key: 'ln',
-      id: 'tag-align-09'
-    },
-    'tn': {
-      name: 'True Neutral',
-      isAllowed: true,
-      type: 'tag',
-      key: 'tn',
-      id: 'tag-align-10'
-    },
-    'cn': {
-      name: 'Chaotic Neutral',
-      isAllowed: true,
-      type: 'tag',
-      key: 'cn',
-      id: 'tag-align-11'
-    },
-    'le': {
-      name: 'Lawful Evil',
-      isAllowed: true,
-      type: 'tag',
-      key: 'le',
-      id: 'tag-align-12'
-    },
-    'ne': {
-      name: 'Neutral Evil',
-      isAllowed: true,
-      type: 'tag',
-      key: 'ne',
-      id: 'tag-align-13'
-    },
-    'ce': {
-      name: 'Chaotic Evil',
-      isAllowed: true,
-      type: 'tag',
-      key: 'ce',
-      id: 'tag-align-14'
-    }
-  };
-
-  // weighted authority categories should add up to 100. Only used as weighted random.
-  service_.defaultAuthorities = [
-    {
-      id: 'auth-001',
-      name: 'Highest Level Warrior',
-      isAllowed: true,
-      type: 'authority',
-      tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
-      ],
-      weight: {
-        default: 60,
-        custom: 60
-      }
-    },
-    {
-      id: 'auth-002',
-      name: 'Second Highest Level Fighter',
-      isAllowed: true,
-      type: 'authority',
-      tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
-      ],
-      weight: {
-        default: 20,
-        custom: 20
-      }
-    },
-    {
-      id: 'auth-003',
-      name: 'Highest Level Fighter',
-      isAllowed: true,
-      type: 'authority',
-      tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
-      ],
-      weight: {
-        default: 20,
-        custom: 20
-      }
-    }
-  ];
-
-  // weighted age categories should add up to 100. Then they can be used as a percentage OR weighted random value.
+  /**
+   * weight should add up to 100. They can be used as a percentage OR weighted random value.
+   */
   service_.defaultAgeCategories = [
     {
       id: 'age-001',
@@ -456,8 +13,8 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'age',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
       ],
       weight: {
         default: 50,
@@ -470,8 +27,8 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'age',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
       ],
       weight: {
         default: 35,
@@ -484,8 +41,8 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'age',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
       ],
       weight: {
         default: 13,
@@ -498,8 +55,8 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'age',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
       ],
       weight: {
         default: 2,
@@ -508,16 +65,2474 @@ app.service('Demographics', function () {
     }
   ];
 
-  // default races available in the app
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
+  service_.defaultAuthorities = [
+    {
+      id: 'auth-001',
+      name: 'Highest Level Warrior',
+      isAllowed: true,
+      type: 'authority',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
+      ],
+      weight: {
+        default: 60,
+        custom: 60
+      }
+    },
+    {
+      id: 'auth-002',
+      name: 'Second Highest Level Fighter',
+      isAllowed: true,
+      type: 'authority',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      }
+    },
+    {
+      id: 'auth-003',
+      name: 'Highest Level Fighter',
+      isAllowed: true,
+      type: 'authority',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      }
+    }
+  ];
+
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
+  service_.defaultClimates = [
+    {
+      isAllowed: true,
+      name: 'Arctic',
+      type: 'climate',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.carc.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'clim-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Cold',
+      type: 'climate',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.ccld.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'clim-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Temperate',
+      type: 'climate',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.ctmp.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'clim-003'
+    },
+    {
+      isAllowed: true,
+      name: 'Warm',
+      type: 'climate',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.cwrm.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'clim-004'
+    },
+    {
+      isAllowed: true,
+      name: 'Tropical',
+      type: 'climate',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.ctrp.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'clim-005'
+    },
+  ];
+
+  /**
+   * when rolling up a monstrous power center, alignment is rolled first. monsters are 
+   * divided up here by alignment, then type alphabetically. weight is calculated by alignment,
+   * and should reach 100 for each individual alignment. Originally I was going to keep it more
+   * generic and just use basic monster type, but then I decided to allow for terrain type and
+   * creature subtypes, so the user could see goblinoid or gnoll instead of just humanoid, and 
+   * could filter based on terrain. If they wanted a city in an arctic tundra it wouldnt make
+   * sense to randomly generate a creature that couldnt survive there. There will be an option 
+   * to turn off terrain and climate filters so any monster culd appear anywhere. This could
+   * make for some interesting stories. The default weights assume the filters are off. If the
+   * filters are on, and there is more than one option available, it will randomly choose 
+   * without taking into account weight. The last few monsters have weight: 0.
+   */
+  service_.defaultMonsters = [
+    {
+      isAllowed: true,
+      name: 'Couatyl',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.cel.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.lg.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tjng.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Angel',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.cel.id,
+        service_.defaultTagList.ang.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.lg.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Bronze Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.lg.id,
+        service_.defaultTagList.ctrp.id,
+        service_.defaultTagList.taqu.id,
+        service_.defaultTagList.tcst.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'mnstr-003'
+    },
+    {
+      isAllowed: true,
+      name: 'Gold Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.lg.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-004'
+    },
+    {
+      isAllowed: true,
+      name: 'Silver Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.lg.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 40,
+        custom: 40
+      },
+      id: 'mnstr-005'
+    },
+    {
+      isAllowed: true,
+      name: 'Brownie',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fey.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.lg.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tpln.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-006'
+    },
+    {
+      isAllowed: true,
+      name: 'Pseudodragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-007'
+    },
+    {
+      isAllowed: true,
+      name: 'Pixie',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fey.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-008'
+    },
+    {
+      isAllowed: true,
+      name: 'Sprite',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fey.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'mnstr-009'
+    },
+    {
+      isAllowed: true,
+      name: 'Aarakocra',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tmtn.id
+      ],
+      weight: {
+        default: 30,
+        custom: 30
+      },
+      id: 'mnstr-010'
+    },
+    {
+      isAllowed: true,
+      name: 'Deep Gnome',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-011'
+    },
+    {
+      isAllowed: true,
+      name: 'Centaur',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.mon.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-012'
+    },
+    {
+      isAllowed: true,
+      name: 'Brass Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.cg.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.tpln.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'mnstr-013'
+    },
+    {
+      isAllowed: true,
+      name: 'Copper Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.cg.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id
+      ],
+      weight: {
+        default: 25,
+        custom: 25
+      },
+      id: 'mnstr-014'
+    },
+    {
+      isAllowed: true,
+      name: 'Faerie Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.cg.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.ctrp.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 25,
+        custom: 25
+      },
+      id: 'mnstr-015'
+    },
+    {
+      isAllowed: true,
+      name: 'Djinni',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.ele.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.cg.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tdst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-016'
+    },
+    {
+      isAllowed: true,
+      name: 'Storm Giant',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.cg.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.taqu.id,
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.tmtn.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-017'
+    },
+    {
+      isAllowed: true,
+      name: 'Treant',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.plt.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.cg.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'mnstr-018'
+    },
+    {
+      isAllowed: true,
+      name: 'Azer',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.ele.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.ln.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.ctrp.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-019'
+    },
+    {
+      isAllowed: true,
+      name: 'Githzerai',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.ln.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 30,
+        custom: 30
+      },
+      id: 'mnstr-020'
+    },
+    {
+      isAllowed: true,
+      name: 'Sphinx',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.mon.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.ln.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tdst.id
+      ],
+      weight: {
+        default: 35,
+        custom: 35
+      },
+      id: 'mnstr-021'
+    },
+    {
+      isAllowed: true,
+      name: 'Myconid',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.plt.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.ln.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 25,
+        custom: 25
+      },
+      id: 'mnstr-022'
+    },
+    {
+      isAllowed: true,
+      name: 'Galeb Duhr',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.ele.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-023'
+    },
+    {
+      isAllowed: true,
+      name: 'Dryad',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fey.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'mnstr-024'
+    },
+    {
+      isAllowed: true,
+      name: 'Cloud Giant',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.tmtn.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-025'
+    },
+    {
+      isAllowed: true,
+      name: 'Stone Giant',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-026'
+    },
+    {
+      isAllowed: true,
+      name: 'Lizardfolk',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.rep.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.ctmp.id
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.ctrp.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tswm.id
+      ],
+      weight: {
+        default: 30,
+        custom: 30
+      },
+      id: 'mnstr-027'
+    },
+    {
+      isAllowed: true,
+      name: 'Merfolk',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.taqu.id,
+        service_.defaultTagList.tcst.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-028'
+    },
+    {
+      isAllowed: true,
+      name: 'Doppelganger',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.mon.id,
+        service_.defaultTagList.shp.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-029'
+    },
+    {
+      isAllowed: true,
+      name: 'Marid',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.ele.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.cn.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.taqu.id,
+        service_.defaultTagList.tcst.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-030'
+    },
+    {
+      isAllowed: true,
+      name: 'Satyr',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fey.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.cn.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-031'
+    },
+    {
+      isAllowed: true,
+      name: 'Cyclops',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.cn.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-032'
+    },
+    {
+      isAllowed: true,
+      name: 'Kenku',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.cn.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 35,
+        custom: 35
+      },
+      id: 'mnstr-033'
+    },
+    {
+      isAllowed: true,
+      name: 'Thri-Kreen',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.cn.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.tgrs.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'mnstr-034'
+    },
+    {
+      isAllowed: true,
+      name: 'Beholder',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.abr.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ccld.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-035'
+    },
+    {
+      isAllowed: true,
+      name: 'Mind Flayer',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.abr.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-036'
+    },
+    {
+      isAllowed: true,
+      name: 'Blue Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tdst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-037'
+    },
+    {
+      isAllowed: true,
+      name: 'Green Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-038'
+    },
+    {
+      isAllowed: true,
+      name: 'Efreeti',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.ele.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tdst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-039'
+    },
+    {
+      isAllowed: true,
+      name: 'Devil',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fnd.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-040'
+    },
+    {
+      isAllowed: true,
+      name: 'Rahkshasa',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fnd.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-041'
+    },
+    {
+      isAllowed: true,
+      name: 'Fire Giant',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-042'
+    },
+    {
+      isAllowed: true,
+      name: 'Ogre Mage (Oni)',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ccld.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-043'
+    },
+    {
+      isAllowed: true,
+      name: 'Duergar',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-044'
+    },
+    {
+      isAllowed: true,
+      name: 'Githyanki',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-045'
+    },
+    {
+      isAllowed: true,
+      name: 'Hobgoblin',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.gob.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-046'
+    },
+    {
+      isAllowed: true,
+      name: 'Kobold',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.rep.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-047'
+    },
+    {
+      isAllowed: true,
+      name: 'Sahuagin',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.taqu.id,
+        service_.defaultTagList.tcst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-048'
+    },
+    {
+      isAllowed: true,
+      name: 'Medusa',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.mon.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tdst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-049'
+    },
+    {
+      isAllowed: true,
+      name: 'Vampire',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.shp.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-050'
+    },
+    {
+      isAllowed: true,
+      name: 'Dao',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.ele.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-051'
+    },
+    {
+      isAllowed: true,
+      name: 'Green Hag',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fey.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tswm.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-052'
+    },
+    {
+      isAllowed: true,
+      name: 'Yugoloth',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fnd.id,
+        service_.defaultTagList.yug.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-053'
+    },
+    {
+      isAllowed: true,
+      name: 'Night Hag',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fnd.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-054'
+    },
+    {
+      isAllowed: true,
+      name: 'Succubus/Incubus',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fnd.id,
+        service_.defaultTagList.shp.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-055'
+    },
+    {
+      isAllowed: true,
+      name: 'Frost Giant',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.carc.id,
+        service_.defaultTagList.ccld.id,
+        service_.defaultTagList.tmtn.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-056'
+    },
+    {
+      isAllowed: true,
+      name: 'Bullywug',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.tswm.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-057'
+    },
+    {
+      isAllowed: true,
+      name: 'Drow',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-058'
+    },
+    {
+      isAllowed: true,
+      name: 'Goblin',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.gob.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-059'
+    },
+    {
+      isAllowed: true,
+      name: 'Grimlock',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-060'
+    },
+    {
+      isAllowed: true,
+      name: 'Kuo-toa',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-061'
+    },
+    {
+      isAllowed: true,
+      name: 'Yuan-Ti',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.mon.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.ctrp.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tswm.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-062'
+    },
+    {
+      isAllowed: true,
+      name: 'Wight',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-063'
+    },
+    {
+      isAllowed: true,
+      name: 'Black Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ccld.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tswm.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-064'
+    },
+    {
+      isAllowed: true,
+      name: 'Red Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-065'
+    },
+    {
+      isAllowed: true,
+      name: 'White Dragon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.dra.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.carc.id,
+        service_.defaultTagList.ccld.id,
+        service_.defaultTagList.tmtn.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-066'
+    },
+    {
+      isAllowed: true,
+      name: 'Sea Hag',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fey.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.taqu.id,
+        service_.defaultTagList.tcst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-067'
+    },
+    {
+      isAllowed: true,
+      name: 'Quickling',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fey.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tpln.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-068'
+    },
+    {
+      isAllowed: true,
+      name: 'Demon',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.fnd.id,
+        service_.defaultTagList.dmn.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id,
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-069'
+    },
+    {
+      isAllowed: true,
+      name: 'Ettin',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ccld.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-070'
+    },
+    {
+      isAllowed: true,
+      name: 'Hill Giant',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.thil.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-071'
+    },
+    {
+      isAllowed: true,
+      name: 'Ogre',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.carc.id,
+        service_.defaultTagList.ccld.id,
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-072'
+    },
+    {
+      isAllowed: true,
+      name: 'Troll',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.gnt.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.carc.id,
+        service_.defaultTagList.ccld.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-073'
+    },
+    {
+      isAllowed: true,
+      name: 'Bugbear',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.gob.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-074'
+    },
+    {
+      isAllowed: true,
+      name: 'Gnoll',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'mnstr-075'
+    },
+    {
+      isAllowed: true,
+      name: 'Orc',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },
+      id: 'mnstr-076'
+    },
+    {
+      isAllowed: true,
+      name: 'Troglodyte',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-077'
+    },
+    {
+      isAllowed: true,
+      name: 'Lamia',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.mon.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.tdst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-078'
+    },
+    {
+      isAllowed: true,
+      name: 'Death Knight',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'mnstr-079'
+    },
+    {
+      isAllowed: true,
+      name: 'Ghost',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.aa.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'mnstr-080'
+    },
+    {
+      isAllowed: true,
+      name: 'Lich',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ae.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'mnstr-081'
+    },
+    {
+      isAllowed: true,
+      name: 'Dracolich',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ae.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'mnstr-082'
+    },
+    {
+      isAllowed: true,
+      name: 'Werebear',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.shp.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.carc.id,
+        service_.defaultTagList.ccld.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'mnstr-083'
+    },
+    {
+      isAllowed: true,
+      name: 'Weretiger',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.shp.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.ctrp.id,
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'mnstr-084'
+    },
+    {
+      isAllowed: true,
+      name: 'Wererat',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.shp.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'mnstr-085'
+    },
+    {
+      isAllowed: true,
+      name: 'Wereboar',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.shp.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.ctmp.id,
+        service_.defaultTagList.cwrm.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'mnstr-086'
+    },
+    {
+      isAllowed: true,
+      name: 'Werewolf',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.hum.id,
+        service_.defaultTagList.shp.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'mnstr-087'
+    }
+  ];
+
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
+  service_.defaultPowerCenters = [
+    {
+      isAllowed: true,
+      name: 'Conventional',
+      type: 'powerCenter',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
+      ],
+      weight: {
+        default: 65,
+        custom: 65
+      },
+      chanceForExtraMonstrous: 5,
+      key: 'conventional',
+      id: 'pctr-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Nonstandard',
+      type: 'powerCenter',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
+      ],
+      weight: {
+        default: 30,
+        custom: 30
+      },
+      chanceForExtraMonstrous: 0,
+      key: 'nonstandard',
+      id: 'pctr-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Magical',
+      type: 'powerCenter',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      chanceForExtraMonstrous: 0,
+      key: 'magical',
+      id: 'pctr-003'
+    },
+  ];
+
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
+  service_.defaultPowerCenterAlignments [
+    {
+      isAllowed: true,
+      name: 'Lawful Good',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.lg.id
+      ],
+      weight: {
+        default: 35,
+        custom: 35
+      },
+      id: 'pcal-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Neutral Good',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ng.id
+      ],
+      weight: {
+        default: 4,
+        custom: 4
+      },
+      id: 'pcal-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Chaotic Good',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.cg.id
+      ],
+      weight: {
+        default: 2,
+        custom: 2
+      },
+      id: 'pcal-003'
+    },
+    {
+      isAllowed: true,
+      name: 'Lawful Neutral',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.ln.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
+      },
+      id: 'pcal-004'
+    },
+    {
+      isAllowed: true,
+      name: 'True Neutral',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.tn.id
+      ],
+      weight: {
+        default: 2,
+        custom: 2
+      },
+      id: 'pcal-005'
+    },
+    {
+      isAllowed: true,
+      name: 'LChaotic Neutral',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.cn.id
+      ],
+      weight: {
+        default: 1,
+        custom: 1
+      },
+      id: 'pcal-006'
+    },
+    {
+      isAllowed: true,
+      name: 'Lawful Evil',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id
+      ],
+      weight: {
+        default: 26,
+        custom: 26
+      },
+      id: 'pcal-007'
+    },
+    {
+      isAllowed: true,
+      name: 'Neutral Evil',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ne.id
+      ],
+      weight: {
+        default: 8,
+        custom: 8
+      },
+      id: 'pcal-008'
+    },
+    {
+      isAllowed: true,
+      name: 'Chaotic Evil',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ce.id
+      ],
+      weight: {
+        default: 2,
+        custom: 2
+      },
+      id: 'pcal-009'
+    }
+  ];
+
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
+  service_.defaultPowerCenterTypes = {
+    'conventional': [
+      {
+        isAllowed: true,
+        name: 'Mayor',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 20,
+          custom: 20
+        },
+        group: 'conventional',
+        id: 'pctc-001'
+      },
+      {
+        isAllowed: true,
+        name: 'Council',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 20,
+          custom: 20
+        },
+        group: 'conventional',
+        id: 'pctc-002'
+      },
+      {
+        isAllowed: true,
+        name: 'Noble',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 40,
+          custom: 40
+        },
+        group: 'conventional',
+        id: 'pctc-003'
+      }
+    ],
+    'nonstandard': [
+      {
+        isAllowed: true,
+        name: 'Merchant\'s Guild',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 20,
+          custom: 20
+        },
+        group: 'nonstandard',
+        id: 'pctn-001'
+      },
+      {
+        isAllowed: true,
+        name: 'Craftsmen\'s Guild - General',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 10,
+          custom: 10
+        },
+        group: 'nonstandard',
+        id: 'pctn-002'
+      },
+      {
+        isAllowed: true,
+        name: 'Craftsmen\'s Guild - Specific',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 10,
+          custom: 10
+        },
+        group: 'nonstandard',
+        id: 'pctn-003'
+      },
+      {
+        isAllowed: true,
+        name: 'Profession\'s Guild - Specific',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 15,
+          custom: 15
+        },
+        group: 'nonstandard',
+        id: 'pctn-004'
+      },
+      {
+        isAllowed: true,
+        name: 'Thieves\' Guild',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 10,
+          custom: 10
+        },
+        group: 'nonstandard',
+        id: 'pctn-005'
+      },
+      {
+        isAllowed: true,
+        name: 'Assassin\'s Guild',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 5,
+          custom: 5
+        },
+        group: 'nonstandard',
+        id: 'pctn-006'
+      },
+      {
+        isAllowed: true,
+        name: 'Warrior\'s Guild',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 5,
+          custom: 5
+        },
+        group: 'nonstandard',
+        id: 'pctn-007'
+      },
+      {
+        isAllowed: true,
+        name: 'Wealthy Aristocracy',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 5,
+          custom: 5
+        },
+        group: 'nonstandard',
+        id: 'pctn-008'
+      },
+      {
+        isAllowed: true,
+        name: 'Prestigious Aristocracy (Successful Adventurers)',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 5,
+          custom: 5
+        },
+        group: 'nonstandard',
+        id: 'pctn-009'
+      },
+      {
+        isAllowed: true,
+        name: 'Council of Elders',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 10,
+          custom: 10
+        },
+        group: 'nonstandard',
+        id: 'pctn-010'
+      },
+      {
+        isAllowed: true,
+        name: 'Bard College',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 5,
+          custom: 5
+        },
+        group: 'nonstandard',
+        id: 'pctn-011'
+      }
+    ],
+    'magical': [
+      {
+        isAllowed: true,
+        name: 'Powerful Temple',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 33,
+          custom: 33
+        },
+        group: 'magical',
+        id: 'pctm-001'
+      },
+      {
+        isAllowed: true,
+        name: 'Powerful Arcane Caster',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 34,
+          custom: 34
+        },
+        group: 'magical',
+        id: 'pctm-002'
+      },
+      {
+        isAllowed: true,
+        name: 'Wizard\'s Guild/College',
+        type: 'powerCenterType',
+        tags: [
+          service_.defaultTagList.dflt.id
+        ],
+        weight: {
+          default: 33,
+          custom: 33
+        },
+        group: 'magical',
+        id: 'pctm-003'
+      }
+    ]
+  };
+
+  /**
+   * weight should add up to 100. They can be used as a percentage OR weighted random value.
+   * this primarily applies to subraces.
+   */
   service_.defaultRaces = [
     {
       isAllowed: true,
       name: 'Human',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -531,8 +2546,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 100,
@@ -548,8 +2563,8 @@ app.service('Demographics', function () {
           name: 'Variant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 0,
@@ -565,9 +2580,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -586,10 +2601,10 @@ app.service('Demographics', function () {
       name: 'Halfling',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb,
-        service_.defaultTagList.scg,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.scg.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -603,8 +2618,8 @@ app.service('Demographics', function () {
           name: 'Lightfoot',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 50,
@@ -620,8 +2635,8 @@ app.service('Demographics', function () {
           name: 'Stout',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 40,
@@ -637,8 +2652,8 @@ app.service('Demographics', function () {
           name: 'Ghostwise',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.scg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.scg.id
           ],
           weight: {
             default: 10,
@@ -654,9 +2669,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -675,11 +2690,11 @@ app.service('Demographics', function () {
       name: 'Elf',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb,
-        service_.defaultTagList.dmg,
-        service_.defaultTagList.psz,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.psz.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -693,8 +2708,8 @@ app.service('Demographics', function () {
           name: 'Drow',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 5,
@@ -710,8 +2725,8 @@ app.service('Demographics', function () {
           name: 'Eladrin',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 5,
@@ -727,8 +2742,8 @@ app.service('Demographics', function () {
           name: 'High Elf',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 50,
@@ -744,8 +2759,8 @@ app.service('Demographics', function () {
           name: 'Wood Elf',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 40,
@@ -761,8 +2776,8 @@ app.service('Demographics', function () {
           name: 'Joraga',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id
           ],
           weight: {
             default: 0,
@@ -778,8 +2793,8 @@ app.service('Demographics', function () {
           name: 'Mul Daya',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id
           ],
           weight: {
             default: 0,
@@ -795,8 +2810,8 @@ app.service('Demographics', function () {
           name: 'Tajuru',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id
           ],
           weight: {
             default: 0,
@@ -812,9 +2827,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -833,10 +2848,10 @@ app.service('Demographics', function () {
       name: 'Dwarf',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb,
-        service_.defaultTagList.scg,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.scg.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -850,8 +2865,8 @@ app.service('Demographics', function () {
           name: 'Hill Dwarf',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 60,
@@ -867,8 +2882,8 @@ app.service('Demographics', function () {
           name: 'Mountain Dwarf',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 35,
@@ -884,8 +2899,8 @@ app.service('Demographics', function () {
           name: 'Duergar',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.scg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.scg.id
           ],
           weight: {
             default: 5,
@@ -901,9 +2916,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -922,10 +2937,10 @@ app.service('Demographics', function () {
       name: 'Gnome',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb,
-        service_.defaultTagList.elm,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.elm.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -939,8 +2954,8 @@ app.service('Demographics', function () {
           name: 'Deep Gnome',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.elm
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.elm.id
           ],
           weight: {
             default: 5,
@@ -956,8 +2971,8 @@ app.service('Demographics', function () {
           name: 'Forest Gnome',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 60,
@@ -973,8 +2988,8 @@ app.service('Demographics', function () {
           name: 'Rock Gnome',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 35,
@@ -990,9 +3005,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1011,10 +3026,10 @@ app.service('Demographics', function () {
       name: 'Half Elf',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb,
-        service_.defaultTagList.scg,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.scg.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -1028,8 +3043,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.scg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.scg.id
           ],
           weight: {
             default: 100,
@@ -1045,8 +3060,8 @@ app.service('Demographics', function () {
           name: 'Half Wood Elf',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.scg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.scg.id
           ],
           weight: {
             default: 0,
@@ -1062,8 +3077,8 @@ app.service('Demographics', function () {
           name: 'Half Moon/Sun Elf',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.scg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.scg.id
           ],
           weight: {
             default: 0,
@@ -1079,8 +3094,8 @@ app.service('Demographics', function () {
           name: 'Half Drow Elf',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.scg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.scg.id
           ],
           weight: {
             default: 0,
@@ -1096,9 +3111,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1117,9 +3132,9 @@ app.service('Demographics', function () {
       name: 'Half Orc',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -1133,8 +3148,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 100,
@@ -1150,9 +3165,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1171,9 +3186,9 @@ app.service('Demographics', function () {
       name: 'Dragonborn',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -1187,8 +3202,8 @@ app.service('Demographics', function () {
           name: 'Black',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1204,8 +3219,8 @@ app.service('Demographics', function () {
           name: 'Blue',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1221,8 +3236,8 @@ app.service('Demographics', function () {
           name: 'Brass',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1238,8 +3253,8 @@ app.service('Demographics', function () {
           name: 'Bronze',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1255,8 +3270,8 @@ app.service('Demographics', function () {
           name: 'Copper',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1272,8 +3287,8 @@ app.service('Demographics', function () {
           name: 'Gold',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1289,8 +3304,8 @@ app.service('Demographics', function () {
           name: 'Green',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1306,8 +3321,8 @@ app.service('Demographics', function () {
           name: 'Red',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1323,8 +3338,8 @@ app.service('Demographics', function () {
           name: 'Silver',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1340,8 +3355,8 @@ app.service('Demographics', function () {
           name: 'White',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 10,
@@ -1357,9 +3372,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1378,10 +3393,10 @@ app.service('Demographics', function () {
       name: 'Tiefling',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.phb,
-        service_.defaultTagList.uatom,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.uatom.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -1395,8 +3410,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.phb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.phb.id
           ],
           weight: {
             default: 100,
@@ -1412,9 +3427,9 @@ app.service('Demographics', function () {
           name: 'Abyssal',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uatom,
-            service_.defaultTagList.dmn
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uatom.id,
+            service_.defaultTagList.dmn.id
           ],
           weight: {
             default: 0,
@@ -1430,9 +3445,9 @@ app.service('Demographics', function () {
           name: 'Infernal',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uatom,
-            service_.defaultTagList.dvl
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uatom.id,
+            service_.defaultTagList.dvl.id
           ],
           weight: {
             default: 0,
@@ -1448,9 +3463,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1469,9 +3484,9 @@ app.service('Demographics', function () {
       name: 'Aarakocra',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.elm,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.elm.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -1485,8 +3500,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.elm
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.elm.id
           ],
           weight: {
             default: 100,
@@ -1502,9 +3517,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1523,9 +3538,9 @@ app.service('Demographics', function () {
       name: 'Genasi',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.elm,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.elm.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -1539,8 +3554,8 @@ app.service('Demographics', function () {
           name: 'Air Genasi',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.elm
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.elm.id
           ],
           weight: {
             default: 25,
@@ -1556,8 +3571,8 @@ app.service('Demographics', function () {
           name: 'Earth Genasi',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.elm
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.elm.id
           ],
           weight: {
             default: 25,
@@ -1573,8 +3588,8 @@ app.service('Demographics', function () {
           name: 'Fire Genasi',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.elm
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.elm.id
           ],
           weight: {
             default: 25,
@@ -1590,8 +3605,8 @@ app.service('Demographics', function () {
           name: 'Water Genasi',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.elm
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.elm.id
           ],
           weight: {
             default: 25,
@@ -1607,9 +3622,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1628,9 +3643,9 @@ app.service('Demographics', function () {
       name: 'Goliath',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.elm,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.elm.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -1644,8 +3659,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.elm
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.elm.id
           ],
           weight: {
             default: 100,
@@ -1661,9 +3676,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1682,10 +3697,10 @@ app.service('Demographics', function () {
       name: 'Aasimar',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -1699,8 +3714,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 100,
@@ -1716,8 +3731,8 @@ app.service('Demographics', function () {
           name: 'Fallen',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 0,
@@ -1733,8 +3748,8 @@ app.service('Demographics', function () {
           name: 'Protector',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 0,
@@ -1750,8 +3765,8 @@ app.service('Demographics', function () {
           name: 'Scourge',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 0,
@@ -1767,9 +3782,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1788,10 +3803,10 @@ app.service('Demographics', function () {
       name: 'Bugbear',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh,
-        service_.defaultTagList.gob
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id,
+        service_.defaultTagList.gob.id
       ],
       weight: {
         default: 0,
@@ -1805,9 +3820,9 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol,
-            service_.defaultTagList.gob
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id,
+            service_.defaultTagList.gob.id
           ],
           weight: {
             default: 100,
@@ -1823,10 +3838,10 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.gob,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.gob.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1845,9 +3860,9 @@ app.service('Demographics', function () {
       name: 'Firbolg',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -1861,8 +3876,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 100,
@@ -1878,9 +3893,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -1899,11 +3914,11 @@ app.service('Demographics', function () {
       name: 'Goblin',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.psz,
-        service_.defaultTagList.uagh,
-        service_.defaultTagList.gob
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.psz.id,
+        service_.defaultTagList.uagh.id,
+        service_.defaultTagList.gob.id
       ],
       weight: {
         default: 0,
@@ -1917,9 +3932,9 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol,
-            service_.defaultTagList.gob
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id,
+            service_.defaultTagList.gob.id
           ],
           weight: {
             default: 100,
@@ -1935,9 +3950,9 @@ app.service('Demographics', function () {
           name: 'Grotag',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz,
-            service_.defaultTagList.gob
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id,
+            service_.defaultTagList.gob.id
           ],
           weight: {
             default: 0,
@@ -1953,9 +3968,9 @@ app.service('Demographics', function () {
           name: 'Lavastep',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz,
-            service_.defaultTagList.gob
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id,
+            service_.defaultTagList.gob.id
           ],
           weight: {
             default: 0,
@@ -1971,9 +3986,9 @@ app.service('Demographics', function () {
           name: 'Tuktuk',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz,
-            service_.defaultTagList.gob
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id,
+            service_.defaultTagList.gob.id
           ],
           weight: {
             default: 0,
@@ -1989,10 +4004,10 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.gob,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.gob.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2011,10 +4026,10 @@ app.service('Demographics', function () {
       name: 'Hobgoblin',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh,
-        service_.defaultTagList.gob
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id,
+        service_.defaultTagList.gob.id
       ],
       weight: {
         default: 0,
@@ -2028,9 +4043,9 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol,
-            service_.defaultTagList.gob
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id,
+            service_.defaultTagList.gob.id
           ],
           weight: {
             default: 100,
@@ -2046,10 +4061,10 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.gob,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.gob.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2068,9 +4083,9 @@ app.service('Demographics', function () {
       name: 'Kenku',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2084,8 +4099,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 100,
@@ -2101,9 +4116,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2122,9 +4137,9 @@ app.service('Demographics', function () {
       name: 'Kobold',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2138,8 +4153,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 100,
@@ -2155,9 +4170,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2176,9 +4191,9 @@ app.service('Demographics', function () {
       name: 'Lizardfolk',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2192,8 +4207,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 100,
@@ -2209,9 +4224,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2230,9 +4245,9 @@ app.service('Demographics', function () {
       name: 'Orc',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2246,8 +4261,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 100,
@@ -2263,9 +4278,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2284,9 +4299,9 @@ app.service('Demographics', function () {
       name: 'Tabaxi',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2300,8 +4315,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 100,
@@ -2317,9 +4332,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2338,9 +4353,9 @@ app.service('Demographics', function () {
       name: 'Triton',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2354,8 +4369,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 100,
@@ -2371,9 +4386,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2392,9 +4407,9 @@ app.service('Demographics', function () {
       name: 'Yuan-Ti Pureblood',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.vol,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2408,8 +4423,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.vol
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.vol.id
           ],
           weight: {
             default: 100,
@@ -2425,9 +4440,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2446,9 +4461,9 @@ app.service('Demographics', function () {
       name: 'Tortle',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.ttp,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.ttp.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2462,8 +4477,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.ttp
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.ttp.id
           ],
           weight: {
             default: 100,
@@ -2479,9 +4494,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2500,9 +4515,9 @@ app.service('Demographics', function () {
       name: 'Changeling',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.uaeb,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uaeb.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2516,8 +4531,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uaeb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uaeb.id
           ],
           weight: {
             default: 100,
@@ -2533,9 +4548,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2554,9 +4569,9 @@ app.service('Demographics', function () {
       name: 'Shifter',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.uaeb,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uaeb.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2570,8 +4585,8 @@ app.service('Demographics', function () {
           name: 'Beasthide',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uaeb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uaeb.id
           ],
           weight: {
             default: 16,
@@ -2587,8 +4602,8 @@ app.service('Demographics', function () {
           name: 'Cliffwalk',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uaeb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uaeb.id
           ],
           weight: {
             default: 16,
@@ -2604,8 +4619,8 @@ app.service('Demographics', function () {
           name: 'Longstride',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uaeb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uaeb.id
           ],
           weight: {
             default: 16,
@@ -2621,8 +4636,8 @@ app.service('Demographics', function () {
           name: 'Longtooth',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uaeb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uaeb.id
           ],
           weight: {
             default: 16,
@@ -2638,8 +4653,8 @@ app.service('Demographics', function () {
           name: 'Razorclaw',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uaeb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uaeb.id
           ],
           weight: {
             default: 16,
@@ -2655,8 +4670,8 @@ app.service('Demographics', function () {
           name: 'Wildhunt',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uaeb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uaeb.id
           ],
           weight: {
             default: 20,
@@ -2672,9 +4687,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2693,8 +4708,8 @@ app.service('Demographics', function () {
       name: 'Warforged',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.uaeb
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uaeb.id
       ],
       weight: {
         default: 0,
@@ -2708,8 +4723,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uaeb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uaeb.id
           ],
           weight: {
             default: 100,
@@ -2728,9 +4743,9 @@ app.service('Demographics', function () {
       name: 'Kor',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.psz,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.psz.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2744,8 +4759,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id
           ],
           weight: {
             default: 100,
@@ -2761,9 +4776,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2782,9 +4797,9 @@ app.service('Demographics', function () {
       name: 'Merfolk',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.psz,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.psz.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2798,8 +4813,8 @@ app.service('Demographics', function () {
           name: 'Cosi',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id
           ],
           weight: {
             default: 33,
@@ -2815,8 +4830,8 @@ app.service('Demographics', function () {
           name: 'Emeria',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id
           ],
           weight: {
             default: 34,
@@ -2832,8 +4847,8 @@ app.service('Demographics', function () {
           name: 'Ula',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id
           ],
           weight: {
             default: 33,
@@ -2849,9 +4864,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2870,9 +4885,9 @@ app.service('Demographics', function () {
       name: 'Vampire',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.psz,
-        service_.defaultTagList.und
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.psz.id,
+        service_.defaultTagList.und.id
       ],
       weight: {
         default: 0,
@@ -2886,9 +4901,9 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.psz,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.psz.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 100,
@@ -2907,9 +4922,9 @@ app.service('Demographics', function () {
       name: 'Minotaur',
       type: 'race',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.uawb,
-        service_.defaultTagList.uagh
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uawb.id,
+        service_.defaultTagList.uagh.id
       ],
       weight: {
         default: 0,
@@ -2923,8 +4938,8 @@ app.service('Demographics', function () {
           name: 'Default',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uawb
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uawb.id
           ],
           weight: {
             default: 100,
@@ -2940,9 +4955,9 @@ app.service('Demographics', function () {
           name: 'Revenant',
           type: 'subrace',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.uagh,
-            service_.defaultTagList.und
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.uagh.id,
+            service_.defaultTagList.und.id
           ],
           weight: {
             default: 0,
@@ -2958,7 +4973,9 @@ app.service('Demographics', function () {
     }
   ];
 
-  // default community mixtures
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
   service_.defaultRacialMixtures = [
     {
       id: 'mixture-001',
@@ -2966,7 +4983,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'mixture',
       tags: [
-        service_.defaultTagList.dflt
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 5,
@@ -2979,7 +4996,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 100,
@@ -2993,7 +5010,7 @@ app.service('Demographics', function () {
           isAllowed: false,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 0,
@@ -3009,8 +5026,8 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'mixture',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 25,
@@ -3023,8 +5040,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 96,
@@ -3038,8 +5055,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 2,
@@ -3053,8 +5070,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 1,
@@ -3068,7 +5085,7 @@ app.service('Demographics', function () {
           isAllowed: false,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 1,
@@ -3084,8 +5101,8 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'mixture',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 60,
@@ -3098,8 +5115,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 79,
@@ -3113,8 +5130,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 9,
@@ -3128,8 +5145,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 5,
@@ -3143,8 +5160,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 3,
@@ -3158,8 +5175,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 2,
@@ -3173,8 +5190,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 1,
@@ -3188,8 +5205,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 1,
@@ -3203,7 +5220,7 @@ app.service('Demographics', function () {
           isAllowed: false,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 0,
@@ -3219,8 +5236,8 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'mixture',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 10,
@@ -3233,8 +5250,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 37,
@@ -3248,8 +5265,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 20,
@@ -3263,8 +5280,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 18,
@@ -3278,8 +5295,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 10,
@@ -3293,8 +5310,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 7,
@@ -3308,8 +5325,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 5,
@@ -3323,8 +5340,8 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt,
-            service_.defaultTagList.dmg
+            service_.defaultTagList.dflt.id,
+            service_.defaultTagList.dmg.id
           ],
           weight: {
             default: 3,
@@ -3338,7 +5355,7 @@ app.service('Demographics', function () {
           isAllowed: false,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 0,
@@ -3350,15 +5367,17 @@ app.service('Demographics', function () {
     }
   ];
 
-  // default settlements
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
   service_.defaultSettlementTypes = [
     {
       isAllowed: true,
       name: 'Thorp',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 10,
@@ -3385,8 +5404,8 @@ app.service('Demographics', function () {
       name: 'Hamlet',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 20,
@@ -3413,8 +5432,8 @@ app.service('Demographics', function () {
       name: 'Village',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 20,
@@ -3441,8 +5460,8 @@ app.service('Demographics', function () {
       name: 'Small Town',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 20,
@@ -3469,8 +5488,8 @@ app.service('Demographics', function () {
       name: 'Large Town',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 15,
@@ -3497,8 +5516,8 @@ app.service('Demographics', function () {
       name: 'Small City',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 10,
@@ -3525,8 +5544,8 @@ app.service('Demographics', function () {
       name: 'Large City',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 4,
@@ -3553,8 +5572,8 @@ app.service('Demographics', function () {
       name: 'Metropolis',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt,
-        service_.defaultTagList.dmg
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id
       ],
       weight: {
         default: 1,
@@ -3578,17 +5597,831 @@ app.service('Demographics', function () {
     }
   ];
 
-  service_.getCustomId = getCustomId_;
+  /**
+   * weight is not used. These are always placed either automatically or manually.
+   */
+  service_.defaultTagList = {
+    'dflt': {
+      isAllowed: false,
+      name: 'Default',
+      type: 'tag',
+      key: 'dflt',
+      id: 'tag-dflt'
+    },
+    'cust': {
+      isAllowed: false,
+      name: 'Custom',
+      type: 'tag',
+      key: 'cust',
+      id: 'tag-cust'
+    },
+    'phb': {
+      isAllowed: false,
+      name: 'Player\'s Handbook',
+      type: 'tag',
+      key: 'phb',
+      id: 'tag-core-1'
+    },
+    'mm': {
+      isAllowed: false,
+      name: 'Monster Manual',
+      type: 'tag',
+      key: 'mm',
+      id: 'tag-core-2'
+    },
+    'dmg': {
+      isAllowed: false,
+      name: 'Dungeon Master\'s Guide',
+      type: 'tag',
+      key: 'dmg',
+      id: 'tag-core-3'
+    },
+    'elm': {
+      isAllowed: false,
+      name: 'Elemental Evil Player\'s Companion',
+      type: 'tag',
+      key: 'elm',
+      id: 'tag-supp-01'
+    },
+    'scg': {
+      isAllowed: false,
+      name: 'Sword Coast Adventure Guide',
+      type: 'tag',
+      key: 'scg',
+      id: 'tag-supp-02'
+    },
+    'vol': {
+      isAllowed: false,
+      name: 'Volo\'s Guide to Monsters',
+      type: 'tag',
+      key: 'vol',
+      id: 'tag-supp-03'
+    },
+    'xan': {
+      isAllowed: false,
+      name: 'Xanathar\'s Guide to Everything',
+      type: 'tag',
+      key: 'xan',
+      id: 'tag-supp-04'
+    },
+    'psz': {
+      isAllowed: false,
+      name: 'Plane Shift: Zendikar',
+      type: 'tag',
+      key: 'psz',
+      id: 'tag-misc-001'
+    },
+    'ttp': {
+      isAllowed: false,
+      name: 'The Tortle Package',
+      type: 'tag',
+      key: 'ttp',
+      id: 'tag-misc-002'
+    },
+    'ua': {
+      isAllowed: true,
+      name: 'Unearthed Arcana',
+      type: 'tag',
+      key: 'ua',
+      id: 'tag-ua-001'
+    },
+    'uacdv': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Class Design Variants',
+      type: 'tag',
+      key: 'uacdv',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA3_ClassDesignVariants.pdf',
+      id: 'tag-ua-002'
+    },
+    'uacr': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Classics Revisited',
+      type: 'tag',
+      key: 'uacr',
+      src: 'http://media.wizards.com/2015/downloads/dnd/04_UA_Classics_Revisited.pdf',
+      id: 'tag-ua-003'
+    },
+    'uaeb': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Eberron',
+      type: 'tag',
+      key: 'uaeb',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Eberron_v1.pdf',
+      id: 'tag-ua-004'
+    },
+    'uagh': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Gothic Heroes',
+      type: 'tag',
+      key: 'uagh',
+      src: 'https://dnd.wizards.com/sites/default/files/media/upload/articles/UA%20Gothic%20Characters.pdf',
+      id: 'tag-ua-005'
+    },
+    'uamm': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Modern Magic',
+      type: 'tag',
+      key: 'uamm',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA_ModernMagic.pdf',
+      id: 'tag-ua-006'
+    },
+    'uaps': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Psionics & The Mystic',
+      type: 'tag',
+      key: 'uamm',
+      src: 'http://media.wizards.com/2016/downloads/Psionics_and_Mystic_V2.pdf',
+      id: 'tag-ua-007'
+    },
+    'uarmpc': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Psionics & The Mystic',
+      type: 'tag',
+      key: 'uarmpc',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Rune_Magic_Prestige_Class.pdf',
+      id: 'tag-ua-008'
+    },
+    'uaro': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Ranger Options',
+      type: 'tag',
+      key: 'uaro',
+      src: 'http://media.wizards.com/2015/downloads/dnd/DX_0907_UA_RangerOptions.pdf',
+      id: 'tag-ua-009'
+    },
+    'uatom': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: That Old Black Magic',
+      type: 'tag',
+      key: 'uatom',
+      src: 'https://media.wizards.com/2015/downloads/dnd/07_UA_That_Old_Black_Magic.pdf',
+      id: 'tag-ua-010'
+    },
+    'uawb': {
+      isAllowed: false,
+      name: 'Unearthed Arcana: Waterborne Adventures',
+      type: 'tag',
+      key: 'uawb',
+      src: 'https://media.wizards.com/2015/downloads/ dnd /UA_ Waterborne_v3.pdf',
+      id: 'tag-ua-011'
+    },
+    'abr': {
+      isAllowed: true,
+      name: 'Aberration',
+      type: 'tag',
+      key: 'abr',
+      id: 'tag-monstertype-01'
+    },
+    'bst': {
+      isAllowed: true,
+      name: 'Beast',
+      type: 'tag',
+      key: 'bst',
+      id: 'tag-monstertype-02'
+    },
+    'cel': {
+      isAllowed: true,
+      name: 'Celestial',
+      type: 'tag',
+      key: 'cel',
+      id: 'tag-monstertype-03'
+    },
+    'con': {
+      isAllowed: true,
+      name: 'Construct',
+      type: 'tag',
+      key: 'con',
+      id: 'tag-monstertype-04'
+    },
+    'dra': {
+      isAllowed: true,
+      name: 'Dragon',
+      type: 'tag',
+      key: 'dra',
+      id: 'tag-monstertype-05'
+    },
+    'ele': {
+      isAllowed: true,
+      name: 'Elemental',
+      type: 'tag',
+      key: 'ele',
+      id: 'tag-monstertype-06'
+    },
+    'fey': {
+      isAllowed: true,
+      name: 'Fey',
+      type: 'tag',
+      key: 'fey',
+      id: 'tag-monstertype-07'
+    },
+    'fnd': {
+      isAllowed: true,
+      name: 'Fiend',
+      type: 'tag',
+      key: 'fnd',
+      id: 'tag-monstertype-08'
+    },
+    'gnt': {
+      isAllowed: true,
+      name: 'Giant',
+      type: 'tag',
+      key: 'gnt',
+      id: 'tag-monstertype-09'
+    },
+    'hum': {
+      isAllowed: true,
+      name: 'Humanoid',
+      type: 'tag',
+      key: 'hum',
+      id: 'tag-monstertype-10'
+    },
+    'mon': {
+      isAllowed: true,
+      name: 'Monstrosity',
+      type: 'tag',
+      key: 'mon',
+      id: 'tag-monstertype-11'
+    },
+    'ooz': {
+      isAllowed: true,
+      name: 'Ooze',
+      type: 'tag',
+      key: 'ooz',
+      id: 'tag-monstertype-12'
+    },
+    'plt': {
+      isAllowed: true,
+      name: 'Plant',
+      type: 'tag',
+      key: 'plt',
+      id: 'tag-monstertype-13'
+    },
+    'und': {
+      isAllowed: true,
+      name: 'Undead',
+      type: 'tag',
+      key: 'und',
+      id: 'tag-monstertype-14'
+    },
+    'ang': {
+      isAllowed: true,
+      name: 'Angel',
+      type: 'tag',
+      key: 'ang',
+      id: 'tag-subtype-01'
+    },
+    'dmn': {
+      isAllowed: true,
+      name: 'Demon',
+      type: 'tag',
+      key: 'dmn',
+      id: 'tag-subtype-02'
+    },
+    'dvl': {
+      isAllowed: true,
+      name: 'Devil',
+      type: 'tag',
+      key: 'dvl',
+      id: 'tag-subtype-03'
+    },
+    'gob': {
+      isAllowed: true,
+      name: 'Goblinoid',
+      type: 'tag',
+      key: 'gob',
+      id: 'tag-subtype-04'
+    },
+    'rep': {
+      isAllowed: true,
+      name: 'Reptilian',
+      type: 'tag',
+      key: 'rep',
+      id: 'tag-subtype-05'
+    },
+    'shp': {
+      isAllowed: true,
+      name: 'Shapechanger',
+      type: 'tag',
+      key: 'shp',
+      id: 'tag-subtype-06'
+    },
+    'yug': {
+      isAllowed: true,
+      name: 'Yugoloth',
+      type: 'tag',
+      key: 'yug',
+      id: 'tag-subtype-07'
+    },
+    'law': {
+      isAllowed: true,
+      name: 'Lawful',
+      type: 'tag',
+      key: 'law',
+      id: 'tag-align-01'
+    },
+    'ntr': {
+      isAllowed: true,
+      name: 'Neutral',
+      type: 'tag',
+      key: 'ntr',
+      id: 'tag-align-02'
+    },
+    'cht': {
+      isAllowed: true,
+      name: 'Chaotic',
+      type: 'tag',
+      key: 'cht',
+      id: 'tag-align-03'
+    },
+    'god': {
+      isAllowed: true,
+      name: 'Good',
+      type: 'tag',
+      key: 'god',
+      id: 'tag-align-04'
+    },
+    'evl': {
+      isAllowed: true,
+      name: 'Evil',
+      type: 'tag',
+      key: 'evl',
+      id: 'tag-align-05'
+    },
+    'lg': {
+      isAllowed: true,
+      name: 'Lawful Good',
+      type: 'tag',
+      key: 'lg',
+      id: 'tag-align-06'
+    },
+    'ng': {
+      isAllowed: true,
+      name: 'Neutral Good',
+      type: 'tag',
+      key: 'ng',
+      id: 'tag-align-07'
+    },
+    'cg': {
+      isAllowed: true,
+      name: 'Chaotic Good',
+      type: 'tag',
+      key: 'cg',
+      id: 'tag-align-08'
+    },
+    'ln': {
+      isAllowed: true,
+      name: 'Lawful Neutral',
+      type: 'tag',
+      key: 'ln',
+      id: 'tag-align-09'
+    },
+    'tn': {
+      isAllowed: true,
+      name: 'True Neutral',
+      type: 'tag',
+      key: 'tn',
+      id: 'tag-align-10'
+    },
+    'cn': {
+      isAllowed: true,
+      name: 'Chaotic Neutral',
+      type: 'tag',
+      key: 'cn',
+      id: 'tag-align-11'
+    },
+    'le': {
+      isAllowed: true,
+      name: 'Lawful Evil',
+      type: 'tag',
+      key: 'le',
+      id: 'tag-align-12'
+    },
+    'ne': {
+      isAllowed: true,
+      name: 'Neutral Evil',
+      type: 'tag',
+      key: 'ne',
+      id: 'tag-align-13'
+    },
+    'ce': {
+      isAllowed: true,
+      name: 'Chaotic Evil',
+      type: 'tag',
+      key: 'ce',
+      id: 'tag-align-14'
+    },
+    'aa': {
+      isAllowed: true,
+      name: 'Any Alignment',
+      type: 'tag',
+      key: 'aa',
+      id: 'tag-align-15'
+    },
+    'ag': {
+      isAllowed: true,
+      name: 'Any Good',
+      type: 'tag',
+      key: 'ag',
+      id: 'tag-align-16'
+    },
+    'an': {
+      isAllowed: true,
+      name: 'Any Neutral',
+      type: 'tag',
+      key: 'an',
+      id: 'tag-align-17'
+    },
+    'ae': {
+      isAllowed: true,
+      name: 'Any Evil',
+      type: 'tag',
+      key: 'ae',
+      id: 'tag-align-18'
+    },
+    'al': {
+      isAllowed: true,
+      name: 'Any Lawful',
+      type: 'tag',
+      key: 'al',
+      id: 'tag-align-19'
+    },
+    'ac': {
+      isAllowed: true,
+      name: 'Any Chaotic',
+      type: 'tag',
+      key: 'ac',
+      id: 'tag-align-20'
+    },
+    'cany': {
+      isAllowed: true,
+      name: 'Any Climate',
+      type: 'tag',
+      key: 'cany',
+      id: 'tag-climate-01'
+    },
+    'carc': {
+      isAllowed: true,
+      name: 'Arctic',
+      type: 'tag',
+      key: 'carc',
+      id: 'tag-climate-02'
+    },
+    'ccld': {
+      isAllowed: true,
+      name: 'Cold',
+      type: 'tag',
+      key: 'ccld',
+      id: 'tag-climate-03'
+    },
+    'ctmp': {
+      isAllowed: true,
+      name: 'Temperate',
+      type: 'tag',
+      key: 'ctmp',
+      id: 'tag-climate-04'
+    },
+    'cwrm': {
+      isAllowed: true,
+      name: 'Warm',
+      type: 'tag',
+      key: 'cwrm',
+      id: 'tag-climate-05'
+    },
+    'ctrp': {
+      isAllowed: true,
+      name: 'Tropical',
+      type: 'tag',
+      key: 'ctrp',
+      id: 'tag-climate-06'
+    },
+    'tany': {
+      isAllowed: true,
+      name: 'Any Terrain',
+      type: 'tag',
+      key: 'tany',
+      id: 'tag-terrain-01'
+    },
+    'taqu': {
+      isAllowed: true,
+      name: 'Aquatic',
+      type: 'tag',
+      key: 'taqu',
+      id: 'tag-terrain-02'
+    },
+    'tcst': {
+      isAllowed: true,
+      name: 'Coastal',
+      type: 'tag',
+      key: 'tcst',
+      id: 'tag-terrain-03'
+    },
+    'ttun': {
+      isAllowed: true,
+      name: 'Tundra',
+      type: 'tag',
+      key: 'ttun',
+      id: 'tag-terrain-04'
+    },
+    'tpln': {
+      isAllowed: true,
+      name: 'Plains',
+      type: 'tag',
+      key: 'tpln',
+      id: 'tag-terrain-05'
+    },
+    'thil': {
+      isAllowed: true,
+      name: 'Hills',
+      type: 'tag',
+      key: 'thil',
+      id: 'tag-terrain-06'
+    },
+    'tmtn': {
+      isAllowed: true,
+      name: 'Mountains',
+      type: 'tag',
+      key: 'tmtn',
+      id: 'tag-terrain-07'
+    },
+    'tdst': {
+      isAllowed: true,
+      name: 'Desert',
+      type: 'tag',
+      key: 'tdst',
+      id: 'tag-terrain-08'
+    },
+    'tgrs': {
+      isAllowed: true,
+      name: 'Grasslands',
+      type: 'tag',
+      key: 'tgrs',
+      id: 'tag-terrain-09'
+    },
+    'tmsh': {
+      isAllowed: true,
+      name: 'Marsh',
+      type: 'tag',
+      key: 'tmsh',
+      id: 'tag-terrain-10'
+    },
+    'tsvh': {
+      isAllowed: true,
+      name: 'Savannah',
+      type: 'tag',
+      key: 'tsvh',
+      id: 'tag-terrain-11'
+    },
+    'tfst': {
+      isAllowed: true,
+      name: 'Forest',
+      type: 'tag',
+      key: 'tfst',
+      id: 'tag-terrain-12'
+    },
+    'tswm': {
+      isAllowed: true,
+      name: 'Swamp',
+      type: 'tag',
+      key: 'tswm',
+      id: 'tag-terrain-13'
+    },
+    'tjng': {
+      isAllowed: true,
+      name: 'Jungle',
+      type: 'tag',
+      key: 'tjng',
+      id: 'tag-terrain-14'
+    },
+    'tudr': {
+      isAllowed: true,
+      name: 'Underdark',
+      type: 'tag',
+      key: 'tudr',
+      id: 'tag-terrain-15'
+    },
+    'turb': {
+      isAllowed: true,
+      name: 'Urban',
+      type: 'tag',
+      key: 'turb',
+      id: 'tag-terrain-16'
+    }
+  };
 
-  function getCustomId_() {
-    var returnId = 'cust-' + service_.customIdCounter;
-    service_.customIdCounter++;
-    return returnId;
-  }
-
-
-
-  // any, aquatic, desert, forest, hill, marsh, mountain, plain, underground
-  // temperate, warm, cold
+  /**
+   * weight should add up to 100. Only used as weighted random value.
+   */
+  service_.defaultTerrainTypes = [
+    {
+      isAllowed: true,
+      name: 'Tundra',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.ttun.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Plains',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tpln.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'terr-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Hills',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.thil.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'terr-003'
+    },
+    {
+      isAllowed: true,
+      name: 'Mountains',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tmtn.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-004'
+    },
+    {
+      isAllowed: true,
+      name: 'Aquatic',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.taqu.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-005'
+    },
+    {
+      isAllowed: true,
+      name: 'Coastal',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tcst.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'terr-006'
+    },
+    {
+      isAllowed: true,
+      name: 'Desert',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tdst.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-007'
+    },
+    {
+      isAllowed: true,
+      name: 'Grasslands',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tgrs.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'terr-008'
+    },
+    {
+      isAllowed: true,
+      name: 'Marsh',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tmsh.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-009'
+    },
+    {
+      isAllowed: true,
+      name: 'Savannah',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tsvh.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-010'
+    },
+    {
+      isAllowed: true,
+      name: 'Forest',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tfst.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      id: 'terr-011'
+    },
+    {
+      isAllowed: true,
+      name: 'Swamp',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tswm.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-012'
+    },
+    {
+      isAllowed: true,
+      name: 'Jungle',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tjng.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-013'
+    },
+    {
+      isAllowed: true,
+      name: 'Underdark',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.tudr.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-014'
+    },
+    {
+      isAllowed: true,
+      name: 'Urban',
+      type: 'terrain',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      id: 'terr-015'
+    }
+  ];
 
 });

@@ -1,26 +1,28 @@
 <md-whiteframe id="dashboard" class="md-whiteframe-1dp whiteframe-sizer" layout="column">
 
-  <section class="page-head border-bottom-1 layout-padding-horizontal" layout="row" layout-align="space-between center" md-colors="{'border-color': 'background-300'}">
-    <h4 class="no-margin-vertical layout-margin-horizontal layout-padding-horizontal">Dashboard</h4>
+  <section class="layout-padding-well border-bottom-1" layout="row" md-colors="{'border-color': 'background-300'}">
+    <h4 class="no-margin no-padding">Dashboard</h4>
   </section>
 
-  <section class="page-head layout-padding-vertical layout-padding-horizontal" layout="row" layout-align="start center">
-    <md-input-container class="layout-margin-horizontal layout-padding-horizontal no-margin-vertical">
-      <label>Quantity</label>
-      <input ng-model="vm.numberOfDice" type="number" min="1">
+  <section class="layout-padding-well" layout="row" layout-align="start center">
+    <md-input-container class="no-margin no-padding no-input-spacer">
+      <label></label>
+      <input ng-model="vm.numberOfDice" placeholder="# Dice" type="number" min="1">
     </md-input-container>
 
-    <div class="layout-margin-horizontal layout-padding-horizontal">
-      <md-select class=" no-margin-vertical" ng-model="vm.diceType" placeholder="Die">
-        <md-option ng-repeat="die in vm.dice" ng-value="die.size" ng-selected="die.selected">d{{die.size}}</md-option>
-      </md-select>
+    <div class="layout-margin-horizontal">
+      <md-input-container class="no-margin no-padding">
+        <md-select class="no-padding" ng-model="vm.diceType" placeholder="Die">
+          <md-option ng-repeat="die in vm.dice" ng-value="die.size" ng-selected="die.selected">d{{die.size}}</md-option>
+        </md-select>
+      </md-input-container>
     </div>
 
-    <div class="layout-margin-horizontal layout-padding-horizontal">
-      <md-button class="md-raised md-primary no-margin no-padding" ng-click="vm.rollDice()">Roll!</md-button>
+    <div class="layout-margin-horizontal">
+      <md-button class="md-raised md-primary no-margin" ng-click="vm.rollDice(vm.numberOfDice, vm.diceType)">Roll!</md-button>
     </div>
 
-    <span class="bold layout-margin-left layout-padding-left">
+    <span class="bold">
       Result: {{vm.total}}
     </span>
   </section>
