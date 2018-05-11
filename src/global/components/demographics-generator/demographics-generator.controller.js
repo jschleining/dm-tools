@@ -1,7 +1,8 @@
 var app = angular.module('dmTools');
 
-app.controller('DemographicsGeneratorController', ['$scope', '$mdComponentRegistry', '$mdSidenav', 'Utilities', 'Demographics',
-function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
+app.controller('DemographicsGeneratorController', ['$scope', '$mdComponentRegistry', '$mdSidenav', '$filter', 
+    'Utilities', 'Demographics',
+function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demographics) {
   var vm_ = this;
 
   //---------------------------------------------------------------------- =VARS
@@ -22,13 +23,14 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
     authoritySelection: angular.copy(Demographics.defaultAuthorities),
     climateSelection: angular.copy(Demographics.defaultClimates),
     monsterSelection: angular.copy(Demographics.defaultMonsters),
-    powerCenterSelection: angular.copy(Demographics.defaultPowerCenters),
     powerCenterTypesSelection: angular.copy(Demographics.defaultPowerCenterTypes),
+    powerCenterSelection: angular.copy(Demographics.defaultPowerCenters),
     raceSelection: angular.copy(Demographics.defaultRaces),
     racialMixSelection: angular.copy(Demographics.defaultRacialMixtures),
     settlementTypeSelection: angular.copy(Demographics.defaultSettlementTypes),
     terrainSelection: angular.copy(Demographics.defaultTerrainTypes),
-    tagSelection: angular.copy(Demographics.defaultTagList)
+    tagSelection: angular.copy(Demographics.defaultTagList),
+    tagTypeSelection: angular.copy(Demographics.tagTypes)
   };
   vm_.test = [
     'alignmentSelection',
@@ -36,8 +38,8 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
     'authoritySelection',
     'climateSelection',
     'monsterSelection',
-    'powerCenterSelection',
     'powerCenterTypesSelection',
+    'powerCenterSelection',
     'raceSelection',
     'racialMixSelection',
     'settlementTypeSelection',
@@ -46,7 +48,8 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
   ];
   vm_.testDisplay = '';
   vm_.getTag = function(tagKey) {
-    return _.find(vm_.localData.tagSelection, function (o) { return o.id === tagKey; });
+    var array = (vm_.testDisplay === 'tagSelection') ? vm_.localData.tagTypeSelection : vm_.localData.tagSelection;
+    return _.find(array, function (o) { return o.id === tagKey; });
   };
   //#endregion
 
@@ -54,6 +57,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
   vm_.settingsTemplateBase = 'global/components/demographics-generator/settings/';
   vm_.settingsTemplates = {
     globalSettings: vm_.settingsTemplateBase + 'demographics-generator-global-settings.view.html',
+    tagSettings: vm_.settingsTemplateBase + 'demographics-generator-tag-settings.view.html',
     settlementSettings: vm_.settingsTemplateBase + 'demographics-generator-settlement-settings.view.html',
     powerCenterSettings: vm_.settingsTemplateBase + 'demographics-generator-power-center-settings.view.html',
     authoritySettings: vm_.settingsTemplateBase + 'demographics-generator-authority-settings.view.html',
@@ -89,6 +93,12 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
   // };
   // vm_.tagSelection = angular.copy(Demographics.defaultTagList);
   //#endregion
+
+  //#region Tag Vars
+  vm_.tagType = 'none';
+  vm_.filteredTags = [];
+  //#endregion
+
 
   //#region Settlement Vars
   // vm_.settlementSelection = angular.copy(Demographics.defaultSettlementTypes);
@@ -150,17 +160,17 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
 
   // //#region function definitions
   //
-  // //#region General Functions
+  //#region General Functions
   // vm_.checkForCustomObjects = checkForCustomObjects_;
   // vm_.checkForButtonDisabled = checkForButtonDisabled_;
   // vm_.clearEdits = clearEdits_;
-  // vm_.closeSettingsSidebar = closeSettingsSidebar_;
+  vm_.closeSettingsSidebar = closeSettingsSidebar_;
   // vm_.populateArrayList = populateArrayList_;
-  // vm_.resetConfigSettings = resetConfigSettings_;
+  vm_.resetConfigSettings = resetConfigSettings_;
   // vm_.setEditArray = setEditArray_;
   // vm_.setEditObject = setEditObject_;
-  // vm_.openSettingsSidebar = openSettingsSidebar_;
-  // //#endregion
+  vm_.openSettingsSidebar = openSettingsSidebar_;
+  //#endregion
   //
   // //#region Object Functions
   // vm_.addNewObject = addNewObject_;
@@ -175,7 +185,11 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
   // vm_.updateObjectWeight = updateObjectWeight_;
   // vm_.updateRemovedWeightInArrayList = updateRemovedWeightInArrayList_;
   // //#endregion
-  //
+
+  //#region Tag Functions
+  vm_.updateFilteredTags = updateFilteredTags_;
+  //#endregion
+
   // //#region Authority Functions
   // vm_.addCustomAuthority = addCustomAuthority_;
   // //#endregion
@@ -211,9 +225,23 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
 
   //---------------------------------------------------------------------- =FUNCTIONS
 
-  // //#region Functions
-  //
-  // //#region General Functions
+  //#region Functions
+
+  //#region Tag Functions
+  function updateFilteredTags_(filterBy) {
+    console.log('filterBy', filterBy);
+    if (!filterBy || filterBy === 'none') {
+      vm_.filteredTags = [];
+    } else {
+      vm_.filteredTags = $filter('dictionaryFilter')(vm_.localData.tagSelection, {tags: filterBy});
+    }
+// $scope.filteredItems = $filter('filter')($scope.items, {data :{a:1}}, true); 
+    
+  }
+  //#endregion
+
+
+  //#region General Functions
   // /**
   //  * Check an array to see if any custom objects exist.
   //  *
@@ -258,23 +286,23 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
   //   vm_.tempObject = {};
   //   vm_.editArray = [];
   // }
-  //
-  // /**
-  //  * Close the sidebar. Stopped using toggle because angular material doesn't send close events. Doing it manually.
-  //  */
-  // function closeSettingsSidebar_() {
-  //   vm_.settingsTemplate = '';
-  //   vm_.clearEdits();
-  // }
-  //
-  // /**
-  //  * Reset Settings options that are specific to setting configs.
-  //  */
-  // function resetConfigSettings_() {
-  //   vm_.resetNewObject();
-  //   vm_.clearEdits();
-  // }
-  //
+  
+  /**
+   * Close the sidebar. Stopped using toggle because angular material doesn't send close events. Doing it manually.
+   */
+  function closeSettingsSidebar_() {
+    vm_.settingsTemplate = '';
+    // vm_.clearEdits();
+  }
+  
+  /**
+   * Reset Settings options that are specific to setting configs.
+   */
+  function resetConfigSettings_() {
+    // vm_.resetNewObject();
+    // vm_.clearEdits();
+  }
+  
   // /**
   //  * Sets a temporary object to be edited.
   //  *
@@ -292,29 +320,28 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
   // function setEditObject_(objectToEdit) {
   //   vm_.editObject = angular.copy(objectToEdit);
   // }
-  //
-  // /**
-  //  * Open the sidebar. Stopped using toggle because angular material doesn't send close events. Doing it manually.
-  //  *
-  //  * @param {object} params Object containing parameters for an action to be executed on open.
-  //  */
-  // function openSettingsSidebar_(template, params) {
-  //   console.log(params);
-  //   vm_.resetConfigSettings();
-  //   if (params) {
-  //     switch(params.action) {
-  //       case 'populateEditArray':
-  //         vm_.editArray = angular.copy(params.object);
-  //         break;
-  //     }
-  //   }
-  //   vm_.settingsTemplate = vm_.settingsTemplates[template];
-  //   vm_.isSideNavOpened = !$mdSidenav('md-sidenav-right').isOpen();
-  //   if(vm_.isSideNavOpened) {
-  //     $mdSidenav('md-sidenav-right').open();
-  //   }
-  // }
-  // //#endregion
+  
+  /**
+   * Open the sidebar. Stopped using toggle because angular material doesn't send close events. Doing it manually.
+   *
+   * @param {object} params Object containing parameters for an action to be executed on open.
+   */
+  function openSettingsSidebar_(template, params) {
+    vm_.resetConfigSettings();
+    if (params) {
+      switch(params.action) {
+        case 'populateEditArray':
+          vm_.editArray = angular.copy(params.object);
+          break;
+      }
+    }
+    vm_.settingsTemplate = vm_.settingsTemplates[template];
+    vm_.isSideNavOpened = !$mdSidenav('md-sidenav-right').isOpen();
+    if(vm_.isSideNavOpened) {
+      $mdSidenav('md-sidenav-right').open();
+    }
+  }
+  //#endregion
   //
   // //#region General Object Functions
   // /**
@@ -414,18 +441,18 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
   //   }
   //   return arrayList;
   // }
-  //
-  // /**
-  //  * Reset newObject to its default settings.
-  //  */
-  // function resetNewObject_() {
-  //   vm_.newObject = {
-  //     isAllowed: false,
-  //     name: '',
-  //     type: ''
-  //   };
-  // }
-  //
+  
+  /**
+   * Reset newObject to its default settings.
+   */
+  function resetNewObject_() {
+    vm_.newObject = {
+      isAllowed: false,
+      name: '',
+      type: ''
+    };
+  }
+  
   // /**
   //  * Reset the weight of an object by toggling it.
   //  *
@@ -882,16 +909,17 @@ function ($scope, $mdComponentRegistry, $mdSidenav, Utilities, Demographics) {
 
   //---------------------------------------------------------------------- =WATCHERS
 
-  // //#region Watchers
-  // // Watching the sidebar. Toggle doesn't send close events, so this was implemented.
-  // $scope.$watch(function(){
-  //   return $mdComponentRegistry.get('md-sidenav-right') ? $mdSidenav('md-sidenav-right').isOpen() : false;
-  // }, function(newVal){
-  //   vm_.isSideNavOpened = newVal;
-  //   if (!vm_.isSideNavOpened) {
-  //     vm_.closeSettingsSidebar();
-  //   }
-  // });
-  // //#endregion
+  //#region Watchers
+
+  // Watching the sidebar. Toggle doesn't send close events, so this was implemented.
+  $scope.$watch(function(){
+    return $mdComponentRegistry.get('md-sidenav-right') ? $mdSidenav('md-sidenav-right').isOpen() : false;
+  }, function(newVal){
+    vm_.isSideNavOpened = newVal;
+    if (!vm_.isSideNavOpened) {
+      vm_.closeSettingsSidebar();
+    }
+  });
+  //#endregion
 
 }]);

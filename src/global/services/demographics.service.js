@@ -4,69 +4,95 @@ app.service('Demographics', function () {
   var service_ = this;
 
   /**
-   * This is to help filter objects by tag or tag type
+   * This is to help filter objects by tag or tag type. Cannot be locally customized, so it
+   * is ok to use id instead of passing whole object.
    */
   service_.tagTypes = {
-    basic: {
+    'default': {
+      isAllowed: false,
+      name: 'Default',
+      type: 'tagType',
+      key: 'default',
+      id: 'tag-tagType-01'
+    },
+    'custom': {
+      isAllowed: false,
+      name: 'Custom',
+      type: 'tagType',
+      key: 'custom',
+      id: 'tag-tagType-02'
+    },
+    'basic': {
       isAllowed: false,
       name: 'Basic',
       type: 'tagType',
       key: 'basic',
-      id: 'tag-type-001'
+      id: 'tag-tagType-03'
     },
-    source: {
+    'source': {
       isAllowed: false,
       name: 'Source',
       type: 'tagType',
       key: 'source',
-      id: 'tag-type-002'
+      id: 'tag-tagType-004'
     },
-    creatureType: {
+    'creatureType': {
       isAllowed: false,
       name: 'Creature Type',
       type: 'tagType',
       key: 'creatureType',
-      id: 'tag-type-003'
+      id: 'tag-tagType-005'
     },
-    creatureSubtype: {
+    'creatureSubtype': {
       isAllowed: false,
       name: 'Creature Subtype',
       type: 'tagType',
       key: 'creatureSubtype',
-      id: 'tag-type-004'
+      id: 'tag-tagType-006'
     },
-    alignment: {
+    'alignment': {
       isAllowed: false,
       name: 'Alignment',
       type: 'tagType',
       key: 'alignment',
-      id: 'tag-type-005'
+      id: 'tag-tagType-007'
     },
-    climate: {
+    'climate': {
       isAllowed: false,
       name: 'Climate',
       type: 'tagType',
       key: 'climate',
-      id: 'tag-type-006'
+      id: 'tag-tagType-008'
     },
-    terrain: {
+    'terrain': {
       isAllowed: false,
       name: 'Terrain',
       type: 'tagType',
       key: 'terrain',
-      id: 'tag-type-007'
+      id: 'tag-tagType-009'
+    },
+    'powerCenterType': {
+      isAllowed: false,
+      name: 'Power Center Type',
+      type: 'tagType',
+      key: 'powerCenterType',
+      id: 'tag-tagType-010'
     }
   };
 
   /**
-   * weight is not used. These are always placed either automatically or manually.
+   * weight is not used. These are always placed either automatically or manually. Cannot be 
+   * locally customized, so it is ok to use id instead of passing whole object.
    */
   service_.defaultTagList = {
     'dflt': {
       isAllowed: false,
       name: 'Default',
       type: 'tag',
-      tagTypes: [service_.tagTypes.basic],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.basic.id
+      ],
       key: 'dflt',
       id: 'tag-dflt'
     },
@@ -74,7 +100,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Custom',
       type: 'tag',
-      tagTypes: [service_.tagTypes.basic],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.basic.id
+      ],
       key: 'cust',
       id: 'tag-cust'
     },
@@ -82,7 +111,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Player\'s Handbook',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'phb',
       id: 'tag-core-1'
     },
@@ -90,7 +122,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Monster Manual',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'mm',
       id: 'tag-core-2'
     },
@@ -98,7 +133,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Dungeon Master\'s Guide',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'dmg',
       id: 'tag-core-3'
     },
@@ -106,7 +144,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Elemental Evil Player\'s Companion',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'elm',
       id: 'tag-supp-01'
     },
@@ -114,7 +155,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Sword Coast Adventure Guide',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'scg',
       id: 'tag-supp-02'
     },
@@ -122,7 +166,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Volo\'s Guide to Monsters',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'vol',
       id: 'tag-supp-03'
     },
@@ -130,7 +177,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Xanathar\'s Guide to Everything',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'xan',
       id: 'tag-supp-04'
     },
@@ -138,7 +188,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Plane Shift: Zendikar',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'psz',
       id: 'tag-misc-001'
     },
@@ -146,7 +199,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'The Tortle Package',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'ttp',
       id: 'tag-misc-002'
     },
@@ -154,7 +210,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Unearthed Arcana',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'ua',
       id: 'tag-ua-001'
     },
@@ -162,7 +221,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Class Design Variants',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uacdv',
       src: 'http://media.wizards.com/2015/downloads/dnd/UA3_ClassDesignVariants.pdf',
       id: 'tag-ua-002'
@@ -171,7 +233,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Classics Revisited',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uacr',
       src: 'http://media.wizards.com/2015/downloads/dnd/04_UA_Classics_Revisited.pdf',
       id: 'tag-ua-003'
@@ -180,7 +245,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Eberron',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uaeb',
       src: 'http://media.wizards.com/2015/downloads/dnd/UA_Eberron_v1.pdf',
       id: 'tag-ua-004'
@@ -189,7 +257,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Gothic Heroes',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uagh',
       src: 'https://dnd.wizards.com/sites/default/files/media/upload/articles/UA%20Gothic%20Characters.pdf',
       id: 'tag-ua-005'
@@ -198,7 +269,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Modern Magic',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uamm',
       src: 'http://media.wizards.com/2015/downloads/dnd/UA_ModernMagic.pdf',
       id: 'tag-ua-006'
@@ -207,7 +281,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Psionics & The Mystic',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uamm',
       src: 'http://media.wizards.com/2016/downloads/Psionics_and_Mystic_V2.pdf',
       id: 'tag-ua-007'
@@ -216,7 +293,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Psionics & The Mystic',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uarmpc',
       src: 'http://media.wizards.com/2015/downloads/dnd/UA_Rune_Magic_Prestige_Class.pdf',
       id: 'tag-ua-008'
@@ -225,7 +305,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Ranger Options',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uaro',
       src: 'http://media.wizards.com/2015/downloads/dnd/DX_0907_UA_RangerOptions.pdf',
       id: 'tag-ua-009'
@@ -234,7 +317,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: That Old Black Magic',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uatom',
       src: 'https://media.wizards.com/2015/downloads/dnd/07_UA_That_Old_Black_Magic.pdf',
       id: 'tag-ua-010'
@@ -243,7 +329,10 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Waterborne Adventures',
       type: 'tag',
-      tagTypes: [service_.tagTypes.source],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.source.id
+      ],
       key: 'uawb',
       src: 'https://media.wizards.com/2015/downloads/ dnd /UA_ Waterborne_v3.pdf',
       id: 'tag-ua-011'
@@ -252,7 +341,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Aberration',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'abr',
       id: 'tag-monstertype-01'
     },
@@ -260,7 +352,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Beast',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'bst',
       id: 'tag-monstertype-02'
     },
@@ -268,7 +363,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Celestial',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'cel',
       id: 'tag-monstertype-03'
     },
@@ -276,7 +374,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Construct',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'con',
       id: 'tag-monstertype-04'
     },
@@ -284,7 +385,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Dragon',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'dra',
       id: 'tag-monstertype-05'
     },
@@ -292,7 +396,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Elemental',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'ele',
       id: 'tag-monstertype-06'
     },
@@ -300,7 +407,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Fey',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'fey',
       id: 'tag-monstertype-07'
     },
@@ -308,7 +418,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Fiend',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'fnd',
       id: 'tag-monstertype-08'
     },
@@ -316,7 +429,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Giant',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'gnt',
       id: 'tag-monstertype-09'
     },
@@ -324,7 +440,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Humanoid',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'hum',
       id: 'tag-monstertype-10'
     },
@@ -332,7 +451,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Monstrosity',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'mon',
       id: 'tag-monstertype-11'
     },
@@ -340,7 +462,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Ooze',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'ooz',
       id: 'tag-monstertype-12'
     },
@@ -348,7 +473,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Plant',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'plt',
       id: 'tag-monstertype-13'
     },
@@ -356,7 +484,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Undead',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureType],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureType.id
+      ],
       key: 'und',
       id: 'tag-monstertype-14'
     },
@@ -364,7 +495,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Angel',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureSubtype],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureSubtype.id
+      ],
       key: 'ang',
       id: 'tag-subtype-01'
     },
@@ -372,7 +506,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Demon',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureSubtype],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureSubtype.id
+      ],
       key: 'dmn',
       id: 'tag-subtype-02'
     },
@@ -380,7 +517,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Devil',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureSubtype],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureSubtype.id
+      ],
       key: 'dvl',
       id: 'tag-subtype-03'
     },
@@ -388,7 +528,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Goblinoid',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureSubtype],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureSubtype.id
+      ],
       key: 'gob',
       id: 'tag-subtype-04'
     },
@@ -396,7 +539,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Reptilian',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureSubtype],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureSubtype.id
+      ],
       key: 'rep',
       id: 'tag-subtype-05'
     },
@@ -404,7 +550,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Shapechanger',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureSubtype],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureSubtype.id
+      ],
       key: 'shp',
       id: 'tag-subtype-06'
     },
@@ -412,7 +561,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Yugoloth',
       type: 'tag',
-      tagTypes: [service_.tagTypes.creatureSubtype],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.creatureSubtype.id
+      ],
       key: 'yug',
       id: 'tag-subtype-07'
     },
@@ -420,7 +572,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Lawful',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'law',
       id: 'tag-align-01'
     },
@@ -428,7 +583,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Neutral',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'ntr',
       id: 'tag-align-02'
     },
@@ -436,7 +594,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Chaotic',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'cht',
       id: 'tag-align-03'
     },
@@ -444,7 +605,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Good',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'god',
       id: 'tag-align-04'
     },
@@ -452,7 +616,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Evil',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'evl',
       id: 'tag-align-05'
     },
@@ -460,7 +627,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Lawful Good',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'lg',
       id: 'tag-align-06'
     },
@@ -468,7 +638,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Neutral Good',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'ng',
       id: 'tag-align-07'
     },
@@ -476,7 +649,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Chaotic Good',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'cg',
       id: 'tag-align-08'
     },
@@ -484,7 +660,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Lawful Neutral',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'ln',
       id: 'tag-align-09'
     },
@@ -492,7 +671,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'True Neutral',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'tn',
       id: 'tag-align-10'
     },
@@ -500,7 +682,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Chaotic Neutral',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'cn',
       id: 'tag-align-11'
     },
@@ -508,7 +693,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Lawful Evil',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'le',
       id: 'tag-align-12'
     },
@@ -516,7 +704,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Neutral Evil',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'ne',
       id: 'tag-align-13'
     },
@@ -524,7 +715,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Chaotic Evil',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'ce',
       id: 'tag-align-14'
     },
@@ -532,7 +726,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Alignment',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'aa',
       id: 'tag-align-15'
     },
@@ -540,7 +737,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Good',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'ag',
       id: 'tag-align-16'
     },
@@ -548,7 +748,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Neutral',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'an',
       id: 'tag-align-17'
     },
@@ -556,7 +759,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Evil',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'ae',
       id: 'tag-align-18'
     },
@@ -564,7 +770,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Lawful',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'al',
       id: 'tag-align-19'
     },
@@ -572,7 +781,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Chaotic',
       type: 'tag',
-      tagTypes: [service_.tagTypes.alignment],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.alignment.id
+      ],
       key: 'ac',
       id: 'tag-align-20'
     },
@@ -580,7 +792,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Climate',
       type: 'tag',
-      tagTypes: [service_.tagTypes.climate],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.climate.id
+      ],
       key: 'cany',
       id: 'tag-climate-01'
     },
@@ -588,7 +803,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Arctic',
       type: 'tag',
-      tagTypes: [service_.tagTypes.climate],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.climate.id
+      ],
       key: 'carc',
       id: 'tag-climate-02'
     },
@@ -596,7 +814,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Cold',
       type: 'tag',
-      tagTypes: [service_.tagTypes.climate],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.climate.id
+      ],
       key: 'ccld',
       id: 'tag-climate-03'
     },
@@ -604,7 +825,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Temperate',
       type: 'tag',
-      tagTypes: [service_.tagTypes.climate],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.climate.id
+      ],
       key: 'ctmp',
       id: 'tag-climate-04'
     },
@@ -612,7 +836,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Warm',
       type: 'tag',
-      tagTypes: [service_.tagTypes.climate],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.climate.id
+      ],
       key: 'cwrm',
       id: 'tag-climate-05'
     },
@@ -620,7 +847,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Tropical',
       type: 'tag',
-      tagTypes: [service_.tagTypes.climate],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.climate.id
+      ],
       key: 'ctrp',
       id: 'tag-climate-06'
     },
@@ -628,7 +858,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Terrain',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tany',
       id: 'tag-terrain-01'
     },
@@ -636,7 +869,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Aquatic',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'taqu',
       id: 'tag-terrain-02'
     },
@@ -644,7 +880,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Coastal',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tcst',
       id: 'tag-terrain-03'
     },
@@ -652,7 +891,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Tundra',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'ttun',
       id: 'tag-terrain-04'
     },
@@ -660,7 +902,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Plains',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tpln',
       id: 'tag-terrain-05'
     },
@@ -668,7 +913,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Hills',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'thil',
       id: 'tag-terrain-06'
     },
@@ -676,7 +924,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Mountains',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tmtn',
       id: 'tag-terrain-07'
     },
@@ -684,7 +935,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Desert',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tdst',
       id: 'tag-terrain-08'
     },
@@ -692,7 +946,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Grasslands',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tgrs',
       id: 'tag-terrain-09'
     },
@@ -700,7 +957,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Marsh',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tmsh',
       id: 'tag-terrain-10'
     },
@@ -708,7 +968,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Savannah',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tsvh',
       id: 'tag-terrain-11'
     },
@@ -716,7 +979,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Forest',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tfst',
       id: 'tag-terrain-12'
     },
@@ -724,7 +990,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Swamp',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tswm',
       id: 'tag-terrain-13'
     },
@@ -732,7 +1001,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Jungle',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tjng',
       id: 'tag-terrain-14'
     },
@@ -740,7 +1012,10 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Underdark',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'tudr',
       id: 'tag-terrain-15'
     },
@@ -748,9 +1023,56 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Urban',
       type: 'tag',
-      tagTypes: [service_.tagTypes.terrain],
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.terrain.id
+      ],
       key: 'turb',
       id: 'tag-terrain-16'
+    },
+    'pccn': {
+      isAllowed: true,
+      name: 'Conventional',
+      type: 'tag',
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.powerCenterType.id
+      ],
+      key: 'pccn',
+      id: 'tag-power-center-type-01'
+    },
+    'pcns': {
+      isAllowed: true,
+      name: 'Nonstandard',
+      type: 'tag',
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.powerCenterType.id
+      ],
+      key: 'pcns',
+      id: 'tag-power-center-type-02'
+    },
+    'pcmg': {
+      isAllowed: true,
+      name: 'Magical',
+      type: 'tag',
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.powerCenterType.id
+      ],
+      key: 'pcmg',
+      id: 'tag-power-center-type-03'
+    },
+    'pcmn': {
+      isAllowed: true,
+      name: 'Monstrous',
+      type: 'tag',
+      tags: [
+        service_.tagTypes.default.id,
+        service_.tagTypes.powerCenterType.id
+      ],
+      key: 'pcmn',
+      id: 'tag-power-center-type-04'
     }
   };
 
@@ -2968,254 +3290,248 @@ app.service('Demographics', function () {
   ];
 
   /**
-   * weight should add up to 100. Only used as weighted random value.
+   * weight should add up to 100. Only used as weighted random value. use tags to pick out 
+   * sets first! Conventional/Nonstandard/Magical. Weights will only match up within groups.
    */
-  service_.defaultPowerCenters = {
-    'conventional': [
-      {
-        isAllowed: true,
-        name: 'Mayor',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 20,
-          custom: 20
-        },
-        group: 'conventional',
-        id: 'pctc-001'
+  service_.defaultPowerCenters = [
+    {
+      isAllowed: true,
+      name: 'Mayor',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pccn.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
       },
-      {
-        isAllowed: true,
-        name: 'Council',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 20,
-          custom: 20
-        },
-        group: 'conventional',
-        id: 'pctc-002'
+      id: 'pctc-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Council',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pccn.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
       },
-      {
-        isAllowed: true,
-        name: 'Noble',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 40,
-          custom: 40
-        },
-        group: 'conventional',
-        id: 'pctc-003'
-      }
-    ],
-    'nonstandard': [
-      {
-        isAllowed: true,
-        name: 'Merchant\'s Guild',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 20,
-          custom: 20
-        },
-        group: 'nonstandard',
-        id: 'pctn-001'
+      id: 'pctc-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Noble',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pccn.id
+      ],
+      weight: {
+        default: 40,
+        custom: 40
       },
-      {
-        isAllowed: true,
-        name: 'Craftsmen\'s Guild - General',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 10,
-          custom: 10
-        },
-        group: 'nonstandard',
-        id: 'pctn-002'
+      id: 'pctc-003'
+    },
+    {
+      isAllowed: true,
+      name: 'Merchant\'s Guild',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 20,
+        custom: 20
       },
-      {
-        isAllowed: true,
-        name: 'Craftsmen\'s Guild - Specific',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 10,
-          custom: 10
-        },
-        group: 'nonstandard',
-        id: 'pctn-003'
+      id: 'pctn-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Craftsmen\'s Guild - General',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
       },
-      {
-        isAllowed: true,
-        name: 'Profession\'s Guild - Specific',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 15,
-          custom: 15
-        },
-        group: 'nonstandard',
-        id: 'pctn-004'
+      id: 'pctn-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Craftsmen\'s Guild - Specific',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
       },
-      {
-        isAllowed: true,
-        name: 'Thieves\' Guild',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 10,
-          custom: 10
-        },
-        group: 'nonstandard',
-        id: 'pctn-005'
+      id: 'pctn-003'
+    },
+    {
+      isAllowed: true,
+      name: 'Profession\'s Guild - Specific',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 15,
+        custom: 15
+      },      id: 'pctn-004'
+    },
+    {
+      isAllowed: true,
+      name: 'Thieves\' Guild',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
       },
-      {
-        isAllowed: true,
-        name: 'Assassin\'s Guild',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 5,
-          custom: 5
-        },
-        group: 'nonstandard',
-        id: 'pctn-006'
+      id: 'pctn-005'
+    },
+    {
+      isAllowed: true,
+      name: 'Assassin\'s Guild',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
       },
-      {
-        isAllowed: true,
-        name: 'Warrior\'s Guild',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 5,
-          custom: 5
-        },
-        group: 'nonstandard',
-        id: 'pctn-007'
+      id: 'pctn-006'
+    },
+    {
+      isAllowed: true,
+      name: 'Warrior\'s Guild',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
       },
-      {
-        isAllowed: true,
-        name: 'Wealthy Aristocracy',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 5,
-          custom: 5
-        },
-        group: 'nonstandard',
-        id: 'pctn-008'
+      id: 'pctn-007'
+    },
+    {
+      isAllowed: true,
+      name: 'Wealthy Aristocracy',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
       },
-      {
-        isAllowed: true,
-        name: 'Prestigious Aristocracy (Successful Adventurers)',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 5,
-          custom: 5
-        },
-        group: 'nonstandard',
-        id: 'pctn-009'
+      id: 'pctn-008'
+    },
+    {
+      isAllowed: true,
+      name: 'Prestigious Aristocracy (Successful Adventurers)',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
       },
-      {
-        isAllowed: true,
-        name: 'Council of Elders',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 10,
-          custom: 10
-        },
-        group: 'nonstandard',
-        id: 'pctn-010'
+      id: 'pctn-009'
+    },
+    {
+      isAllowed: true,
+      name: 'Council of Elders',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
       },
-      {
-        isAllowed: true,
-        name: 'Bard College',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 5,
-          custom: 5
-        },
-        group: 'nonstandard',
-        id: 'pctn-011'
-      }
-    ],
-    'magical': [
-      {
-        isAllowed: true,
-        name: 'Powerful Temple',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 33,
-          custom: 33
-        },
-        group: 'magical',
-        id: 'pctm-001'
+      id: 'pctn-010'
+    },
+    {
+      isAllowed: true,
+      name: 'Bard College',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcns.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
       },
-      {
-        isAllowed: true,
-        name: 'Powerful Arcane Caster',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 34,
-          custom: 34
-        },
-        group: 'magical',
-        id: 'pctm-002'
+      id: 'pctn-011'
+    },
+    {
+      isAllowed: true,
+      name: 'Powerful Temple',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcmg.id
+      ],
+      weight: {
+        default: 33,
+        custom: 33
       },
-      {
-        isAllowed: true,
-        name: 'Wizard\'s Guild/College',
-        type: 'powerCenterType',
-        tags: [
-          service_.defaultTagList.dflt.id
-        ],
-        weight: {
-          default: 33,
-          custom: 33
-        },
-        group: 'magical',
-        id: 'pctm-003'
-      }
-    ]
-  };
+      id: 'pctm-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Powerful Arcane Caster',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcmg.id
+      ],
+      weight: {
+        default: 34,
+        custom: 34
+      },
+      id: 'pctm-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Wizard\'s Guild/College',
+      type: 'powerCenterType',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.pcmg.id
+      ],
+      weight: {
+        default: 33,
+        custom: 33
+      },
+      id: 'pctm-003'
+    }
+  ];
 
   /**
    * weight should add up to 100. Only used as weighted random value.
@@ -3227,7 +3543,8 @@ app.service('Demographics', function () {
       type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.pccn.id
       ],
       weight: {
         default: 65,
@@ -3243,7 +3560,8 @@ app.service('Demographics', function () {
       type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.pcns.id
       ],
       weight: {
         default: 30,
@@ -3259,7 +3577,8 @@ app.service('Demographics', function () {
       type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.pcmg.id
       ],
       weight: {
         default: 5,
@@ -3268,7 +3587,7 @@ app.service('Demographics', function () {
       chanceForExtraMonstrous: 0,
       key: 'magical',
       id: 'pctr-003'
-    },
+    }
   ];
 
   /**

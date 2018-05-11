@@ -1,8 +1,8 @@
 <div id="demographics-generator" layout="row" layout-align="center stretch" flex>
 
-  <!--<md-sidenav id="md-sidenav-right" class="md-sidenav-right" md-component-id="md-sidenav-right" md-whiteframe="4">-->
-    <!--<div ng-include="vm.settingsTemplate"></div>-->
-  <!--</md-sidenav>-->
+  <md-sidenav id="md-sidenav-right" class="md-sidenav-right" md-component-id="md-sidenav-right" md-whiteframe="4">
+    <div ng-include="vm.settingsTemplate"></div>
+  </md-sidenav>
 
   <section id="main" class="layout-padding-well" flex="75">
     <div layout="column">
@@ -15,7 +15,9 @@
       <div class="layout-padding-well border-bottom-1" ng-repeat="obj in vm.localData[vm.testDisplay]"
            ng-model-options="{trackBy: 'obj.id'}" md-colors="{'border-color': 'background-300'}" layout="column"
            layout-align="start stretch">
-        <div>{{obj.name}}: {{obj.id}}</div>
+        <div layout="row" layout-align="start center">
+          <span class="bold">{{obj.name}}</span>: <span class="hint layout-margin-left">{{obj.id}}</span>
+        </div>
         <div class="layout-margin-left" layout="row" layout-wrap>
           <div class="hint layout-margin-left layout-margin-top layout-padding-horizontal border-all-1 round-edges" ng-repeat="tag in obj.tags track by $index"
                ng-if="obj.tags" md-colors="{'background-color': 'background-50', 'border-color': 'background-300'}">
@@ -29,14 +31,19 @@
 
 
   <section id="sidebar" class="layout-padding-well border-left-1" md-colors="{'border-color': 'background-300'}" flex="25">
-    <!--<h4>Settings:</h4>-->
-    <!--<div class="layout-margin-top layout-padding-vertical hint border-bottom-1" md-colors="{'border-color': 'background-300'}">-->
+    <h3>Settings:</h3>
+    <!-- <div class="layout-margin-top layout-padding-vertical hint border-bottom-1" md-colors="{'border-color': 'background-300'}"> -->
       <!--Opening any setting will reset the generator.-->
     <!--</div>-->
-    <!--<div class="layout-padding-4" layout="row" layout-wrap>-->
+    <div class="layout-padding-4" layout="row" layout-wrap>
       <!--<div class="layout-padding-4" flex="100" layout="column" layout-align="start stretch">-->
         <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('globalSettings')">global settings</md-button>-->
       <!--</div>-->
+      <div class="layout-padding-4" flex="100" layout="column" layout-align="start stretch">
+        <md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('tagSettings')">
+          tag settings
+        </md-button>
+      </div>
       <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">-->
         <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('settlementSettings', {-->
         <!--action: 'populateEditArray', object: vm.settlementSelection})">settlement</md-button>-->
@@ -56,7 +63,7 @@
         <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('racialMixSettings', {-->
         <!--action: 'populateEditArray', object: vm.racialMixSelection})">racial mix</md-button>-->
       <!--</div>-->
-    <!--</div>-->
+    </div>
 
     <!--<div class="layout-padding-4 border-top-1" layout="row" layout-wrap md-colors="{'border-color': 'background-300'}">-->
       <!--<div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch" ng-if="vm.appConfigSettings.global.useSubraces">-->

@@ -1,0 +1,44 @@
+<md-content>
+  <div layout="column"  layout-align="start stretch">
+
+    <!-- Header -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+        md-colors="{'border-color': 'background-300'}">
+      <h3>Tag Settings</h3>
+      <div class="hint layout-margin-top">
+        <ul class="no-margin no-padding">
+          <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">View list of tags.</span>
+          </li>
+          <!-- <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">Edit custom tags.</span>
+          </li>
+          <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">Add custom tags.</span>
+          </li> -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- Tag Type Selection -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+        md-colors="{'border-color': 'background-300'}">
+
+      <md-input-container class="no-margin-top layout-margin-bottom no-padding">
+        <md-select class="no-padding" ng-model="t" placeholder="Tag Type Selection" ng-change="vm.updateFilteredTags(t)">
+          <md-option ng-value="'none'" ng-selected="true">- Select Tag Type -</md-option>
+          <md-option ng-repeat="tagType in vm.localData.tagTypeSelection" ng-value="tagType.id">{{tagType.name}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <div class="layout-margin-4 layout-padding-4 no-padding-vertical border-all-1" 
+          layout="column" layout-align="start stretch" md-colors="object.id.indexOf('cust') > -1 ? {'border-color': 'accent-100', 'background-color': 'accent-50'} : {'border-color': 'background-300', 'background-color': 'background-50'}" ng-repeat="tag in vm.filteredTags" ng-if="vm.filteredTags.length > 0">
+        {{tag.name}}
+      </div>
+    </section>
+
+  </div>
+</md-content>
