@@ -95,7 +95,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //#endregion
 
   //#region Tag Vars
-  vm_.tagType = 'none';
   vm_.filteredTags = [];
   //#endregion
 
@@ -123,7 +122,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //#endregion
 
   //#region Power Center Vars
-  // vm_.powerCenterSelection = [];
+  vm_.filteredPowerCenters = [];
   //#endregion
 
   //#region Authority Vars
@@ -190,6 +189,10 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   vm_.updateFilteredTags = updateFilteredTags_;
   //#endregion
 
+  //#region Power Center Functions
+  vm_.updateFilteredPowerCenters = updateFilteredPowerCenters_;
+  //#endregion
+
   // //#region Authority Functions
   // vm_.addCustomAuthority = addCustomAuthority_;
   // //#endregion
@@ -229,14 +232,41 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
 
   //#region Tag Functions
   function updateFilteredTags_(filterBy) {
-    console.log('filterBy', filterBy);
     if (!filterBy || filterBy === 'none') {
       vm_.filteredTags = [];
     } else {
       vm_.filteredTags = $filter('dictionaryFilter')(vm_.localData.tagSelection, {tags: filterBy});
     }
-// $scope.filteredItems = $filter('filter')($scope.items, {data :{a:1}}, true); 
-    
+  }
+  //#endregion
+
+  //#region PowerCenter Functions
+  function updateFilteredPowerCenters_(filterBy) {
+    if (!filterBy || filterBy === 'none' || filterBy === {}) {
+      vm_.filteredPowerCenters = [];
+    } else {
+      // dealing with one object now
+      console.log('filterBy', filterBy);
+      console.log('Demographics.tagTypes.powerCenterType', Demographics.tagTypes.powerCenterType);
+
+      // loop through tags, find the tag that has tag type power center
+      // set that tag to the var tag
+      // filter power centers by that tag
+      var tag = {};
+      for (var tagCounter = 0; tagCounter < filterBy.tags.length; tagCounter++) {
+        console.log('filterBy.tags[tagCounter]', filterBy.tags[tagCounter]);
+        var currentTagId = filterBy.tags[tagCounter];
+        var currentTag = $filter('dictionaryFilter')(vm_.localData.tagSelection, {tags: {id: currentTagId}});
+        console.log('currentTag', currentTag);
+        // if ($filter('filter')(filterBy.tags[tagCounter].tags, Demographics.tagTypes.powerCenterType.id).length > 0) {
+        //   tag = $filter('filter')(filterBy.tags[tagCounter].tags, Demographics.tagTypes.powerCenterType.id);
+        // }
+      }
+
+      // var tag = $filter('filter')(filterBy.tags, {id: Demographics.tagTypes.powerCenterType.id});
+      console.log('tag', tag);
+      // vm_.filteredPowerCenters = $filter('dictionaryFilter')(vm_.localData.tagSelection, {tags: filterBy});
+    }
   }
   //#endregion
 
@@ -342,7 +372,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     }
   }
   //#endregion
-  //
+
   // //#region General Object Functions
   // /**
   //  * Adds a new Custom Object to a list of arrays.
@@ -593,7 +623,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //   }
   // }
   // //#endregion
-  //
+
   // //#region Settlement Functions
   // vm_.addCustomSettlement = addCustomSettlement_;
   // /**
@@ -647,7 +677,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //   }
   // }
   // //#endregion
-  //
+
   // //#region Authority Figure Functions
   // /**
   //  * Add a new authority figure to the list of authorities.
@@ -669,7 +699,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //   vm_.resetNewObject();
   // }
   // //#endregion
-  //
+
   // //#region Race Functions
   // /**
   //  * Add a new race to the list of races.
@@ -820,11 +850,11 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //   vm_.updateAllowedObjects(objectArray, arrayList);
   // }
   // //#endregion
-  //
+
   // //#region Racial Mixture Functions
   //
   // //#endregion
-  //
+
   // //#region Age Functions
   // function updateGlobalDefaultAges_(ageArray) {
   //   var startingArray = [
@@ -904,7 +934,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   // }
   //
   // //#endregion
-  //
+
   // //#endregion
 
   //---------------------------------------------------------------------- =WATCHERS

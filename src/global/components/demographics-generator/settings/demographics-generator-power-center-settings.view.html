@@ -1,0 +1,47 @@
+<md-content>
+  <div layout="column"  layout-align="start stretch">
+
+    <!-- Header -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+        md-colors="{'border-color': 'background-300'}">
+      <h3>Power Center Settings</h3>
+      <div class="hint layout-margin-top">
+        <ul class="no-margin no-padding">
+          <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">View list of power centers.</span>
+          </li>
+          <!-- <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">Edit custom power centers.</span>
+          </li>
+          <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">Add custom power centers.</span>
+          </li> -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- Power Center Type Selection -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+        md-colors="{'border-color': 'background-300'}">
+
+      <md-input-container class="no-margin-top layout-margin-bottom no-padding">
+        <md-select class="no-padding" ng-model="pc" placeholder="Tag Type Selection" ng-change="vm.updateFilteredPowerCenters(pc)">
+          <md-option ng-value="'none'" ng-selected="true">- Select Power Center Type -</md-option>
+          <md-option ng-repeat="powerCenterType in vm.localData.powerCenterTypesSelection" ng-value="powerCenterType">{{powerCenterType.name}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <div class="layout-margin-4 layout-padding-4 no-padding-vertical border-all-1" 
+          layout="column" layout-align="start stretch"
+           md-colors="object.id.indexOf('cust') > -1 ? {'border-color': 'accent-100', 'background-color': 'accent-50'} :
+           {'border-color': 'background-300', 'background-color': 'background-50'}"
+           ng-repeat="powerCenter in vm.filteredPowerCenters" ng-if="vm.filteredPowerCenters.length > 0">
+        {{tag.name}}
+      </div>
+    </section>
+
+  </div>
+</md-content>

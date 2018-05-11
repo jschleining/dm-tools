@@ -3297,7 +3297,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Mayor',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pccn.id
@@ -3311,7 +3311,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Council',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pccn.id
@@ -3325,7 +3325,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Noble',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pccn.id
@@ -3339,7 +3339,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Merchant\'s Guild',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3353,7 +3353,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Craftsmen\'s Guild - General',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3367,7 +3367,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Craftsmen\'s Guild - Specific',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3381,7 +3381,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Profession\'s Guild - Specific',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3394,7 +3394,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Thieves\' Guild',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3408,7 +3408,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Assassin\'s Guild',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3422,7 +3422,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Warrior\'s Guild',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3436,7 +3436,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Wealthy Aristocracy',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3450,7 +3450,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Prestigious Aristocracy (Successful Adventurers)',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3464,7 +3464,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Council of Elders',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3478,7 +3478,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Bard College',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcns.id
@@ -3492,7 +3492,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Powerful Temple',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcmg.id
@@ -3506,7 +3506,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Powerful Arcane Caster',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcmg.id
@@ -3520,7 +3520,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Wizard\'s Guild/College',
-      type: 'powerCenterType',
+      type: 'powerCenter',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.pcmg.id
@@ -3540,7 +3540,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Conventional',
-      type: 'powerCenter',
+      type: 'powerCenterType',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.dmg.id,
@@ -3557,7 +3557,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Nonstandard',
-      type: 'powerCenter',
+      type: 'powerCenterType',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.dmg.id,
@@ -3574,7 +3574,7 @@ app.service('Demographics', function () {
     {
       isAllowed: true,
       name: 'Magical',
-      type: 'powerCenter',
+      type: 'powerCenterType',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.dmg.id,
