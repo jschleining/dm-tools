@@ -1037,7 +1037,7 @@
         <entry file="file://$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
-              <caret line="249" column="81" lean-forward="true" selection-start-line="249" selection-start-column="81" selection-end-line="249" selection-end-column="81" />
+              <caret line="249" column="81" lean-forward="false" selection-start-line="249" selection-start-column="81" selection-end-line="249" selection-end-column="81" />
               <folding>
                 <element signature="e#3977#4002#0" expanded="false" />
                 <element signature="e#4680#4704#0" expanded="false" />
@@ -1063,7 +1063,7 @@
         <entry file="file://$PROJECT_DIR$/src/global/services/utilities.service.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" column="71" lean-forward="true" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
+              <caret line="14" column="71" lean-forward="false" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
               <folding>
                 <element signature="e#1180#1214#0" expanded="false" />
                 <element signature="e#1241#1354#0" expanded="false" />
@@ -1077,7 +1077,7 @@
         <entry file="file://$PROJECT_DIR$/src/global/components/demographics-generator/settings/demographics-generator-power-center-settings.view.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="563">
-              <caret line="41" column="28" lean-forward="true" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+              <caret line="41" column="28" lean-forward="false" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -1285,12 +1285,12 @@
       <option name="presentableId" value="Default" />
       <updated>1525979681461</updated>
       <workItem from="1525979682719" duration="10638000" />
-      <workItem from="1526309336413" duration="5409000" />
+      <workItem from="1526309336413" duration="6006000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16047000" />
+    <option name="totallyTimeSpent" value="16644000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1785" y="99" width="1687" height="928" extended-state="0" />
@@ -3516,7 +3516,7 @@
     <entry file="file://$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="249" column="81" lean-forward="true" selection-start-line="249" selection-start-column="81" selection-end-line="249" selection-end-column="81" />
+          <caret line="249" column="81" lean-forward="false" selection-start-line="249" selection-start-column="81" selection-end-line="249" selection-end-column="81" />
           <folding>
             <element signature="e#3977#4002#0" expanded="false" />
             <element signature="e#4680#4704#0" expanded="false" />
@@ -3540,7 +3540,7 @@
     <entry file="file://$PROJECT_DIR$/src/global/components/demographics-generator/settings/demographics-generator-power-center-settings.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="563">
-          <caret line="41" column="28" lean-forward="true" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+          <caret line="41" column="28" lean-forward="false" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -3548,7 +3548,7 @@
     <entry file="file://$PROJECT_DIR$/src/global/services/utilities.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="71" lean-forward="true" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
+          <caret line="14" column="71" lean-forward="false" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
           <folding>
             <element signature="e#1180#1214#0" expanded="false" />
             <element signature="e#1241#1354#0" expanded="false" />
