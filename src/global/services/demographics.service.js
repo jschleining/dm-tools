@@ -8,76 +8,16 @@ app.service('Demographics', function () {
    * is ok to use id instead of passing whole object.
    */
   service_.tagTypes = {
-    'default': {
-      isAllowed: false,
-      name: 'Default',
-      type: 'tagType',
-      key: 'default',
-      id: 'tag-tagType-01'
-    },
-    'custom': {
-      isAllowed: false,
-      name: 'Custom',
-      type: 'tagType',
-      key: 'custom',
-      id: 'tag-tagType-02'
-    },
-    'basic': {
-      isAllowed: false,
-      name: 'Basic',
-      type: 'tagType',
-      key: 'basic',
-      id: 'tag-tagType-03'
-    },
-    'source': {
-      isAllowed: false,
-      name: 'Source',
-      type: 'tagType',
-      key: 'source',
-      id: 'tag-tagType-004'
-    },
-    'creatureType': {
-      isAllowed: false,
-      name: 'Creature Type',
-      type: 'tagType',
-      key: 'creatureType',
-      id: 'tag-tagType-005'
-    },
-    'creatureSubtype': {
-      isAllowed: false,
-      name: 'Creature Subtype',
-      type: 'tagType',
-      key: 'creatureSubtype',
-      id: 'tag-tagType-006'
-    },
-    'alignment': {
-      isAllowed: false,
-      name: 'Alignment',
-      type: 'tagType',
-      key: 'alignment',
-      id: 'tag-tagType-007'
-    },
-    'climate': {
-      isAllowed: false,
-      name: 'Climate',
-      type: 'tagType',
-      key: 'climate',
-      id: 'tag-tagType-008'
-    },
-    'terrain': {
-      isAllowed: false,
-      name: 'Terrain',
-      type: 'tagType',
-      key: 'terrain',
-      id: 'tag-tagType-009'
-    },
-    'powerCenterType': {
-      isAllowed: false,
-      name: 'Power Center Type',
-      type: 'tagType',
-      key: 'powerCenterType',
-      id: 'tag-tagType-010'
-    }
+    'DEFAULT': 'default',
+    'CUSTOM': 'custom',
+    'BASIC': 'basic',
+    'SOURCE': 'source',
+    'CREATURE_TYPE': 'creatureType',
+    'CREATURE_SUBTYPE': 'creatureSubtype',
+    'ALIGNMENT': 'alignment',
+    'CLIMATE': 'climate',
+    'TERRAIN': 'terrain',
+    'POWER_CENTER_TYPE': 'powerCenterType'
   };
 
   /**
@@ -89,9 +29,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Default',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.basic.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.BASIC
       ],
       key: 'dflt',
       id: 'tag-dflt'
@@ -100,9 +40,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Custom',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.basic.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.BASIC
       ],
       key: 'cust',
       id: 'tag-cust'
@@ -111,9 +51,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Player\'s Handbook',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'phb',
       id: 'tag-core-1'
@@ -122,9 +62,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Monster Manual',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'mm',
       id: 'tag-core-2'
@@ -133,9 +73,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Dungeon Master\'s Guide',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'dmg',
       id: 'tag-core-3'
@@ -144,9 +84,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Elemental Evil Player\'s Companion',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'elm',
       id: 'tag-supp-01'
@@ -155,9 +95,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Sword Coast Adventure Guide',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'scg',
       id: 'tag-supp-02'
@@ -166,9 +106,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Volo\'s Guide to Monsters',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'vol',
       id: 'tag-supp-03'
@@ -177,9 +117,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Xanathar\'s Guide to Everything',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'xan',
       id: 'tag-supp-04'
@@ -188,9 +128,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Plane Shift: Zendikar',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'psz',
       id: 'tag-misc-001'
@@ -199,9 +139,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'The Tortle Package',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'ttp',
       id: 'tag-misc-002'
@@ -210,9 +150,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Unearthed Arcana',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'ua',
       id: 'tag-ua-001'
@@ -221,9 +161,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Class Design Variants',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uacdv',
       src: 'http://media.wizards.com/2015/downloads/dnd/UA3_ClassDesignVariants.pdf',
@@ -233,9 +173,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Classics Revisited',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uacr',
       src: 'http://media.wizards.com/2015/downloads/dnd/04_UA_Classics_Revisited.pdf',
@@ -245,9 +185,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Eberron',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uaeb',
       src: 'http://media.wizards.com/2015/downloads/dnd/UA_Eberron_v1.pdf',
@@ -257,9 +197,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Gothic Heroes',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uagh',
       src: 'https://dnd.wizards.com/sites/default/files/media/upload/articles/UA%20Gothic%20Characters.pdf',
@@ -269,9 +209,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Modern Magic',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uamm',
       src: 'http://media.wizards.com/2015/downloads/dnd/UA_ModernMagic.pdf',
@@ -281,9 +221,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Psionics & The Mystic',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uamm',
       src: 'http://media.wizards.com/2016/downloads/Psionics_and_Mystic_V2.pdf',
@@ -293,9 +233,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Psionics & The Mystic',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uarmpc',
       src: 'http://media.wizards.com/2015/downloads/dnd/UA_Rune_Magic_Prestige_Class.pdf',
@@ -305,9 +245,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Ranger Options',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uaro',
       src: 'http://media.wizards.com/2015/downloads/dnd/DX_0907_UA_RangerOptions.pdf',
@@ -317,9 +257,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: That Old Black Magic',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uatom',
       src: 'https://media.wizards.com/2015/downloads/dnd/07_UA_That_Old_Black_Magic.pdf',
@@ -329,9 +269,9 @@ app.service('Demographics', function () {
       isAllowed: false,
       name: 'Unearthed Arcana: Waterborne Adventures',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.source.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.SOURCE
       ],
       key: 'uawb',
       src: 'https://media.wizards.com/2015/downloads/ dnd /UA_ Waterborne_v3.pdf',
@@ -341,9 +281,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Aberration',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'abr',
       id: 'tag-monstertype-01'
@@ -352,9 +292,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Beast',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'bst',
       id: 'tag-monstertype-02'
@@ -363,9 +303,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Celestial',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'cel',
       id: 'tag-monstertype-03'
@@ -374,9 +314,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Construct',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'con',
       id: 'tag-monstertype-04'
@@ -385,9 +325,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Dragon',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'dra',
       id: 'tag-monstertype-05'
@@ -396,9 +336,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Elemental',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'ele',
       id: 'tag-monstertype-06'
@@ -407,9 +347,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Fey',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'fey',
       id: 'tag-monstertype-07'
@@ -418,9 +358,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Fiend',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'fnd',
       id: 'tag-monstertype-08'
@@ -429,9 +369,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Giant',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'gnt',
       id: 'tag-monstertype-09'
@@ -440,9 +380,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Humanoid',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'hum',
       id: 'tag-monstertype-10'
@@ -451,9 +391,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Monstrosity',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'mon',
       id: 'tag-monstertype-11'
@@ -462,9 +402,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Ooze',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'ooz',
       id: 'tag-monstertype-12'
@@ -473,9 +413,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Plant',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'plt',
       id: 'tag-monstertype-13'
@@ -484,9 +424,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Undead',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_TYPE
       ],
       key: 'und',
       id: 'tag-monstertype-14'
@@ -495,9 +435,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Angel',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureSubtype.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_SUBTYPE
       ],
       key: 'ang',
       id: 'tag-subtype-01'
@@ -506,9 +446,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Demon',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureSubtype.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_SUBTYPE
       ],
       key: 'dmn',
       id: 'tag-subtype-02'
@@ -517,9 +457,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Devil',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureSubtype.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_SUBTYPE
       ],
       key: 'dvl',
       id: 'tag-subtype-03'
@@ -528,9 +468,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Goblinoid',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureSubtype.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_SUBTYPE
       ],
       key: 'gob',
       id: 'tag-subtype-04'
@@ -539,9 +479,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Reptilian',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureSubtype.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_SUBTYPE
       ],
       key: 'rep',
       id: 'tag-subtype-05'
@@ -550,9 +490,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Shapechanger',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureSubtype.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_SUBTYPE
       ],
       key: 'shp',
       id: 'tag-subtype-06'
@@ -561,9 +501,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Yugoloth',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.creatureSubtype.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CREATURE_SUBTYPE
       ],
       key: 'yug',
       id: 'tag-subtype-07'
@@ -572,9 +512,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Lawful',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'law',
       id: 'tag-align-01'
@@ -583,9 +523,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Neutral',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'ntr',
       id: 'tag-align-02'
@@ -594,9 +534,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Chaotic',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'cht',
       id: 'tag-align-03'
@@ -605,9 +545,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Good',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'god',
       id: 'tag-align-04'
@@ -616,9 +556,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Evil',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'evl',
       id: 'tag-align-05'
@@ -627,9 +567,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Lawful Good',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'lg',
       id: 'tag-align-06'
@@ -638,9 +578,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Neutral Good',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'ng',
       id: 'tag-align-07'
@@ -649,9 +589,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Chaotic Good',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'cg',
       id: 'tag-align-08'
@@ -660,9 +600,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Lawful Neutral',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'ln',
       id: 'tag-align-09'
@@ -671,9 +611,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'True Neutral',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'tn',
       id: 'tag-align-10'
@@ -682,9 +622,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Chaotic Neutral',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'cn',
       id: 'tag-align-11'
@@ -693,9 +633,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Lawful Evil',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'le',
       id: 'tag-align-12'
@@ -704,9 +644,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Neutral Evil',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'ne',
       id: 'tag-align-13'
@@ -715,9 +655,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Chaotic Evil',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'ce',
       id: 'tag-align-14'
@@ -726,9 +666,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Alignment',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'aa',
       id: 'tag-align-15'
@@ -737,9 +677,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Good',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'ag',
       id: 'tag-align-16'
@@ -748,9 +688,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Neutral',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'an',
       id: 'tag-align-17'
@@ -759,9 +699,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Evil',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'ae',
       id: 'tag-align-18'
@@ -770,9 +710,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Lawful',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'al',
       id: 'tag-align-19'
@@ -781,9 +721,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Chaotic',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.alignment.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.ALIGNMENT
       ],
       key: 'ac',
       id: 'tag-align-20'
@@ -792,9 +732,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Climate',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.climate.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CLIMATE
       ],
       key: 'cany',
       id: 'tag-climate-01'
@@ -803,9 +743,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Arctic',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.climate.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CLIMATE
       ],
       key: 'carc',
       id: 'tag-climate-02'
@@ -814,9 +754,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Cold',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.climate.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CLIMATE
       ],
       key: 'ccld',
       id: 'tag-climate-03'
@@ -825,9 +765,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Temperate',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.climate.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CLIMATE
       ],
       key: 'ctmp',
       id: 'tag-climate-04'
@@ -836,9 +776,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Warm',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.climate.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CLIMATE
       ],
       key: 'cwrm',
       id: 'tag-climate-05'
@@ -847,9 +787,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Tropical',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.climate.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.CLIMATE
       ],
       key: 'ctrp',
       id: 'tag-climate-06'
@@ -858,9 +798,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Any Terrain',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tany',
       id: 'tag-terrain-01'
@@ -869,9 +809,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Aquatic',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'taqu',
       id: 'tag-terrain-02'
@@ -880,9 +820,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Coastal',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tcst',
       id: 'tag-terrain-03'
@@ -891,9 +831,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Tundra',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'ttun',
       id: 'tag-terrain-04'
@@ -902,9 +842,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Plains',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tpln',
       id: 'tag-terrain-05'
@@ -913,9 +853,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Hills',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'thil',
       id: 'tag-terrain-06'
@@ -924,9 +864,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Mountains',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tmtn',
       id: 'tag-terrain-07'
@@ -935,9 +875,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Desert',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tdst',
       id: 'tag-terrain-08'
@@ -946,9 +886,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Grasslands',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tgrs',
       id: 'tag-terrain-09'
@@ -957,9 +897,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Marsh',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tmsh',
       id: 'tag-terrain-10'
@@ -968,9 +908,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Savannah',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tsvh',
       id: 'tag-terrain-11'
@@ -979,9 +919,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Forest',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tfst',
       id: 'tag-terrain-12'
@@ -990,9 +930,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Swamp',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tswm',
       id: 'tag-terrain-13'
@@ -1001,9 +941,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Jungle',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tjng',
       id: 'tag-terrain-14'
@@ -1012,9 +952,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Underdark',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'tudr',
       id: 'tag-terrain-15'
@@ -1023,9 +963,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Urban',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.terrain.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.TERRAIN
       ],
       key: 'turb',
       id: 'tag-terrain-16'
@@ -1034,9 +974,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Conventional',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.powerCenterType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.POWER_CENTER_TYPE
       ],
       key: 'pccn',
       id: 'tag-power-center-type-01'
@@ -1045,9 +985,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Nonstandard',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.powerCenterType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.POWER_CENTER_TYPE
       ],
       key: 'pcns',
       id: 'tag-power-center-type-02'
@@ -1056,9 +996,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Magical',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.powerCenterType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.POWER_CENTER_TYPE
       ],
       key: 'pcmg',
       id: 'tag-power-center-type-03'
@@ -1067,9 +1007,9 @@ app.service('Demographics', function () {
       isAllowed: true,
       name: 'Monstrous',
       type: 'tag',
-      tags: [
-        service_.tagTypes.default.id,
-        service_.tagTypes.powerCenterType.id
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.POWER_CENTER_TYPE
       ],
       key: 'pcmn',
       id: 'tag-power-center-type-04'

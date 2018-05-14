@@ -235,7 +235,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     if (!filterBy || filterBy === 'none') {
       vm_.filteredTags = [];
     } else {
-      vm_.filteredTags = $filter('dictionaryFilter')(vm_.localData.tagSelection, {tags: filterBy});
+      vm_.filteredTags = $filter('dictionaryFilter')(vm_.localData.tagSelection, {tagTypes: filterBy});
     }
   }
   //#endregion
@@ -245,27 +245,15 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     if (!filterBy || filterBy === 'none' || filterBy === {}) {
       vm_.filteredPowerCenters = [];
     } else {
-      // dealing with one object now
-      console.log('filterBy', filterBy);
-      console.log('Demographics.tagTypes.powerCenterType', Demographics.tagTypes.powerCenterType);
-
-      // loop through tags, find the tag that has tag type power center
-      // set that tag to the var tag
-      // filter power centers by that tag
-      var tag = {};
+      var tagArray = $filter('dictionaryToArray')(vm_.localData.tagSelection);
+      var filteredTagArray = Utilities.getMatches(tagArray, 'tagTypes', 'powerCenterType', 'contains');
       for (var tagCounter = 0; tagCounter < filterBy.tags.length; tagCounter++) {
-        console.log('filterBy.tags[tagCounter]', filterBy.tags[tagCounter]);
         var currentTagId = filterBy.tags[tagCounter];
-        var currentTag = $filter('dictionaryFilter')(vm_.localData.tagSelection, {tags: {id: currentTagId}});
-        console.log('currentTag', currentTag);
-        // if ($filter('filter')(filterBy.tags[tagCounter].tags, Demographics.tagTypes.powerCenterType.id).length > 0) {
-        //   tag = $filter('filter')(filterBy.tags[tagCounter].tags, Demographics.tagTypes.powerCenterType.id);
-        // }
+        var currentTag = $filter('filter')(filteredTagArray, {id: currentTagId});
+        if (currentTag.length > 0) {
+          vm_.filteredPowerCenters = $filter('filter')(vm_.localData.powerCenterSelection, {tags: currentTag[0].id});
+        }
       }
-
-      // var tag = $filter('filter')(filterBy.tags, {id: Demographics.tagTypes.powerCenterType.id});
-      console.log('tag', tag);
-      // vm_.filteredPowerCenters = $filter('dictionaryFilter')(vm_.localData.tagSelection, {tags: filterBy});
     }
   }
   //#endregion

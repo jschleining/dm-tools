@@ -39,7 +39,7 @@
            md-colors="object.id.indexOf('cust') > -1 ? {'border-color': 'accent-100', 'background-color': 'accent-50'} :
            {'border-color': 'background-300', 'background-color': 'background-50'}"
            ng-repeat="powerCenter in vm.filteredPowerCenters" ng-if="vm.filteredPowerCenters.length > 0">
-        {{tag.name}}
+        {{powerCenter.name}}
       </div>
     </section>
 
