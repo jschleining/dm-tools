@@ -231,7 +231,7 @@ app.service('Demographics', function () {
     },
     'uarmpc': {
       isAllowed: false,
-      name: 'Unearthed Arcana: Psionics & The Mystic',
+      name: 'Unearthed Arcana: Rune Magic Prestige Class',
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
@@ -1106,7 +1106,7 @@ app.service('Demographics', function () {
     },
     {
       isAllowed: true,
-      name: 'LChaotic Neutral',
+      name: 'Chaotic Neutral',
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,

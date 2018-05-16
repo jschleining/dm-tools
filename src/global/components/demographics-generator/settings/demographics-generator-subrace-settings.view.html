@@ -1,0 +1,65 @@
+<md-content>
+  <div layout="column"  layout-align="start stretch">
+
+    <!-- Header -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+             md-colors="{'border-color': 'background-300'}">
+      <h3>Subrace Settings</h3>
+      <div class="hint layout-margin-top">
+        <ul class="no-margin no-padding">
+          <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">View list of subraces.</span>
+          </li>
+          <!-- <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">Edit custom races.</span>
+          </li>
+          <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">Add custom races.</span>
+          </li> -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- Race Selection -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+             md-colors="{'border-color': 'background-300'}">
+
+      <md-input-container class="no-margin-top layout-margin-bottom no-padding">
+        <md-select class="no-padding" ng-model="t" placeholder="- Select Source -" ng-change="vm.updateFilteredRaces(t)">
+          <md-option ng-value="'none'" ng-selected="true">- Select Source -</md-option>
+          <md-option ng-repeat="tag in vm.filteredTags" ng-value="tag">{{tag.name}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="layout-margin-vertical no-padding">
+        <md-select class="no-padding" ng-model="r" placeholder="- Select Race -" ng-change="" ng-disabled="vm.filteredRaces.length < 1">
+          <md-option ng-value="'none'" ng-selected="true">- Select Race -</md-option>
+          <md-option ng-repeat="race in vm.filteredRaces" ng-value="race">{{race.name}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <!--<div class="layout-margin-4 layout-padding-4 no-padding-vertical border-all-1"-->
+           <!--layout="column" layout-align="start stretch"-->
+           <!--md-colors="race.id.indexOf('cust') > -1 ? {'border-color': 'accent-100', 'background-color': 'accent-50'} :-->
+           <!--{'border-color': 'background-300', 'background-color': 'background-50'}"-->
+           <!--ng-repeat="race in vm.filteredRaces" ng-if="vm.filteredRaces.length > 0">-->
+        <!--<div>-->
+          <!--{{race.name}}-->
+        <!--</div>-->
+
+        <!--<ul class="no-margin-bottom layout-margin-top layout-padding-left">-->
+          <!--<li ng-repeat="subrace in race.subraces">-->
+            <!--<div>-->
+              <!--{{subrace.name}}-->
+            <!--</div>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+
+    </section>
+
+  </div>
+</md-content>

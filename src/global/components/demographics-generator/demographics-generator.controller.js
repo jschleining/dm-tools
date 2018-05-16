@@ -27,7 +27,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     powerCenterSelection: angular.copy(Demographics.defaultPowerCenters),
     raceSelection: angular.copy(Demographics.defaultRaces),
     racialMixSelection: angular.copy(Demographics.defaultRacialMixtures),
-    settlementTypeSelection: angular.copy(Demographics.defaultSettlementTypes),
+    settlementSizeSelection: angular.copy(Demographics.defaultSettlementTypes),
     terrainSelection: angular.copy(Demographics.defaultTerrainTypes),
     tagSelection: angular.copy(Demographics.defaultTagList),
     tagTypeSelection: angular.copy(Demographics.tagTypes)
@@ -42,7 +42,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     'powerCenterSelection',
     'raceSelection',
     'racialMixSelection',
-    'settlementTypeSelection',
+    'settlementSizeSelection',
     'terrainSelection',
     'tagSelection'
   ];
@@ -62,11 +62,14 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     powerCenterSettings: vm_.settingsTemplateBase + 'demographics-generator-power-center-settings.view.html',
     authoritySettings: vm_.settingsTemplateBase + 'demographics-generator-authority-settings.view.html',
     raceSettings: vm_.settingsTemplateBase + 'demographics-generator-race-settings.view.html',
+    alignmentSettings: vm_.settingsTemplateBase + 'demographics-generator-alignment-settings.view.html',
     subraceSettings: vm_.settingsTemplateBase + 'demographics-generator-subrace-settings.view.html',
-    racialMixSettings: vm_.settingsTemplateBase + 'demographics-generator-racial-mixture-settings.view.html',
+    racialMixSettings: vm_.settingsTemplateBase + 'demographics-generator-racial-mix-settings.view.html',
     ageSettings: vm_.settingsTemplateBase + 'demographics-generator-age-settings.view.html',
     socialClassSettings: vm_.settingsTemplateBase + 'demographics-generator-social-class-settings.view.html',
-    professionSettings: vm_.settingsTemplateBase + 'demographics-generator-profession-settings.view.html'
+    professionSettings: vm_.settingsTemplateBase + 'demographics-generator-profession-settings.view.html',
+    climateSettings: vm_.settingsTemplateBase + 'demographics-generator-climate-settings.view.html',
+    terrainSettings: vm_.settingsTemplateBase + 'demographics-generator-terrain-settings.view.html'
   };
   vm_.settingsTemplate = '';
   //#endregion
@@ -132,6 +135,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //#region Race Vars
   // vm_.raceSelection = angular.copy(Demographics.defaultRaces);
   // vm_.selectedRaces = [];
+  vm_.filteredRaces = [];
   //#endregion
 
   //#region Racial Mixture Vars
@@ -196,8 +200,9 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   // //#region Authority Functions
   // vm_.addCustomAuthority = addCustomAuthority_;
   // //#endregion
-  //
+
   // //#region Race Functions
+  vm_.updateFilteredRaces = updateFilteredRaces_;
   // vm_.addCustomRace = addCustomRace_;
   // vm_.addCustomSubRace = addCustomSubRace_;
   // vm_.getDefaultAllowedRaces = getDefaultAllowedRaces_;
@@ -205,7 +210,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   // vm_.resetObjectWeight = resetObjectWeight_;
   // vm_.updateAllowedRaces = updateAllowedRaces_;
   // //#endregion
-  //
+
   // //#region Age Functions
   // vm_.updateGlobalDefaultAges = updateGlobalDefaultAges_;
   // vm_.updateAges = updateAges_;
@@ -245,15 +250,23 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     if (!filterBy || filterBy === 'none' || filterBy === {}) {
       vm_.filteredPowerCenters = [];
     } else {
-      var tagArray = $filter('dictionaryToArray')(vm_.localData.tagSelection);
-      var filteredTagArray = Utilities.getMatches(tagArray, 'tagTypes', 'powerCenterType', 'contains');
       for (var tagCounter = 0; tagCounter < filterBy.tags.length; tagCounter++) {
         var currentTagId = filterBy.tags[tagCounter];
-        var currentTag = $filter('filter')(filteredTagArray, {id: currentTagId});
+        var currentTag = $filter('filter')(vm_.filteredTags, {id: currentTagId});
         if (currentTag.length > 0) {
           vm_.filteredPowerCenters = $filter('filter')(vm_.localData.powerCenterSelection, {tags: currentTag[0].id});
         }
       }
+    }
+  }
+  //#endregion
+
+  //#region Race Functions
+  function updateFilteredRaces_(filterBy) {
+    if (!filterBy || filterBy === 'none') {
+      vm_.filteredRaces = [];
+    } else {
+      vm_.filteredRaces = $filter('filter')(vm_.localData.raceSelection, {tags: filterBy.id});
     }
   }
   //#endregion
@@ -347,16 +360,30 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   function openSettingsSidebar_(template, params) {
     vm_.resetConfigSettings();
     if (params) {
-      switch(params.action) {
-        case 'populateEditArray':
-          vm_.editArray = angular.copy(params.object);
-          break;
-      }
+      vm_.populateSideBarPresets(params);
+      // switch(params.action) {
+      //   case 'populateEditArray':
+      //     vm_.editArray = angular.copy(params.object);
+      //     break;
+      // }
     }
     vm_.settingsTemplate = vm_.settingsTemplates[template];
     vm_.isSideNavOpened = !$mdSidenav('md-sidenav-right').isOpen();
     if(vm_.isSideNavOpened) {
       $mdSidenav('md-sidenav-right').open();
+    }
+  }
+
+  vm_.populateSideBarPresets = populateSideBarPresets_;
+  function populateSideBarPresets_(params) {
+    switch (params.action) {
+      case 'populateEditArray':
+        vm_.editArray = angular.copy(params.object);
+        break;
+      case 'populateTagFilter':
+        var tagArray = $filter('dictionaryToArray')(vm_.localData.tagSelection);
+        vm_.filteredTags = Utilities.getMatches(tagArray, 'tagTypes', params.tagType, 'contains');
+        break;
     }
   }
   //#endregion
