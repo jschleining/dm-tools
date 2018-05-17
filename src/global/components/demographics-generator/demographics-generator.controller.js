@@ -258,6 +258,18 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   }
   //#endregion
 
+  // private function
+  function getFilteredTagArray_(tagType) {
+    var tagArray = $filter('dictionaryToArray')(vm_.localData.tagSelection);
+    return Utilities.getMatches(tagArray, 'tagTypes', tagType, 'contains');
+  }
+
+  // private function
+  function getTag_(array, tagId) {
+    var tag = $filter('filter')(array, {id: tagId});
+    return tag[0];
+  }
+
 
   //#region General Functions
   // /**
