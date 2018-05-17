@@ -1,0 +1,32 @@
+<md-content>
+  <div layout="column"  layout-align="start stretch">
+
+    <!-- Header -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+        md-colors="{'border-color': 'background-300'}">
+      <h3>Authority Settings</h3>
+      <div class="hint layout-margin-top">
+        <ul class="no-margin no-padding">
+          <li layout="row" layout-align="start start">
+            <i class="material-icons">chevron_right</i>
+            <span class="hint">View list of authorities.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Authority Selection -->
+    <section class="layout-padding-well border-bottom-1" layout="column" layout-align="start stretch"
+        md-colors="{'border-color': 'background-300'}">
+
+      <div class="layout-margin-4 layout-padding-4 no-padding-vertical border-all-1" 
+          layout="column" layout-align="start stretch"
+           md-colors="{'border-color': 'background-300', 'background-color': 'background-50'}"
+           ng-repeat="authority in vm.localData.authoritySelection">
+        {{authority.name}}
+      </div>
+
+    </section>
+
+  </div>
+</md-content>

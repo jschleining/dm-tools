@@ -28,7 +28,7 @@
         md-colors="{'border-color': 'background-300'}">
 
       <md-input-container class="no-margin-top layout-margin-bottom no-padding">
-        <md-select class="no-padding" ng-model="pc" placeholder="Tag Type Selection" ng-change="vm.updateFilteredPowerCenters(pc)">
+        <md-select class="no-padding" ng-model="pc" placeholder="Power Center Type Selection" ng-change="vm.updateFilteredPowerCenters(pc)">
           <md-option ng-value="'none'" ng-selected="true">- Select Power Center Type -</md-option>
           <md-option ng-repeat="powerCenterType in vm.localData.powerCenterTypesSelection" ng-value="powerCenterType">{{powerCenterType.name}}</md-option>
         </md-select>
