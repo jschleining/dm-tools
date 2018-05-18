@@ -51,6 +51,13 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     var array = (vm_.testDisplay === 'tagSelection') ? vm_.localData.tagTypeSelection : vm_.localData.tagSelection;
     return _.find(array, function (o) { return o.id === tagKey; });
   };
+
+  vm_.settlement = {
+    settlementType: {},
+    racialMix: {},
+    authorities: [],
+    powerCenters: []
+  };
   //#endregion
 
   //#region Templates
@@ -96,7 +103,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
 
   //#region General Functions
   vm_.closeSettingsSidebar = closeSettingsSidebar_;
-  vm_.resetConfigSettings = resetConfigSettings_;
   vm_.openSettingsSidebar = openSettingsSidebar_;
   //#endregion
 
@@ -177,7 +183,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
    * @param {object} params Object containing parameters for an action to be executed on open.
    */
   function openSettingsSidebar_(template, params) {
-    vm_.resetConfigSettings();
     if (params) {
       vm_.populateSideBarPresets(params);
       // switch(params.action) {
