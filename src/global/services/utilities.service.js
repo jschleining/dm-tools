@@ -9,6 +9,15 @@ app.service('Utilities', function () {
   service_.getRandom = getRandom_;
 
   /**
+   * Return a custom id.
+   */
+  function getCustomId_() {
+    var returnId = 'cust-' + service_.customIdCounter;
+    service_.customIdCounter++;
+    return returnId;
+  }
+
+  /**
    * Return an array of items with a given value in an object array.
    *
    * @param {Array} array The object array to search through.
@@ -37,15 +46,6 @@ app.service('Utilities', function () {
   }
 
   /**
-   * Return a custom id.
-   */
-  function getCustomId_() {
-    var returnId = 'cust-' + service_.customIdCounter;
-    service_.customIdCounter++;
-    return returnId;
-  }
-
-  /**
    * Return an inclusive random number between two integers.
    *
    * @param {Number} min The minimum value to be returned.
@@ -64,49 +64,9 @@ app.service('Utilities', function () {
 //
 // app.service('Utilities', function () {
 //   var service_ = this;
-//   service_.getRandom = getRandom_;
 //   service_.getObjectIndex = getObjectIndex_;
 //   service_.generateValueRanges = generateValueRanges_;
 //   service_.getItemFromWeightedObjectArray = getItemFromWeightedObjectArray_;
-//   service_.findMatches = findMatches_;
-//
-//   /**
-//    * Return an array of items with a given value in an object array.
-//    *
-//    * @param {Array} array The object array to search through.
-//    * @param {String} property The property on the object to search for.
-//    * @param {*} value The value of the property being searched for.
-//    * @param {String} matchType Type of match. Can be either 'exact' or 'contains'.
-//    */
-//   function findMatches_(objectArray, property, value, matchType) {
-//     var objects = [];
-//     for (var object = 0; object < objectArray.length; object++) {
-//       switch(matchType) {
-//         case 'contains':
-//           if (objectArray[object][property].indexOf(value) > -1) {
-//             objects.push(objectArray[object]);
-//           }
-//           break;
-//         case 'exact':
-//         default:
-//           if (objectArray[object][property] === value) {
-//             objects.push(objectArray[object]);
-//           }
-//           break;
-//       }
-//     }
-//     return objects;
-//   }
-//
-//   /**
-//    * Return an inclusive random number between two integers.
-//    *
-//    * @param {Number} min The minimum value to be returned.
-//    * @param {Number} max The maximum value to be returned.
-//    */
-//   function getRandom_(min, max) {
-//     return Math.floor(Math.random() * (max - min + 1) + min);
-//   }
 //
 //   /**
 //    * Return the index of an item with a given value in an object array.
