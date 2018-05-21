@@ -4,9 +4,32 @@ app.service('Utilities', function () {
   var service_ = this;
   service_.customIdCounter = 1000;
 
+  service_.generateValueRanges = generateValueRanges_;
   service_.getCustomId = getCustomId_;
+  service_.getItemFromWeightedObjectArray = getItemFromWeightedObjectArray_;
   service_.getMatches = getMatches_;
   service_.getRandom = getRandom_;
+
+  /**
+   * Loop through an array of objects with a weight property and generate a range from weights.
+   * This is used for randomly picking a weighted item from an object array.
+   */
+  function generateValueRanges_(objectArray) {
+    for (var object = 0; object < objectArray.length; object++) {
+      if (object === 0) {
+        objectArray[object].weightedRange = {
+          min: 1,
+          max: objectArray[object].weight.custom
+        };
+      } else {
+        objectArray[object].weightedRange = {
+          min: objectArray[object - 1].weightedRange.max  + 1,
+          max: objectArray[object - 1].weightedRange.max + objectArray[object].weight.custom
+        };
+      }
+    }
+    return objectArray;
+  }
 
   /**
    * Return a custom id.
@@ -15,6 +38,46 @@ app.service('Utilities', function () {
     var returnId = 'cust-' + service_.customIdCounter;
     service_.customIdCounter++;
     return returnId;
+  }
+
+  /**
+   * Return an item from a weighted object array.
+   *
+   * @param {Array} array The object array to search through.
+   * @param {Number} modifier A number to modify the random number generator by.
+   * @param {Number} preSelection Optional number to pass in, bypassing the random number generator.
+   */
+  function getItemFromWeightedObjectArray_(array, modifier, preSelection) {
+    modifier = modifier || 0;
+    var min = array[0].weightedRange.min + modifier;
+    var max = array[array.length - 1].weightedRange.max + modifier;
+    var selection;
+    var returnItem = {};
+    if (preSelection) {
+      selection = preSelection;
+    } else {
+      selection = service_.getRandom(min, max);
+    }
+    for (var item = 0; item < array.length; item++) {
+      var found = false;
+
+      if (
+          item === 0 && selection <= array[item].weightedRange.max ||
+          item === array.length - 1 && selection >= array[item].weightedRange.min ||
+          (
+              (item > 0 && item < array.length - 1) &&
+              (selection >= array[item].weightedRange.min && selection <= array[item].weightedRange.max)
+          )
+      ) {
+        found = true;
+      }
+
+      if (found) {
+        returnItem = array[item];
+        break;
+      }
+    }
+    return returnItem;
   }
 
   /**
@@ -91,66 +154,9 @@ app.service('Utilities', function () {
 //     return -1;
 //   }
 //
-//   /**
-//    * Loop through an array of objects with a weight property and generate a range from weights.
-//    * This is used for randomly picking a weighted item from an object array.
-//    */
-//   function generateValueRanges_(objectArray) {
-//     for (var object = 0; object < objectArray.length; object++) {
-//       if (object === 0) {
-//         objectArray[object].weightedRange = {
-//           min: 1,
-//           max: objectArray[object].weight
-//         };
-//       } else {
-//         objectArray[object].weightedRange = {
-//           min: objectArray[object - 1].weightedRange.max  + 1,
-//           max: objectArray[object - 1].weightedRange.max + objectArray[object].weight
-//         };
-//       }
-//     }
-//     return objectArray;
-//   }
+
 //
-//   /**
-//    * Return an item from a weighted object array.
-//    *
-//    * @param {Array} array The object array to search through.
-//    * @param {Number} modifier A number to modify the random number generator by.
-//    * @param {Number} preSelection Optional number to pass in, bypassing the random number generator.
-//    */
-//   function getItemFromWeightedObjectArray_(array, modifier, preSelection) {
-//     modifier = modifier || 0;
-//     var min = array[0].weightedRange.min + modifier;
-//     var max = array[array.length - 1].weightedRange.max + modifier;
-//     var selection;
-//     var returnItem = {};
-//     if (preSelection) {
-//       selection = preSelection;
-//     } else {
-//       selection = service_.getRandom(min, max);
-//     }
-//     for (var item = 0; item < array.length; item++) {
-//       var found = false;
-//
-//       if (
-//           item === 0 && selection <= array[item].weightedRange.max ||
-//           item === array.length - 1 && selection >= array[item].weightedRange.min ||
-//           (
-//               (item > 0 && item < array.length - 1) &&
-//               (selection >= array[item].weightedRange.min && selection <= array[item].weightedRange.max)
-//           )
-//       ) {
-//         found = true;
-//       }
-//
-//       if (found) {
-//         returnItem = array[item];
-//         break;
-//       }
-//     }
-//     return returnItem;
-//   }
+
 //
 // });
 

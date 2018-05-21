@@ -6,20 +6,34 @@
 
   <section id="main" class="layout-padding-well" flex="75" layout="column" layout-align="start stretch">
 
-    <div class="layout-margin-bottom layout-padding-bottom" layout="row" layout="start center">
-      <md-input-container class="no-margin-vertical no-padding layout-margin-right">
-        <md-select class="no-padding" ng-model="vm.settlement.settlementType" placeholder="- Choose Settlement Size -">
-        <md-option ng-repeat="settlementSize in vm.localData.settlementSizeSelection"
-                   ng-value="settlementSize" ng-selected="settlementSize.name === 'Hamlet'">{{settlementSize.name}}</md-option>
-        </md-select>
-      </md-input-container>
+    <div class="layout-margin-bottom layout-padding-bottom" layout="row" layout="space-between center">
+      <div>
+        <md-input-container class="no-margin-vertical no-padding no-input-spacer layout-margin-right">
+          <label></label>
+          <input class="md-input-override" ng-model="vm.settlement.settlementName" placeholder="Settlement Name" type="text">
+        </md-input-container>
 
-      <md-input-container class="no-margin-vertical no-padding layout-margin-horizontal">
-        <md-select class="no-padding" ng-model="vm.settlement.racialMix" placeholder="- Choose Racial Mix -">
-          <md-option ng-repeat="racialMix in vm.localData.racialMixSelection"
-                     ng-value="racialMix" ng-selected="racialMix.name === 'Mixed'">{{racialMix.name}}</md-option>
-        </md-select>
-      </md-input-container>
+        <md-input-container class="no-margin-vertical no-padding layout-margin-right">
+          <md-select class="no-padding" ng-model="vm.settlement.settlementType" placeholder="- Choose Settlement Size -">
+            <md-option ng-repeat="settlementSize in vm.localData.settlementSizeSelection"
+                       ng-value="settlementSize" ng-selected="settlementSize.name === 'Hamlet'">{{settlementSize.name}}</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="no-margin-vertical no-padding layout-margin-horizontal">
+          <md-select class="no-padding" ng-model="vm.settlement.racialMix" placeholder="- Choose Racial Mix -">
+            <md-option ng-repeat="racialMix in vm.localData.racialMixSelection"
+                       ng-value="racialMix" ng-selected="racialMix.name === 'Mixed'">{{racialMix.name}}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+
+      <div>
+        <md-button class="md-raised md-primary no-margin" ng-click="vm.generateSettlement()"
+            ng-disabled="!vm.settlement.settlementName || vm.settlement.settlementName.length < 1">
+          generate
+        </md-button>
+      </div>
     </div>
 
     <!-- TEST DISPLAY -->
@@ -45,10 +59,64 @@
       <!--</div>-->
     <!--</div>-->
 
-    <div class="border-top-1 layout-margin-top layout-padding-top" layout="column" layout-align="start stretch">
-      <pre class="border-all-1 layout-padding-well no-margin-bottom layout-margin-top"
-           md-colors="{'background-color': 'amber-50', 'border-color': 'amber-500'}">{{vm.settlement | json}}</pre>
+    <div class="border-top-1 layout-margin-vertical layout-padding-top" layout="column" layout-align="start stretch">
+      <div class="border-all-1 layout-padding-well no-margin-bottom layout-margin-top" layout="column"
+           layout-align="start stretch"
+           md-colors="{'background-color': 'amber-50', 'border-color': 'amber-500'}"
+           ng-repeat="settlement in vm.settlement.generated track by $index">
+        <div layout="row" layout-align="space-between center">
+          <div layout="row" layout-align="start center">
+            <div class="layout-margin-right">
+              <span class="bold">Settlement Name:</span> {{settlement.settlementName}}
+            </div>
+            <div class="layout-margin-horizontal">
+              <span class="bold">Settlement Type:</span> {{settlement.settlementType.name}}
+            </div>
+          </div>
+          <div>
+            <md-button class="md-raised md-primary no-margin" ng-click="vm.updateSettlement(settlement)">
+              update
+            </md-button>
+          </div>
+        </div>
+
+        <div layout="row" layout-align="start center">
+          <div class="layout-margin-right">
+            <span class="bold">Population:</span> {{settlement.populationCount}}
+          </div>
+          <div class="layout-margin-horizontal">
+            <span class="bold">Ready Cash:</span> {{settlement.readyCash}}
+          </div>
+        </div>
+
+        <div layout="row" layout-align="start center">
+          <div class="layout-margin-right">
+            <span class="bold">Full Time Guards/Soldiers:</span> {{settlement.military}}
+          </div>
+          <div class="layout-margin-horizontal">
+            <span class="bold">Militia:</span> {{settlement.militia}}
+          </div>
+        </div>
+
+        <div layout="row" layout-align="start center"
+            ng-repeat="powerCenter in settlement.powerCenters track by $index">
+          <div class="layout-margin-right">
+            <span class="bold">Power Center:</span> {{powerCenter.powerCenter.name}}
+          </div>
+          <div class="layout-margin-horizontal">
+            <span class="bold">Type:</span> {{powerCenter.powerCenterType.name}}
+          </div>
+          <div class="layout-margin-horizontal">
+            <span class="bold">Alignment:</span> {{powerCenter.alignment.name}}
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!--<div class="border-top-1 layout-margin-top layout-padding-top" layout="column" layout-align="start stretch">-->
+      <!--<pre class="border-all-1 layout-padding-well no-margin-bottom layout-margin-top"-->
+           <!--md-colors="{'background-color': 'amber-50', 'border-color': 'amber-500'}">{{vm.settlement | json}}</pre>-->
+    <!--</div>-->
 
   </section>
 
