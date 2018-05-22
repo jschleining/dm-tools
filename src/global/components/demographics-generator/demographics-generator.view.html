@@ -82,19 +82,19 @@
 
         <div layout="row" layout-align="start center">
           <div class="layout-margin-right">
-            <span class="bold">Population:</span> {{settlement.populationCount}}
+            <span class="bold">Population:</span> {{settlement.populationCount | number:0}}
           </div>
           <div class="layout-margin-horizontal">
-            <span class="bold">Ready Cash:</span> {{settlement.readyCash}}
+            <span class="bold">Ready Cash:</span> {{settlement.readyCash | number:0}} GP
           </div>
         </div>
 
         <div layout="row" layout-align="start center">
           <div class="layout-margin-right">
-            <span class="bold">Full Time Guards/Soldiers:</span> {{settlement.military}}
+            <span class="bold">Full Time Guards/Soldiers:</span> {{settlement.military | number:0}}
           </div>
           <div class="layout-margin-horizontal">
-            <span class="bold">Militia:</span> {{settlement.militia}}
+            <span class="bold">Militia:</span> {{settlement.militia | number:0}}
           </div>
         </div>
 

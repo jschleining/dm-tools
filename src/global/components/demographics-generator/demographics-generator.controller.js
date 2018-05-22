@@ -231,6 +231,37 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         powerCenter: powerCenter,
         alignment: alignment
       });
+
+      if (Utilities.getRandom(1, 100) <= powerCenterType.chanceForExtraMonstrous) {
+        // need to tweak so that monstrous alignment weights don't correspond to other power center alignment weights.
+        // maybe make it so that the monstrous alignment has a higher chance of being opposing alignment
+        var monsterAlignment = Utilities.getItemFromWeightedObjectArray(vm_.localData.alignmentSelection);
+
+        powerCenters.push({
+          powerCenterType: {
+            isAllowed: true,
+            name: 'Monstrous',
+            type: 'powerCenterType',
+            tags: [
+              vm_.localData.tagSelection.dflt.id,
+              vm_.localData.tagSelection.dmg.id,
+              vm_.localData.tagSelection.pcmn.id
+            ],
+            weight: {
+              default: 0,
+              custom: 0
+            },
+            chanceForExtraMonstrous: 0,
+            key: 'monstrous',
+            id: 'pctr-004'
+          },
+          powerCenter: {
+            name: 'Monster'
+          },
+          alignment: monsterAlignment
+        });
+      }
+
       // if (Utilities.getRandom(1, 100) <= powerCenter.chanceForExtraMonstrous) {
       //   var customAlignmentSelection = angular.copy(vm_.powerCenterAlignmentSelection);
       //   for (var align = 0; align < customAlignmentSelection.length; align++) {

@@ -15,6 +15,10 @@ app.service('Demographics', function () {
     'CREATURE_TYPE': 'creatureType',
     'CREATURE_SUBTYPE': 'creatureSubtype',
     'ALIGNMENT': 'alignment',
+    'ALIGN_1': 'lawChaos',
+    'ALIGN_2': 'goodEvil',
+    'ALIGN_3': 'neutral',
+    'ALIGN_FULL': 'fullAlignment',
     'CLIMATE': 'climate',
     'TERRAIN': 'terrain',
     'POWER_CENTER_TYPE': 'powerCenterType'
@@ -514,7 +518,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_1
       ],
       key: 'law',
       id: 'tag-align-01'
@@ -525,7 +530,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_3
       ],
       key: 'ntr',
       id: 'tag-align-02'
@@ -536,7 +542,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_1
       ],
       key: 'cht',
       id: 'tag-align-03'
@@ -547,7 +554,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_2
       ],
       key: 'god',
       id: 'tag-align-04'
@@ -558,7 +566,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_2
       ],
       key: 'evl',
       id: 'tag-align-05'
@@ -569,7 +578,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'lg',
       id: 'tag-align-06'
@@ -580,7 +590,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'ng',
       id: 'tag-align-07'
@@ -591,7 +602,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'cg',
       id: 'tag-align-08'
@@ -602,7 +614,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'ln',
       id: 'tag-align-09'
@@ -613,7 +626,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'tn',
       id: 'tag-align-10'
@@ -624,7 +638,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'cn',
       id: 'tag-align-11'
@@ -635,7 +650,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'le',
       id: 'tag-align-12'
@@ -646,7 +662,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'ne',
       id: 'tag-align-13'
@@ -657,7 +674,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'ce',
       id: 'tag-align-14'
@@ -679,7 +697,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_2
       ],
       key: 'ag',
       id: 'tag-align-16'
@@ -690,7 +709,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_3
       ],
       key: 'an',
       id: 'tag-align-17'
@@ -701,7 +721,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_2
       ],
       key: 'ae',
       id: 'tag-align-18'
@@ -712,7 +733,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_1
       ],
       key: 'al',
       id: 'tag-align-19'
@@ -723,7 +745,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_1
       ],
       key: 'ac',
       id: 'tag-align-20'
