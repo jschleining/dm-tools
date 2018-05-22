@@ -21,7 +21,8 @@ app.service('Demographics', function () {
     'ALIGN_FULL': 'fullAlignment',
     'CLIMATE': 'climate',
     'TERRAIN': 'terrain',
-    'POWER_CENTER_TYPE': 'powerCenterType'
+    'POWER_CENTER_TYPE': 'powerCenterType',
+    'RARITY': 'rarity'
   };
 
   /**
@@ -1036,6 +1037,61 @@ app.service('Demographics', function () {
       ],
       key: 'pcmn',
       id: 'tag-power-center-type-04'
+    },
+    'rtyvr': {
+      isAllowed: true,
+      name: 'Very Rare',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyvr',
+      id: 'tag-rarity-01'
+    },
+    'rtyr': {
+      isAllowed: true,
+      name: 'Rare',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyr',
+      id: 'tag-rarity-02'
+    },
+    'rtyun': {
+      isAllowed: true,
+      name: 'Uncommon',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyun',
+      id: 'tag-rarity-03'
+    },
+    'rtyc': {
+      isAllowed: true,
+      name: 'Common',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyc',
+      id: 'tag-rarity-04'
+    },
+    'rtyvc': {
+      isAllowed: true,
+      name: 'Very Common',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyvc',
+      id: 'tag-rarity-05'
     }
   };
 
@@ -1409,11 +1465,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.god.id,
         service_.defaultTagList.lg.id,
         service_.defaultTagList.cwrm.id,
-        service_.defaultTagList.tjng.id
+        service_.defaultTagList.tjng.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-001'
     },
@@ -1430,11 +1487,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.god.id,
         service_.defaultTagList.lg.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-002'
     },
@@ -1451,11 +1509,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.lg.id,
         service_.defaultTagList.ctrp.id,
         service_.defaultTagList.taqu.id,
-        service_.defaultTagList.tcst.id
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-003'
     },
@@ -1472,11 +1531,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.lg.id,
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.tgrs.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-004'
     },
@@ -1493,11 +1553,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.lg.id,
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.tmtn.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 40,
-        custom: 40
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-005'
     },
@@ -1515,14 +1576,16 @@ app.service('Demographics', function () {
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.tpln.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-006'
     },
+
     {
       isAllowed: true,
       name: 'Pseudodragon',
@@ -1539,11 +1602,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.tdst.id,
         service_.defaultTagList.thil.id,
         service_.defaultTagList.tmtn.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-007'
     },
@@ -1559,11 +1623,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.god.id,
         service_.defaultTagList.ng.id,
         service_.defaultTagList.ctmp.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-008'
     },
@@ -1579,11 +1644,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.god.id,
         service_.defaultTagList.ng.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-009'
     },
@@ -1599,11 +1665,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.god.id,
         service_.defaultTagList.ng.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tmtn.id
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 30,
-        custom: 30
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-010'
     },
@@ -1619,11 +1686,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.god.id,
         service_.defaultTagList.ng.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-011'
     },
@@ -1640,14 +1708,16 @@ app.service('Demographics', function () {
         service_.defaultTagList.ng.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.tgrs.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-012'
     },
+
     {
       isAllowed: true,
       name: 'Brass Dragon',
@@ -1661,11 +1731,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.cg.id,
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.tdst.id,
-        service_.defaultTagList.tpln.id
+        service_.defaultTagList.tpln.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-013'
     },
@@ -1682,11 +1753,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.cg.id,
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.thil.id,
-        service_.defaultTagList.tmtn.id
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 25,
-        custom: 25
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-014'
     },
@@ -1704,11 +1776,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.ctrp.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 25,
-        custom: 25
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-015'
     },
@@ -1724,11 +1797,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.god.id,
         service_.defaultTagList.cg.id,
         service_.defaultTagList.cwrm.id,
-        service_.defaultTagList.tdst.id
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-016'
     },
@@ -1746,11 +1820,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.taqu.id,
         service_.defaultTagList.tcst.id,
-        service_.defaultTagList.tmtn.id
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-017'
     },
@@ -1766,14 +1841,16 @@ app.service('Demographics', function () {
         service_.defaultTagList.god.id,
         service_.defaultTagList.cg.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-018'
     },
+
     {
       isAllowed: true,
       name: 'Azer',
@@ -1788,11 +1865,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.ctrp.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-019'
     },
@@ -1808,11 +1886,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.ln.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 30,
-        custom: 30
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-020'
     },
@@ -1828,11 +1907,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.ln.id,
         service_.defaultTagList.cwrm.id,
-        service_.defaultTagList.tdst.id
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 35,
-        custom: 35
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-021'
     },
@@ -1848,14 +1928,16 @@ app.service('Demographics', function () {
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.ln.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 25,
-        custom: 25
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-022'
     },
+
     {
       isAllowed: true,
       name: 'Galeb Duhr',
@@ -1868,11 +1950,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.tn.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.thil.id,
-        service_.defaultTagList.tmtn.id
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-023'
     },
@@ -1887,11 +1970,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.tn.id,
         service_.defaultTagList.ctmp.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-024'
     },
@@ -1906,11 +1990,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.tn.id,
         service_.defaultTagList.ctmp.id,
-        service_.defaultTagList.tmtn.id
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-025'
     },
@@ -1927,11 +2012,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.thil.id,
         service_.defaultTagList.tmtn.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-026'
     },
@@ -1950,11 +2036,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.ctrp.id,
         service_.defaultTagList.tfst.id,
-        service_.defaultTagList.tswm.id
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 30,
-        custom: 30
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-027'
     },
@@ -1970,11 +2057,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.tn.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.taqu.id,
-        service_.defaultTagList.tcst.id
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-028'
     },
@@ -1991,14 +2079,16 @@ app.service('Demographics', function () {
         service_.defaultTagList.tn.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.tudr.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-029'
     },
+
     {
       isAllowed: true,
       name: 'Marid',
@@ -2012,11 +2102,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.cn.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.taqu.id,
-        service_.defaultTagList.tcst.id
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-030'
     },
@@ -2032,11 +2123,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.cn.id,
         service_.defaultTagList.ctmp.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-031'
     },
@@ -2058,11 +2150,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.tmtn.id,
         service_.defaultTagList.tdst.id,
         service_.defaultTagList.tgrs.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-032'
     },
@@ -2079,11 +2172,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.cn.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.tfst.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 35,
-        custom: 35
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-033'
     },
@@ -2100,14 +2194,16 @@ app.service('Demographics', function () {
         service_.defaultTagList.cn.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.tdst.id,
-        service_.defaultTagList.tgrs.id
+        service_.defaultTagList.tgrs.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-034'
     },
+
     {
       isAllowed: true,
       name: 'Beholder',
@@ -2121,11 +2217,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.le.id,
         service_.defaultTagList.ccld.id,
         service_.defaultTagList.thil.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-035'
     },
@@ -2141,11 +2238,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-036'
     },
@@ -2161,11 +2259,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id,
         service_.defaultTagList.cwrm.id,
-        service_.defaultTagList.tdst.id
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-037'
     },
@@ -2181,11 +2280,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id,
         service_.defaultTagList.ctmp.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-038'
     },
@@ -2202,11 +2302,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.le.id,
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.cwrm.id,
-        service_.defaultTagList.tdst.id
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-039'
     },
@@ -2222,11 +2323,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-040'
     },
@@ -2242,11 +2344,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-041'
     },
@@ -2263,11 +2366,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.le.id,
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.tmtn.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-042'
     },
@@ -2285,11 +2389,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ccld.id,
         service_.defaultTagList.thil.id,
         service_.defaultTagList.tfst.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-043'
     },
@@ -2305,11 +2410,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-044'
     },
@@ -2325,11 +2431,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-045'
     },
@@ -2350,11 +2457,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.tdst.id,
         service_.defaultTagList.tgrs.id,
         service_.defaultTagList.tfst.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyc.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-046'
     },
@@ -2378,11 +2486,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id,
         service_.defaultTagList.tswm.id,
         service_.defaultTagList.tudr.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyc.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-047'
     },
@@ -2399,11 +2508,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.le.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.taqu.id,
-        service_.defaultTagList.tcst.id
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-048'
     },
@@ -2419,11 +2529,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id,
         service_.defaultTagList.cwrm.id,
-        service_.defaultTagList.tdst.id
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-049'
     },
@@ -2440,14 +2551,16 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-050'
     },
+
     {
       isAllowed: true,
       name: 'Dao',
@@ -2460,11 +2573,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ne.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-051'
     },
@@ -2482,11 +2596,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.thil.id,
         service_.defaultTagList.tfst.id,
-        service_.defaultTagList.tswm.id
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-052'
     },
@@ -2503,11 +2618,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ne.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-053'
     },
@@ -2523,11 +2639,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ne.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-054'
     },
@@ -2544,11 +2661,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ne.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-055'
     },
@@ -2565,11 +2683,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ne.id,
         service_.defaultTagList.carc.id,
         service_.defaultTagList.ccld.id,
-        service_.defaultTagList.tmtn.id
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-056'
     },
@@ -2585,11 +2704,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ne.id,
         service_.defaultTagList.ctmp.id,
-        service_.defaultTagList.tswm.id
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-057'
     },
@@ -2605,11 +2725,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ne.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-058'
     },
@@ -2629,11 +2750,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.thil.id,
         service_.defaultTagList.tgrs.id,
         service_.defaultTagList.tfst.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyvc.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-059'
     },
@@ -2649,11 +2771,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ne.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-060'
     },
@@ -2669,11 +2792,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ne.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-061'
     },
@@ -2692,11 +2816,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.ctrp.id,
         service_.defaultTagList.tfst.id,
-        service_.defaultTagList.tswm.id
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-062'
     },
@@ -2715,14 +2840,16 @@ app.service('Demographics', function () {
         service_.defaultTagList.tdst.id,
         service_.defaultTagList.tswm.id,
         service_.defaultTagList.tudr.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-063'
     },
+
     {
       isAllowed: true,
       name: 'Black Dragon',
@@ -2737,11 +2864,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ccld.id,
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.cwrm.id,
-        service_.defaultTagList.tswm.id
+        service_.defaultTagList.tswm.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-064'
     },
@@ -2758,11 +2886,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ce.id,
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.thil.id,
-        service_.defaultTagList.tmtn.id
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-065'
     },
@@ -2779,11 +2908,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ce.id,
         service_.defaultTagList.carc.id,
         service_.defaultTagList.ccld.id,
-        service_.defaultTagList.tmtn.id
+        service_.defaultTagList.tmtn.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-066'
     },
@@ -2800,11 +2930,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ce.id,
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.taqu.id,
-        service_.defaultTagList.tcst.id
+        service_.defaultTagList.tcst.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-067'
     },
@@ -2822,11 +2953,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.tpln.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-068'
     },
@@ -2844,10 +2976,11 @@ app.service('Demographics', function () {
         service_.defaultTagList.ce.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-069'
     },
@@ -2865,11 +2998,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ccld.id,
         service_.defaultTagList.thil.id,
         service_.defaultTagList.tmtn.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-070'
     },
@@ -2885,11 +3019,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ce.id,
         service_.defaultTagList.ctmp.id,
-        service_.defaultTagList.thil.id
+        service_.defaultTagList.thil.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-071'
     },
@@ -2913,11 +3048,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.tgrs.id,
         service_.defaultTagList.tfst.id,
         service_.defaultTagList.tswm.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-072'
     },
@@ -2938,11 +3074,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id,
         service_.defaultTagList.tmtn.id,
         service_.defaultTagList.tswm.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-073'
     },
@@ -2961,11 +3098,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.cany.id,
         service_.defaultTagList.tgrs.id,
         service_.defaultTagList.tfst.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyc.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-074'
     },
@@ -2984,11 +3122,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.thil.id,
         service_.defaultTagList.tdst.id,
         service_.defaultTagList.tgrs.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyun.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-075'
     },
@@ -3009,11 +3148,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.tgrs.id,
         service_.defaultTagList.tfst.id,
         service_.defaultTagList.tswm.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyvc.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-076'
     },
@@ -3029,11 +3169,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ce.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-077'
     },
@@ -3050,11 +3191,12 @@ app.service('Demographics', function () {
         service_.defaultTagList.ce.id,
         service_.defaultTagList.ctmp.id,
         service_.defaultTagList.cwrm.id,
-        service_.defaultTagList.tdst.id
+        service_.defaultTagList.tdst.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-078'
     },
@@ -3070,14 +3212,16 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ce.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 0,
+        custom: 0
       },
       id: 'mnstr-079'
     },
+
     {
       isAllowed: true,
       name: 'Ghost',
@@ -3089,7 +3233,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.aa.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.tudr.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
         default: 0,
@@ -3108,7 +3253,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ae.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
         default: 0,
@@ -3127,7 +3273,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ae.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
+        service_.defaultTagList.tany.id,
+        service_.defaultTagList.rtyvr.id
       ],
       weight: {
         default: 0,
@@ -3150,7 +3297,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.carc.id,
         service_.defaultTagList.ccld.id,
         service_.defaultTagList.thil.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
         default: 0,
@@ -3174,7 +3322,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.ctrp.id,
         service_.defaultTagList.tdst.id,
         service_.defaultTagList.tgrs.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
         default: 0,
@@ -3196,7 +3345,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.le.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.tfst.id,
-        service_.defaultTagList.turb.id
+        service_.defaultTagList.turb.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
         default: 0,
@@ -3220,7 +3370,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.cwrm.id,
         service_.defaultTagList.thil.id,
         service_.defaultTagList.tgrs.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
         default: 0,
@@ -3242,7 +3393,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.ce.id,
         service_.defaultTagList.cany.id,
         service_.defaultTagList.thil.id,
-        service_.defaultTagList.tfst.id
+        service_.defaultTagList.tfst.id,
+        service_.defaultTagList.rtyr.id
       ],
       weight: {
         default: 0,
@@ -3513,7 +3665,7 @@ app.service('Demographics', function () {
         default: 65,
         custom: 65
       },
-      chanceForExtraMonstrous: 5,
+      chanceForExtraMonstrous: 50,
       key: 'conventional',
       id: 'pctr-001'
     },

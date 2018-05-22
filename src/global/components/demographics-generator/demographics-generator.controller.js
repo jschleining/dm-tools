@@ -236,6 +236,65 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         // need to tweak so that monstrous alignment weights don't correspond to other power center alignment weights.
         // maybe make it so that the monstrous alignment has a higher chance of being opposing alignment
         var monsterAlignment = Utilities.getItemFromWeightedObjectArray(vm_.localData.alignmentSelection);
+        vm_.updateFilteredTags(vm_.localData.tagTypeSelection.ALIGNMENT);
+
+        vm_.filteredMonsterList = [];
+        // loop through tags on alignment... find alignment type tags.
+        for (var tagCount = 0; tagCount < monsterAlignment.tags.length; tagCount++) {
+          var currentMonsterTagId = monsterAlignment.tags[tagCount];
+          var currentMonsterTag = $filter('filter')(vm_.filteredTags, {id: currentMonsterTagId});
+          if (currentMonsterTag.length > 0) {
+            console.log('currentMonsterTag[0].tagTypes', currentMonsterTag[0].tagTypes);
+            console.log('vm_.localData.tagTypeSelection.ALIGN_FULL', vm_.localData.tagTypeSelection.ALIGN_FULL);
+
+            // make rarities numeric. VR = 1, R = 2, UN = 4, C = 8, VC = 16
+            // when calculating, just loop through monsters, generate a range of values, and keep going
+            // until you run out of monsters. the high number is the highest you get to in the array, lowest is 1.
+            // this breaks the 'everything adds to 100' rule, but that doesnt really matter. unless I added them all up
+            // and then transformed them into percentages of the total weighted value. then i could make it 100, no
+            // matter what the total value.
+
+            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_FULL) > -1) {
+              // get all monsters with specific alignment
+              var alignFiltered = $filter('filter')(vm_.localData.monsterSelection, {tags: currentMonsterTagId});
+              console.log('alignFiltered', alignFiltered);
+            }
+            //
+            // if (_.indexOf(currentMonsterTag.tagTypes, vm_.localData.tagTypeSelection.ALIGN_1 > -1)) {
+            //   if (currentMonsterTag === vm_.localData.tagSelection.law) {
+            //     // get monsters with ANY LAWFUL
+            //   } else {
+            //     // get monsters with ANY CHAOTIC
+            //   }
+            // }
+            //
+            // if (_.indexOf(currentMonsterTag.tagTypes, vm_.localData.tagTypeSelection.ALIGN_2 > -1)) {
+            //   if (currentMonsterTag === vm_.localData.tagSelection.god) {
+            //     // get monsters with ANY GOOD
+            //   } else {
+            //     // get monsters with ANY EVIL
+            //   }
+            // }
+            //
+            // if (_.indexOf(currentMonsterTag.tagTypes, vm_.localData.tagTypeSelection.ALIGN_3 > -1)) {
+            //   // get monsters with ANY NEUTRAL
+            // }
+            //
+
+
+            // get all monsters with ANY ALIGNMENT
+
+
+          }
+        }
+
+
+        // var monsterAlignmentTags = $filter('filter')(monsterAlignment.tags,
+        //     {tagTypes: vm_.localData.tagTypeSelection.ALIGNMENT});
+        // console.log('filtered tags', vm_.filteredTags);
+        // console.log('monster alignment tags', monsterAlignmentTags);
+
+
 
         powerCenters.push({
           powerCenterType: {
