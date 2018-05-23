@@ -247,7 +247,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
             var filtered = [];
             var monster = 0;
 
-            // make rarities numeric. VR = 1, R = 2, UN = 4, C = 8, VC = 16
+            // make rarities numeric. VC = 64, C = 32, UN = 16, R = 8, VR = 4, ER = 2, L = 1
             // when calculating, just loop through monsters, generate a range of values, and keep going
             // until you run out of monsters. the high number is the highest you get to in the array, lowest is 1.
             // this breaks the 'everything adds to 100' rule, but that doesnt really matter. unless I added them all up
@@ -268,7 +268,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
             }
 
             // Law/Chaos
-            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_1 > -1)) {
+            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_1) > -1) {
               if (currentMonsterTag[0] === vm_.localData.tagSelection.law) {
                 // get monsters with ANY LAWFUL
                 filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.al.id});
@@ -291,8 +291,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
             }
 
             // Good/Evil
-            if (_.indexOf(currentMonsterTag.tagTypes, vm_.localData.tagTypeSelection.ALIGN_2 > -1)) {
-              console.log('currentMonsterTag', currentMonsterTag);
+            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_2) > -1) {
               if (currentMonsterTag[0] === vm_.localData.tagSelection.god) {
                 // get monsters with ANY GOOD
                 filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.ag.id});
@@ -305,7 +304,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
                 // get monsters with ANY EVIL
                 filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.ae.id});
                 for (monster = 0; monster < filtered.length; monster++) {
-                  console.log('monster: ', filtered[monster].name, ' || Index: ', _.indexOf(vm_.filteredMonsterList, filtered[monster].id));
                   if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
                     vm_.filteredMonsterList.push(filtered[monster]);
                   }
@@ -316,7 +314,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
             }
 
             // Neutral
-            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_3 > -1)) {
+            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_3) > -1) {
               // get monsters with ANY NEUTRAL
               filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.an.id});
               for (monster = 0; monster < filtered.length; monster++) {
@@ -327,18 +325,17 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
               filtered.length = 0;
               monster = {};
             }
-
-            // get all monsters with ANY ALIGNMENT
-            filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.aa.id});
-            for (monster in filtered) {
-              if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
-                vm_.filteredMonsterList.push(filtered[monster]);
-              }
-            }
-            filtered.length = 0;
-            monster = 0;
           }
         }
+
+        // get all monsters with ANY ALIGNMENT
+        var f = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.aa.id});
+        for (var m = 0; m < f.length; m++) {
+          if (_.indexOf(vm_.filteredMonsterList, f[m].id) < 0) {
+            vm_.filteredMonsterList.push(f[m]);
+          }
+        }
+        f.length = 0;
 
         console.log('vm_.filteredMonsterList', vm_.filteredMonsterList);
         // var monsterAlignmentTags = $filter('filter')(monsterAlignment.tags,

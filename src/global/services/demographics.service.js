@@ -1038,6 +1038,28 @@ app.service('Demographics', function () {
       key: 'pcmn',
       id: 'tag-power-center-type-04'
     },
+    'rtylg': {
+      isAllowed: true,
+      name: 'Legendary',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtylg',
+      id: 'tag-rarity-01'
+    },
+    'rtyer': {
+      isAllowed: true,
+      name: 'Extremely Rare',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyer',
+      id: 'tag-rarity-02'
+    },
     'rtyvr': {
       isAllowed: true,
       name: 'Very Rare',
@@ -1047,7 +1069,7 @@ app.service('Demographics', function () {
         service_.tagTypes.RARITY
       ],
       key: 'rtyvr',
-      id: 'tag-rarity-01'
+      id: 'tag-rarity-03'
     },
     'rtyr': {
       isAllowed: true,
@@ -1058,7 +1080,7 @@ app.service('Demographics', function () {
         service_.tagTypes.RARITY
       ],
       key: 'rtyr',
-      id: 'tag-rarity-02'
+      id: 'tag-rarity-04'
     },
     'rtyun': {
       isAllowed: true,
@@ -1069,7 +1091,7 @@ app.service('Demographics', function () {
         service_.tagTypes.RARITY
       ],
       key: 'rtyun',
-      id: 'tag-rarity-03'
+      id: 'tag-rarity-05'
     },
     'rtyc': {
       isAllowed: true,
@@ -1080,7 +1102,7 @@ app.service('Demographics', function () {
         service_.tagTypes.RARITY
       ],
       key: 'rtyc',
-      id: 'tag-rarity-04'
+      id: 'tag-rarity-06'
     },
     'rtyvc': {
       isAllowed: true,
@@ -1091,7 +1113,7 @@ app.service('Demographics', function () {
         service_.tagTypes.RARITY
       ],
       key: 'rtyvc',
-      id: 'tag-rarity-05'
+      id: 'tag-rarity-07'
     }
   };
 
@@ -1451,6 +1473,12 @@ app.service('Demographics', function () {
    * make for some interesting stories. The default weights assume the filters are off. If the
    * filters are on, and there is more than one option available, it will randomly choose 
    * without taking into account weight. The last few monsters have weight: 0.
+   *
+   * After adding in rarity, Im not really constrained to alignment. I can filter by climate,
+   * terrain, or alignment in any combination. it so happens i filter by alignment by default,
+   * but that is no longer required. Could also probably filter by type.
+   *
+   * TODO Need to clean up rarity on each. Make it more sensible with the rarities Ive chosen.
    */
   service_.defaultMonsters = [
     {
