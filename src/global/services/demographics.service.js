@@ -3652,7 +3652,7 @@ app.service('Demographics', function () {
       },
       rarity: service_.defaultRarities.rare,
       id: 'mnstr-087'
-    },
+    }
   ];
 
   /**
@@ -3916,7 +3916,7 @@ app.service('Demographics', function () {
         default: 65,
         custom: 65
       },
-      chanceForExtraMonstrous: 95,
+      chanceForExtraMonstrous: 5,
       key: 'conventional',
       id: 'pctr-001'
     },
