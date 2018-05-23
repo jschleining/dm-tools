@@ -247,13 +247,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
             var filtered = [];
             var monster = 0;
 
-            // make rarities numeric. VC = 64, C = 32, UN = 16, R = 8, VR = 4, ER = 2, L = 1
-            // when calculating, just loop through monsters, generate a range of values, and keep going
-            // until you run out of monsters. the high number is the highest you get to in the array, lowest is 1.
-            // this breaks the 'everything adds to 100' rule, but that doesnt really matter. unless I added them all up
-            // and then transformed them into percentages of the total weighted value. then i could make it 100, no
-            // matter what the total value.
-
             // Full Alignment
             if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_FULL) > -1) {
               // get all monsters with specific alignment
@@ -337,14 +330,8 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         }
         f.length = 0;
 
-        console.log('vm_.filteredMonsterList', vm_.filteredMonsterList);
-        // var monsterAlignmentTags = $filter('filter')(monsterAlignment.tags,
-        //     {tagTypes: vm_.localData.tagTypeSelection.ALIGNMENT});
-        // console.log('filtered tags', vm_.filteredTags);
-        // console.log('monster alignment tags', monsterAlignmentTags);
-
-
-
+        // populate monstrous power center
+        Utilities.generateValueRanges(vm_.filteredMonsterList);
         powerCenters.push({
           powerCenterType: {
             isAllowed: true,
@@ -363,31 +350,12 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
             key: 'monstrous',
             id: 'pctr-004'
           },
-          powerCenter: {
-            name: 'Monster'
-          },
+          powerCenter: Utilities.getItemFromWeightedObjectArray(vm_.filteredMonsterList),
           alignment: monsterAlignment
         });
       }
-
-      // if (Utilities.getRandom(1, 100) <= powerCenter.chanceForExtraMonstrous) {
-      //   var customAlignmentSelection = angular.copy(vm_.powerCenterAlignmentSelection);
-      //   for (var align = 0; align < customAlignmentSelection.length; align++) {
-      //     align.weight = (align.alignment === 'True Neutral') ? 12 : 11;
-      //   }
-      //   var monsterAlignment = Utilities.getItemFromWeightedObjectArray(customAlignmentSelection);
-      //   var monsterType = Utilities.getItemFromWeightedObjectArray(monsterAlignment.monstrous);
-      //   powerCenters.push({
-      //     type: 'Monstrous: ' + monsterType.type,
-      //     alignment: monsterAlignment.alignment
-      //   });
-      // }
     }
     return powerCenters;
-  }
-
-  function generateValueRangesFromRarity_() {
-
   }
 
   //#region Tag Functions

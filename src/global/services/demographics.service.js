@@ -3804,7 +3804,7 @@ app.service('Demographics', function () {
         default: 65,
         custom: 65
       },
-      chanceForExtraMonstrous: 50,
+      chanceForExtraMonstrous: 5,
       key: 'conventional',
       id: 'pctr-001'
     },
