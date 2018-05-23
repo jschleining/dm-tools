@@ -386,6 +386,10 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     return powerCenters;
   }
 
+  function generateValueRangesFromRarity_() {
+
+  }
+
   //#region Tag Functions
   function updateFilteredTags_(filterBy) {
     if (!filterBy || filterBy === 'none') {
