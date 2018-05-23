@@ -244,8 +244,8 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
           var currentMonsterTagId = monsterAlignment.tags[tagCount];
           var currentMonsterTag = $filter('filter')(vm_.filteredTags, {id: currentMonsterTagId});
           if (currentMonsterTag.length > 0) {
-            console.log('currentMonsterTag[0].tagTypes', currentMonsterTag[0].tagTypes);
-            console.log('vm_.localData.tagTypeSelection.ALIGN_FULL', vm_.localData.tagTypeSelection.ALIGN_FULL);
+            var filtered = [];
+            var monster = 0;
 
             // make rarities numeric. VR = 1, R = 2, UN = 4, C = 8, VC = 16
             // when calculating, just loop through monsters, generate a range of values, and keep going
@@ -254,41 +254,93 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
             // and then transformed them into percentages of the total weighted value. then i could make it 100, no
             // matter what the total value.
 
+            // Full Alignment
             if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_FULL) > -1) {
               // get all monsters with specific alignment
-              var alignFiltered = $filter('filter')(vm_.localData.monsterSelection, {tags: currentMonsterTagId});
-              console.log('alignFiltered', alignFiltered);
+              filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: currentMonsterTagId});
+              for (monster = 0; monster < filtered.length; monster++) {
+                if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
+                  vm_.filteredMonsterList.push(filtered[monster]);
+                }
+              }
+              filtered.length = 0;
+              monster = 0;
             }
-            //
-            // if (_.indexOf(currentMonsterTag.tagTypes, vm_.localData.tagTypeSelection.ALIGN_1 > -1)) {
-            //   if (currentMonsterTag === vm_.localData.tagSelection.law) {
-            //     // get monsters with ANY LAWFUL
-            //   } else {
-            //     // get monsters with ANY CHAOTIC
-            //   }
-            // }
-            //
-            // if (_.indexOf(currentMonsterTag.tagTypes, vm_.localData.tagTypeSelection.ALIGN_2 > -1)) {
-            //   if (currentMonsterTag === vm_.localData.tagSelection.god) {
-            //     // get monsters with ANY GOOD
-            //   } else {
-            //     // get monsters with ANY EVIL
-            //   }
-            // }
-            //
-            // if (_.indexOf(currentMonsterTag.tagTypes, vm_.localData.tagTypeSelection.ALIGN_3 > -1)) {
-            //   // get monsters with ANY NEUTRAL
-            // }
-            //
 
+            // Law/Chaos
+            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_1 > -1)) {
+              if (currentMonsterTag[0] === vm_.localData.tagSelection.law) {
+                // get monsters with ANY LAWFUL
+                filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.al.id});
+                for (monster = 0; monster < filtered.length; monster++) {
+                  if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
+                    vm_.filteredMonsterList.push(filtered[monster]);
+                  }
+                }
+              } else {
+                // get monsters with ANY CHAOTIC
+                filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.ac.id});
+                for (monster = 0; monster < filtered.length; monster++) {
+                  if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
+                    vm_.filteredMonsterList.push(filtered[monster]);
+                  }
+                }
+              }
+              filtered.length = 0;
+              monster = 0;
+            }
+
+            // Good/Evil
+            if (_.indexOf(currentMonsterTag.tagTypes, vm_.localData.tagTypeSelection.ALIGN_2 > -1)) {
+              console.log('currentMonsterTag', currentMonsterTag);
+              if (currentMonsterTag[0] === vm_.localData.tagSelection.god) {
+                // get monsters with ANY GOOD
+                filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.ag.id});
+                for (monster = 0; monster < filtered.length; monster++) {
+                  if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
+                    vm_.filteredMonsterList.push(filtered[monster]);
+                  }
+                }
+              } else {
+                // get monsters with ANY EVIL
+                filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.ae.id});
+                for (monster = 0; monster < filtered.length; monster++) {
+                  console.log('monster: ', filtered[monster].name, ' || Index: ', _.indexOf(vm_.filteredMonsterList, filtered[monster].id));
+                  if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
+                    vm_.filteredMonsterList.push(filtered[monster]);
+                  }
+                }
+              }
+              filtered.length = 0;
+              monster = 0;
+            }
+
+            // Neutral
+            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_3 > -1)) {
+              // get monsters with ANY NEUTRAL
+              filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.an.id});
+              for (monster = 0; monster < filtered.length; monster++) {
+                if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
+                  vm_.filteredMonsterList.push(filtered[monster]);
+                }
+              }
+              filtered.length = 0;
+              monster = {};
+            }
 
             // get all monsters with ANY ALIGNMENT
-
-
+            filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.aa.id});
+            for (monster in filtered) {
+              if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
+                vm_.filteredMonsterList.push(filtered[monster]);
+              }
+            }
+            filtered.length = 0;
+            monster = 0;
           }
         }
 
-
+        console.log('vm_.filteredMonsterList', vm_.filteredMonsterList);
         // var monsterAlignmentTags = $filter('filter')(monsterAlignment.tags,
         //     {tagTypes: vm_.localData.tagTypeSelection.ALIGNMENT});
         // console.log('filtered tags', vm_.filteredTags);
