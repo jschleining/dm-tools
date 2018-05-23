@@ -259,76 +259,8 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
               filtered.length = 0;
               monster = 0;
             }
-
-            // Law/Chaos
-            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_1) > -1) {
-              if (currentMonsterTag[0] === vm_.localData.tagSelection.law) {
-                // get monsters with ANY LAWFUL
-                filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.al.id});
-                for (monster = 0; monster < filtered.length; monster++) {
-                  if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
-                    vm_.filteredMonsterList.push(filtered[monster]);
-                  }
-                }
-              } else {
-                // get monsters with ANY CHAOTIC
-                filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.ac.id});
-                for (monster = 0; monster < filtered.length; monster++) {
-                  if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
-                    vm_.filteredMonsterList.push(filtered[monster]);
-                  }
-                }
-              }
-              filtered.length = 0;
-              monster = 0;
-            }
-
-            // Good/Evil
-            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_2) > -1) {
-              if (currentMonsterTag[0] === vm_.localData.tagSelection.god) {
-                // get monsters with ANY GOOD
-                filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.ag.id});
-                for (monster = 0; monster < filtered.length; monster++) {
-                  if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
-                    vm_.filteredMonsterList.push(filtered[monster]);
-                  }
-                }
-              } else {
-                // get monsters with ANY EVIL
-                filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.ae.id});
-                for (monster = 0; monster < filtered.length; monster++) {
-                  if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
-                    vm_.filteredMonsterList.push(filtered[monster]);
-                  }
-                }
-              }
-              filtered.length = 0;
-              monster = 0;
-            }
-
-            // Neutral
-            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_3) > -1) {
-              // get monsters with ANY NEUTRAL
-              filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.an.id});
-              for (monster = 0; monster < filtered.length; monster++) {
-                if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
-                  vm_.filteredMonsterList.push(filtered[monster]);
-                }
-              }
-              filtered.length = 0;
-              monster = {};
-            }
           }
         }
-
-        // get all monsters with ANY ALIGNMENT
-        var f = $filter('filter')(vm_.localData.monsterSelection, {tags: vm_.localData.tagSelection.aa.id});
-        for (var m = 0; m < f.length; m++) {
-          if (_.indexOf(vm_.filteredMonsterList, f[m].id) < 0) {
-            vm_.filteredMonsterList.push(f[m]);
-          }
-        }
-        f.length = 0;
 
         // populate monstrous power center
         Utilities.generateValueRanges(vm_.filteredMonsterList);
@@ -369,15 +301,40 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //#endregion
 
   //#region PowerCenter Functions
+  vm_.powerCenterFilter = 'None';
   function updateFilteredPowerCenters_(filterBy) {
+    var tagArray = $filter('dictionaryToArray')(vm_.localData.tagSelection);
+    vm_.filteredTags = Utilities.getMatches(tagArray, 'tagTypes', 'powerCenterType', 'contains');
+
     if (!filterBy || filterBy === 'none' || filterBy === {}) {
       vm_.filteredPowerCenters = [];
+    } else if (filterBy === 'Monstrous') {
+      vm_.filteredPowerCenters = vm_.localData.monsterSelection;
     } else {
       for (var tagCounter = 0; tagCounter < filterBy.tags.length; tagCounter++) {
         var currentTagId = filterBy.tags[tagCounter];
         var currentTag = $filter('filter')(vm_.filteredTags, {id: currentTagId});
         if (currentTag.length > 0) {
           vm_.filteredPowerCenters = $filter('filter')(vm_.localData.powerCenterSelection, {tags: currentTag[0].id});
+        }
+      }
+    }
+  }
+
+  vm_.updateFilteredMonsterList = updateFilteredMonsterList_;
+  function updateFilteredMonsterList_(filterBy) {
+    var tagArray = $filter('dictionaryToArray')(vm_.localData.tagSelection);
+    vm_.filteredTags = Utilities.getMatches(tagArray, 'tagTypes', 'alignment', 'contains');
+
+    if (!filterBy || filterBy === 'none' || filterBy === {}) {
+      vm_.filteredPowerCenters = [];
+    } else {
+      console.log('filter by', filterBy);
+      for (var tagCounter = 0; tagCounter < filterBy.tags.length; tagCounter++) {
+        var currentTagId = filterBy.tags[tagCounter];
+        var currentTag = $filter('filter')(vm_.filteredTags, {id: currentTagId});
+        if (currentTag.length > 0) {
+          vm_.filteredPowerCenters = $filter('filter')(vm_.localData.monsterSelection, {tags: currentTag[0].id});
         }
       }
     }

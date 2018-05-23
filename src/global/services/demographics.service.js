@@ -1383,6 +1383,101 @@ app.service('Demographics', function () {
         custom: 2
       },
       id: 'pcal-009'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Neutral',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.an.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-010'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Lawful',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.al.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-011'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Chaotic',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.ac.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-012'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Good',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ag.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-013'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Evil',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ae.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-014'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Alignment',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.aa.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-015'
     }
   ];
 
@@ -3363,66 +3458,6 @@ app.service('Demographics', function () {
 
     {
       isAllowed: true,
-      name: 'Ghost',
-      type: 'monster',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.mm.id,
-        service_.defaultTagList.und.id,
-        service_.defaultTagList.aa.id,
-        service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id,
-        service_.defaultTagList.turb.id
-      ],
-      weight: {
-        default: 8,
-        custom: 8
-      },
-      rarity: service_.defaultRarities.rare,
-      id: 'mnstr-080'
-    },
-    {
-      isAllowed: true,
-      name: 'Lich',
-      type: 'monster',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.mm.id,
-        service_.defaultTagList.und.id,
-        service_.defaultTagList.evl.id,
-        service_.defaultTagList.ae.id,
-        service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
-      ],
-      weight: {
-        default: 4,
-        custom: 4
-      },
-      rarity: service_.defaultRarities.veryRare,
-      id: 'mnstr-081'
-    },
-    {
-      isAllowed: true,
-      name: 'Dracolich',
-      type: 'monster',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.mm.id,
-        service_.defaultTagList.und.id,
-        service_.defaultTagList.evl.id,
-        service_.defaultTagList.ae.id,
-        service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
-      ],
-      weight: {
-        default: 4,
-        custom: 4
-      },
-      rarity: service_.defaultRarities.veryRare,
-      id: 'mnstr-082'
-    },
-    {
-      isAllowed: true,
       name: 'Werebear',
       type: 'monster',
       tags: [
@@ -3443,7 +3478,7 @@ app.service('Demographics', function () {
         custom: 8
       },
       rarity: service_.defaultRarities.rare,
-      id: 'mnstr-083'
+      id: 'mnstr-080'
     },
     {
       isAllowed: true,
@@ -3468,7 +3503,7 @@ app.service('Demographics', function () {
         custom: 8
       },
       rarity: service_.defaultRarities.rare,
-      id: 'mnstr-084'
+      id: 'mnstr-081'
     },
     {
       isAllowed: true,
@@ -3491,7 +3526,7 @@ app.service('Demographics', function () {
         custom: 8
       },
       rarity: service_.defaultRarities.rare,
-      id: 'mnstr-085'
+      id: 'mnstr-082'
     },
     {
       isAllowed: true,
@@ -3516,7 +3551,7 @@ app.service('Demographics', function () {
         custom: 8
       },
       rarity: service_.defaultRarities.rare,
-      id: 'mnstr-086'
+      id: 'mnstr-083'
     },
     {
       isAllowed: true,
@@ -3539,8 +3574,85 @@ app.service('Demographics', function () {
         custom: 8
       },
       rarity: service_.defaultRarities.rare,
+      id: 'mnstr-084'
+    },
+
+    {
+      isAllowed: true,
+      name: 'Lich',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ae.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 4,
+        custom: 4
+      },
+      rarity: service_.defaultRarities.veryRare,
+      id: 'mnstr-085'
+    },
+    {
+      isAllowed: true,
+      name: 'Dracolich',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ae.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 4,
+        custom: 4
+      },
+      rarity: service_.defaultRarities.veryRare,
+      id: 'mnstr-086'
+    },
+
+    {
+      isAllowed: true,
+      name: 'Ghost',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.lg.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.cg.id,
+        service_.defaultTagList.ln.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.cn.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.aa.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 8,
+        custom: 8
+      },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-087'
-    }
+    },
   ];
 
   /**
@@ -3804,7 +3916,7 @@ app.service('Demographics', function () {
         default: 65,
         custom: 65
       },
-      chanceForExtraMonstrous: 5,
+      chanceForExtraMonstrous: 95,
       key: 'conventional',
       id: 'pctr-001'
     },
