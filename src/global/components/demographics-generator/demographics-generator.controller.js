@@ -145,7 +145,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     newSettlement.military = vm_.getMilitary(newSettlement.populationCount);
     newSettlement.militia = vm_.getMilitia(newSettlement.populationCount);
     newSettlement.powerCenters = vm_.getPowerCenters(newSettlement.settlementType.powerCenterQuantity);
-    newSettlement.racialMix = vm_.getRacialMix(vm_.settlement.racialMix, newSettlement.populationCount);
+    newSettlement.calculatedRacialDemographics = vm_.getRacialMix(vm_.settlement.racialMix, newSettlement.populationCount);
 
     vm_.settlement.generated.push(newSettlement);
   }
@@ -160,7 +160,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     settlement.military = vm_.getMilitary(settlement.populationCount);
     settlement.militia = vm_.getMilitia(settlement.populationCount);
     settlement.powerCenters = vm_.getPowerCenters(settlement.settlementType.powerCenterQuantity);
-    settlement.racialMix = vm_.getRacialMix(vm_.settlement.racialMix, settlement.populationCount);
+    settlement.calculatedRacialDemographics = vm_.getRacialMix(vm_.settlement.racialMix, settlement.populationCount);
   }
 
   /**
@@ -314,9 +314,9 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
               var otherRacesPercentage = mixList[race].races[otherRace].weight.custom / 100;
               var otherRacesPopCount = Math.ceil(otherPopCount * otherRacesPercentage);
               otherRemaining -= otherRacesPopCount;
-
               calculatedDemographics.push({
-                name: mixList[race].races[otherRace].raceId,
+                // name: mixList[race].races[otherRace].raceId,
+                race: $filter('filter')(vm_.localData.raceSelection, {id: mixList[race].races[otherRace].raceId})[0],
                 percent: ((otherRacesPopCount / population) * 100).toFixed(2),
                 population: otherRacesPopCount
               });
@@ -332,7 +332,8 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
           remaining -= popCount;
 
           calculatedDemographics.push({
-            name: mixList[race].raceId,
+            // name: mixList[race].raceId,
+            race: $filter('filter')(vm_.localData.raceSelection, {id: mixList[race].raceId})[0],
             percent: ((popCount / population) * 100).toFixed(2),
             population: popCount
           });
@@ -345,6 +346,10 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
 
     //DELETE ME
     calculatedDemographics = _.sortBy(calculatedDemographics, 'population').reverse();
+
+    if (remaining > 0) {
+      calculatedDemographics[0].population += remaining;
+    }
     console.log('mixList: ', mixList);
     console.log('Calculated: ', calculatedDemographics);
 

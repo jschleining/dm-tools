@@ -117,31 +117,18 @@
         <!-- TEST DISPLAY AREA. DELETE WHEN DONE -->
         <div class="layout-margin-top layout-padding-well border-all-1"
             md-colors="{'border-color': 'background-500', 'background-color': 'background-50'}">
-          <div ng-repeat="mixItem in settlement.racialMix.mix track by $index" layout="column" layout-align="start stretch">
-
+          <div ng-repeat="race in settlement.calculatedRacialDemographics track by $index" layout="column" layout-align="start stretch">
             <div layout="row" layout-align="start center">
               <div class="layout-margin-right">
-                <span class="bold">Percentage of Total:</span> {{mixItem.weight.custom}}%
+                <span class="bold">Population Count:</span> {{race.population}}
               </div>
-              <div class="layout-margin-horizontal" ng-if="mixItem.raceId">
-                <span ng-repeat="race in vm.localData.raceSelection | filter: {id: mixItem.raceId}"><span class="bold">Race Name:</span> {{race.name}}</span>
+              <div class="layout-margin-right">
+                <span class="bold">Percentage of Total:</span> {{race.percent}}%
               </div>
-              <div class="layout-margin-horizontal" ng-if="!mixItem.raceId">
-                <span class="bold">Race:</span> {{mixItem.name}}
-              </div>
-            </div>
-
-            <div class=" layout-margin-left layout-padding-left" layout="column" layout-align="start stretch" ng-if="mixItem.races">
-              <div layout="row" layout-align="start center" ng-repeat="item in mixItem.races track by $index">
-                <div class="layout-margin-horizontal">
-                  <span class="bold">Percentage of 'Other':</span> {{item.weight.custom}}%
-                </div>
-                <div class="layout-margin-horizontal">
-                  <span ng-repeat="race in vm.localData.raceSelection | filter: {id: item.raceId}"><span class="bold">Race Name:</span> {{race.name}}</span>
-                </div>
+              <div class="layout-margin-horizontal">
+                <span class="bold">Race Name:</span> {{race.race.name}}
               </div>
             </div>
-
           </div>
         </div>
 
