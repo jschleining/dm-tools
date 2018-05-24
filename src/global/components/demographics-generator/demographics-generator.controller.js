@@ -145,6 +145,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     newSettlement.military = vm_.getMilitary(newSettlement.populationCount);
     newSettlement.militia = vm_.getMilitia(newSettlement.populationCount);
     newSettlement.powerCenters = vm_.getPowerCenters(newSettlement.settlementType.powerCenterQuantity);
+    newSettlement.racialMix = vm_.getRacialMix(vm_.settlement.racialMix, newSettlement.populationCount);
 
     vm_.settlement.generated.push(newSettlement);
   }
@@ -159,6 +160,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     settlement.military = vm_.getMilitary(settlement.populationCount);
     settlement.militia = vm_.getMilitia(settlement.populationCount);
     settlement.powerCenters = vm_.getPowerCenters(settlement.settlementType.powerCenterQuantity);
+    settlement.racialMix = vm_.getRacialMix(vm_.settlement.racialMix, settlement.populationCount);
   }
 
   /**
@@ -290,6 +292,47 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     return powerCenters;
   }
 
+  vm_.getRacialMix = getRacialMix_;
+  function getRacialMix_(mix, population) {
+    var remaining = population;
+    var calculatedDemographics = [];
+    var mix = mix;
+
+    //DELETE ME
+    calculatedDemographics = mix;
+    console.log(mix);
+
+    return calculatedDemographics;
+  }
+
+
+
+  // OLD WAY
+  // function getRacialMixture_(mix, population) {
+  //   var mixIndex = Utilities.getObjectIndex(vm_.racialMixSelection, 'type', mix);
+  //   var remaining = population;
+  //   var calculatedDemographics = [];
+  //   // ensure minimum of one member of every available race by starting with the smallest percentage
+  //   vm_.racialMixSelection[mixIndex].mix = _.sortBy(vm_.racialMixSelection[mixIndex].mix, 'percentage').reverse();
+  //   for (var race = 0; race < vm_.racialMixSelection[mixIndex].mix.length; race++) {
+  //     var percentage = vm_.racialMixSelection[mixIndex].mix[race].percentage / 100;
+  //     // ensure minimum of 1
+  //     var pop = (Math.floor(population * percentage) > 0) ? Math.floor(population * percentage) : 1;
+  //     remaining -= pop;
+  //     calculatedDemographics.push({
+  //       name: vm_.racialMixSelection[mixIndex].mix[race].name,
+  //       percentageDefault: vm_.racialMixSelection[mixIndex].mix[race].percentage,
+  //       actualPercentage: ((pop / population) * 100).toFixed(2),
+  //       population: pop
+  //     });
+  //   }
+  //   calculatedDemographics = _.sortBy(calculatedDemographics, 'percentageDefault').reverse();
+  //   if (remaining > 0) {
+  //     calculatedDemographics[0].population += remaining;
+  //   }
+  //   return calculatedDemographics;
+  // }
+
   //#region Tag Functions
   function updateFilteredTags_(filterBy) {
     if (!filterBy || filterBy === 'none') {
@@ -329,7 +372,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     if (!filterBy || filterBy === 'none' || filterBy === {}) {
       vm_.filteredPowerCenters = [];
     } else {
-      console.log('filter by', filterBy);
       for (var tagCounter = 0; tagCounter < filterBy.tags.length; tagCounter++) {
         var currentTagId = filterBy.tags[tagCounter];
         var currentTag = $filter('filter')(vm_.filteredTags, {id: currentTagId});

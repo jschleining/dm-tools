@@ -6438,7 +6438,7 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
-          raceId: 'dflt-0001'
+          raceId: 'dflt-001'
         },
         {
           id: 'mixture-001b',
@@ -6452,7 +6452,64 @@ app.service('Demographics', function () {
             default: 0,
             custom: 0
           },
-          races: []
+          races: [
+            {
+              raceId: 'dflt-002',
+              weight: {
+                default: 70,
+                custom: 70
+              }
+            },
+            {
+              raceId: 'dflt-003',
+              weight: {
+                default: 15,
+                custom: 15
+              }
+            },
+            {
+              raceId: 'dflt-004',
+              weight: {
+                default: 5,
+                custom: 5
+              }
+            },
+            {
+              raceId: 'dflt-005',
+              weight: {
+                default: 5,
+                custom: 5
+              }
+            },
+            {
+              raceId: 'dflt-006',
+              weight: {
+                default: 2,
+                custom: 2
+              }
+            },
+            {
+              raceId: 'dflt-007',
+              weight: {
+                default: 1,
+                custom: 1
+              }
+            },
+            {
+              raceId: 'dflt-008',
+              weight: {
+                default: 1,
+                custom: 1
+              }
+            },
+            {
+              raceId: 'dflt-009',
+              weight: {
+                default: 1,
+                custom: 1
+              }
+            }
+          ]
         }
       ]
     },
@@ -6483,7 +6540,7 @@ app.service('Demographics', function () {
             default: 96,
             custom: 96
           },
-          raceId: 'dflt-0001'
+          raceId: 'dflt-001'
         },
         {
           id: 'mixture-002b',
@@ -6498,7 +6555,7 @@ app.service('Demographics', function () {
             default: 2,
             custom: 2
           },
-          raceId: 'dflt-0002'
+          raceId: 'dflt-002'
         },
         {
           id: 'mixture-002c',
@@ -6513,7 +6570,7 @@ app.service('Demographics', function () {
             default: 1,
             custom: 1
           },
-          raceId: 'dflt-0003'
+          raceId: 'dflt-003'
         },
         {
           id: 'mixture-002d',
@@ -6527,7 +6584,50 @@ app.service('Demographics', function () {
             default: 1,
             custom: 1
           },
-          races: []
+          races: [
+            {
+              raceId: 'dflt-004',
+              weight: {
+                default: 40,
+                custom: 40
+              }
+            },
+            {
+              raceId: 'dflt-005',
+              weight: {
+                default: 15,
+                custom: 15
+              }
+            },
+            {
+              raceId: 'dflt-006',
+              weight: {
+                default: 15,
+                custom: 15
+              }
+            },
+            {
+              raceId: 'dflt-007',
+              weight: {
+                default: 10,
+                custom: 10
+              }
+            },
+            {
+              raceId: 'dflt-008',
+              weight: {
+                default: 10,
+                custom: 10
+              }
+            },
+            {
+              raceId: 'dflt-009',
+              weight: {
+                default: 10,
+                custom: 10
+              }
+            }
+          ]
         }
       ]
     },
@@ -6555,10 +6655,10 @@ app.service('Demographics', function () {
             service_.defaultTagList.dmg.id
           ],
           weight: {
-            default: 79,
-            custom: 79
+            default: 78,
+            custom: 78
           },
-          raceId: 'dflt-0001'
+          raceId: 'dflt-001'
         },
         {
           id: 'mixture-003b',
@@ -6573,7 +6673,7 @@ app.service('Demographics', function () {
             default: 9,
             custom: 9
           },
-          raceId: 'dflt-0002'
+          raceId: 'dflt-002'
         },
         {
           id: 'mixture-003c',
@@ -6588,7 +6688,7 @@ app.service('Demographics', function () {
             default: 5,
             custom: 5
           },
-          raceId: 'dflt-0003'
+          raceId: 'dflt-003'
         },
         {
           id: 'mixture-003d',
@@ -6603,7 +6703,7 @@ app.service('Demographics', function () {
             default: 3,
             custom: 3
           },
-          raceId: 'dflt-0004'
+          raceId: 'dflt-004'
         },
         {
           id: 'mixture-003e',
@@ -6618,7 +6718,7 @@ app.service('Demographics', function () {
             default: 2,
             custom: 2
           },
-          raceId: 'dflt-0005'
+          raceId: 'dflt-005'
         },
         {
           id: 'mixture-003f',
@@ -6633,7 +6733,7 @@ app.service('Demographics', function () {
             default: 1,
             custom: 1
           },
-          raceId: 'dflt-0006'
+          raceId: 'dflt-006'
         },
         {
           id: 'mixture-003g',
@@ -6648,7 +6748,7 @@ app.service('Demographics', function () {
             default: 1,
             custom: 1
           },
-          raceId: 'dflt-0007'
+          raceId: 'dflt-007'
         },
         {
           id: 'mixture-003h',
@@ -6659,10 +6759,25 @@ app.service('Demographics', function () {
             service_.defaultTagList.dflt.id
           ],
           weight: {
-            default: 0,
-            custom: 0
+            default: 1,
+            custom: 1
           },
-          races: []
+          races: [
+            {
+              raceId: 'dflt-008',
+              weight: {
+                default: 70,
+                custom: 70
+              }
+            },
+            {
+              raceId: 'dflt-009',
+              weight: {
+                default: 30,
+                custom: 30
+              }
+            }
+          ]
         }
       ]
     },
@@ -6690,10 +6805,10 @@ app.service('Demographics', function () {
             service_.defaultTagList.dmg.id
           ],
           weight: {
-            default: 37,
-            custom: 37
+            default: 36,
+            custom: 36
           },
-          raceId: 'dflt-0001'
+          raceId: 'dflt-001'
         },
         {
           id: 'mixture-004b',
@@ -6705,10 +6820,10 @@ app.service('Demographics', function () {
             service_.defaultTagList.dmg.id
           ],
           weight: {
-            default: 20,
-            custom: 20
+            default: 19,
+            custom: 19
           },
-          raceId: 'dflt-0002'
+          raceId: 'dflt-002'
         },
         {
           id: 'mixture-004c',
@@ -6720,10 +6835,10 @@ app.service('Demographics', function () {
             service_.defaultTagList.dmg.id
           ],
           weight: {
-            default: 18,
-            custom: 18
+            default: 17,
+            custom: 17
           },
-          raceId: 'dflt-0003'
+          raceId: 'dflt-003'
         },
         {
           id: 'mixture-004d',
@@ -6738,7 +6853,7 @@ app.service('Demographics', function () {
             default: 10,
             custom: 10
           },
-          raceId: 'dflt-0004'
+          raceId: 'dflt-004'
         },
         {
           id: 'mixture-004e',
@@ -6753,7 +6868,7 @@ app.service('Demographics', function () {
             default: 7,
             custom: 7
           },
-          raceId: 'dflt-0005'
+          raceId: 'dflt-005'
         },
         {
           id: 'mixture-004f',
@@ -6768,7 +6883,7 @@ app.service('Demographics', function () {
             default: 5,
             custom: 5
           },
-          raceId: 'dflt-0006'
+          raceId: 'dflt-006'
         },
         {
           id: 'mixture-004g',
@@ -6783,7 +6898,7 @@ app.service('Demographics', function () {
             default: 3,
             custom: 3
           },
-          raceId: 'dflt-0007'
+          raceId: 'dflt-007'
         },
         {
           id: 'mixture-004h',
@@ -6794,10 +6909,25 @@ app.service('Demographics', function () {
             service_.defaultTagList.dflt.id
           ],
           weight: {
-            default: 0,
-            custom: 0
+            default: 3,
+            custom: 3
           },
-          races: []
+          races: [
+            {
+              raceId: 'dflt-008',
+              weight: {
+                default: 55,
+                custom: 55
+              }
+            },
+            {
+              raceId: 'dflt-009',
+              weight: {
+                default: 45,
+                custom: 45
+              }
+            }
+          ]
         }
       ]
     }
