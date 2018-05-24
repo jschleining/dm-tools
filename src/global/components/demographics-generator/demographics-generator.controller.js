@@ -293,14 +293,60 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   }
 
   vm_.getRacialMix = getRacialMix_;
-  function getRacialMix_(mix, population) {
+  function getRacialMix_(mix, population, generationMethod) {
+    generationMethod = generationMethod || 'percent';
+    var mixList = mix.mix;
     var remaining = population;
     var calculatedDemographics = [];
-    var mix = mix;
+    if (generationMethod === 'percent') {
+      mixList = _.sortBy(mixList, 'weight.custom').reverse();
+
+      for (var race = 0; race < mixList.length; race++) {
+        if (mixList[race].races && mixList[race].races.length > 0 && mixList[race].weight.custom > 0) {
+          var otherPercentage = mixList[race].weight.custom / 100;
+          var otherPopCount = (Math.floor(population * otherPercentage) > 0) ? Math.floor(population * otherPercentage) : 1;
+          remaining -= otherPopCount;
+
+          mixList[race].races = _.sortBy(mixList[race].races, 'weight.custom');
+          var otherRemaining = otherPopCount;
+          for (var otherRace = 0; otherRace < mixList[race].races.length; otherRace++) {
+            if (otherRemaining > 0) {
+              var otherRacesPercentage = mixList[race].races[otherRace].weight.custom / 100;
+              var otherRacesPopCount = Math.ceil(otherPopCount * otherRacesPercentage);
+              otherRemaining -= otherRacesPopCount;
+
+              calculatedDemographics.push({
+                name: mixList[race].races[otherRace].raceId,
+                percent: ((otherRacesPopCount / population) * 100).toFixed(2),
+                population: otherRacesPopCount
+              });
+
+            } else {
+              break;
+            }
+          }
+
+        } else {
+          var percentage = mixList[race].weight.custom / 100;
+          var popCount = (Math.floor(population * percentage) > 0) ? Math.floor(population * percentage) : 1;
+          remaining -= popCount;
+
+          calculatedDemographics.push({
+            name: mixList[race].raceId,
+            percent: ((popCount / population) * 100).toFixed(2),
+            population: popCount
+          });
+        }
+
+      }
+    } else {
+      // using weighted instead of percentage
+    }
 
     //DELETE ME
-    calculatedDemographics = mix;
-    console.log(mix);
+    calculatedDemographics = _.sortBy(calculatedDemographics, 'population').reverse();
+    console.log('mixList: ', mixList);
+    console.log('Calculated: ', calculatedDemographics);
 
     return calculatedDemographics;
   }
