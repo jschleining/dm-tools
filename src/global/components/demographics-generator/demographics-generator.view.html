@@ -6,31 +6,36 @@
 
   <section id="main" class="layout-padding-well" flex="75" layout="column" layout-align="start stretch">
 
-    <div class="layout-margin-bottom layout-padding-bottom" layout="row" layout="space-between center">
-      <div>
-        <md-input-container class="no-margin-vertical no-padding no-input-spacer layout-margin-right">
+    <div class="layout-margin-bottom layout-padding-bottom" layout="row" layout-align="space-between center">
+      <div class="setting-actions">
+        <md-input-container class="dg-text no-margin-vertical no-padding no-input-spacer layout-margin-right">
           <label></label>
-          <input class="md-input-override" ng-model="vm.settlement.settlementName" placeholder="Settlement Name" type="text">
+          <input class="md-input-override" ng-model="vm.generatorSettings.settlementName" placeholder="Settlement Name" type="text">
         </md-input-container>
 
-        <md-input-container class="no-margin-vertical no-padding layout-margin-right">
-          <md-select class="no-padding" ng-model="vm.settlement.settlementType" placeholder="- Choose Settlement Size -">
+        <md-input-container class="dg-select no-margin-vertical no-padding layout-margin-right">
+          <md-select class="no-padding" ng-model="vm.generatorSettings.settlementType" aria-label="Settlement Size">
+            <md-option ng-value="'none'" ng-selected="true">Settlement Size</md-option>
             <md-option ng-repeat="settlementSize in vm.localData.settlementSizeSelection"
-                       ng-value="settlementSize" ng-selected="settlementSize.name === 'Hamlet'">{{settlementSize.name}}</md-option>
+                       ng-value="settlementSize">{{settlementSize.name}}</md-option>
           </md-select>
         </md-input-container>
 
-        <md-input-container class="no-margin-vertical no-padding layout-margin-horizontal">
-          <md-select class="no-padding" ng-model="vm.settlement.racialMix" placeholder="- Choose Racial Mix -">
+        <md-input-container class="dg-select no-margin-vertical no-padding layout-margin-horizontal">
+          <md-select class="no-padding" ng-model="vm.generatorSettings.racialMix" aria-label="Racial Mix">
+            <md-option ng-value="'none'" ng-selected="true">Racial Mix</md-option>
             <md-option ng-repeat="racialMix in vm.localData.racialMixSelection"
-                       ng-value="racialMix" ng-selected="racialMix.name === 'Mixed'">{{racialMix.name}}</md-option>
+                       ng-value="racialMix">{{racialMix.name}}</md-option>
           </md-select>
         </md-input-container>
       </div>
 
       <div>
         <md-button class="md-raised md-primary no-margin" ng-click="vm.generateSettlement()"
-            ng-disabled="!vm.settlement.settlementName || vm.settlement.settlementName.length < 1">
+            ng-disabled="!vm.generatorSettings.settlementName ||
+            vm.generatorSettings.settlementName.length < 1 ||
+            vm.generatorSettings.settlementType === 'none' ||
+            vm.generatorSettings.racialMix === 'none'">
           generate
         </md-button>
       </div>
@@ -72,10 +77,16 @@
             <div class="layout-margin-horizontal">
               <span class="bold">Settlement Type:</span> {{settlement.settlementType.name}}
             </div>
+            <div class="layout-margin-horizontal">
+              <span class="bold">Racial Mix:</span> {{settlement.racialMix.name}}
+            </div>
           </div>
           <div>
             <md-button class="md-raised md-primary no-margin" ng-click="vm.updateSettlement(settlement)">
               update
+            </md-button>
+            <md-button class="md-raised md-primary no-margin" ng-click="vm.deleteSettlement($index)">
+              delete
             </md-button>
           </div>
         </div>
@@ -120,13 +131,13 @@
           <div ng-repeat="race in settlement.calculatedRacialDemographics track by $index" layout="column" layout-align="start stretch">
             <div layout="row" layout-align="start center">
               <div class="layout-margin-right">
-                <span class="bold">Population Count:</span> {{race.population}}
+                <span class="bold">Population Count:</span> {{race.population.census}}
               </div>
               <div class="layout-margin-right">
-                <span class="bold">Percentage of Total:</span> {{race.percent}}%
+                <span class="bold">Percentage of Total:</span> {{race.population.percent}}%
               </div>
               <div class="layout-margin-horizontal">
-                <span class="bold">Race Name:</span> {{race.race.name}}
+                <span class="bold">Race Name:</span> {{race.name}}
               </div>
             </div>
           </div>

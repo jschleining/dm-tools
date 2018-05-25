@@ -6916,15 +6916,15 @@ app.service('Demographics', function () {
             {
               raceId: 'dflt-008',
               weight: {
-                default: 55,
-                custom: 55
+                default: 65,
+                custom: 65
               }
             },
             {
               raceId: 'dflt-009',
               weight: {
-                default: 45,
-                custom: 45
+                default: 35,
+                custom: 35
               }
             }
           ]
