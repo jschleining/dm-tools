@@ -273,6 +273,8 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     settlement.powerCenters = vm_.getPowerCenters(settlement.settlementType.powerCenterQuantity);
     settlement.calculatedRacialDemographics = vm_.getRacialMix(settlement.racialMix, settlement.populationCount);
 
+    vm_.getAgeDemographicsMix(settlement.calculatedRacialDemographics);
+
     // do not need to populate here. prepopulated in service.
     // vm_.populateAgeCategories(settlement.calculatedRacialDemographics);
   }
@@ -534,16 +536,51 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   }
   //#endregion
 
+  vm_.getAgeDemographicsMix = getAgeDemographicsMix_;
+  function getAgeDemographicsMix_(races, generationMethod) {
+    generationMethod = generationMethod || 'percent';
 
-  /**
-   * Populate all races with the age selection default.
-   */
-  vm_.populateAgeCategories = populateAgeCategories_;
-  function populateAgeCategories_(races) {
-    for (var race = 0; race < races.length; race++) {
-      races[race].ageCategories = angular.copy(vm_.localData.ageSelection);
+    if (generationMethod === 'percent') {
+
+      for (var race = 0; race < races.length; race++) {
+        var population = races[race].population.census;
+        var remaining = population;
+
+        if (population >= (races[race].ageCategories.length * 2)) {
+          races[race].ageCategories.reverse();
+        }
+
+        for (var age = 0; age < races[race].ageCategories.length; age++) {
+          if (races[race].ageCategories[age].weight.custom > 0 && remaining > 0) {
+            var percentage = races[race].ageCategories[age].weight.custom / 100;
+            var popCount = Math.ceil(population * percentage);
+
+            if (popCount > remaining) {
+              popCount = remaining;
+            }
+            remaining -= popCount;
+
+            races[race].ageCategories[age].population = {
+              census: popCount,
+              percent: ((popCount / population) * 100).toFixed(2)
+            };
+          }
+        }
+
+        if (population >= (races[race].ageCategories.length * 2)) {
+          races[race].ageCategories.reverse();
+        }
+      }
+    } else {
+      // use weighted method
     }
   }
+
+
+
+
+
+
 
   // OLD WAY
   // function getAgeDemographics_(racialDemographics) {
@@ -576,6 +613,16 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //   }
   //
   //   return ageDemographics;
+  // }
+
+  // /**
+  //  * Populate all races with the age selection default.
+  //  */
+  // vm_.populateAgeCategories = populateAgeCategories_;
+  // function populateAgeCategories_(races) {
+  //   for (var race = 0; race < races.length; race++) {
+  //     races[race].ageCategories = angular.copy(vm_.localData.ageSelection);
+  //   }
   // }
 
 

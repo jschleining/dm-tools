@@ -140,6 +140,17 @@
                 <span class="bold">Race Name:</span> {{race.name}}
               </div>
             </div>
+
+            <div class="layout-margin-left layout-margin-bottom layout-padding-left" layout="column" layout="start stretch">
+              <div layout="row" layout-align="start center" ng-repeat="age in race.ageCategories">
+                <div class="layout-margin-right">
+                  <span class="bold">{{age.name}}:</span> {{age.population.census}}
+                </div>
+                <div class="layout-margin-right">
+                  <span class="bold">Percentage of Total:</span> {{age.population.percent}}%
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
