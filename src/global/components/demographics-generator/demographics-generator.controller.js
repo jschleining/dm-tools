@@ -407,59 +407,55 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     var calculatedDemographics = [];
     if (generationMethod === 'percent') {
       mixList = _.sortBy(mixList, 'weight.custom').reverse();
-
       for (var race = 0; race < mixList.length; race++) {
+        // Handle 'Other' Races
         if (mixList[race].races && mixList[race].races.length > 0 && mixList[race].weight.custom > 0) {
           var otherPercentage = mixList[race].weight.custom / 100;
-          var otherPopCount = (Math.floor(population * otherPercentage) > 0) ? Math.floor(population * otherPercentage) : 1;
+          var otherPopCount = Math.floor(population * otherPercentage);
           remaining -= otherPopCount;
-
           mixList[race].races = _.sortBy(mixList[race].races, 'weight.custom');
           var otherRemaining = otherPopCount;
           for (var otherRace = 0; otherRace < mixList[race].races.length; otherRace++) {
             if (otherRemaining > 0) {
               var otherRacesPercentage = mixList[race].races[otherRace].weight.custom / 100;
               var otherRacesPopCount = Math.ceil(otherPopCount * otherRacesPercentage);
+              if (otherRacesPopCount > otherRemaining) {
+                otherRacesPopCount = otherRemaining;
+              }
               otherRemaining -= otherRacesPopCount;
               calculatedDemographics.push({
-                // name: mixList[race].races[otherRace].raceId,
                 race: $filter('filter')(vm_.localData.raceSelection, {id: mixList[race].races[otherRace].raceId})[0],
                 percent: ((otherRacesPopCount / population) * 100).toFixed(2),
                 population: otherRacesPopCount
               });
-
             } else {
               break;
             }
           }
-
-        } else {
-          var percentage = mixList[race].weight.custom / 100;
-          var popCount = (Math.floor(population * percentage) > 0) ? Math.floor(population * percentage) : 1;
-          remaining -= popCount;
-
-          calculatedDemographics.push({
-            // name: mixList[race].raceId,
-            race: $filter('filter')(vm_.localData.raceSelection, {id: mixList[race].raceId})[0],
-            percent: ((popCount / population) * 100).toFixed(2),
-            population: popCount
-          });
         }
 
+        if (!mixList[race].races) {
+          if (mixList[race].weight.custom > 0) {
+            var percentage = mixList[race].weight.custom / 100;
+            var popCount = Math.floor(population * percentage);
+            remaining -= popCount;
+
+            calculatedDemographics.push({
+              race: $filter('filter')(vm_.localData.raceSelection, {id: mixList[race].raceId})[0],
+              percent: ((popCount / population) * 100).toFixed(2),
+              population: popCount
+            });
+          }
+        }
       }
     } else {
       // using weighted instead of percentage
     }
-
-    //DELETE ME
     calculatedDemographics = _.sortBy(calculatedDemographics, 'population').reverse();
-
     if (remaining > 0) {
       calculatedDemographics[0].population += remaining;
+      remaining = 0;
     }
-    console.log('mixList: ', mixList);
-    console.log('Calculated: ', calculatedDemographics);
-
     return calculatedDemographics;
   }
 
