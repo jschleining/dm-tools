@@ -343,10 +343,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     } else {
       // using weighted instead of percentage
     }
-
-    //DELETE ME
     calculatedDemographics = _.sortBy(calculatedDemographics, 'population').reverse();
-
     if (remaining > 0) {
       calculatedDemographics[0].population += remaining;
     }
