@@ -272,6 +272,9 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     settlement.militia = vm_.getMilitia(settlement.populationCount);
     settlement.powerCenters = vm_.getPowerCenters(settlement.settlementType.powerCenterQuantity);
     settlement.calculatedRacialDemographics = vm_.getRacialMix(settlement.racialMix, settlement.populationCount);
+
+    // do not need to populate here. prepopulated in service.
+    // vm_.populateAgeCategories(settlement.calculatedRacialDemographics);
   }
 
   vm_.deleteSettlement = deleteSettlement_;
@@ -440,12 +443,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
                 percent: ((otherRacesPopCount / population) * 100).toFixed(2)
               };
               calculatedDemographics.push(other);
-
-              // calculatedDemographics.push({
-              //   race: angular.copy($filter('filter')(vm_.localData.raceSelection, {id: mixList[race].races[otherRace].raceId})[0]),
-              //   percent: ((otherRacesPopCount / population) * 100).toFixed(2),
-              //   population: otherRacesPopCount
-              // });
             } else {
               break;
             }
@@ -467,12 +464,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
               percent: ((popCount / population) * 100).toFixed(2)
             };
             calculatedDemographics.push(preset);
-
-            // calculatedDemographics.push({
-            //   race: angular.copy($filter('filter')(vm_.localData.raceSelection, {id: mixList[race].raceId})[0]),
-            //   percent: ((popCount / population) * 100).toFixed(2),
-            //   population: popCount
-            // });
           }
         }
       }
@@ -550,7 +541,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   vm_.populateAgeCategories = populateAgeCategories_;
   function populateAgeCategories_(races) {
     for (var race = 0; race < races.length; race++) {
-      race[race].ageCategories = angular.copy(vm_.ageSelection);
+      races[race].ageCategories = angular.copy(vm_.localData.ageSelection);
     }
   }
 
