@@ -15,9 +15,14 @@ app.service('Demographics', function () {
     'CREATURE_TYPE': 'creatureType',
     'CREATURE_SUBTYPE': 'creatureSubtype',
     'ALIGNMENT': 'alignment',
+    'ALIGN_1': 'lawChaos',
+    'ALIGN_2': 'goodEvil',
+    'ALIGN_3': 'neutral',
+    'ALIGN_FULL': 'fullAlignment',
     'CLIMATE': 'climate',
     'TERRAIN': 'terrain',
-    'POWER_CENTER_TYPE': 'powerCenterType'
+    'POWER_CENTER_TYPE': 'powerCenterType',
+    'RARITY': 'rarity'
   };
 
   /**
@@ -514,7 +519,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_1
       ],
       key: 'law',
       id: 'tag-align-01'
@@ -525,7 +531,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_3
       ],
       key: 'ntr',
       id: 'tag-align-02'
@@ -536,7 +543,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_1
       ],
       key: 'cht',
       id: 'tag-align-03'
@@ -547,7 +555,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_2
       ],
       key: 'god',
       id: 'tag-align-04'
@@ -558,7 +567,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_2
       ],
       key: 'evl',
       id: 'tag-align-05'
@@ -569,7 +579,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'lg',
       id: 'tag-align-06'
@@ -580,7 +591,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'ng',
       id: 'tag-align-07'
@@ -591,7 +603,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'cg',
       id: 'tag-align-08'
@@ -602,7 +615,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'ln',
       id: 'tag-align-09'
@@ -613,7 +627,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'tn',
       id: 'tag-align-10'
@@ -624,7 +639,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'cn',
       id: 'tag-align-11'
@@ -635,7 +651,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'le',
       id: 'tag-align-12'
@@ -646,7 +663,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'ne',
       id: 'tag-align-13'
@@ -657,7 +675,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_FULL
       ],
       key: 'ce',
       id: 'tag-align-14'
@@ -679,7 +698,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_2
       ],
       key: 'ag',
       id: 'tag-align-16'
@@ -690,7 +710,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_3
       ],
       key: 'an',
       id: 'tag-align-17'
@@ -701,7 +722,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_2
       ],
       key: 'ae',
       id: 'tag-align-18'
@@ -712,7 +734,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_1
       ],
       key: 'al',
       id: 'tag-align-19'
@@ -723,7 +746,8 @@ app.service('Demographics', function () {
       type: 'tag',
       tagTypes: [
         service_.tagTypes.DEFAULT,
-        service_.tagTypes.ALIGNMENT
+        service_.tagTypes.ALIGNMENT,
+        service_.tagTypes.ALIGN_1
       ],
       key: 'ac',
       id: 'tag-align-20'
@@ -1013,6 +1037,194 @@ app.service('Demographics', function () {
       ],
       key: 'pcmn',
       id: 'tag-power-center-type-04'
+    },
+    'rtylg': {
+      isAllowed: true,
+      name: 'Legendary',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtylg',
+      id: 'tag-rarity-01'
+    },
+    'rtyer': {
+      isAllowed: true,
+      name: 'Extremely Rare',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyer',
+      id: 'tag-rarity-02'
+    },
+    'rtyvr': {
+      isAllowed: true,
+      name: 'Very Rare',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyvr',
+      id: 'tag-rarity-03'
+    },
+    'rtyr': {
+      isAllowed: true,
+      name: 'Rare',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyr',
+      id: 'tag-rarity-04'
+    },
+    'rtyun': {
+      isAllowed: true,
+      name: 'Uncommon',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyun',
+      id: 'tag-rarity-05'
+    },
+    'rtyc': {
+      isAllowed: true,
+      name: 'Common',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyc',
+      id: 'tag-rarity-06'
+    },
+    'rtyvc': {
+      isAllowed: true,
+      name: 'Very Common',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.RARITY
+      ],
+      key: 'rtyvc',
+      id: 'tag-rarity-07'
+    }
+  };
+
+  /**
+   * weight is used to give weight to objects that have a rarity rating. 
+   */
+  service_.defaultRarities = {
+    'legendary': {
+      isAllowed: true,
+      name: 'Legendary',
+      type: 'rarity',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.rtylg.id
+      ],
+      weight: {
+        default: 1,
+        custom: 1
+      },
+      key: 'legendary',
+      id: 'rarity-001'
+    },
+    'extremelyRare': {
+      isAllowed: true,
+      name: 'Extremely Rare',
+      type: 'rarity',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.rtyer.id
+      ],
+      weight: {
+        default: 2,
+        custom: 2
+      },
+      key: 'extremelyRare',
+      id: 'rarity-002'
+    },
+    'veryRare': {
+      isAllowed: true,
+      name: 'Very Rare',
+      type: 'rarity',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.rtyvr.id
+      ],
+      weight: {
+        default: 4,
+        custom: 4
+      },
+      key: 'veryRare',
+      id: 'rarity-003'
+    },
+    'rare': {
+      isAllowed: true,
+      name: 'Rare',
+      type: 'rarity',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.rtyr.id
+      ],
+      weight: {
+        default: 8,
+        custom: 8
+      },
+      key: 'rare',
+      id: 'rarity-004'
+    },
+    'uncommon': {
+      isAllowed: true,
+      name: 'Uncommon',
+      type: 'rarity',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.rtyun.id
+      ],
+      weight: {
+        default: 16,
+        custom: 16
+      },
+      key: 'uncommon',
+      id: 'rarity-005'
+    },
+    'common': {
+      isAllowed: true,
+      name: 'Common',
+      type: 'rarity',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.rtyc.id
+      ],
+      weight: {
+        default: 32,
+        custom: 32
+      },
+      key: 'common',
+      id: 'rarity-006'
+    },
+    'veryCommon': {
+      isAllowed: true,
+      name: 'Very Common',
+      type: 'rarity',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.rtyvc.id
+      ],
+      weight: {
+        default: 64,
+        custom: 64
+      },
+      key: 'veryCommon',
+      id: 'rarity-007'
     }
   };
 
@@ -1171,6 +1383,101 @@ app.service('Demographics', function () {
         custom: 2
       },
       id: 'pcal-009'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Neutral',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.ntr.id,
+        service_.defaultTagList.an.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-010'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Lawful',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.law.id,
+        service_.defaultTagList.al.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-011'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Chaotic',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.cht.id,
+        service_.defaultTagList.ac.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-012'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Good',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.god.id,
+        service_.defaultTagList.ag.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-013'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Evil',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.ae.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-014'
+    },
+    {
+      isAllowed: true,
+      name: 'Any Alignment',
+      type: 'alignment',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.aa.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      id: 'pcal-015'
     }
   ];
 
@@ -1372,6 +1679,12 @@ app.service('Demographics', function () {
    * make for some interesting stories. The default weights assume the filters are off. If the
    * filters are on, and there is more than one option available, it will randomly choose 
    * without taking into account weight. The last few monsters have weight: 0.
+   *
+   * After adding in rarity, Im not really constrained to alignment. I can filter by climate,
+   * terrain, or alignment in any combination. it so happens i filter by alignment by default,
+   * but that is no longer required. Could also probably filter by type.
+   *
+   * TODO Need to clean up rarity on each. Make it more sensible with the rarities Ive chosen.
    */
   service_.defaultMonsters = [
     {
@@ -1389,9 +1702,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tjng.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-001'
     },
     {
@@ -1410,9 +1724,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-002'
     },
     {
@@ -1431,9 +1746,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tcst.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-003'
     },
     {
@@ -1452,9 +1768,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-004'
     },
     {
@@ -1473,9 +1790,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 40,
-        custom: 40
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-005'
     },
     {
@@ -1495,11 +1813,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-006'
     },
+
     {
       isAllowed: true,
       name: 'Pseudodragon',
@@ -1519,9 +1839,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-007'
     },
     {
@@ -1539,9 +1860,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-008'
     },
     {
@@ -1559,9 +1881,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-009'
     },
     {
@@ -1579,9 +1902,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tmtn.id
       ],
       weight: {
-        default: 30,
-        custom: 30
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-010'
     },
     {
@@ -1599,9 +1923,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-011'
     },
     {
@@ -1620,11 +1945,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-012'
     },
+
     {
       isAllowed: true,
       name: 'Brass Dragon',
@@ -1641,9 +1968,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tpln.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-013'
     },
     {
@@ -1662,9 +1990,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tmtn.id
       ],
       weight: {
-        default: 25,
-        custom: 25
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-014'
     },
     {
@@ -1684,9 +2013,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 25,
-        custom: 25
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-015'
     },
     {
@@ -1704,9 +2034,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tdst.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-016'
     },
     {
@@ -1726,9 +2057,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tmtn.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-017'
     },
     {
@@ -1746,11 +2078,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-018'
     },
+
     {
       isAllowed: true,
       name: 'Azer',
@@ -1768,9 +2102,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-019'
     },
     {
@@ -1788,9 +2123,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 30,
-        custom: 30
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-020'
     },
     {
@@ -1808,9 +2144,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tdst.id
       ],
       weight: {
-        default: 35,
-        custom: 35
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-021'
     },
     {
@@ -1828,11 +2165,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 25,
-        custom: 25
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-022'
     },
+
     {
       isAllowed: true,
       name: 'Galeb Duhr',
@@ -1848,9 +2187,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tmtn.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-023'
     },
     {
@@ -1867,9 +2207,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-024'
     },
     {
@@ -1886,9 +2227,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tmtn.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-025'
     },
     {
@@ -1907,9 +2249,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-026'
     },
     {
@@ -1930,9 +2273,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tswm.id
       ],
       weight: {
-        default: 30,
-        custom: 30
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-027'
     },
     {
@@ -1950,9 +2294,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tcst.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-028'
     },
     {
@@ -1971,11 +2316,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-029'
     },
+
     {
       isAllowed: true,
       name: 'Marid',
@@ -1992,9 +2339,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tcst.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-030'
     },
     {
@@ -2012,9 +2360,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-031'
     },
     {
@@ -2038,9 +2387,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-032'
     },
     {
@@ -2059,9 +2409,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 35,
-        custom: 35
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-033'
     },
     {
@@ -2080,11 +2431,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.tgrs.id
       ],
       weight: {
-        default: 20,
-        custom: 20
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-034'
     },
+
     {
       isAllowed: true,
       name: 'Beholder',
@@ -2101,9 +2454,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-035'
     },
     {
@@ -2121,9 +2475,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-036'
     },
     {
@@ -2141,9 +2496,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tdst.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-037'
     },
     {
@@ -2161,9 +2517,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-038'
     },
     {
@@ -2182,9 +2539,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tdst.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-039'
     },
     {
@@ -2202,9 +2560,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-040'
     },
     {
@@ -2222,9 +2581,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-041'
     },
     {
@@ -2243,9 +2603,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-042'
     },
     {
@@ -2265,9 +2626,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-043'
     },
     {
@@ -2285,9 +2647,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-044'
     },
     {
@@ -2305,9 +2668,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-045'
     },
     {
@@ -2330,9 +2694,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 32,
+        custom: 32
       },
+      rarity: service_.defaultRarities.common,
       id: 'mnstr-046'
     },
     {
@@ -2358,9 +2723,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 32,
+        custom: 32
       },
+      rarity: service_.defaultRarities.common,
       id: 'mnstr-047'
     },
     {
@@ -2379,9 +2745,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tcst.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-048'
     },
     {
@@ -2399,9 +2766,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tdst.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-049'
     },
     {
@@ -2420,11 +2788,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-050'
     },
+
     {
       isAllowed: true,
       name: 'Dao',
@@ -2440,9 +2810,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-051'
     },
     {
@@ -2462,9 +2833,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tswm.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-052'
     },
     {
@@ -2483,9 +2855,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-053'
     },
     {
@@ -2503,9 +2876,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-054'
     },
     {
@@ -2524,9 +2898,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-055'
     },
     {
@@ -2545,9 +2920,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tmtn.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-056'
     },
     {
@@ -2565,9 +2941,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tswm.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-057'
     },
     {
@@ -2585,9 +2962,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-058'
     },
     {
@@ -2609,9 +2987,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 64,
+        custom: 64
       },
+      rarity: service_.defaultRarities.veryCommon,
       id: 'mnstr-059'
     },
     {
@@ -2629,9 +3008,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-060'
     },
     {
@@ -2649,9 +3029,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-061'
     },
     {
@@ -2672,9 +3053,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tswm.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-062'
     },
     {
@@ -2695,11 +3077,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-063'
     },
+
     {
       isAllowed: true,
       name: 'Black Dragon',
@@ -2717,9 +3101,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tswm.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-064'
     },
     {
@@ -2738,9 +3123,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tmtn.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-065'
     },
     {
@@ -2759,9 +3145,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tmtn.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-066'
     },
     {
@@ -2780,9 +3167,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tcst.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-067'
     },
     {
@@ -2802,9 +3190,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-068'
     },
     {
@@ -2820,12 +3209,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ce.id,
         service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id,
+        service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-069'
     },
     {
@@ -2845,9 +3235,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-070'
     },
     {
@@ -2865,9 +3256,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.thil.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-071'
     },
     {
@@ -2893,9 +3285,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-072'
     },
     {
@@ -2918,9 +3311,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-073'
     },
     {
@@ -2941,9 +3335,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 32,
+        custom: 32
       },
+      rarity: service_.defaultRarities.common,
       id: 'mnstr-074'
     },
     {
@@ -2964,9 +3359,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 16,
+        custom: 16
       },
+      rarity: service_.defaultRarities.uncommon,
       id: 'mnstr-075'
     },
     {
@@ -2989,9 +3385,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 15,
-        custom: 15
+        default: 64,
+        custom: 64
       },
+      rarity: service_.defaultRarities.veryCommon,
       id: 'mnstr-076'
     },
     {
@@ -3009,9 +3406,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tudr.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-077'
     },
     {
@@ -3030,9 +3428,10 @@ app.service('Demographics', function () {
         service_.defaultTagList.tdst.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-078'
     },
     {
@@ -3050,68 +3449,13 @@ app.service('Demographics', function () {
         service_.defaultTagList.tany.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 4,
+        custom: 4
       },
+      rarity: service_.defaultRarities.veryRare,
       id: 'mnstr-079'
     },
-    {
-      isAllowed: true,
-      name: 'Ghost',
-      type: 'monster',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.mm.id,
-        service_.defaultTagList.und.id,
-        service_.defaultTagList.aa.id,
-        service_.defaultTagList.cany.id,
-        service_.defaultTagList.tudr.id,
-        service_.defaultTagList.turb.id
-      ],
-      weight: {
-        default: 0,
-        custom: 0
-      },
-      id: 'mnstr-080'
-    },
-    {
-      isAllowed: true,
-      name: 'Lich',
-      type: 'monster',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.mm.id,
-        service_.defaultTagList.und.id,
-        service_.defaultTagList.evl.id,
-        service_.defaultTagList.ae.id,
-        service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
-      ],
-      weight: {
-        default: 0,
-        custom: 0
-      },
-      id: 'mnstr-081'
-    },
-    {
-      isAllowed: true,
-      name: 'Dracolich',
-      type: 'monster',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.mm.id,
-        service_.defaultTagList.und.id,
-        service_.defaultTagList.evl.id,
-        service_.defaultTagList.ae.id,
-        service_.defaultTagList.cany.id,
-        service_.defaultTagList.tany.id
-      ],
-      weight: {
-        default: 0,
-        custom: 0
-      },
-      id: 'mnstr-082'
-    },
+
     {
       isAllowed: true,
       name: 'Werebear',
@@ -3130,10 +3474,11 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 0,
-        custom: 0
+        default: 8,
+        custom: 8
       },
-      id: 'mnstr-083'
+      rarity: service_.defaultRarities.rare,
+      id: 'mnstr-080'
     },
     {
       isAllowed: true,
@@ -3154,10 +3499,11 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 0,
-        custom: 0
+        default: 8,
+        custom: 8
       },
-      id: 'mnstr-084'
+      rarity: service_.defaultRarities.rare,
+      id: 'mnstr-081'
     },
     {
       isAllowed: true,
@@ -3176,10 +3522,11 @@ app.service('Demographics', function () {
         service_.defaultTagList.turb.id
       ],
       weight: {
-        default: 0,
-        custom: 0
+        default: 8,
+        custom: 8
       },
-      id: 'mnstr-085'
+      rarity: service_.defaultRarities.rare,
+      id: 'mnstr-082'
     },
     {
       isAllowed: true,
@@ -3200,10 +3547,11 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 0,
-        custom: 0
+        default: 8,
+        custom: 8
       },
-      id: 'mnstr-086'
+      rarity: service_.defaultRarities.rare,
+      id: 'mnstr-083'
     },
     {
       isAllowed: true,
@@ -3222,9 +3570,87 @@ app.service('Demographics', function () {
         service_.defaultTagList.tfst.id
       ],
       weight: {
-        default: 0,
-        custom: 0
+        default: 8,
+        custom: 8
       },
+      rarity: service_.defaultRarities.rare,
+      id: 'mnstr-084'
+    },
+
+    {
+      isAllowed: true,
+      name: 'Lich',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ae.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 4,
+        custom: 4
+      },
+      rarity: service_.defaultRarities.veryRare,
+      id: 'mnstr-085'
+    },
+    {
+      isAllowed: true,
+      name: 'Dracolich',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.evl.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.ae.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tany.id
+      ],
+      weight: {
+        default: 4,
+        custom: 4
+      },
+      rarity: service_.defaultRarities.veryRare,
+      id: 'mnstr-086'
+    },
+
+    {
+      isAllowed: true,
+      name: 'Ghost',
+      type: 'monster',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.und.id,
+        service_.defaultTagList.lg.id,
+        service_.defaultTagList.ng.id,
+        service_.defaultTagList.cg.id,
+        service_.defaultTagList.ln.id,
+        service_.defaultTagList.tn.id,
+        service_.defaultTagList.cn.id,
+        service_.defaultTagList.le.id,
+        service_.defaultTagList.ne.id,
+        service_.defaultTagList.ce.id,
+        service_.defaultTagList.aa.id,
+        service_.defaultTagList.cany.id,
+        service_.defaultTagList.tudr.id,
+        service_.defaultTagList.turb.id
+      ],
+      weight: {
+        default: 8,
+        custom: 8
+      },
+      rarity: service_.defaultRarities.rare,
       id: 'mnstr-087'
     }
   ];
@@ -6012,7 +6438,7 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
-          raceId: 'dflt-0001'
+          raceId: 'dflt-001'
         },
         {
           id: 'mixture-001b',
@@ -6026,7 +6452,64 @@ app.service('Demographics', function () {
             default: 0,
             custom: 0
           },
-          races: []
+          races: [
+            {
+              raceId: 'dflt-002',
+              weight: {
+                default: 70,
+                custom: 70
+              }
+            },
+            {
+              raceId: 'dflt-003',
+              weight: {
+                default: 15,
+                custom: 15
+              }
+            },
+            {
+              raceId: 'dflt-004',
+              weight: {
+                default: 5,
+                custom: 5
+              }
+            },
+            {
+              raceId: 'dflt-005',
+              weight: {
+                default: 5,
+                custom: 5
+              }
+            },
+            {
+              raceId: 'dflt-006',
+              weight: {
+                default: 2,
+                custom: 2
+              }
+            },
+            {
+              raceId: 'dflt-007',
+              weight: {
+                default: 1,
+                custom: 1
+              }
+            },
+            {
+              raceId: 'dflt-008',
+              weight: {
+                default: 1,
+                custom: 1
+              }
+            },
+            {
+              raceId: 'dflt-009',
+              weight: {
+                default: 1,
+                custom: 1
+              }
+            }
+          ]
         }
       ]
     },
@@ -6057,7 +6540,7 @@ app.service('Demographics', function () {
             default: 96,
             custom: 96
           },
-          raceId: 'dflt-0001'
+          raceId: 'dflt-001'
         },
         {
           id: 'mixture-002b',
@@ -6072,7 +6555,7 @@ app.service('Demographics', function () {
             default: 2,
             custom: 2
           },
-          raceId: 'dflt-0002'
+          raceId: 'dflt-002'
         },
         {
           id: 'mixture-002c',
@@ -6087,7 +6570,7 @@ app.service('Demographics', function () {
             default: 1,
             custom: 1
           },
-          raceId: 'dflt-0003'
+          raceId: 'dflt-003'
         },
         {
           id: 'mixture-002d',
@@ -6101,7 +6584,50 @@ app.service('Demographics', function () {
             default: 1,
             custom: 1
           },
-          races: []
+          races: [
+            {
+              raceId: 'dflt-004',
+              weight: {
+                default: 40,
+                custom: 40
+              }
+            },
+            {
+              raceId: 'dflt-005',
+              weight: {
+                default: 15,
+                custom: 15
+              }
+            },
+            {
+              raceId: 'dflt-006',
+              weight: {
+                default: 15,
+                custom: 15
+              }
+            },
+            {
+              raceId: 'dflt-007',
+              weight: {
+                default: 10,
+                custom: 10
+              }
+            },
+            {
+              raceId: 'dflt-008',
+              weight: {
+                default: 10,
+                custom: 10
+              }
+            },
+            {
+              raceId: 'dflt-009',
+              weight: {
+                default: 10,
+                custom: 10
+              }
+            }
+          ]
         }
       ]
     },
@@ -6129,10 +6655,10 @@ app.service('Demographics', function () {
             service_.defaultTagList.dmg.id
           ],
           weight: {
-            default: 79,
-            custom: 79
+            default: 78,
+            custom: 78
           },
-          raceId: 'dflt-0001'
+          raceId: 'dflt-001'
         },
         {
           id: 'mixture-003b',
@@ -6147,7 +6673,7 @@ app.service('Demographics', function () {
             default: 9,
             custom: 9
           },
-          raceId: 'dflt-0002'
+          raceId: 'dflt-002'
         },
         {
           id: 'mixture-003c',
@@ -6162,7 +6688,7 @@ app.service('Demographics', function () {
             default: 5,
             custom: 5
           },
-          raceId: 'dflt-0003'
+          raceId: 'dflt-003'
         },
         {
           id: 'mixture-003d',
@@ -6177,7 +6703,7 @@ app.service('Demographics', function () {
             default: 3,
             custom: 3
           },
-          raceId: 'dflt-0004'
+          raceId: 'dflt-004'
         },
         {
           id: 'mixture-003e',
@@ -6192,7 +6718,7 @@ app.service('Demographics', function () {
             default: 2,
             custom: 2
           },
-          raceId: 'dflt-0005'
+          raceId: 'dflt-005'
         },
         {
           id: 'mixture-003f',
@@ -6207,7 +6733,7 @@ app.service('Demographics', function () {
             default: 1,
             custom: 1
           },
-          raceId: 'dflt-0006'
+          raceId: 'dflt-006'
         },
         {
           id: 'mixture-003g',
@@ -6222,7 +6748,7 @@ app.service('Demographics', function () {
             default: 1,
             custom: 1
           },
-          raceId: 'dflt-0007'
+          raceId: 'dflt-007'
         },
         {
           id: 'mixture-003h',
@@ -6233,10 +6759,25 @@ app.service('Demographics', function () {
             service_.defaultTagList.dflt.id
           ],
           weight: {
-            default: 0,
-            custom: 0
+            default: 1,
+            custom: 1
           },
-          races: []
+          races: [
+            {
+              raceId: 'dflt-008',
+              weight: {
+                default: 70,
+                custom: 70
+              }
+            },
+            {
+              raceId: 'dflt-009',
+              weight: {
+                default: 30,
+                custom: 30
+              }
+            }
+          ]
         }
       ]
     },
@@ -6264,10 +6805,10 @@ app.service('Demographics', function () {
             service_.defaultTagList.dmg.id
           ],
           weight: {
-            default: 37,
-            custom: 37
+            default: 36,
+            custom: 36
           },
-          raceId: 'dflt-0001'
+          raceId: 'dflt-001'
         },
         {
           id: 'mixture-004b',
@@ -6279,10 +6820,10 @@ app.service('Demographics', function () {
             service_.defaultTagList.dmg.id
           ],
           weight: {
-            default: 20,
-            custom: 20
+            default: 19,
+            custom: 19
           },
-          raceId: 'dflt-0002'
+          raceId: 'dflt-002'
         },
         {
           id: 'mixture-004c',
@@ -6294,10 +6835,10 @@ app.service('Demographics', function () {
             service_.defaultTagList.dmg.id
           ],
           weight: {
-            default: 18,
-            custom: 18
+            default: 17,
+            custom: 17
           },
-          raceId: 'dflt-0003'
+          raceId: 'dflt-003'
         },
         {
           id: 'mixture-004d',
@@ -6312,7 +6853,7 @@ app.service('Demographics', function () {
             default: 10,
             custom: 10
           },
-          raceId: 'dflt-0004'
+          raceId: 'dflt-004'
         },
         {
           id: 'mixture-004e',
@@ -6327,7 +6868,7 @@ app.service('Demographics', function () {
             default: 7,
             custom: 7
           },
-          raceId: 'dflt-0005'
+          raceId: 'dflt-005'
         },
         {
           id: 'mixture-004f',
@@ -6342,7 +6883,7 @@ app.service('Demographics', function () {
             default: 5,
             custom: 5
           },
-          raceId: 'dflt-0006'
+          raceId: 'dflt-006'
         },
         {
           id: 'mixture-004g',
@@ -6357,7 +6898,7 @@ app.service('Demographics', function () {
             default: 3,
             custom: 3
           },
-          raceId: 'dflt-0007'
+          raceId: 'dflt-007'
         },
         {
           id: 'mixture-004h',
@@ -6368,10 +6909,25 @@ app.service('Demographics', function () {
             service_.defaultTagList.dflt.id
           ],
           weight: {
-            default: 0,
-            custom: 0
+            default: 3,
+            custom: 3
           },
-          races: []
+          races: [
+            {
+              raceId: 'dflt-008',
+              weight: {
+                default: 55,
+                custom: 55
+              }
+            },
+            {
+              raceId: 'dflt-009',
+              weight: {
+                default: 45,
+                custom: 45
+              }
+            }
+          ]
         }
       ]
     }

@@ -82,19 +82,19 @@
 
         <div layout="row" layout-align="start center">
           <div class="layout-margin-right">
-            <span class="bold">Population:</span> {{settlement.populationCount}}
+            <span class="bold">Population:</span> {{settlement.populationCount | number:0}}
           </div>
           <div class="layout-margin-horizontal">
-            <span class="bold">Ready Cash:</span> {{settlement.readyCash}}
+            <span class="bold">Ready Cash:</span> {{settlement.readyCash | number:0}} GP
           </div>
         </div>
 
         <div layout="row" layout-align="start center">
           <div class="layout-margin-right">
-            <span class="bold">Full Time Guards/Soldiers:</span> {{settlement.military}}
+            <span class="bold">Full Time Guards/Soldiers:</span> {{settlement.military | number:0}}
           </div>
           <div class="layout-margin-horizontal">
-            <span class="bold">Militia:</span> {{settlement.militia}}
+            <span class="bold">Militia:</span> {{settlement.militia | number:0}}
           </div>
         </div>
 
@@ -110,6 +110,30 @@
             <span class="bold">Alignment:</span> {{powerCenter.alignment.name}}
           </div>
         </div>
+
+
+
+
+        <!-- TEST DISPLAY AREA. DELETE WHEN DONE -->
+        <div class="layout-margin-top layout-padding-well border-all-1"
+            md-colors="{'border-color': 'background-500', 'background-color': 'background-50'}">
+          <div ng-repeat="race in settlement.calculatedRacialDemographics track by $index" layout="column" layout-align="start stretch">
+            <div layout="row" layout-align="start center">
+              <div class="layout-margin-right">
+                <span class="bold">Population Count:</span> {{race.population}}
+              </div>
+              <div class="layout-margin-right">
+                <span class="bold">Percentage of Total:</span> {{race.percent}}%
+              </div>
+              <div class="layout-margin-horizontal">
+                <span class="bold">Race Name:</span> {{race.race.name}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
 
@@ -141,8 +165,11 @@
         </md-button>
       </div>
       <div class="layout-padding-4" flex="50" layout="column" layout-align="start stretch">
-        <md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('powerCenterSettings',
-            {action: 'populateTagFilter', tagType: 'powerCenterType'})">
+        <!--<md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('powerCenterSettings',-->
+            <!--{action: 'populateTagFilter', tagType: 'powerCenterType'})">-->
+          <!--power ctr-->
+        <!--</md-button>-->
+        <md-button class="md-raised md-primary no-margin" ng-click="vm.openSettingsSidebar('powerCenterSettings')">
           power ctr
         </md-button>
       </div>

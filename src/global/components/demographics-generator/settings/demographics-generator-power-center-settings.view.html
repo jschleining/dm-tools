@@ -28,9 +28,20 @@
         md-colors="{'border-color': 'background-300'}">
 
       <md-input-container class="no-margin-top layout-margin-bottom no-padding">
-        <md-select class="no-padding" ng-model="pc" placeholder="Power Center Type Selection" ng-change="vm.updateFilteredPowerCenters(pc)">
+        <md-select class="no-padding" ng-model="vm.powerCenterFilter" placeholder="Power Center Type Selection"
+            ng-change="vm.updateFilteredPowerCenters(vm.powerCenterFilter)">
           <md-option ng-value="'none'" ng-selected="true">- Select Power Center Type -</md-option>
           <md-option ng-repeat="powerCenterType in vm.localData.powerCenterTypesSelection" ng-value="powerCenterType">{{powerCenterType.name}}</md-option>
+          <md-option ng-value="'Monstrous'">Monstrous</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="no-margin-top layout-margin-bottom no-padding"
+          ng-if="vm.powerCenterFilter === 'Monstrous'">
+        <md-select class="no-padding" ng-model="al" placeholder="Alignment Selection"
+                   ng-change="vm.updateFilteredMonsterList(al)">
+          <md-option ng-value="'none'" ng-selected="true">- Select Alignment -</md-option>
+          <md-option ng-repeat="alignment in vm.localData.alignmentSelection" ng-value="alignment">{{alignment.name}}</md-option>
         </md-select>
       </md-input-container>
 

@@ -252,6 +252,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     newSettlement.military = vm_.getMilitary(newSettlement.populationCount);
     newSettlement.militia = vm_.getMilitia(newSettlement.populationCount);
     newSettlement.powerCenters = vm_.getPowerCenters(newSettlement.settlementType.powerCenterQuantity);
+    newSettlement.calculatedRacialDemographics = vm_.getRacialMix(vm_.settlement.racialMix, newSettlement.populationCount);
 
     vm_.settlement.generated.push(newSettlement);
   }
@@ -266,6 +267,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     settlement.military = vm_.getMilitary(settlement.populationCount);
     settlement.militia = vm_.getMilitia(settlement.populationCount);
     settlement.powerCenters = vm_.getPowerCenters(settlement.settlementType.powerCenterQuantity);
+    settlement.calculatedRacialDemographics = vm_.getRacialMix(vm_.settlement.racialMix, settlement.populationCount);
   }
 
   /**
@@ -338,21 +340,156 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         powerCenter: powerCenter,
         alignment: alignment
       });
-      // if (Utilities.getRandom(1, 100) <= powerCenter.chanceForExtraMonstrous) {
-      //   var customAlignmentSelection = angular.copy(vm_.powerCenterAlignmentSelection);
-      //   for (var align = 0; align < customAlignmentSelection.length; align++) {
-      //     align.weight = (align.alignment === 'True Neutral') ? 12 : 11;
-      //   }
-      //   var monsterAlignment = Utilities.getItemFromWeightedObjectArray(customAlignmentSelection);
-      //   var monsterType = Utilities.getItemFromWeightedObjectArray(monsterAlignment.monstrous);
-      //   powerCenters.push({
-      //     type: 'Monstrous: ' + monsterType.type,
-      //     alignment: monsterAlignment.alignment
-      //   });
-      // }
+
+      if (Utilities.getRandom(1, 100) <= powerCenterType.chanceForExtraMonstrous) {
+        // need to tweak so that monstrous alignment weights don't correspond to other power center alignment weights.
+        // maybe make it so that the monstrous alignment has a higher chance of being opposing alignment
+        var monsterAlignment = Utilities.getItemFromWeightedObjectArray(vm_.localData.alignmentSelection);
+        vm_.updateFilteredTags(vm_.localData.tagTypeSelection.ALIGNMENT);
+
+        vm_.filteredMonsterList = [];
+        // loop through tags on alignment... find alignment type tags.
+        for (var tagCount = 0; tagCount < monsterAlignment.tags.length; tagCount++) {
+          var currentMonsterTagId = monsterAlignment.tags[tagCount];
+          var currentMonsterTag = $filter('filter')(vm_.filteredTags, {id: currentMonsterTagId});
+          if (currentMonsterTag.length > 0) {
+            var filtered = [];
+            var monster = 0;
+
+            // Full Alignment
+            if (_.indexOf(currentMonsterTag[0].tagTypes, vm_.localData.tagTypeSelection.ALIGN_FULL) > -1) {
+              // get all monsters with specific alignment
+              filtered = $filter('filter')(vm_.localData.monsterSelection, {tags: currentMonsterTagId});
+              for (monster = 0; monster < filtered.length; monster++) {
+                if (_.indexOf(vm_.filteredMonsterList, filtered[monster].id) < 0) {
+                  vm_.filteredMonsterList.push(filtered[monster]);
+                }
+              }
+              filtered.length = 0;
+              monster = 0;
+            }
+          }
+        }
+
+        // populate monstrous power center
+        Utilities.generateValueRanges(vm_.filteredMonsterList);
+        powerCenters.push({
+          powerCenterType: {
+            isAllowed: true,
+            name: 'Monstrous',
+            type: 'powerCenterType',
+            tags: [
+              vm_.localData.tagSelection.dflt.id,
+              vm_.localData.tagSelection.dmg.id,
+              vm_.localData.tagSelection.pcmn.id
+            ],
+            weight: {
+              default: 0,
+              custom: 0
+            },
+            chanceForExtraMonstrous: 0,
+            key: 'monstrous',
+            id: 'pctr-004'
+          },
+          powerCenter: Utilities.getItemFromWeightedObjectArray(vm_.filteredMonsterList),
+          alignment: monsterAlignment
+        });
+      }
     }
     return powerCenters;
   }
+
+  vm_.getRacialMix = getRacialMix_;
+  function getRacialMix_(mix, population, generationMethod) {
+    generationMethod = generationMethod || 'percent';
+    var mixList = mix.mix;
+    var remaining = population;
+    var calculatedDemographics = [];
+    if (generationMethod === 'percent') {
+      mixList = _.sortBy(mixList, 'weight.custom').reverse();
+
+      for (var race = 0; race < mixList.length; race++) {
+        if (mixList[race].races && mixList[race].races.length > 0 && mixList[race].weight.custom > 0) {
+          var otherPercentage = mixList[race].weight.custom / 100;
+          var otherPopCount = (Math.floor(population * otherPercentage) > 0) ? Math.floor(population * otherPercentage) : 1;
+          remaining -= otherPopCount;
+
+          mixList[race].races = _.sortBy(mixList[race].races, 'weight.custom');
+          var otherRemaining = otherPopCount;
+          for (var otherRace = 0; otherRace < mixList[race].races.length; otherRace++) {
+            if (otherRemaining > 0) {
+              var otherRacesPercentage = mixList[race].races[otherRace].weight.custom / 100;
+              var otherRacesPopCount = Math.ceil(otherPopCount * otherRacesPercentage);
+              otherRemaining -= otherRacesPopCount;
+              calculatedDemographics.push({
+                // name: mixList[race].races[otherRace].raceId,
+                race: $filter('filter')(vm_.localData.raceSelection, {id: mixList[race].races[otherRace].raceId})[0],
+                percent: ((otherRacesPopCount / population) * 100).toFixed(2),
+                population: otherRacesPopCount
+              });
+
+            } else {
+              break;
+            }
+          }
+
+        } else {
+          var percentage = mixList[race].weight.custom / 100;
+          var popCount = (Math.floor(population * percentage) > 0) ? Math.floor(population * percentage) : 1;
+          remaining -= popCount;
+
+          calculatedDemographics.push({
+            // name: mixList[race].raceId,
+            race: $filter('filter')(vm_.localData.raceSelection, {id: mixList[race].raceId})[0],
+            percent: ((popCount / population) * 100).toFixed(2),
+            population: popCount
+          });
+        }
+
+      }
+    } else {
+      // using weighted instead of percentage
+    }
+
+    //DELETE ME
+    calculatedDemographics = _.sortBy(calculatedDemographics, 'population').reverse();
+
+    if (remaining > 0) {
+      calculatedDemographics[0].population += remaining;
+    }
+    console.log('mixList: ', mixList);
+    console.log('Calculated: ', calculatedDemographics);
+
+    return calculatedDemographics;
+  }
+
+
+
+  // OLD WAY
+  // function getRacialMixture_(mix, population) {
+  //   var mixIndex = Utilities.getObjectIndex(vm_.racialMixSelection, 'type', mix);
+  //   var remaining = population;
+  //   var calculatedDemographics = [];
+  //   // ensure minimum of one member of every available race by starting with the smallest percentage
+  //   vm_.racialMixSelection[mixIndex].mix = _.sortBy(vm_.racialMixSelection[mixIndex].mix, 'percentage').reverse();
+  //   for (var race = 0; race < vm_.racialMixSelection[mixIndex].mix.length; race++) {
+  //     var percentage = vm_.racialMixSelection[mixIndex].mix[race].percentage / 100;
+  //     // ensure minimum of 1
+  //     var pop = (Math.floor(population * percentage) > 0) ? Math.floor(population * percentage) : 1;
+  //     remaining -= pop;
+  //     calculatedDemographics.push({
+  //       name: vm_.racialMixSelection[mixIndex].mix[race].name,
+  //       percentageDefault: vm_.racialMixSelection[mixIndex].mix[race].percentage,
+  //       actualPercentage: ((pop / population) * 100).toFixed(2),
+  //       population: pop
+  //     });
+  //   }
+  //   calculatedDemographics = _.sortBy(calculatedDemographics, 'percentageDefault').reverse();
+  //   if (remaining > 0) {
+  //     calculatedDemographics[0].population += remaining;
+  //   }
+  //   return calculatedDemographics;
+  // }
 
   //#region Tag Functions
   function updateFilteredTags_(filterBy) {
@@ -365,7 +502,31 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //#endregion
 
   //#region PowerCenter Functions
+  vm_.powerCenterFilter = 'None';
   function updateFilteredPowerCenters_(filterBy) {
+    var tagArray = $filter('dictionaryToArray')(vm_.localData.tagSelection);
+    vm_.filteredTags = Utilities.getMatches(tagArray, 'tagTypes', 'powerCenterType', 'contains');
+
+    if (!filterBy || filterBy === 'none' || filterBy === {}) {
+      vm_.filteredPowerCenters = [];
+    } else if (filterBy === 'Monstrous') {
+      vm_.filteredPowerCenters = vm_.localData.monsterSelection;
+    } else {
+      for (var tagCounter = 0; tagCounter < filterBy.tags.length; tagCounter++) {
+        var currentTagId = filterBy.tags[tagCounter];
+        var currentTag = $filter('filter')(vm_.filteredTags, {id: currentTagId});
+        if (currentTag.length > 0) {
+          vm_.filteredPowerCenters = $filter('filter')(vm_.localData.powerCenterSelection, {tags: currentTag[0].id});
+        }
+      }
+    }
+  }
+
+  vm_.updateFilteredMonsterList = updateFilteredMonsterList_;
+  function updateFilteredMonsterList_(filterBy) {
+    var tagArray = $filter('dictionaryToArray')(vm_.localData.tagSelection);
+    vm_.filteredTags = Utilities.getMatches(tagArray, 'tagTypes', 'alignment', 'contains');
+
     if (!filterBy || filterBy === 'none' || filterBy === {}) {
       vm_.filteredPowerCenters = [];
     } else {
@@ -373,7 +534,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         var currentTagId = filterBy.tags[tagCounter];
         var currentTag = $filter('filter')(vm_.filteredTags, {id: currentTagId});
         if (currentTag.length > 0) {
-          vm_.filteredPowerCenters = $filter('filter')(vm_.localData.powerCenterSelection, {tags: currentTag[0].id});
+          vm_.filteredPowerCenters = $filter('filter')(vm_.localData.monsterSelection, {tags: currentTag[0].id});
         }
       }
     }
