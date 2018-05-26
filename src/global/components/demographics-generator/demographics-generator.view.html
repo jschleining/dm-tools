@@ -41,29 +41,6 @@
       </div>
     </div>
 
-    <!-- TEST DISPLAY -->
-    <!--<div layout="column">-->
-      <!--<md-input-container class="no-margin no-padding">-->
-        <!--<md-select class="no-padding" ng-model="vm.testDisplay" placeholder="test">-->
-          <!--<md-option ng-repeat="arrayName in vm.test" ng-value="arrayName">{{arrayName}}</md-option>-->
-        <!--</md-select>-->
-      <!--</md-input-container>-->
-
-      <!--<div class="layout-padding-well border-bottom-1" ng-repeat="obj in vm.localData[vm.testDisplay]"-->
-           <!--ng-model-options="{trackBy: 'obj.id'}" md-colors="{'border-color': 'background-300'}" layout="column"-->
-           <!--layout-align="start stretch">-->
-        <!--<div layout="row" layout-align="start center">-->
-          <!--<span class="bold">{{obj.name}}</span>: <span class="hint layout-margin-left">{{obj.id}}</span>-->
-        <!--</div>-->
-        <!--<div class="layout-margin-left" layout="row" layout-wrap>-->
-          <!--<div class="hint layout-margin-left layout-margin-top layout-padding-horizontal border-all-1 round-edges" ng-repeat="tag in obj.tags track by $index"-->
-               <!--ng-if="obj.tags" md-colors="{'background-color': 'background-50', 'border-color': 'background-300'}">-->
-            <!--{{ vm.getTag(tag).name }}-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-
     <div class="border-top-1 layout-margin-vertical layout-padding-top" layout="column" layout-align="start stretch">
       <div class="border-all-1 layout-padding-well no-margin-bottom layout-margin-top" layout="column"
            layout-align="start stretch"
@@ -122,47 +99,91 @@
           </div>
         </div>
 
+        <!-- <div layout="row" layout-align="start center">
+          <div class="layout-margin-right">
+            <span class="bold">Racial Demographics:</span>
+          </div>
+        </div> -->
 
+        <div class="layout-margin-top" layout="column" layout-align="start stretch">
 
-
-        <!-- TEST DISPLAY AREA. DELETE WHEN DONE -->
-        <div class="layout-margin-top layout-padding-well border-all-1"
-            md-colors="{'border-color': 'background-500', 'background-color': 'background-50'}">
-          <div ng-repeat="race in settlement.calculatedRacialDemographics track by $index" layout="column" layout-align="start stretch">
-            <div layout="row" layout-align="start center">
-              <div class="layout-margin-right">
-                <span class="bold">Population Count:</span> {{race.population.census}}
-              </div>
-              <div class="layout-margin-right">
-                <span class="bold">Percentage of Total:</span> {{race.population.percent}}%
-              </div>
-              <div class="layout-margin-horizontal">
-                <span class="bold">Race Name:</span> {{race.name}}
-              </div>
-            </div>
-
-            <div class="layout-margin-left layout-margin-bottom layout-padding-left" layout="column" layout="start stretch">
-              <div layout="row" layout-align="start center" ng-repeat="age in race.ageCategories">
-                <div class="layout-margin-right">
-                  <span class="bold">{{age.name}}:</span> {{age.population.census}}
-                </div>
-                <div class="layout-margin-right">
-                  <span class="bold">Percentage of Total:</span> {{age.population.percent}}%
-                </div>
-              </div>
+          <div layout="row" layout-align="start center">
+            <div class="layout-margin-right">
+              <span class="bold">Racial Demographics *:</span>
             </div>
           </div>
+
+          <div layout="row" layout-align="start center">
+            <div class="layout-margin-right">
+              <span class="layout-margin-left">* Children do not count towards total population.</span>
+            </div>
+          </div>
+
+          <div ng-repeat="race in settlement.calculatedRacialDemographics track by $index" 
+              ng-class="{'layout-margin-top': !$first}" ng-if="race.population.census > 0">
+            <div layout="row" layout-align="start center">
+              <span class="bold">{{race.name}}:</span>&nbsp;{{race.population.census}}
+            </div>
+
+            <div class="layout-margin-left" layout="column" layout="start stretch">
+              <div class="layout-margin-left" layout="row" layout-align="start center" 
+                  ng-repeat="age in race.ageCategories" ng-if="race.population.census > 0">
+                <div class="layout-margin-right">
+                  <span class="bold">{{age.name}}:</span>&nbsp;{{age.population.census}}
+                </div>
+              </div>
+            </div>
+
+            <!-- Subraces -->
+            <!-- <div class="layout-margin-left" layout="column" layout="start stretch" 
+                ng-repeat="subrace in race.subraces" ng-if="subrace.population.census > 0">
+
+              <div layout="row" layout-align="start center">
+                <div class="layout-margin-right">
+                  <span class="bold">{{subrace.name}}:</span>&nbsp;{{subrace.population.census}}
+                </div>
+              </div>
+
+              <div class="layout-margin-left" layout="column" layout="start stretch">
+                <div class="layout-margin-left" layout="row" layout-align="start center" 
+                    ng-repeat="age in subrace.ageCategories" ng-if="subrace.population.census > 0">
+                  <div class="layout-margin-right">
+                    <span class="bold">{{age.name}}:</span>&nbsp;{{age.population.census}}
+                  </div>
+                </div>
+              </div>
+
+            </div> -->
+
+
+            <!-- <div class="layout-margin-left" layout="column" layout="start stretch">
+              <div class="layout-margin-left" layout="row" layout-align="start center" 
+                  ng-repeat="age in race.ageCategories" ng-if="age.population.census > 0">
+                <div class="layout-margin-right">
+                  <span class="bold">{{age.name}}:</span>&nbsp;{{age.population.census}}
+                </div>
+              </div>
+            </div> -->
+
+          </div>
+
+
         </div>
-
-
 
       </div>
     </div>
 
-    <!--<div class="border-top-1 layout-margin-top layout-padding-top" layout="column" layout-align="start stretch">-->
-      <!--<pre class="border-all-1 layout-padding-well no-margin-bottom layout-margin-top"-->
-           <!--md-colors="{'background-color': 'amber-50', 'border-color': 'amber-500'}">{{vm.settlement | json}}</pre>-->
-    <!--</div>-->
+    <!-- TEST DISPLAY AREA. DELETE WHEN DONE -->
+    <div class="layout-margin-top layout-padding-well border-all-1"
+        md-colors="{'border-color': 'background-500', 'background-color': 'background-50'}">
+      <div layout="row" layout-align="start center">
+        <div class="layout-margin-right">
+          <span class="bold">Test Display Area:</span>
+        </div>
+      </div>
+
+    </div>
+
 
   </section>
 

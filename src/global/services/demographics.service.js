@@ -1497,7 +1497,8 @@ app.service('Demographics', function () {
       weight: {
         default: 50,
         custom: 50
-      }
+      },
+      order: 1
     },
     {
       id: 'age-002',
@@ -1511,7 +1512,8 @@ app.service('Demographics', function () {
       weight: {
         default: 35,
         custom: 35
-      }
+      },
+      order: 2
     },
     {
       id: 'age-003',
@@ -1525,7 +1527,8 @@ app.service('Demographics', function () {
       weight: {
         default: 13,
         custom: 13
-      }
+      },
+      order: 3
     },
     {
       id: 'age-004',
@@ -1539,7 +1542,8 @@ app.service('Demographics', function () {
       weight: {
         default: 2,
         custom: 2
-      }
+      },
+      order: 4
     }
   ];
 
@@ -1675,7 +1679,7 @@ app.service('Demographics', function () {
    * creature subtypes, so the user could see goblinoid or gnoll instead of just humanoid, and 
    * could filter based on terrain. If they wanted a city in an arctic tundra it wouldnt make
    * sense to randomly generate a creature that couldnt survive there. There will be an option 
-   * to turn off terrain and climate filters so any monster culd appear anywhere. This could
+   * to turn off terrain and climate filters so any monster could appear anywhere. This could
    * make for some interesting stories. The default weights assume the filters are off. If the
    * filters are on, and there is more than one option available, it will randomly choose 
    * without taking into account weight. The last few monsters have weight: 0.
@@ -3995,7 +3999,7 @@ app.service('Demographics', function () {
           id: 'dflt-001a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Variant',
           type: 'subrace',
           tags: [
@@ -4012,7 +4016,7 @@ app.service('Demographics', function () {
           id: 'dflt-001b'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4101,7 +4105,7 @@ app.service('Demographics', function () {
           id: 'dflt-002c'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4208,7 +4212,7 @@ app.service('Demographics', function () {
           id: 'dflt-003d'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Joraga',
           type: 'subrace',
           tags: [
@@ -4225,7 +4229,7 @@ app.service('Demographics', function () {
           id: 'dflt-003e'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Mul Daya',
           type: 'subrace',
           tags: [
@@ -4242,7 +4246,7 @@ app.service('Demographics', function () {
           id: 'dflt-003f'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Tajuru',
           type: 'subrace',
           tags: [
@@ -4259,7 +4263,7 @@ app.service('Demographics', function () {
           id: 'dflt-003g'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4348,7 +4352,7 @@ app.service('Demographics', function () {
           id: 'dflt-004c'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4437,7 +4441,7 @@ app.service('Demographics', function () {
           id: 'dflt-005c'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4492,7 +4496,7 @@ app.service('Demographics', function () {
           id: 'dflt-006a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Half Wood Elf',
           type: 'subrace',
           tags: [
@@ -4509,7 +4513,7 @@ app.service('Demographics', function () {
           id: 'dflt-006b'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Half Moon/Sun Elf',
           type: 'subrace',
           tags: [
@@ -4526,7 +4530,7 @@ app.service('Demographics', function () {
           id: 'dflt-006c'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Half Drow Elf',
           type: 'subrace',
           tags: [
@@ -4543,7 +4547,7 @@ app.service('Demographics', function () {
           id: 'dflt-006d'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4597,7 +4601,7 @@ app.service('Demographics', function () {
           id: 'dflt-007a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4634,7 +4638,7 @@ app.service('Demographics', function () {
       percentageOfChildren: 10,
       subraces: [
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Black',
           type: 'subrace',
           tags: [
@@ -4651,7 +4655,7 @@ app.service('Demographics', function () {
           id: 'dflt-008a'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Blue',
           type: 'subrace',
           tags: [
@@ -4668,7 +4672,7 @@ app.service('Demographics', function () {
           id: 'dflt-008b'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Brass',
           type: 'subrace',
           tags: [
@@ -4685,7 +4689,7 @@ app.service('Demographics', function () {
           id: 'dflt-008c'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Bronze',
           type: 'subrace',
           tags: [
@@ -4702,7 +4706,7 @@ app.service('Demographics', function () {
           id: 'dflt-008d'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Copper',
           type: 'subrace',
           tags: [
@@ -4719,7 +4723,7 @@ app.service('Demographics', function () {
           id: 'dflt-008e'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Gold',
           type: 'subrace',
           tags: [
@@ -4736,7 +4740,7 @@ app.service('Demographics', function () {
           id: 'dflt-008f'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Green',
           type: 'subrace',
           tags: [
@@ -4753,7 +4757,7 @@ app.service('Demographics', function () {
           id: 'dflt-008g'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Red',
           type: 'subrace',
           tags: [
@@ -4770,7 +4774,7 @@ app.service('Demographics', function () {
           id: 'dflt-008h'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Silver',
           type: 'subrace',
           tags: [
@@ -4787,7 +4791,7 @@ app.service('Demographics', function () {
           id: 'dflt-008i'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'White',
           type: 'subrace',
           tags: [
@@ -4804,7 +4808,7 @@ app.service('Demographics', function () {
           id: 'dflt-008j'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4842,7 +4846,7 @@ app.service('Demographics', function () {
       percentageOfChildren: 5,
       subraces: [
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Default',
           type: 'subrace',
           tags: [
@@ -4895,7 +4899,7 @@ app.service('Demographics', function () {
           id: 'dflt-009c'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4949,7 +4953,7 @@ app.service('Demographics', function () {
           id: 'elem-001a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -4986,7 +4990,7 @@ app.service('Demographics', function () {
       percentageOfChildren: 10,
       subraces: [
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Air Genasi',
           type: 'subrace',
           tags: [
@@ -5003,7 +5007,7 @@ app.service('Demographics', function () {
           id: 'elem-002a'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Earth Genasi',
           type: 'subrace',
           tags: [
@@ -5020,7 +5024,7 @@ app.service('Demographics', function () {
           id: 'elem-002b'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Fire Genasi',
           type: 'subrace',
           tags: [
@@ -5037,7 +5041,7 @@ app.service('Demographics', function () {
           id: 'elem-002c'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Water Genasi',
           type: 'subrace',
           tags: [
@@ -5054,7 +5058,7 @@ app.service('Demographics', function () {
           id: 'elem-002d'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5108,7 +5112,7 @@ app.service('Demographics', function () {
           id: 'elem-003a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5214,7 +5218,7 @@ app.service('Demographics', function () {
           id: 'volo-001d'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5270,7 +5274,7 @@ app.service('Demographics', function () {
           id: 'volo-002a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5325,7 +5329,7 @@ app.service('Demographics', function () {
           id: 'volo-003a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5436,7 +5440,7 @@ app.service('Demographics', function () {
           id: 'volo-004d'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5493,7 +5497,7 @@ app.service('Demographics', function () {
           id: 'volo-005a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5548,7 +5552,7 @@ app.service('Demographics', function () {
           id: 'volo-006a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5602,7 +5606,7 @@ app.service('Demographics', function () {
           id: 'volo-007a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5656,7 +5660,7 @@ app.service('Demographics', function () {
           id: 'volo-008a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5710,7 +5714,7 @@ app.service('Demographics', function () {
           id: 'volo-009a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5764,7 +5768,7 @@ app.service('Demographics', function () {
           id: 'volo-010a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5818,7 +5822,7 @@ app.service('Demographics', function () {
           id: 'volo-011a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5872,7 +5876,7 @@ app.service('Demographics', function () {
           id: 'volo-012a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5926,7 +5930,7 @@ app.service('Demographics', function () {
           id: 'tort-001a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -5980,7 +5984,7 @@ app.service('Demographics', function () {
           id: 'uaeb-001a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -6017,7 +6021,7 @@ app.service('Demographics', function () {
       percentageOfChildren: 10,
       subraces: [
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Beasthide',
           type: 'subrace',
           tags: [
@@ -6034,7 +6038,7 @@ app.service('Demographics', function () {
           id: 'uaeb-002a'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Cliffwalk',
           type: 'subrace',
           tags: [
@@ -6051,7 +6055,7 @@ app.service('Demographics', function () {
           id: 'uaeb-002b'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Longstride',
           type: 'subrace',
           tags: [
@@ -6068,7 +6072,7 @@ app.service('Demographics', function () {
           id: 'uaeb-002c'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Longtooth',
           type: 'subrace',
           tags: [
@@ -6085,7 +6089,7 @@ app.service('Demographics', function () {
           id: 'uaeb-002d'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Razorclaw',
           type: 'subrace',
           tags: [
@@ -6102,7 +6106,7 @@ app.service('Demographics', function () {
           id: 'uaeb-002e'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Wildhunt',
           type: 'subrace',
           tags: [
@@ -6119,7 +6123,7 @@ app.service('Demographics', function () {
           id: 'uaeb-002f'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -6208,7 +6212,7 @@ app.service('Demographics', function () {
           id: 'psz-001a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -6245,7 +6249,7 @@ app.service('Demographics', function () {
       percentageOfChildren: 20,
       subraces: [
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Cosi',
           type: 'subrace',
           tags: [
@@ -6262,7 +6266,7 @@ app.service('Demographics', function () {
           id: 'psz-002a'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Emeria',
           type: 'subrace',
           tags: [
@@ -6279,7 +6283,7 @@ app.service('Demographics', function () {
           id: 'psz-002b'
         },
         {
-          isAllowed: false,
+          isAllowed: true,
           name: 'Ula',
           type: 'subrace',
           tags: [
@@ -6296,7 +6300,7 @@ app.service('Demographics', function () {
           id: 'psz-002c'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
@@ -6387,7 +6391,7 @@ app.service('Demographics', function () {
           id: 'uawb-001a'
         },
         {
-          isAllowed: true,
+          isAllowed: false,
           name: 'Revenant',
           type: 'subrace',
           tags: [
