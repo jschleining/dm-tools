@@ -4646,11 +4646,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 3,
           owner: 'dflt-008',
           id: 'dflt-008a'
         },
@@ -4663,11 +4663,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 5,
+            custom: 5
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 5,
           owner: 'dflt-008',
           id: 'dflt-008b'
         },
@@ -4680,11 +4680,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 14,
+            custom: 14
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 14,
           owner: 'dflt-008',
           id: 'dflt-008c'
         },
@@ -4697,11 +4697,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 17,
+            custom: 17
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 17,
           owner: 'dflt-008',
           id: 'dflt-008d'
         },
@@ -4714,11 +4714,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 11,
+            custom: 11
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 11,
           owner: 'dflt-008',
           id: 'dflt-008e'
         },
@@ -4731,11 +4731,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 12,
+            custom: 12
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 12,
           owner: 'dflt-008',
           id: 'dflt-008f'
         },
@@ -4748,11 +4748,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 5,
+            custom: 5
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 5,
           owner: 'dflt-008',
           id: 'dflt-008g'
         },
@@ -4765,11 +4765,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 12,
+            custom: 12
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 12,
           owner: 'dflt-008',
           id: 'dflt-008h'
         },
@@ -4782,11 +4782,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 23,
+            custom: 23
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 23,
           owner: 'dflt-008',
           id: 'dflt-008i'
         },
@@ -4799,11 +4799,11 @@ app.service('Demographics', function () {
             service_.defaultTagList.phb.id
           ],
           weight: {
-            default: 10,
-            custom: 10
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
-          percentOfTotalChildrenForRace: 10,
+          percentOfTotalChildrenForRace: 1,
           owner: 'dflt-008',
           id: 'dflt-008j'
         },

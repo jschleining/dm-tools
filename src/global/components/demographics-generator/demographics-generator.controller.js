@@ -274,9 +274,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     settlement.calculatedRacialDemographics = vm_.getRacialMix(settlement.racialMix, settlement.populationCount);
 
     vm_.getAgeDemographicsMix(settlement.calculatedRacialDemographics, 'weighted', 'weighted');
-
-    // do not need to populate here. prepopulated in service.
-    // vm_.populateAgeCategories(settlement.calculatedRacialDemographics);
   }
 
   vm_.deleteSettlement = deleteSettlement_;
@@ -442,6 +439,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
               break;
             }
           }
+          mixList[race].races = _.sortBy(mixList[race].races, 'weight.custom').reverse();
         }
 
         if (!mixList[race].races) {
@@ -477,14 +475,8 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
 
     var remaining = raceCensus;
     if (generationMethod === 'percent') {
-      // loop through all subraces. skip if !isActive or weight === 0
       for (var subrace = 0; subrace < subraces.length; subrace++) {
         if (subraces[subrace].isAllowed && subraces[subrace].weight.custom > 0 && remaining > 0) {
-
-          // need to update. currently goes top to bottom until running out 
-          // automatically. need to modify / give options. preferred method here
-          // SHOULD be weighted random instead of percentage, at least if there arent
-          // enough to guarantee at least one of each age.
           var percentage = subraces[subrace].weight.custom / 100;
           var popCount = Math.ceil(raceCensus * percentage);
 
@@ -496,6 +488,11 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
           subraces[subrace].population = {
             census: popCount,
             percent: ((popCount / raceCensus) * 100).toFixed(2)
+          };
+        } else {
+          subraces[subrace].population = {
+            census: 0,
+            percent: 0
           };
         }
       }
@@ -565,10 +562,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //#endregion
 
   vm_.getAgeDemographicsMix = getAgeDemographicsMix_;
-  // need to update. currently goes top to bottom until running out 
-  // automatically. need to modify / give options. preferred method here
-  // SHOULD be weighted random instead of percentage, at least if there arent
-  // enough to guarantee at least one of each age.
   function getAgeDemographicsMix_(races, raceMethod, subraceMethod) {
     raceMethod = raceMethod || 'percent';
     subraceMethod = subraceMethod || 'percent';
@@ -618,41 +611,41 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         // use weighted random
         Utilities.generateValueRanges(races[race].ageCategories);
 
-        for (var r = 0; r < racePopulation; r++) {
-          // filter!
-          
-          // var rAge = Utilities.getItemFromWeightedObjectArray(races[race].ageCategories);
-          var rAge = Utilities.getItemFromWeightedObjectArray($filter('filter')(races[race].ageCategories, {weight.custom > 0}));
-          var rAgeIndex = Utilities.getObjectIndex(races[race].ageCategories, 'name', rAge.name);
-
-          if (races[race].ageCategories[rAgeIndex].population) {
-            races[race].ageCategories[rAgeIndex].population++;
-            races[race].ageCategories[rAgeIndex].percent = 
-                ((races[race].ageCategories[rAgeIndex].population / racePopulation) * 100).toFixed(2);
-          } else {
-            races[race].ageCategories[rAgeIndex].population = {
-              census: 1,
-              percent: ((1 / racePopulation) * 100).toFixed(2)
-            };
-          }
+        for (var rAgeCategory = 0; rAgeCategory < races[race].ageCategories.length; rAgeCategory++) {
+          races[race].ageCategories[rAgeCategory].population = {
+            census: 0,
+            percent: 0
+          };
         }
+
+        for (var r = 0; r < racePopulation; r++) {
+          var rAge = Utilities.getItemFromWeightedObjectArray(races[race].ageCategories);
+          while (rAge.weight.custom === 0) {
+            rAge = Utilities.getItemFromWeightedObjectArray(races[race].ageCategories);
+          }
+          var rAgeIndex = Utilities.getObjectIndex(races[race].ageCategories, 'name', rAge.name);
+          races[race].ageCategories[rAgeIndex].population.census++;
+          races[race].ageCategories[rAgeIndex].population.percent = 
+              ((races[race].ageCategories[rAgeIndex].population.census / racePopulation) * 100).toFixed(2);
+        }
+
       }
 
-      // add children count
-      var raceChildCount = Math.floor(racePopulation * (races[race].percentageOfChildren / 100));
-      races[race].ageCategories.unshift({
-        name: 'Child',
-        population: {
-          census: raceChildCount,
-          percent: ((raceChildCount / racePopulation) * 100).toFixed(2)
-        }
-      });
+      // // add children count
+      // var raceChildCount = Math.floor(racePopulation * (races[race].percentageOfChildren / 100));
+      // races[race].ageCategories.unshift({
+      //   name: 'Child',
+      //   population: {
+      //     census: raceChildCount,
+      //     percent: ((raceChildCount / racePopulation) * 100).toFixed(2)
+      //   }
+      // });
     }
 
     // handle subraces
-    for (var race = 0; race < races.length; race++) {
-      for (var subrace = 0; subrace < races[race].subraces.length; subrace++) {
-        var subrace = races[race].subraces[subrace];
+    for (var rn = 0; rn < races.length; rn++) {
+      for (var srn = 0; srn < races[rn].subraces.length; srn++) {
+        var subrace = races[rn].subraces[srn];
         subrace.ageCategories = angular.copy(vm_.localData.ageSelection);
         var subracePopulation = subrace.population.census;
 
@@ -692,43 +685,86 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
           if (subracePopulation >= (subrace.ageCategories.length * 4)) {
             _.sortBy(subrace.ageCategories, 'order');
           }
-
         } else {
           // use weighted random
           Utilities.generateValueRanges(subrace.ageCategories);
 
-          for (var sr = 0; sr < subracePopulation; sr++) {
-            // filter!
-            // var srAge = Utilities.getItemFromWeightedObjectArray(subrace.ageCategories);
-            var srAge = Utilities.getItemFromWeightedObjectArray($filter('filter')(subrace.ageCategories, {weight: custom > 0}));
-            var srAgeIndex = Utilities.getObjectIndex(subrace.ageCategories, 'name', srAge.name);
+          for (var srAgeCategory = 0; srAgeCategory < subrace.ageCategories.length; srAgeCategory++) {
+            subrace.ageCategories[srAgeCategory].population = {
+              census: 0,
+              percent: 0
+            };
+          }
 
-            if (subrace.ageCategories[srAgeIndex].population) {
-              subrace.ageCategories[srAgeIndex].population++;
-              subrace.ageCategories[srAgeIndex].percent = 
-                  ((subrace.ageCategories[srAgeIndex].population / subracePopulation) * 100).toFixed(2);
-            } else {
-              subrace.ageCategories[srAgeIndex].population = {
-                census: 1,
-                percent: ((1 / subracePopulation) * 100).toFixed(2)
-              };
+          for (var sr = 0; sr < subracePopulation; sr++) {
+            var srAge = Utilities.getItemFromWeightedObjectArray(subrace.ageCategories);
+            while (srAge.weight.custom === 0) {
+              srAge = Utilities.getItemFromWeightedObjectArray(subrace.ageCategories);
             }
+            var srAgeIndex = Utilities.getObjectIndex(subrace.ageCategories, 'name', srAge.name);
+            subrace.ageCategories[srAgeIndex].population.census++;
+            subrace.ageCategories[srAgeIndex].population.percent = 
+                ((subrace.ageCategories[srAgeIndex].population.census / subracePopulation) * 100).toFixed(2);
           }
         }
 
-        // add children count
-        var subraceChildCount = Math.floor(subracePopulation * (subrace.percentageOfChildren / 100));
+        // // add children count
+        // var subraceChildCount = Math.floor(subracePopulation * (subrace.percentOfTotalChildrenForRace / 100));
+        // subrace.ageCategories.unshift({
+        //   name: 'Child',
+        //   population: {
+        //     census: subraceChildCount,
+        //     percent: ((subraceChildCount / subracePopulation) * 100).toFixed(2)
+        //   }
+        // });
+
+      }
+    }
+
+    vm_.getChildCount(races);
+
+  }
+
+  vm_.getChildCount = getChildCount_;
+  function getChildCount_(races) {
+    for (var rn = 0; rn < races.length; rn++) {
+      var race = races[rn];
+      var raceChildCount = Math.floor(race.population.census * (race.percentageOfChildren / 100));
+      var remainingChildCount = raceChildCount;
+
+      race.ageCategories.unshift({
+        name: 'Child',
+        population: {
+          census: raceChildCount,
+          percent: ((raceChildCount / race.population.census) * 100).toFixed(2)
+        }
+      });
+
+      race.subraces = _.chain(race.subraces).
+          sortBy(function(obj) {return obj.name}).
+          reverse().
+          sortBy(function(obj) {return obj.weight.custom}).
+          reverse().
+          value();
+
+      for (var srn = 0; srn < race.subraces.length; srn++) {
+        var subrace = race.subraces[srn];
+        var subraceChildCount = Math.ceil(raceChildCount * (subrace.percentOfTotalChildrenForRace / 100));
+        if (subraceChildCount > remainingChildCount) {
+          subraceChildCount = remainingChildCount;
+        }
+        remainingChildCount -= subraceChildCount;
+
         subrace.ageCategories.unshift({
           name: 'Child',
           population: {
             census: subraceChildCount,
-            percent: ((subraceChildCount / subracePopulation) * 100).toFixed(2)
+            percent: ((subraceChildCount / raceChildCount) * 100).toFixed(2)
           }
         });
 
       }
     }
-
   }
 
 

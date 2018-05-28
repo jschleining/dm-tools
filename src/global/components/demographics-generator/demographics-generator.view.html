@@ -122,20 +122,26 @@
           <div ng-repeat="race in settlement.calculatedRacialDemographics track by $index" 
               ng-class="{'layout-margin-top': !$first}" ng-if="race.population.census > 0">
             <div layout="row" layout-align="start center">
-              <span class="bold">{{race.name}}:</span>&nbsp;{{race.population.census}}
+              <div class="layout-margin-right">
+                <span class="bold">{{race.name}}:</span>&nbsp;{{race.population.census}}
+              </div>
+              <div class="layout-margin-horizontal">
+                <span class="bold">{{race.ageCategories[0].name}}:</span>&nbsp;{{race.ageCategories[0].population.census}}
+              </div>
             </div>
 
-            <div class="layout-margin-left" layout="column" layout="start stretch">
+            <!-- Age Census for Race -->
+            <!-- <div class="layout-margin-left" layout="column" layout="start stretch">
               <div class="layout-margin-left" layout="row" layout-align="start center" 
                   ng-repeat="age in race.ageCategories" ng-if="race.population.census > 0">
                 <div class="layout-margin-right">
                   <span class="bold">{{age.name}}:</span>&nbsp;{{age.population.census}}
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Subraces -->
-            <!-- <div class="layout-margin-left" layout="column" layout="start stretch" 
+            <div class="layout-margin-left" layout="column" layout="start stretch" 
                 ng-repeat="subrace in race.subraces" ng-if="subrace.population.census > 0">
 
               <div layout="row" layout-align="start center">
@@ -153,17 +159,8 @@
                 </div>
               </div>
 
-            </div> -->
+            </div>
 
-
-            <!-- <div class="layout-margin-left" layout="column" layout="start stretch">
-              <div class="layout-margin-left" layout="row" layout-align="start center" 
-                  ng-repeat="age in race.ageCategories" ng-if="age.population.census > 0">
-                <div class="layout-margin-right">
-                  <span class="bold">{{age.name}}:</span>&nbsp;{{age.population.census}}
-                </div>
-              </div>
-            </div> -->
 
           </div>
 
