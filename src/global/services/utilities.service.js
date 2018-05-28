@@ -15,18 +15,39 @@ app.service('Utilities', function () {
    * This is used for randomly picking a weighted item from an object array.
    */
   function generateValueRanges_(objectArray) {
+    var min = 0;
+    var max = 0;
     for (var object = 0; object < objectArray.length; object++) {
-      if (object === 0) {
+      if (objectArray[object].weight.custom > 0) {
+        if (min === 0) {
+          min = 1;
+        } else {
+          min = max + 1
+        }
+        max += objectArray[object].weight.custom;
+
         objectArray[object].weightedRange = {
-          min: 1,
-          max: objectArray[object].weight.custom
+          min: min,
+          max: max
         };
       } else {
         objectArray[object].weightedRange = {
-          min: objectArray[object - 1].weightedRange.max  + 1,
-          max: objectArray[object - 1].weightedRange.max + objectArray[object].weight.custom
+          min: 0,
+          max: 0
         };
       }
+
+      // if (object === 0) {
+      //   objectArray[object].weightedRange = {
+      //     min: 1,
+      //     max: objectArray[object].weight.custom
+      //   };
+      // } else {
+      //   objectArray[object].weightedRange = {
+      //     min: objectArray[object - 1].weightedRange.max  + 1,
+      //     max: objectArray[object - 1].weightedRange.max + objectArray[object].weight.custom
+      //   };
+      // }
     }
     return objectArray;
   }
@@ -43,7 +64,7 @@ app.service('Utilities', function () {
   /**
    * Return an item from a weighted object array.
    *
-   * @param {Array} array The object array to search through.
+   * @param {Array} array The object array to search through. NOTE: PREFILTER SO THERE ARE ONlY RESULTS WITH WEIGHTEDRANGE
    * @param {Number} modifier A number to modify the random number generator by.
    * @param {Number} preSelection Optional number to pass in, bypassing the random number generator.
    */
