@@ -3,6 +3,49 @@ var app = angular.module('dmTools');
 app.service('Demographics', function () {
   var service_ = this;
 
+  service_.classRarity = {
+    'veryRare': {
+      name: 'Very Rare',
+      dieType: 3,
+      type: 'dice',
+      tagTypes: [
+        service_.tagTypes.DEFAULT
+      ],
+      key: 'veryRare',
+      id: 'dice-001'
+    },
+    'rare': {
+      name: 'Rare',
+      dieType: 4,
+      type: 'dice',
+      tagTypes: [
+        service_.tagTypes.DEFAULT
+      ],
+      key: 'rare',
+      id: 'dice-002'
+    },
+    'uncommon': {
+      name: 'Uncommon',
+      dieType: 6,
+      type: 'dice',
+      tagTypes: [
+        service_.tagTypes.DEFAULT
+      ],
+      key: 'uncommon',
+      id: 'dice-003'
+    },
+    'common': {
+      name: 'Common',
+      dieType: 8,
+      type: 'dice',
+      tagTypes: [
+        service_.tagTypes.DEFAULT
+      ],
+      key: 'common',
+      id: 'dice-004'
+    }
+  };
+
   /**
    * This is to help filter objects by tag or tag type. Cannot be locally customized, so it
    * is ok to use id instead of passing whole object.
@@ -1604,6 +1647,345 @@ app.service('Demographics', function () {
         default: 20,
         custom: 20
       }
+    }
+  ];
+
+  service_.defaultClasses = [
+    {
+      isAllowed: true,
+      name: 'Barbarian',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.rare,
+        custom: service_.classRarity.rare
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-001'
+    },
+    {
+      isAllowed: true,
+      name: 'Bard',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.uncommon,
+        custom: service_.classRarity.uncommon
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-002'
+    },
+    {
+      isAllowed: true,
+      name: 'Cleric',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.uncommon,
+        custom: service_.classRarity.uncommon
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-003'
+    },
+    {
+      isAllowed: true,
+      name: 'Druid',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.uncommon,
+        custom: service_.classRarity.uncommon
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-004'
+    },
+    {
+      isAllowed: true,
+      name: 'Fighter',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.common,
+        custom: service_.classRarity.common
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-005'
+    },
+    {
+      isAllowed: true,
+      name: 'Monk',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.rare,
+        custom: service_.classRarity.rare
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-006'
+    },
+    {
+      isAllowed: true,
+      name: 'Paladin',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.veryRare,
+        custom: service_.classRarity.veryRare
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-007'
+    },
+    {
+      isAllowed: true,
+      name: 'Ranger',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.veryRare,
+        custom: service_.classRarity.veryRare
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-008'
+    },
+    {
+      isAllowed: true,
+      name: 'Rogue',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.common,
+        custom: service_.classRarity.common
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-009'
+    },
+    {
+      isAllowed: true,
+      name: 'Sorcerer',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.rare,
+        custom: service_.classRarity.rare
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-010'
+    },
+    {
+      isAllowed: true,
+      name: 'Wizard',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.rare,
+        custom: service_.classRarity.rare
+      ],
+      subclasses: [],
+      isNpc: false,
+      id: 'class-011'
+    },
+    {
+      isAllowed: true,
+      name: 'Adept',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0.5,
+        custom: 0.5
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.uncommon,
+        custom: service_.classRarity.uncommon
+      ],
+      subclasses: [],
+      isNpc: true,
+      id: 'class-012'
+    },
+    {
+      isAllowed: true,
+      name: 'Aristocrat',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 0.5,
+        custom: 0.5
+      },
+      rolls: 1,
+      rarity: [
+        default: service_.classRarity.rare,
+        custom: service_.classRarity.rare
+      ],
+      subclasses: [],
+      isNpc: true,
+      id: 'class-013'
+    },
+    {
+      isAllowed: true,
+      name: 'Commoner',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 91,
+        custom: 91
+      },
+      rolls: 4,
+      rarity: [
+        default: service_.classRarity.rare,
+        custom: service_.classRarity.rare
+      ],
+      subclasses: [],
+      isNpc: true,
+      id: 'class-014'
+    },
+    {
+      isAllowed: true,
+      name: 'Expert',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 3,
+        custom: 3
+      },
+      rolls: 3,
+      rarity: [
+        default: service_.classRarity.rare,
+        custom: service_.classRarity.rare
+      ],
+      subclasses: [],
+      isNpc: true,
+      id: 'class-015'
+    },
+    {
+      isAllowed: true,
+      name: 'Warrior',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id
+      ],
+      weight: {
+        default: 5,
+        custom: 5
+      },
+      rolls: 2,
+      rarity: [
+        default: service_.classRarity.rare,
+        custom: service_.classRarity.rare
+      ],
+      subclasses: [],
+      isNpc: true,
+      id: 'class-016'
     }
   ];
 

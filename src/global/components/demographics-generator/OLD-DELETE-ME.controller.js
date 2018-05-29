@@ -561,6 +561,7 @@ app.controller('CityBuilderController', ['Utilities', function (Utilities) {
       officeHolder: 'Highest Level Fighter'
     }
   ];
+  
   vm_.rarityDice = [
     {
       rarity: 'Very Rare',

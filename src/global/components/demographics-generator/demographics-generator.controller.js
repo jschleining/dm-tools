@@ -51,6 +51,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     var array = (vm_.testDisplay === 'tagSelection') ? vm_.localData.tagTypeSelection : vm_.localData.tagSelection;
     return _.find(array, function (o) { return o.id === tagKey; });
   };
+  vm_.classRarityDice = angular.copy(Demographics.classRarityDice);
 
   vm_.generatorSettings = {
     settlementName: '',
