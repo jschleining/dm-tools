@@ -1498,7 +1498,10 @@ app.service('Demographics', function () {
         default: 50,
         custom: 50
       },
-      order: 1
+      order: {
+        default: 1,
+        custom: 1
+      }
     },
     {
       id: 'age-002',
@@ -1513,7 +1516,10 @@ app.service('Demographics', function () {
         default: 35,
         custom: 35
       },
-      order: 2
+      order: {
+        default: 2,
+        custom: 2
+      }
     },
     {
       id: 'age-003',
@@ -1528,7 +1534,10 @@ app.service('Demographics', function () {
         default: 13,
         custom: 13
       },
-      order: 3
+      order: {
+        default: 3,
+        custom: 3
+      }
     },
     {
       id: 'age-004',
@@ -1543,7 +1552,10 @@ app.service('Demographics', function () {
         default: 2,
         custom: 2
       },
-      order: 4
+      order: {
+        default: 4,
+        custom: 4
+      }
     }
   ];
 
@@ -3920,6 +3932,10 @@ app.service('Demographics', function () {
         default: 65,
         custom: 65
       },
+      order: {
+        default: 0,
+        custom: 0
+      },
       chanceForExtraMonstrous: 5,
       key: 'conventional',
       id: 'pctr-001'
@@ -3937,6 +3953,10 @@ app.service('Demographics', function () {
         default: 30,
         custom: 30
       },
+      order: {
+        default: 1,
+        custom: 1
+      },
       chanceForExtraMonstrous: 0,
       key: 'nonstandard',
       id: 'pctr-002'
@@ -3953,6 +3973,10 @@ app.service('Demographics', function () {
       weight: {
         default: 5,
         custom: 5
+      },
+      order: {
+        default: 2,
+        custom: 2
       },
       chanceForExtraMonstrous: 0,
       key: 'magical',
@@ -3993,6 +4017,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'dflt-001',
@@ -4009,6 +4037,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4027,6 +4059,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 2,
+            custom: 2
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4065,6 +4101,10 @@ app.service('Demographics', function () {
             default: 50,
             custom: 50
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 50,
           owner: 'dflt-002',
@@ -4081,6 +4121,10 @@ app.service('Demographics', function () {
           weight: {
             default: 40,
             custom: 40
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 40,
@@ -4099,6 +4143,10 @@ app.service('Demographics', function () {
             default: 10,
             custom: 10
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 10,
           owner: 'dflt-002',
@@ -4116,6 +4164,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4155,6 +4207,10 @@ app.service('Demographics', function () {
             default: 5,
             custom: 5
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 5,
           owner: 'dflt-003',
@@ -4171,6 +4227,10 @@ app.service('Demographics', function () {
           weight: {
             default: 5,
             custom: 5
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 5,
@@ -4189,6 +4249,10 @@ app.service('Demographics', function () {
             default: 50,
             custom: 50
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 50,
           owner: 'dflt-003',
@@ -4205,6 +4269,10 @@ app.service('Demographics', function () {
           weight: {
             default: 40,
             custom: 40
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 40,
@@ -4223,6 +4291,10 @@ app.service('Demographics', function () {
             default: 0,
             custom: 0
           },
+          order: {
+            default: 4,
+            custom: 4
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
           owner: 'dflt-003',
@@ -4239,6 +4311,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 5,
+            custom: 5
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4257,6 +4333,10 @@ app.service('Demographics', function () {
             default: 0,
             custom: 0
           },
+          order: {
+            default: 6,
+            custom: 6
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
           owner: 'dflt-003',
@@ -4274,6 +4354,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 7,
+            custom: 7
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4312,6 +4396,10 @@ app.service('Demographics', function () {
             default: 60,
             custom: 60
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 60,
           owner: 'dflt-004',
@@ -4328,6 +4416,10 @@ app.service('Demographics', function () {
           weight: {
             default: 35,
             custom: 35
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 35,
@@ -4346,6 +4438,10 @@ app.service('Demographics', function () {
             default: 5,
             custom: 5
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 5,
           owner: 'dflt-004',
@@ -4363,6 +4459,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4401,6 +4501,10 @@ app.service('Demographics', function () {
             default: 5,
             custom: 5
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 5,
           owner: 'dflt-005',
@@ -4417,6 +4521,10 @@ app.service('Demographics', function () {
           weight: {
             default: 60,
             custom: 60
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 60,
@@ -4435,6 +4543,10 @@ app.service('Demographics', function () {
             default: 35,
             custom: 35
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 35,
           owner: 'dflt-005',
@@ -4452,6 +4564,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4490,6 +4606,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'dflt-006',
@@ -4506,6 +4626,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4524,6 +4648,10 @@ app.service('Demographics', function () {
             default: 0,
             custom: 0
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
           owner: 'dflt-006',
@@ -4540,6 +4668,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4558,6 +4690,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 4,
+            custom: 4
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4595,6 +4731,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'dflt-007',
@@ -4612,6 +4752,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4649,6 +4793,10 @@ app.service('Demographics', function () {
             default: 3,
             custom: 3
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 3,
           owner: 'dflt-008',
@@ -4665,6 +4813,10 @@ app.service('Demographics', function () {
           weight: {
             default: 5,
             custom: 5
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 5,
@@ -4683,6 +4835,10 @@ app.service('Demographics', function () {
             default: 14,
             custom: 14
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 14,
           owner: 'dflt-008',
@@ -4699,6 +4855,10 @@ app.service('Demographics', function () {
           weight: {
             default: 17,
             custom: 17
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 17,
@@ -4717,6 +4877,10 @@ app.service('Demographics', function () {
             default: 11,
             custom: 11
           },
+          order: {
+            default: 4,
+            custom: 4
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 11,
           owner: 'dflt-008',
@@ -4733,6 +4897,10 @@ app.service('Demographics', function () {
           weight: {
             default: 12,
             custom: 12
+          },
+          order: {
+            default: 5,
+            custom: 5
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 12,
@@ -4751,6 +4919,10 @@ app.service('Demographics', function () {
             default: 5,
             custom: 5
           },
+          order: {
+            default: 6,
+            custom: 6
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 5,
           owner: 'dflt-008',
@@ -4767,6 +4939,10 @@ app.service('Demographics', function () {
           weight: {
             default: 12,
             custom: 12
+          },
+          order: {
+            default: 7,
+            custom: 7
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 12,
@@ -4785,6 +4961,10 @@ app.service('Demographics', function () {
             default: 23,
             custom: 23
           },
+          order: {
+            default: 8,
+            custom: 8
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 23,
           owner: 'dflt-008',
@@ -4801,6 +4981,10 @@ app.service('Demographics', function () {
           weight: {
             default: 1,
             custom: 1
+          },
+          order: {
+            default: 9,
+            custom: 9
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 1,
@@ -4819,6 +5003,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 10,
+            custom: 10
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4857,6 +5045,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'dflt-009',
@@ -4874,6 +5066,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4893,6 +5089,10 @@ app.service('Demographics', function () {
             default: 0,
             custom: 0
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
           owner: 'dflt-009',
@@ -4910,6 +5110,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -4947,6 +5151,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'elem-001',
@@ -4964,6 +5172,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5018,6 +5230,10 @@ app.service('Demographics', function () {
             default: 25,
             custom: 25
           },
+          order: {
+            default: 1,
+            custom: 1
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 25,
           owner: 'elem-002',
@@ -5034,6 +5250,10 @@ app.service('Demographics', function () {
           weight: {
             default: 25,
             custom: 25
+          },
+          order: {
+            default: 2,
+            custom: 2
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 25,
@@ -5052,6 +5272,10 @@ app.service('Demographics', function () {
             default: 25,
             custom: 25
           },
+          order: {
+            default: 3,
+            custom: 3
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 25,
           owner: 'elem-002',
@@ -5069,6 +5293,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 4,
+            custom: 4
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5106,6 +5334,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'elem-003',
@@ -5123,6 +5355,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5161,6 +5397,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-001',
@@ -5177,6 +5417,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5195,6 +5439,10 @@ app.service('Demographics', function () {
             default: 0,
             custom: 0
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
           owner: 'volo-001',
@@ -5211,6 +5459,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5229,6 +5481,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 4,
+            custom: 4
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5268,6 +5524,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-002',
@@ -5286,6 +5546,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5323,6 +5587,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-003',
@@ -5340,6 +5608,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5380,6 +5652,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-004',
@@ -5397,6 +5673,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5416,6 +5696,10 @@ app.service('Demographics', function () {
             default: 0,
             custom: 0
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
           owner: 'volo-004',
@@ -5433,6 +5717,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5452,6 +5740,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 4,
+            custom: 4
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5491,6 +5783,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-005',
@@ -5509,6 +5805,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5546,6 +5846,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-006',
@@ -5563,6 +5867,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5600,6 +5908,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-007',
@@ -5617,6 +5929,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5654,6 +5970,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-008',
@@ -5671,6 +5991,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 01
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5708,6 +6032,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-009',
@@ -5725,6 +6053,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5762,6 +6094,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-010',
@@ -5779,6 +6115,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5816,6 +6156,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-011',
@@ -5833,6 +6177,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5870,6 +6218,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'volo-012',
@@ -5887,6 +6239,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5924,6 +6280,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'tort-001',
@@ -5941,6 +6301,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -5978,6 +6342,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'uaeb-001',
@@ -5995,6 +6363,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -6032,6 +6404,10 @@ app.service('Demographics', function () {
             default: 16,
             custom: 16
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 16,
           owner: 'uaeb-002',
@@ -6048,6 +6424,10 @@ app.service('Demographics', function () {
           weight: {
             default: 16,
             custom: 16
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 16,
@@ -6066,6 +6446,10 @@ app.service('Demographics', function () {
             default: 16,
             custom: 16
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 16,
           owner: 'uaeb-002',
@@ -6082,6 +6466,10 @@ app.service('Demographics', function () {
           weight: {
             default: 16,
             custom: 16
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 16,
@@ -6100,6 +6488,10 @@ app.service('Demographics', function () {
             default: 16,
             custom: 16
           },
+          order: {
+            default: 4,
+            custom: 4
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 16,
           owner: 'uaeb-002',
@@ -6116,6 +6508,10 @@ app.service('Demographics', function () {
           weight: {
             default: 20,
             custom: 20
+          },
+          order: {
+            default: 5,
+            custom: 5
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 20,
@@ -6134,6 +6530,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 6,
+            custom: 6
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -6169,6 +6569,10 @@ app.service('Demographics', function () {
           weight: {
             default: 100,
             custom: 100
+          },
+          order: {
+            default: 0,
+            custom: 0
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
@@ -6206,6 +6610,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'psz-001',
@@ -6223,6 +6631,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -6260,6 +6672,10 @@ app.service('Demographics', function () {
             default: 33,
             custom: 33
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 33,
           owner: 'psz-002',
@@ -6276,6 +6692,10 @@ app.service('Demographics', function () {
           weight: {
             default: 34,
             custom: 34
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 34,
@@ -6294,6 +6714,10 @@ app.service('Demographics', function () {
             default: 33,
             custom: 33
           },
+          order: {
+            default: 2,
+            custom: 2
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 33,
           owner: 'psz-002',
@@ -6311,6 +6735,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 3,
+            custom: 3
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -6349,6 +6777,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'psz-003',
@@ -6385,6 +6817,10 @@ app.service('Demographics', function () {
             default: 100,
             custom: 100
           },
+          order: {
+            default: 0,
+            custom: 0
+          },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 100,
           owner: 'uawb-001',
@@ -6402,6 +6838,10 @@ app.service('Demographics', function () {
           weight: {
             default: 0,
             custom: 0
+          },
+          order: {
+            default: 1,
+            custom: 1
           },
           ageCategories: service_.defaultAgeCategories,
           percentOfTotalChildrenForRace: 0,
@@ -6579,7 +7019,7 @@ app.service('Demographics', function () {
         {
           id: 'mixture-002d',
           name: 'Other',
-          isAllowed: false,
+          isAllowed: true,
           type: 'mixture',
           tags: [
             service_.defaultTagList.dflt.id
@@ -6757,7 +7197,7 @@ app.service('Demographics', function () {
         {
           id: 'mixture-003h',
           name: 'Other',
-          isAllowed: false,
+          isAllowed: true,
           type: 'mixture',
           tags: [
             service_.defaultTagList.dflt.id
@@ -6907,7 +7347,7 @@ app.service('Demographics', function () {
         {
           id: 'mixture-004h',
           name: 'Other',
-          isAllowed: false,
+          isAllowed: true,
           type: 'mixture',
           tags: [
             service_.defaultTagList.dflt.id

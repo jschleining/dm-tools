@@ -113,29 +113,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   vm_.filteredTags = [];
   //#endregion
 
-
-  //#region Settlement Vars
-  // vm_.settlementSelection = angular.copy(Demographics.defaultSettlementTypes);
-  // //TODO: This doesnt work. Passing an object array into a directive was failing so I did it the crappy way. FIX!!!
-  // vm_.settlementCustomFields = [
-  //   {
-  //     name: 'GP Limit',
-  //     property: 'gpLimit',
-  //     checks: ['min-1']
-  //   },
-  //   {
-  //     name: 'Power Centers',
-  //     property: 'powerCenterQuantity',
-  //     checks: ['min-1']
-  //   },
-  //   {
-  //     name: 'P.C. Modifier',
-  //     property: 'powerCenterModifier',
-  //     checks: []
-  //   }
-  // ];
-  //#endregion
-
   //#region Power Center Vars
   vm_.filteredPowerCenters = [];
   //#endregion
@@ -246,15 +223,26 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //---------------------------------------------------------------------- =FUNCTIONS
 
   //#region Functions
-
   vm_.generateSettlement = generateSettlement_;
+  vm_.updateSettlement = updateSettlement_;
+  vm_.deleteSettlement = deleteSettlement_;
+  vm_.getPopulationCount = getPopulationCount_;
+  vm_.getReadyCash = getReadyCash_;
+  vm_.getMilitary = getMilitary_;
+  vm_.getMilitia = getMilitia_;
+  vm_.getPowerCenters = getPowerCenters_;
+  vm_.getRacialMix = getRacialMix_;
+  vm_.updateFilteredMonsterList = updateFilteredMonsterList_;
+  vm_.getAgeDemographicsMix = getAgeDemographicsMix_;
+  vm_.getChildCount = getChildCount_;
+  vm_.calculatePopulationDivision = calculatePopulationDivision_;
+  
   function generateSettlement_() {
     var newSettlement = {};
     vm_.updateSettlement(newSettlement, true);
     vm_.settlement.generated.push(newSettlement);
   }
 
-  vm_.updateSettlement = updateSettlement_;
   function updateSettlement_(settlement, isNewSettlement) {
     if (isNewSettlement) {
       settlement.settlementName = angular.copy(vm_.generatorSettings.settlementName);
@@ -271,12 +259,11 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     settlement.military = vm_.getMilitary(settlement.populationCount);
     settlement.militia = vm_.getMilitia(settlement.populationCount);
     settlement.powerCenters = vm_.getPowerCenters(settlement.settlementType.powerCenterQuantity);
-    settlement.calculatedRacialDemographics = vm_.getRacialMix(settlement.racialMix, settlement.populationCount);
+    settlement.calculatedRacialDemographics = vm_.getRacialMix(settlement.racialMix.mix, settlement.populationCount);
 
     vm_.getAgeDemographicsMix(settlement.calculatedRacialDemographics, 'weighted', 'weighted');
   }
 
-  vm_.deleteSettlement = deleteSettlement_;
   function deleteSettlement_(index) {
     vm_.settlement.generated.splice(index, 1);
   }
@@ -287,7 +274,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
    * @param {Number} min Minimum value.
    * @param {Number} max Maximum value.
    */
-  vm_.getPopulationCount = getPopulationCount_;
   function getPopulationCount_(min, max) {
     return Utilities.getRandom(min, max);
   }
@@ -298,7 +284,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
    * @param {Number} gpLimit Most expensive item available.
    * @param {Number} population Total population of the settlement.
    */
-  vm_.getReadyCash = getReadyCash_;
   function getReadyCash_(gpLimit, population) {
     return (Math.floor(gpLimit / 2) * Math.floor(population / 10));
   }
@@ -308,7 +293,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
    *
    * @param {Number} population Total population of the settlement.
    */
-  vm_.getMilitary = getMilitary_;
   function getMilitary_(population) {
     return Math.floor(population / 100);
   }
@@ -318,7 +302,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
    *
    * @param {Number} population Total population of the settlement.
    */
-  vm_.getMilitia = getMilitia_;
   function getMilitia_(population) {
     return Math.floor(population / 20);
   }
@@ -328,7 +311,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
    *
    * @param {Number} quantity Number of power centers to generate.
    */
-  vm_.getPowerCenters = getPowerCenters_;
   function getPowerCenters_(quantity) {
     var powerCenters = [];
     for (var current = 0; current < quantity; current++) {
@@ -401,104 +383,40 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     return powerCenters;
   }
 
-  vm_.getRacialMix = getRacialMix_;
-  function getRacialMix_(mix, population, generationMethod) {
-    generationMethod = generationMethod || 'percent';
-    var mixList = mix.mix;
-    var remaining = population;
+  function getRacialMix_(mix, totalPopulation, raceMethod, subraceMethod) {
+    raceMethod = raceMethod || 'percent';
+    subraceMethod = subraceMethod || 'weighted';
+    var populationRemaining = totalPopulation;
     var calculatedDemographics = [];
-    if (generationMethod === 'percent') {
-      mixList = _.sortBy(mixList, 'weight.custom').reverse();
-      for (var race = 0; race < mixList.length; race++) {
-        // Handle 'Other' Races
-        if (mixList[race].races && mixList[race].races.length > 0 && mixList[race].weight.custom > 0) {
-          var otherPercentage = mixList[race].weight.custom / 100;
-          var otherPopCount = Math.ceil(population * otherPercentage);
-          remaining -= otherPopCount;
 
-          mixList[race].races = _.sortBy(mixList[race].races, 'weight.custom').reverse();
-          var otherRemaining = otherPopCount;
-          for (var otherRace = 0; otherRace < mixList[race].races.length; otherRace++) {
-            if (otherRemaining > 0) {
-              var otherRacesPercentage = mixList[race].races[otherRace].weight.custom / 100;
-              var otherRacesPopCount = Math.ceil(otherPopCount * otherRacesPercentage);
-              if (otherRacesPopCount > otherRemaining) {
-                otherRacesPopCount = otherRemaining;
-              }
-              otherRemaining -= otherRacesPopCount;
+    vm_.calculatePopulationDivision(mix, totalPopulation, raceMethod);
+    for (var mixItem = 0; mixItem < mix.length; mixItem++) {
+      if (mix[mixItem].races) {
+        vm_.calculatePopulationDivision(mix[mixItem].races, mix[mixItem].population.census, raceMethod);
+      }
+    }
 
-              var other = angular.copy($filter('filter')(vm_.localData.raceSelection, {id: mixList[race].races[otherRace].raceId})[0]);
-              other.population = {
-                census: otherRacesPopCount,
-                percent: ((otherRacesPopCount / population) * 100).toFixed(2)
-              };
-              calculatedDemographics.push(other);
-
-              vm_.getSubraceMix(other.subraces, other.population.census);
-            } else {
-              break;
-            }
-          }
-          mixList[race].races = _.sortBy(mixList[race].races, 'weight.custom').reverse();
-        }
-
-        if (!mixList[race].races) {
-          if (mixList[race].weight.custom > 0) {
-            var percentage = mixList[race].weight.custom / 100;
-            var popCount = Math.ceil(population * percentage);
-            if (popCount > remaining) {
-              popCount = remaining;
-            }
-            remaining -= popCount;
-
-            var preset = angular.copy($filter('filter')(vm_.localData.raceSelection, {id: mixList[race].raceId})[0]);
-            preset.population = {
-              census: popCount,
-              percent: ((popCount / population) * 100).toFixed(2)
-            };
-            calculatedDemographics.push(preset);
-
-            vm_.getSubraceMix(preset.subraces, preset.population.census);
-          }
+    for (var item = 0; item < mix.length; item++) {
+      var race = {};
+      if (!mix[item].races) {
+        race = angular.copy($filter('filter')(vm_.localData.raceSelection, {id: mix[item].raceId})[0]);
+        race.population = mix[item].population;
+        calculatedDemographics.push(race);
+      } else {
+        for (var subItem = 0; subItem < mix[item].races.length; subItem++) {
+          race = angular.copy($filter('filter')(vm_.localData.raceSelection, {id: mix[item].races[subItem].raceId})[0]);
+          race.population = mix[item].races[subItem].population;
+          calculatedDemographics.push(race);
         }
       }
-    } else {
-      // using weighted instead of percentage
     }
-    calculatedDemographics = _.sortBy(calculatedDemographics, 'population').reverse();
+
+    for (var itm = 0; itm < calculatedDemographics.length; itm++) {
+      vm_.calculatePopulationDivision(calculatedDemographics[itm].subraces, calculatedDemographics[itm].population.census, subraceMethod);
+    }
+
+    calculatedDemographics = _.sortBy(calculatedDemographics, 'population');
     return calculatedDemographics;
-  }
-
-  vm_.getSubraceMix = getSubraceMix_;
-  function getSubraceMix_(subraces, raceCensus, generationMethod) {
-    generationMethod = generationMethod || 'percent';
-
-    var remaining = raceCensus;
-    if (generationMethod === 'percent') {
-      for (var subrace = 0; subrace < subraces.length; subrace++) {
-        if (subraces[subrace].isAllowed && subraces[subrace].weight.custom > 0 && remaining > 0) {
-          var percentage = subraces[subrace].weight.custom / 100;
-          var popCount = Math.ceil(raceCensus * percentage);
-
-          if (popCount > remaining) {
-            popCount = remaining;
-          }
-          remaining -= popCount;
-
-          subraces[subrace].population = {
-            census: popCount,
-            percent: ((popCount / raceCensus) * 100).toFixed(2)
-          };
-        } else {
-          subraces[subrace].population = {
-            census: 0,
-            percent: 0
-          };
-        }
-      }
-    } else {
-      // use weighted method
-    }
   }
 
   //#region Tag Functions
@@ -532,7 +450,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     }
   }
 
-  vm_.updateFilteredMonsterList = updateFilteredMonsterList_;
   function updateFilteredMonsterList_(filterBy) {
     var tagArray = $filter('dictionaryToArray')(vm_.localData.tagSelection);
     vm_.filteredTags = Utilities.getMatches(tagArray, 'tagTypes', 'alignment', 'contains');
@@ -561,171 +478,24 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   }
   //#endregion
 
-  vm_.getAgeDemographicsMix = getAgeDemographicsMix_;
   function getAgeDemographicsMix_(races, raceMethod, subraceMethod) {
     raceMethod = raceMethod || 'percent';
     subraceMethod = subraceMethod || 'percent';
 
-    // handle races
-    for (var race = 0; race < races.length; race++) {
-      races[race].ageCategories = angular.copy(vm_.localData.ageSelection);
-      var racePopulation = races[race].population.census;
+    for (var raceCounter = 0; raceCounter < races.length; raceCounter++) {
+      races[raceCounter].ageCategories = angular.copy(vm_.localData.ageSelection);
+      vm_.calculatePopulationDivision(races[raceCounter].ageCategories, races[raceCounter].population.census, raceMethod);
 
-      if (raceMethod === 'percent') {
-        var raceRemaining = racePopulation;
-
-        // sort the list low to high if there are enough
-        if (racePopulation >= (races[race].ageCategories.length * 4)) {
-          _.sortBy(races[race].ageCategories, 'weight.custom');
-        }
-
-        for (var raceAge = 0; raceAge < races[race].ageCategories.length; raceAge++) {
-          if (races[race].ageCategories[raceAge].weight.custom > 0 && raceRemaining > 0) {
-            // if weight > 0 and still some remaining
-            var racePercentage = races[race].ageCategories[raceAge].weight.custom / 100;
-            var raceCount = Math.ceil(racePopulation * racePercentage);
-
-            if (raceCount > raceRemaining) {
-              raceCount = raceRemaining;
-            }
-            raceRemaining -= raceCount;
-
-            races[race].ageCategories[raceAge].population = {
-              census: raceCount,
-              percent: ((raceCount / racePopulation) * 100).toFixed(2)
-            };
-          } else {
-            // handle weight 0 or none remaining
-            races[race].ageCategories[raceAge].population = {
-              census: 0,
-              percent: (0).toFixed(2)
-            };
-          }
-        }
-
-        // sort the list back into correct order if it was reversed
-        if (racePopulation >= (races[race].ageCategories.length * 4)) {
-          _.sortBy(races[race].ageCategories, 'order');
-        }
-      } else {
-        // use weighted random
-        Utilities.generateValueRanges(races[race].ageCategories);
-
-        for (var rAgeCategory = 0; rAgeCategory < races[race].ageCategories.length; rAgeCategory++) {
-          races[race].ageCategories[rAgeCategory].population = {
-            census: 0,
-            percent: 0
-          };
-        }
-
-        for (var r = 0; r < racePopulation; r++) {
-          var rAge = Utilities.getItemFromWeightedObjectArray(races[race].ageCategories);
-          while (rAge.weight.custom === 0) {
-            rAge = Utilities.getItemFromWeightedObjectArray(races[race].ageCategories);
-          }
-          var rAgeIndex = Utilities.getObjectIndex(races[race].ageCategories, 'name', rAge.name);
-          races[race].ageCategories[rAgeIndex].population.census++;
-          races[race].ageCategories[rAgeIndex].population.percent = 
-              ((races[race].ageCategories[rAgeIndex].population.census / racePopulation) * 100).toFixed(2);
-        }
-
-      }
-
-      // // add children count
-      // var raceChildCount = Math.floor(racePopulation * (races[race].percentageOfChildren / 100));
-      // races[race].ageCategories.unshift({
-      //   name: 'Child',
-      //   population: {
-      //     census: raceChildCount,
-      //     percent: ((raceChildCount / racePopulation) * 100).toFixed(2)
-      //   }
-      // });
-    }
-
-    // handle subraces
-    for (var rn = 0; rn < races.length; rn++) {
-      for (var srn = 0; srn < races[rn].subraces.length; srn++) {
-        var subrace = races[rn].subraces[srn];
+      for (var subraceCounter = 0; subraceCounter < races[raceCounter].subraces.length; subraceCounter++) {
+        var subrace = races[raceCounter].subraces[subraceCounter];
         subrace.ageCategories = angular.copy(vm_.localData.ageSelection);
-        var subracePopulation = subrace.population.census;
-
-        if (subraceMethod === 'percent') {
-          var subraceRemaining = subracePopulation;
-
-          // sort the list low to high if there are enough
-          if (subracePopulation >= (subrace.ageCategories.length * 4)) {
-            _.sortBy(subrace.ageCategories, 'weight.custom');
-          }
-
-          for (var subraceAge = 0; subraceAge < subrace.ageCategories.length; subraceAge++) {
-            if (subrace.ageCategories[subraceAge].weight.custom > 0 && subraceRemaining > 0) {
-              // if weight > 0 and still some remaining
-              var subracePercentage = subrace.ageCategories[subraceAge].weight.custom / 100;
-              var subraceCount = Math.ceil(subracePopulation * subracePercentage);
-
-              if (subraceCount > subraceRemaining) {
-                subraceCount = subraceRemaining;
-              }
-              subraceRemaining -= subraceCount;
-
-              subrace.ageCategories[subraceAge].population = {
-                census: subraceCount,
-                percent: ((subraceCount / subracePopulation) * 100).toFixed(2)
-              };
-            } else {
-              // handle weight 0 or none remaining
-              subrace.ageCategories[subraceAge].population = {
-                census: 0,
-                percent: (0).toFixed(2)
-              };
-            }
-          }
-
-          // sort the list back into correct order if it was reversed
-          if (subracePopulation >= (subrace.ageCategories.length * 4)) {
-            _.sortBy(subrace.ageCategories, 'order');
-          }
-        } else {
-          // use weighted random
-          Utilities.generateValueRanges(subrace.ageCategories);
-
-          for (var srAgeCategory = 0; srAgeCategory < subrace.ageCategories.length; srAgeCategory++) {
-            subrace.ageCategories[srAgeCategory].population = {
-              census: 0,
-              percent: 0
-            };
-          }
-
-          for (var sr = 0; sr < subracePopulation; sr++) {
-            var srAge = Utilities.getItemFromWeightedObjectArray(subrace.ageCategories);
-            while (srAge.weight.custom === 0) {
-              srAge = Utilities.getItemFromWeightedObjectArray(subrace.ageCategories);
-            }
-            var srAgeIndex = Utilities.getObjectIndex(subrace.ageCategories, 'name', srAge.name);
-            subrace.ageCategories[srAgeIndex].population.census++;
-            subrace.ageCategories[srAgeIndex].population.percent = 
-                ((subrace.ageCategories[srAgeIndex].population.census / subracePopulation) * 100).toFixed(2);
-          }
-        }
-
-        // // add children count
-        // var subraceChildCount = Math.floor(subracePopulation * (subrace.percentOfTotalChildrenForRace / 100));
-        // subrace.ageCategories.unshift({
-        //   name: 'Child',
-        //   population: {
-        //     census: subraceChildCount,
-        //     percent: ((subraceChildCount / subracePopulation) * 100).toFixed(2)
-        //   }
-        // });
-
+        vm_.calculatePopulationDivision(subrace.ageCategories, subrace.population.census, subraceMethod);
       }
     }
 
     vm_.getChildCount(races);
-
   }
 
-  vm_.getChildCount = getChildCount_;
   function getChildCount_(races) {
     for (var rn = 0; rn < races.length; rn++) {
       var race = races[rn];
@@ -733,7 +503,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
       var remainingChildCount = raceChildCount;
 
       race.ageCategories.unshift({
-        name: 'Child',
+        name: 'Children',
         population: {
           census: raceChildCount,
           percent: ((raceChildCount / race.population.census) * 100).toFixed(2)
@@ -756,18 +526,92 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         remainingChildCount -= subraceChildCount;
 
         subrace.ageCategories.unshift({
-          name: 'Child',
+          name: 'Children',
           population: {
             census: subraceChildCount,
             percent: ((subraceChildCount / raceChildCount) * 100).toFixed(2)
           }
         });
-
       }
     }
   }
 
+  function calculatePopulationDivision_(array, totalPopulation, arrayMethod) {
+    arrayMethod = arrayMethod || 'weighted';
 
+    if (arrayMethod === 'weighted') {
+      Utilities.generateValueRanges(array);
+
+      for (var counter = 0; counter < array.length; counter++) {
+        array[counter].population = {
+          census: 0,
+          percent: 0
+        }
+      }
+      for (var c = 0; c < totalPopulation; c++) {
+        // keep trying to get an item from the array for as long as it returns
+        // an object that has either weight 0 or is not allowed.
+        var arrayItem = Utilities.getItemFromWeightedObjectArray(array);
+        while(arrayItem.weight.custom === 0 || !arrayItem.isAllowed) {
+          arrayItem = Utilities.getItemFromWeightedObjectArray(array);
+        }
+
+        arrayItem.population.census++;
+        arrayItem.population.percent = 
+            ((arrayItem.population.census / totalPopulation) * 100).toFixed(2);
+      }
+    } else {
+      var populationRemaining = totalPopulation;
+
+      array = _.chain(array).
+          sortBy(function(obj) {return obj.name}).
+          reverse().
+          sortBy(function(obj) {return obj.weight.custom}).
+          reverse().
+          value();
+
+      // reversing it if enough population. This fixes a scenario where
+      // it may populate items weirdly. if there is too low of a population,
+      // it will start with the highest percentage first. Otherwise, this
+      // condition occurs and it allows population from least to greatest.
+      if (totalPopulation >= array.length * 4) {
+        array.reverse();
+      }
+
+      for (var item = 0; item < array.length; item++) {
+        //if weight > 0 and still some remaining
+        if (array[item].weight.custom > 0 && populationRemaining > 0) {
+          var itemPercentage = array[item].weight.custom / 100;
+          var itemCount = Math.ceil(totalPopulation * itemPercentage);
+          if (itemCount > populationRemaining) {
+            itemCount = populationRemaining
+          }
+          populationRemaining -= itemCount;
+          array[item].population = {
+            census: itemCount,
+            percent: ((itemCount / totalPopulation) * 100).toFixed(2)
+          };
+        } else {
+          //handle weight 0 or none remaining
+          array[item].population = {
+            census: 0,
+            percent: 0
+          };
+        }
+      }
+
+      // If list was initially sorted, sort back into correct order.
+      if (totalPopulation >= array.length * 4) {
+        // if there is a preset order, sort by it. Otherwise, reverse so that
+        // it goes from highest to lowest.
+        if (array[0].order) {
+          array = _.sortBy(array, function(obj) {return obj.order.custom});
+        } else {
+          array.reverse();
+        }
+      }
+    }
+  }
 
   // /**
   //  * Populate all races with the age selection default.
@@ -778,9 +622,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   //     races[race].ageCategories = angular.copy(vm_.localData.ageSelection);
   //   }
   // }
-
-
-
 
   //#region General Functions
   // /**

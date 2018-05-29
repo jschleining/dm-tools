@@ -12,7 +12,7 @@ app.service('Utilities', function () {
   service_.getRandom = getRandom_;
 
   /**
-   * Loop through an array of objects with a weight property and generate a range from weights.
+   * Loop through an array of objects with a weight property and assign ranges from weights.
    * This is used for randomly picking a weighted item from an object array.
    */
   function generateValueRanges_(objectArray) {
@@ -71,8 +71,18 @@ app.service('Utilities', function () {
    */
   function getItemFromWeightedObjectArray_(array, modifier, preSelection) {
     modifier = modifier || 0;
-    var min = array[0].weightedRange.min + modifier;
-    var max = array[array.length - 1].weightedRange.max + modifier;
+    for (var f = 0; f < array.length; f++) {
+      if (array[f].weightedRange.min > 0) {
+        var min = array[f].weightedRange.min + modifier;
+        break;
+      }
+    }
+    for (var b = array.length - 1; b >= 0; b--) {
+      if (array[b].weightedRange.max > 0) {
+        var max = array[b].weightedRange.max + modifier;
+        break;
+      }
+    }
     var selection;
     var returnItem = {};
     if (preSelection) {
@@ -93,6 +103,7 @@ app.service('Utilities', function () {
       ) {
         found = true;
       }
+
 
       if (found) {
         returnItem = array[item];
