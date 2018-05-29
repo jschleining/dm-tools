@@ -3,49 +3,6 @@ var app = angular.module('dmTools');
 app.service('Demographics', function () {
   var service_ = this;
 
-  service_.classRarity = {
-    'veryRare': {
-      name: 'Very Rare',
-      dieType: 3,
-      type: 'dice',
-      tagTypes: [
-        service_.tagTypes.DEFAULT
-      ],
-      key: 'veryRare',
-      id: 'dice-001'
-    },
-    'rare': {
-      name: 'Rare',
-      dieType: 4,
-      type: 'dice',
-      tagTypes: [
-        service_.tagTypes.DEFAULT
-      ],
-      key: 'rare',
-      id: 'dice-002'
-    },
-    'uncommon': {
-      name: 'Uncommon',
-      dieType: 6,
-      type: 'dice',
-      tagTypes: [
-        service_.tagTypes.DEFAULT
-      ],
-      key: 'uncommon',
-      id: 'dice-003'
-    },
-    'common': {
-      name: 'Common',
-      dieType: 8,
-      type: 'dice',
-      tagTypes: [
-        service_.tagTypes.DEFAULT
-      ],
-      key: 'common',
-      id: 'dice-004'
-    }
-  };
-
   /**
    * This is to help filter objects by tag or tag type. Cannot be locally customized, so it
    * is ok to use id instead of passing whole object.
@@ -1271,6 +1228,49 @@ app.service('Demographics', function () {
     }
   };
 
+  service_.classRarity = {
+    'veryRare': {
+      name: 'Very Rare',
+      dieType: 3,
+      type: 'dice',
+      tagTypes: [
+        service_.tagTypes.DEFAULT
+      ],
+      key: 'veryRare',
+      id: 'dice-001'
+    },
+    'rare': {
+      name: 'Rare',
+      dieType: 4,
+      type: 'dice',
+      tagTypes: [
+        service_.tagTypes.DEFAULT
+      ],
+      key: 'rare',
+      id: 'dice-002'
+    },
+    'uncommon': {
+      name: 'Uncommon',
+      dieType: 6,
+      type: 'dice',
+      tagTypes: [
+        service_.tagTypes.DEFAULT
+      ],
+      key: 'uncommon',
+      id: 'dice-003'
+    },
+    'common': {
+      name: 'Common',
+      dieType: 8,
+      type: 'dice',
+      tagTypes: [
+        service_.tagTypes.DEFAULT
+      ],
+      key: 'common',
+      id: 'dice-004'
+    }
+  };
+
   /**
    * weight should add up to 100. Only used as weighted random value.
    */
@@ -1664,10 +1664,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.rare,
         custom: service_.classRarity.rare
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-001'
@@ -1685,10 +1685,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.uncommon,
         custom: service_.classRarity.uncommon
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-002'
@@ -1706,10 +1706,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.uncommon,
         custom: service_.classRarity.uncommon
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-003'
@@ -1727,10 +1727,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.uncommon,
         custom: service_.classRarity.uncommon
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-004'
@@ -1748,10 +1748,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.common,
         custom: service_.classRarity.common
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-005'
@@ -1769,10 +1769,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.rare,
         custom: service_.classRarity.rare
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-006'
@@ -1790,10 +1790,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.veryRare,
         custom: service_.classRarity.veryRare
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-007'
@@ -1811,10 +1811,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.veryRare,
         custom: service_.classRarity.veryRare
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-008'
@@ -1832,10 +1832,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.common,
         custom: service_.classRarity.common
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-009'
@@ -1853,10 +1853,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.rare,
         custom: service_.classRarity.rare
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-010'
@@ -1874,10 +1874,10 @@ app.service('Demographics', function () {
         custom: 0
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.rare,
         custom: service_.classRarity.rare
-      ],
+      },
       subclasses: [],
       isNpc: false,
       id: 'class-011'
@@ -1895,10 +1895,10 @@ app.service('Demographics', function () {
         custom: 0.5
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.uncommon,
         custom: service_.classRarity.uncommon
-      ],
+      },
       subclasses: [],
       isNpc: true,
       id: 'class-012'
@@ -1916,10 +1916,10 @@ app.service('Demographics', function () {
         custom: 0.5
       },
       rolls: 1,
-      rarity: [
+      rarity: {
         default: service_.classRarity.rare,
         custom: service_.classRarity.rare
-      ],
+      },
       subclasses: [],
       isNpc: true,
       id: 'class-013'
@@ -1937,10 +1937,10 @@ app.service('Demographics', function () {
         custom: 91
       },
       rolls: 4,
-      rarity: [
+      rarity: {
         default: service_.classRarity.rare,
         custom: service_.classRarity.rare
-      ],
+      },
       subclasses: [],
       isNpc: true,
       id: 'class-014'
@@ -1958,10 +1958,10 @@ app.service('Demographics', function () {
         custom: 3
       },
       rolls: 3,
-      rarity: [
+      rarity: {
         default: service_.classRarity.rare,
         custom: service_.classRarity.rare
-      ],
+      },
       subclasses: [],
       isNpc: true,
       id: 'class-015'
@@ -1979,10 +1979,10 @@ app.service('Demographics', function () {
         custom: 5
       },
       rolls: 2,
-      rarity: [
+      rarity: {
         default: service_.classRarity.rare,
         custom: service_.classRarity.rare
-      ],
+      },
       subclasses: [],
       isNpc: true,
       id: 'class-016'

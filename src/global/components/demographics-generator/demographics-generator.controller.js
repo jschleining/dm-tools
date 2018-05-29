@@ -21,6 +21,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     alignmentSelection: angular.copy(Demographics.defaultAlignments),
     ageSelection: angular.copy(Demographics.defaultAgeCategories),
     authoritySelection: angular.copy(Demographics.defaultAuthorities),
+    classSelection: angular.copy(Demographics.defaultClasses),
     climateSelection: angular.copy(Demographics.defaultClimates),
     monsterSelection: angular.copy(Demographics.defaultMonsters),
     powerCenterTypesSelection: angular.copy(Demographics.defaultPowerCenterTypes),
@@ -237,6 +238,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   vm_.getAgeDemographicsMix = getAgeDemographicsMix_;
   vm_.getChildCount = getChildCount_;
   vm_.calculatePopulationDivision = calculatePopulationDivision_;
+  vm_.getClassDemographics = getClassDemographics_;
   
   function generateSettlement_() {
     var newSettlement = {};
@@ -613,6 +615,149 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
       }
     }
   }
+
+  function getClassDemographics_(totalPopulation, useNPCClassLevels) {
+    var remaining = totalPopulation;
+    var calculatedClasses = [];
+
+    for (var classCounter = 0; classCounter < vm_.localData.classSelection.length; classCounter++) {
+      var currentClass = angular.copy(vm_.localData.classSelection[classCounter]);
+      currentClass.population = {
+        census: 0,
+        percent: 0,
+        levels: []
+      };
+      var die = _.find(vm_.classRarityDice, function (obj) {
+        return obj.key === currentClass.rarity;
+      });
+      var quantity = (currentClass.isNpc) ? vm_.settlement.classes.highLevelNPCQuantity : 1;
+    }
+  }
+
+
+
+  // OLD METHOD. DELETE ME
+  function getClassDemographicsOLD_(population) {
+    var remaining = population;
+    var classes = [];
+
+    // loop through each playable class
+    for (var currentClass = 0; currentClass < vm_.classSelection.length; currentClass++) {
+      // set current class
+      var current = vm_.classSelection[currentClass];
+      // set the die type to roll
+      var die = _.find(vm_.rarityDice, function (obj) {
+        return obj.rarity === current.rarityDie;
+      });
+      // set up the base definition object for current class
+      var currentClassObject = {
+        class: current.class,
+        totalCount: 0,
+        levels: []
+      };
+      // determine how many high level characters there are of current class based on pc/npc status
+      var quantity = (current.isPlayable) ? 1 : vm_.settlement.classes.highLevelNPCQuantity;
+      // loop through a number of times equal to how many high level characters exist in this class
+      for (var currentHighLevel = 0; currentHighLevel < quantity; currentHighLevel++) {
+        var currentHighestLevel = 0;
+        for (var dieNum = 0; dieNum < current.rolls; dieNum++) {
+          currentHighestLevel += Utilities.getRandom(1, die.die);
+        }
+        currentHighestLevel += vm_.settlement.classes.classLevelModifier;
+        // var currentHighestLevel = Utilities.getRandom(1, die.die) + vm_.settlement.classes.classLevelModifier;
+
+        // if a class might get extra levels based on the settlement
+        if (vm_.settlement.classes.chanceToAddLevelsToClass > 0) {
+          // if current class exists in the array of classes that might have levels added
+          if (vm_.settlement.classes.classesToCheckForAddedLevels.indexOf(current.class) > -1) {
+            var rand = Utilities.getRandom(1, 100);
+            // if the chance to add succeeds
+            if (rand <= vm_.settlement.classes.chanceToAddLevelsToClass) {
+              currentHighestLevel += vm_.settlement.classes.levelsToAdd;
+            }
+          }
+        }
+
+        var currentLevel = currentHighestLevel;
+        var currentQuantity = 1;
+        if (currentLevel > 0) {
+          var currentLevelIndex = Utilities.getObjectIndex(currentClassObject.levels, 'level', currentLevel);
+          if (currentLevelIndex > -1) {
+            currentClassObject.levels[currentLevelIndex].quantity += currentQuantity;
+          } else {
+            currentClassObject.levels.push(
+                {
+                  level: currentLevel,
+                  quantity: currentQuantity
+                }
+            );
+          }
+          remaining -= currentQuantity;
+          while (Math.floor(currentLevel / 2) >= 1) {
+            currentLevel = Math.floor(currentLevel / 2);
+            currentQuantity *= 2;
+            if (!current.isPlayable && currentLevel === 1) {
+              break;
+            } else {
+              remaining -= currentQuantity;
+              currentLevelIndex = Utilities.getObjectIndex(currentClassObject.levels, 'level', currentLevel);
+              if (currentLevelIndex > -1) {
+                currentClassObject.levels[currentLevelIndex].quantity += currentQuantity;
+              } else {
+                currentClassObject.levels.push(
+                    {
+                      level: currentLevel,
+                      quantity: currentQuantity
+                    }
+                );
+              }
+            }
+          }
+        }
+      }
+
+      currentClassObject.levels = _.sortBy(currentClassObject.levels, 'level');
+      for (var count = 0; count < currentClassObject.levels.length; count++) {
+        currentClassObject.totalCount += currentClassObject.levels[count].quantity;
+      }
+      classes.push(currentClassObject);
+    }
+
+    var npcClasses = [];
+    var remainingNPCCount = remaining;
+    for (var currentNPCClass = 0; currentNPCClass < vm_.classSelection.length; currentNPCClass++) {
+      if (!vm_.classSelection[currentNPCClass].isPlayable) {
+        npcClasses.push(vm_.classSelection[currentNPCClass]);
+      }
+    }
+    npcClasses = _.sortBy(npcClasses, 'npcPercent').reverse();
+    for (var classToUpdate = 0; classToUpdate < npcClasses.length; classToUpdate++) {
+      var classIndex = Utilities.getObjectIndex(classes, 'class', npcClasses[classToUpdate].class);
+      var numberToSet = Math.floor(remaining * (npcClasses[classToUpdate].npcPercent / 100));
+      if (numberToSet > 0) {
+        remainingNPCCount -= numberToSet;
+        classes[classIndex].levels.push(
+            {
+              level: 1,
+              quantity: numberToSet
+            }
+        );
+        classes[classIndex].levels = _.sortBy(classes[classIndex].levels, 'level');
+      }
+    }
+    if (remainingNPCCount > 0) {
+      var finalUpdate = Utilities.getObjectIndex(classes, 'class', npcClasses[0].class);
+      var levelIndex = Utilities.getObjectIndex(classes[finalUpdate].levels, 'level', 1);
+      classes[finalUpdate].levels[levelIndex].quantity += remaining;
+    }
+
+    console.log('classes', classes);
+    return classes;
+  }
+
+
+
+
 
   // /**
   //  * Populate all races with the age selection default.
