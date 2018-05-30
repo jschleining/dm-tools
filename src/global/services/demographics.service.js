@@ -1891,8 +1891,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.phb.id
       ],
       weight: {
-        default: 0.5,
-        custom: 0.5
+        default: 1,
+        custom: 1
       },
       rolls: 1,
       rarity: {
@@ -1912,8 +1912,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.phb.id
       ],
       weight: {
-        default: 0.5,
-        custom: 0.5
+        default: 1,
+        custom: 1
       },
       rolls: 1,
       rarity: {
@@ -1933,8 +1933,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.phb.id
       ],
       weight: {
-        default: 91,
-        custom: 91
+        default: 182,
+        custom: 182
       },
       rolls: 4,
       rarity: {
@@ -1954,8 +1954,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.phb.id
       ],
       weight: {
-        default: 3,
-        custom: 3
+        default: 6,
+        custom: 6
       },
       rolls: 3,
       rarity: {
@@ -1975,8 +1975,8 @@ app.service('Demographics', function () {
         service_.defaultTagList.phb.id
       ],
       weight: {
-        default: 5,
-        custom: 5
+        default: 10,
+        custom: 10
       },
       rolls: 2,
       rarity: {

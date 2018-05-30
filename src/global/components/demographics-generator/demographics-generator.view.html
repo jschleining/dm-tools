@@ -99,72 +99,70 @@
           </div>
         </div>
 
-        <div class="layout-margin-top" layout="column" layout-align="start stretch">
+        <div class="layout-margin-top" layout="row" layout-align="start start">
 
-          <div layout="row" layout-align="start center">
-            <div class="layout-margin-right">
-              <span class="bold">Racial Demographics *:</span>
-            </div>
-          </div>
-
-          <div layout="row" layout-align="start center">
-            <div class="layout-margin-right">
-              <span class="layout-margin-left">* Children do not count towards total population.</span>
-            </div>
-          </div>
-
-          <div ng-repeat="race in settlement.calculatedRacialDemographics track by $index" 
-              ng-class="{'layout-margin-top': !$first}" ng-if="race.population.census > 0">
-            <!-- Races -->
+          <div class="layout-padding-right" layout="column" layout-align="start stretch" flex="50">
             <div layout="row" layout-align="start center">
               <div class="layout-margin-right">
-                <span class="bold">{{race.name}}:</span>&nbsp;{{race.population.census}}
+                <span class="bold">Racial Demographics *:</span>
               </div>
-              <!--<div class="layout-margin-horizontal">-->
-                <!--<span class="bold">{{race.ageCategories[0].name}}:</span>&nbsp;{{race.ageCategories[0].population.census}}-->
-              <!--</div>-->
             </div>
-
-            <!-- Subraces Layout 1-->
-            <!--<div class="layout-margin-left" layout="column" layout="start stretch" -->
-                <!--ng-repeat="subrace in race.subraces" ng-if="subrace.population.census > 0">-->
-              <!--<div layout="row" layout-align="start center">-->
-                <!--<div class="layout-margin-right">-->
-                  <!--<span class="bold">{{subrace.name}}:</span>&nbsp;{{subrace.population.census}}-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="layout-margin-left" layout="column" layout="start stretch">-->
-                <!--<div class="layout-margin-left" layout="row" layout-align="start center" -->
-                    <!--ng-repeat="age in subrace.ageCategories" ng-if="subrace.population.census > 0">-->
-                  <!--<div class="layout-margin-right">-->
-                    <!--<span class="bold">{{age.name}}:</span>&nbsp;{{age.population.census}}-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-
-            <!-- Subraces Layout 2 -->
-            <div class="layout-margin-left" layout="column" layout="start stretch"
-                 ng-repeat="subrace in race.subraces" ng-if="subrace.population.census > 0">
-
+            <div layout="row" layout-align="start center">
+              <div class="layout-margin-right">
+                <span class="layout-margin-left">* Children do not count towards total population.</span>
+              </div>
+            </div>
+            <div ng-repeat="race in settlement.calculatedRacialDemographics track by $index"
+                 ng-class="{'layout-margin-top': !$first}" ng-if="race.population.census > 0">
+              <!-- Races -->
               <div layout="row" layout-align="start center">
-                <div class="layout-margin-right" ng-if="subrace.name !== 'Default'">
-                  <span class="bold">{{subrace.name}}:</span>
+                <div class="layout-margin-right">
+                  <span class="bold">{{race.name}}:</span>&nbsp;{{race.population.census}}
                 </div>
-                <div class="layout-margin-right" ng-if="subrace.name !== 'Default'">
-                  <span>({{subrace.population.census}}):</span>&nbsp;
-                </div>
+              </div>
 
-                <div class="layout-margin-right" ng-repeat="age in subrace.ageCategories"
-                     ng-if="age.population.census > 0" md-colors="{'color': 'background-500'}">
-                  <span class="bold">{{age.name}}:</span>&nbsp;{{age.population.census}}
+              <!-- Subraces Layout -->
+              <div class="layout-margin-left" layout="column" layout="start stretch"
+                   ng-repeat="subrace in race.subraces" ng-if="subrace.population.census > 0">
+                <div layout="row" layout-wrap>
+                  <div class="hintt" ng-if="subrace.name !== 'Default'">
+                    <span class="hint"><span class="bold hint">{{subrace.name}}</span> ({{subrace.population.census}}):</span>
+                  </div>
+                  <div class="hint layout-margin-left" ng-repeat="age in subrace.ageCategories"
+                       ng-if="age.population.census > 0" md-colors="{'color': 'background-500'}">
+                    <span class="hint"><span class="bold hint">{{age.name}}:</span> {{age.population.census}}</span>
+                  </div>
                 </div>
               </div>
             </div>
-
-
           </div>
 
+          <div class="layout-padding-left" layout="column" layout-align="start stretch" flex="50">
+            <div layout="row" layout-align="start center">
+              <div class="layout-margin-right">
+                <span class="bold">Class Demographics:</span>
+              </div>
+            </div>
+            <div ng-repeat="class in settlement.calculatedClassDemographics track by $index"
+                 ng-class="{'layout-margin-top': !$first}" ng-if="class.population.census > 0">
+              <!-- Classes -->
+              <div layout="row" layout-align="start center">
+                <div class="layout-margin-right">
+                  <span class="bold">{{class.name}}:</span>&nbsp;{{class.population.census}}
+                </div>
+              </div>
+
+              <!-- Subclasses layout -->
+              <div class="layout-margin-left" layout="row" layout-wrap>
+                <div class="hint layout-margin-left" ng-repeat="level in class.population.levels track by $index"
+                     md-colors="{'color': 'background-500'}">
+                  <span class="hint"><span class="bold hint">Level {{level.level}}:</span> {{level.quantity}}</span>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
 
         </div>
 

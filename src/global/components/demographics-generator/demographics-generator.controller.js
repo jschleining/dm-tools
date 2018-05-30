@@ -52,7 +52,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     var array = (vm_.testDisplay === 'tagSelection') ? vm_.localData.tagTypeSelection : vm_.localData.tagSelection;
     return _.find(array, function (o) { return o.id === tagKey; });
   };
-  vm_.classRarityDice = angular.copy(Demographics.classRarityDice);
+  vm_.classRarityDice = angular.copy(Demographics.classRarity);
 
   vm_.generatorSettings = {
     settlementName: '',
@@ -263,6 +263,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     settlement.militia = vm_.getMilitia(settlement.populationCount);
     settlement.powerCenters = vm_.getPowerCenters(settlement.settlementType.powerCenterQuantity);
     settlement.calculatedRacialDemographics = vm_.getRacialMix(settlement.racialMix.mix, settlement.populationCount);
+    settlement.calculatedClassDemographics = vm_.getClassDemographics(settlement, true);
 
     vm_.getAgeDemographicsMix(settlement.calculatedRacialDemographics, 'weighted', 'weighted');
   }
@@ -616,8 +617,12 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     }
   }
 
-  function getClassDemographics_(totalPopulation, useNPCClassLevels) {
-    var remaining = totalPopulation;
+  // this is going to need to be rewritten to account for not leveling NPCs, or even not having NPC classes.
+  // also, as this is old code, it could stand to be cleaned up.
+  //http://www.giantitp.com/forums/showthread.php?554547-5e-NPC-Classes
+  //https://docs.google.com/document/d/19HORKsBEZ_RrE895usgX_iYpcAHFCL_pCdf8BIx2fCM/edit
+  function getClassDemographics_(settlement, useNPCClassLevels) {
+    var remaining = settlement.populationCount;
     var calculatedClasses = [];
 
     for (var classCounter = 0; classCounter < vm_.localData.classSelection.length; classCounter++) {
@@ -627,65 +632,40 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         percent: 0,
         levels: []
       };
-      var die = _.find(vm_.classRarityDice, function (obj) {
-        return obj.key === currentClass.rarity;
-      });
-      var quantity = (currentClass.isNpc) ? vm_.settlement.classes.highLevelNPCQuantity : 1;
-    }
-  }
+      var die = _.findWhere(vm_.classRarityDice, {key: currentClass.rarity.custom.key});
+      var quantity = (currentClass.isNpc) ? settlement.settlementType.classes.highLevelNPCQuantity : 1;
 
-
-
-  // OLD METHOD. DELETE ME
-  function getClassDemographicsOLD_(population) {
-    var remaining = population;
-    var classes = [];
-
-    // loop through each playable class
-    for (var currentClass = 0; currentClass < vm_.classSelection.length; currentClass++) {
-      // set current class
-      var current = vm_.classSelection[currentClass];
-      // set the die type to roll
-      var die = _.find(vm_.rarityDice, function (obj) {
-        return obj.rarity === current.rarityDie;
-      });
-      // set up the base definition object for current class
-      var currentClassObject = {
-        class: current.class,
-        totalCount: 0,
-        levels: []
-      };
-      // determine how many high level characters there are of current class based on pc/npc status
-      var quantity = (current.isPlayable) ? 1 : vm_.settlement.classes.highLevelNPCQuantity;
-      // loop through a number of times equal to how many high level characters exist in this class
+      // get each high level member of this class
       for (var currentHighLevel = 0; currentHighLevel < quantity; currentHighLevel++) {
         var currentHighestLevel = 0;
-        for (var dieNum = 0; dieNum < current.rolls; dieNum++) {
-          currentHighestLevel += Utilities.getRandom(1, die.die);
+
+        // get current high level for this class
+        for (var dieNum = 0; dieNum < currentClass.rolls; dieNum++) {
+          currentHighestLevel += Utilities.getRandom(1, die.dieType);
         }
-        currentHighestLevel += vm_.settlement.classes.classLevelModifier;
-        // var currentHighestLevel = Utilities.getRandom(1, die.die) + vm_.settlement.classes.classLevelModifier;
+        currentHighestLevel += settlement.settlementType.classes.classLevelModifier;
 
         // if a class might get extra levels based on the settlement
-        if (vm_.settlement.classes.chanceToAddLevelsToClass > 0) {
+        if (settlement.settlementType.classes.chanceToAddLevelsToClass > 0) {
           // if current class exists in the array of classes that might have levels added
-          if (vm_.settlement.classes.classesToCheckForAddedLevels.indexOf(current.class) > -1) {
+          if (settlement.settlementType.classes.classesToCheckForAddedLevels.indexOf(currentClass.name) > -1) {
             var rand = Utilities.getRandom(1, 100);
             // if the chance to add succeeds
-            if (rand <= vm_.settlement.classes.chanceToAddLevelsToClass) {
-              currentHighestLevel += vm_.settlement.classes.levelsToAdd;
+            if (rand <= settlement.settlementType.classes.chanceToAddLevelsToClass) {
+              currentHighestLevel += settlement.settlementType.classes.levelsToAdd;
             }
           }
         }
 
+        // start looping through and adding members of the class
         var currentLevel = currentHighestLevel;
         var currentQuantity = 1;
         if (currentLevel > 0) {
-          var currentLevelIndex = Utilities.getObjectIndex(currentClassObject.levels, 'level', currentLevel);
+          var currentLevelIndex = Utilities.getObjectIndex(currentClass.population.levels, 'level', currentLevel);
           if (currentLevelIndex > -1) {
-            currentClassObject.levels[currentLevelIndex].quantity += currentQuantity;
+            currentClass.population.levels[currentLevelIndex].quantity += currentQuantity;
           } else {
-            currentClassObject.levels.push(
+            currentClass.population.levels.push(
                 {
                   level: currentLevel,
                   quantity: currentQuantity
@@ -696,65 +676,89 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
           while (Math.floor(currentLevel / 2) >= 1) {
             currentLevel = Math.floor(currentLevel / 2);
             currentQuantity *= 2;
-            if (!current.isPlayable && currentLevel === 1) {
+            if (currentClass.isNpc && currentLevel === 1) {
               break;
             } else {
               remaining -= currentQuantity;
-              currentLevelIndex = Utilities.getObjectIndex(currentClassObject.levels, 'level', currentLevel);
+              currentLevelIndex = Utilities.getObjectIndex(currentClass.population.levels, 'level', currentLevel);
               if (currentLevelIndex > -1) {
-                currentClassObject.levels[currentLevelIndex].quantity += currentQuantity;
+                currentClass.population.levels[currentLevelIndex].quantity += currentQuantity;
               } else {
-                currentClassObject.levels.push(
-                    {
-                      level: currentLevel,
-                      quantity: currentQuantity
-                    }
+                currentClass.population.levels.push(
+                  {
+                    level: currentLevel,
+                    quantity: currentQuantity
+                  }
                 );
               }
             }
           }
         }
-      }
 
-      currentClassObject.levels = _.sortBy(currentClassObject.levels, 'level');
-      for (var count = 0; count < currentClassObject.levels.length; count++) {
-        currentClassObject.totalCount += currentClassObject.levels[count].quantity;
+        // sort by highest level
+        currentClass.population.levels = _.sortBy(currentClass.population.levels, 'level').reverse();
+        // add up the total number of members of this class
+        for (var count = 0; count < currentClass.population.levels.length; count++) {
+          currentClass.population.census += currentClass.population.levels[count].quantity;
+        }
+        // push the class into the calculated classes
+        calculatedClasses.push(currentClass);
       }
-      classes.push(currentClassObject);
-    }
-
-    var npcClasses = [];
-    var remainingNPCCount = remaining;
-    for (var currentNPCClass = 0; currentNPCClass < vm_.classSelection.length; currentNPCClass++) {
-      if (!vm_.classSelection[currentNPCClass].isPlayable) {
-        npcClasses.push(vm_.classSelection[currentNPCClass]);
-      }
-    }
-    npcClasses = _.sortBy(npcClasses, 'npcPercent').reverse();
-    for (var classToUpdate = 0; classToUpdate < npcClasses.length; classToUpdate++) {
-      var classIndex = Utilities.getObjectIndex(classes, 'class', npcClasses[classToUpdate].class);
-      var numberToSet = Math.floor(remaining * (npcClasses[classToUpdate].npcPercent / 100));
-      if (numberToSet > 0) {
-        remainingNPCCount -= numberToSet;
-        classes[classIndex].levels.push(
-            {
-              level: 1,
-              quantity: numberToSet
-            }
-        );
-        classes[classIndex].levels = _.sortBy(classes[classIndex].levels, 'level');
-      }
-    }
-    if (remainingNPCCount > 0) {
-      var finalUpdate = Utilities.getObjectIndex(classes, 'class', npcClasses[0].class);
-      var levelIndex = Utilities.getObjectIndex(classes[finalUpdate].levels, 'level', 1);
-      classes[finalUpdate].levels[levelIndex].quantity += remaining;
     }
 
-    console.log('classes', classes);
-    return classes;
+    // handle level 1 NPCs
+    var totalNPCs = remaining;
+    var npcs = $filter('filter')(calculatedClasses, {isNpc: true});
+    npcs = _.chain(npcs).
+        sortBy(function(obj) {return obj.name}).
+        reverse().
+        sortBy(function(obj) {return obj.weight.custom}).
+        reverse().
+        value();
+    if (totalNPCs >= npcs.length * 4) {
+      npcs.reverse();
+    }
+    // Right Here , NPC Classes has too many. Guessing in previous loop it breaks. Looks like 4 identical copies
+    console.log('NPC Classes', angular.copy(npcs));
+    for (var npcClass = 0; npcClass < npcs.length; npcClass++) {
+      // if level 1s were generated, remove them
+      var levelArray = npcs[npcClass].population.levels;
+      var addCount = 0;
+      console.log(npcs[npcClass].name, ' || npcs[npcClass].population', angular.copy(npcs[npcClass].population));
+      for (var lvl = levelArray.length - 1; lvl >= 0; lvl--) {
+        console.log('levelArray[lvl]', angular.copy(levelArray[lvl]));
+        if (levelArray[lvl].level === 1) {
+          console.log('Level is 1, Modifying');
+          addCount = levelArray[lvl].quantity;
+          npcs[npcClass].population.census -= levelArray[lvl].quantity;
+          npcs[npcClass].population.levels[lvl].length = 0;
+        }
+      }
+      //if weight > 0 and still some remaining
+      if (npcs[npcClass].weight.custom > 0 && remaining > 0) {
+        var itemPercentage = npcs[npcClass].weight.custom / 100;
+        var itemCount = Math.ceil(totalNPCs * itemPercentage);
+        if (itemCount > remaining) {
+          itemCount = remaining
+        }
+        remaining -= itemCount;
+        npcs[npcClass].population.census += (itemCount + addCount);
+        npcs[npcClass].population.levels.push({
+          level: 1,
+          quantity: itemCount + addCount
+        });
+      }
+    }
+    if (totalNPCs >= npcs.length * 4) {
+      if (npcs[0].order) {
+        npcs = _.sortBy(npcs, function(obj) {return obj.order.custom});
+      } else {
+        npcs.reverse();
+      }
+    }
+
+    return calculatedClasses;
   }
-
 
 
 
