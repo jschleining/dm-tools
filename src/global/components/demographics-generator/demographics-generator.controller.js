@@ -624,7 +624,10 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
   function getClassDemographics_(settlement, useNPCClassLevels) {
     var remaining = settlement.populationCount;
     var calculatedClasses = [];
+    var npcClasses = [];
 
+    // handle all levels for PC classes, and levels down to 2nd for NPC classes.
+    // needs to update to account for not leveling NPCs
     for (var classCounter = 0; classCounter < vm_.localData.classSelection.length; classCounter++) {
       var currentClass = angular.copy(vm_.localData.classSelection[classCounter]);
       currentClass.population = {
@@ -632,6 +635,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         percent: 0,
         levels: []
       };
+
       var die = _.findWhere(vm_.classRarityDice, {key: currentClass.rarity.custom.key});
       var quantity = (currentClass.isNpc) ? settlement.settlementType.classes.highLevelNPCQuantity : 1;
 
@@ -701,67 +705,42 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         for (var count = 0; count < currentClass.population.levels.length; count++) {
           currentClass.population.census += currentClass.population.levels[count].quantity;
         }
-        // push the class into the calculated classes
+      }
+
+      // push the class into the correct array
+      if (!currentClass.isNpc) {
         calculatedClasses.push(currentClass);
+      } else {
+        npcClasses.push(currentClass);
       }
     }
 
     // handle level 1 NPCs
+    var npcLevels = [];
+    for (var npccls = 0; npccls < npcClasses.length; npccls++) {
+      npcLevels.push({
+        npcClassId: npcClasses[npccls].id,
+        levels: npcClasses[npccls].population
+      });
+      npcClasses[npccls].population = null;
+    }
     var totalNPCs = remaining;
-    var npcs = $filter('filter')(calculatedClasses, {isNpc: true});
-    npcs = _.chain(npcs).
-        sortBy(function(obj) {return obj.name}).
-        reverse().
-        sortBy(function(obj) {return obj.weight.custom}).
-        reverse().
-        value();
-    if (totalNPCs >= npcs.length * 4) {
-      npcs.reverse();
-    }
-    // Right Here , NPC Classes has too many. Guessing in previous loop it breaks. Looks like 4 identical copies
-    console.log('NPC Classes', angular.copy(npcs));
-    for (var npcClass = 0; npcClass < npcs.length; npcClass++) {
-      // if level 1s were generated, remove them
-      var levelArray = npcs[npcClass].population.levels;
-      var addCount = 0;
-      console.log(npcs[npcClass].name, ' || npcs[npcClass].population', angular.copy(npcs[npcClass].population));
-      for (var lvl = levelArray.length - 1; lvl >= 0; lvl--) {
-        console.log('levelArray[lvl]', angular.copy(levelArray[lvl]));
-        if (levelArray[lvl].level === 1) {
-          console.log('Level is 1, Modifying');
-          addCount = levelArray[lvl].quantity;
-          npcs[npcClass].population.census -= levelArray[lvl].quantity;
-          npcs[npcClass].population.levels[lvl].length = 0;
-        }
-      }
-      //if weight > 0 and still some remaining
-      if (npcs[npcClass].weight.custom > 0 && remaining > 0) {
-        var itemPercentage = npcs[npcClass].weight.custom / 100;
-        var itemCount = Math.ceil(totalNPCs * itemPercentage);
-        if (itemCount > remaining) {
-          itemCount = remaining
-        }
-        remaining -= itemCount;
-        npcs[npcClass].population.census += (itemCount + addCount);
-        npcs[npcClass].population.levels.push({
-          level: 1,
-          quantity: itemCount + addCount
-        });
-      }
-    }
-    if (totalNPCs >= npcs.length * 4) {
-      if (npcs[0].order) {
-        npcs = _.sortBy(npcs, function(obj) {return obj.order.custom});
-      } else {
-        npcs.reverse();
-      }
+    vm_.calculatePopulationDivision(npcClasses, totalNPCs, 'percentage');
+    for (var npcClass = 0; npcClass < npcClasses.length; npcClass++) {
+      var storedItem = _.findWhere(npcLevels, {npcClassId: npcClasses[npcClass].id});
+      npcClasses[npcClass].population.levels = storedItem.levels.levels;
+      npcClasses[npcClass].population.levels.push({
+        level: 1,
+        quantity: npcClasses[npcClass].population.census
+      });
+      npcClasses[npcClass].population.census += storedItem.levels.census;
+      npcClasses[npcClass].population.percent = 0;
+
+      calculatedClasses.push(npcClasses[npcClass]);
     }
 
     return calculatedClasses;
   }
-
-
-
 
   // /**
   //  * Populate all races with the age selection default.
