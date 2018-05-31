@@ -155,7 +155,7 @@
               <!-- Subclasses layout -->
               <div class="layout-margin-left" layout="row" layout-wrap>
                 <div class="hint layout-margin-left" ng-repeat="level in class.population.levels track by $index"
-                     md-colors="{'color': 'background-500'}">
+                     md-colors="{'color': 'background-500'}" ng-if="level.quantity > 0">
                   <span class="hint"><span class="bold hint">Level {{level.level}}:</span> {{level.quantity}}</span>
                 </div>
               </div>

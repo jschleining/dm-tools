@@ -729,10 +729,17 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     for (var npcClass = 0; npcClass < npcClasses.length; npcClass++) {
       var storedItem = _.findWhere(npcLevels, {npcClassId: npcClasses[npcClass].id});
       npcClasses[npcClass].population.levels = storedItem.levels.levels;
-      npcClasses[npcClass].population.levels.push({
-        level: 1,
-        quantity: npcClasses[npcClass].population.census
-      });
+
+      if (_.findWhere(npcClasses[npcClass].population.levels, {level: 1})) {
+        _.findWhere(npcClasses[npcClass].population.levels, {level: 1}).quantity +=
+            npcClasses[npcClass].population.census;
+      } else {
+        npcClasses[npcClass].population.levels.push({
+          level: 1,
+          quantity: npcClasses[npcClass].population.census
+        });
+      }
+
       npcClasses[npcClass].population.census += storedItem.levels.census;
       npcClasses[npcClass].population.percent = 0;
 
