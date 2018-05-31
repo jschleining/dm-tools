@@ -26,7 +26,6 @@ app.service('Utilities', function () {
           min = max + 1
         }
         max += objectArray[object].weight.custom;
-
         objectArray[object].weightedRange = {
           min: min,
           max: max
@@ -37,18 +36,6 @@ app.service('Utilities', function () {
           max: 0
         };
       }
-
-      // if (object === 0) {
-      //   objectArray[object].weightedRange = {
-      //     min: 1,
-      //     max: objectArray[object].weight.custom
-      //   };
-      // } else {
-      //   objectArray[object].weightedRange = {
-      //     min: objectArray[object - 1].weightedRange.max  + 1,
-      //     max: objectArray[object - 1].weightedRange.max + objectArray[object].weight.custom
-      //   };
-      // }
     }
     return objectArray;
   }
@@ -71,15 +58,17 @@ app.service('Utilities', function () {
    */
   function getItemFromWeightedObjectArray_(array, modifier, preSelection) {
     modifier = modifier || 0;
+    // loop through forward until finding the first entry, then set min
     for (var f = 0; f < array.length; f++) {
       if (array[f].weightedRange.min > 0) {
-        var min = array[f].weightedRange.min + modifier;
+        var min = array[f].weightedRange.min;
         break;
       }
     }
+    // loop through backward until finding the last entry, then set max
     for (var b = array.length - 1; b >= 0; b--) {
       if (array[b].weightedRange.max > 0) {
-        var max = array[b].weightedRange.max + modifier;
+        var max = array[b].weightedRange.max;
         break;
       }
     }
@@ -88,7 +77,13 @@ app.service('Utilities', function () {
     if (preSelection) {
       selection = preSelection;
     } else {
-      selection = service_.getRandom(min, max);
+      selection = service_.getRandom(min, max) + modifier;
+      if (selection < min) {
+        selection = min;
+      }
+      if (selection > max) {
+        selection = max;
+      }
     }
     for (var item = 0; item < array.length; item++) {
       var found = false;
