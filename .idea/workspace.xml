@@ -1470,7 +1470,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demographics-generator.controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="demographics-generator.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
@@ -1617,11 +1617,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demographics-generator.view.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="demographics-generator.view.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="157" column="86" lean-forward="false" selection-start-line="157" selection-start-column="86" selection-end-line="157" selection-end-column="86" />
+            <state relative-caret-position="131">
+              <caret line="124" column="84" lean-forward="false" selection-start-line="124" selection-start-column="84" selection-end-line="124" selection-end-column="84" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
@@ -1632,7 +1632,7 @@
                 <element signature="n#div#0;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-                <marker date="1527782912142" expanded="true" signature="10760:11066" ph="..." />
+                <marker date="1527783506454" expanded="true" signature="10759:11065" ph="..." />
               </folding>
             </state>
           </provider>
@@ -1667,6 +1667,7 @@
       <find>calculatedClasses</find>
       <find>_.find</find>
       <find>console</find>
+      <find>index</find>
     </findStrings>
     <replaceStrings>
       <replace>tagTypes.terrain]</replace>
@@ -1702,8 +1703,8 @@
         <option value="$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.styles.less" />
         <option value="$PROJECT_DIR$/src/global/services/demographics.service.js" />
         <option value="$PROJECT_DIR$/src/styles/mixins.styles.less" />
-        <option value="$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.view.html" />
         <option value="$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.controller.js" />
+        <option value="$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.view.html" />
       </list>
     </option>
   </component>
@@ -1859,12 +1860,12 @@
       <workItem from="1526309336413" duration="8093000" />
       <workItem from="1526483011995" duration="14745000" />
       <workItem from="1526914131664" duration="54174000" />
-      <workItem from="1527605472503" duration="23749000" />
+      <workItem from="1527605472503" duration="23923000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111399000" />
+    <option name="totallyTimeSpent" value="111573000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1813" y="213" width="1546" height="826" extended-state="0" />
@@ -2237,7 +2238,7 @@
             <element signature="n#div#0;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <marker date="1527782912142" expanded="true" signature="10760:11066" ph="..." />
+            <marker date="1527783506454" expanded="true" signature="10759:11065" ph="..." />
           </folding>
         </state>
       </provider>
@@ -4004,7 +4005,7 @@
             <element signature="n#div#0;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <marker date="1527782912142" expanded="true" signature="10760:11066" ph="..." />
+            <marker date="1527783506454" expanded="true" signature="10759:11065" ph="..." />
           </folding>
         </state>
       </provider>
@@ -5612,7 +5613,7 @@
             <element signature="n#div#0;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <marker date="1527782912142" expanded="true" signature="10760:11066" ph="..." />
+            <marker date="1527783506454" expanded="true" signature="10759:11065" ph="..." />
           </folding>
         </state>
       </provider>
@@ -7090,7 +7091,7 @@
             <element signature="n#div#0;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <marker date="1527782912142" expanded="true" signature="10760:11066" ph="..." />
+            <marker date="1527783506454" expanded="true" signature="10759:11065" ph="..." />
           </folding>
         </state>
       </provider>
@@ -9058,25 +9059,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="157" column="86" lean-forward="false" selection-start-line="157" selection-start-column="86" selection-end-line="157" selection-end-column="86" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
-            <marker date="1527782912142" expanded="true" signature="10760:11066" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -9218,6 +9200,25 @@
             <element signature="e#54866#54978#0" expanded="false" />
             <element signature="e#54996#55107#0" expanded="false" />
             <element signature="e#55062#55103#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/global/components/demographics-generator/demographics-generator.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="124" column="84" lean-forward="false" selection-start-line="124" selection-start-column="84" selection-end-line="124" selection-end-column="84" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#2;n#div#0;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#section#0;n#div#0;n#!!top" expanded="false" />
+            <marker date="1527783506454" expanded="true" signature="10759:11065" ph="..." />
           </folding>
         </state>
       </provider>

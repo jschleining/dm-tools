@@ -125,7 +125,7 @@
               <div class="layout-margin-left" layout="column" layout="start stretch"
                    ng-repeat="subrace in race.subraces" ng-if="subrace.population.census > 0">
                 <div layout="row" layout-wrap>
-                  <div class="hintt" ng-if="subrace.name !== 'Default'">
+                  <div class="hint" ng-if="subrace.name !== 'Default'">
                     <span class="hint"><span class="bold hint">{{subrace.name}}</span> ({{subrace.population.census}}):</span>
                   </div>
                   <div class="hint layout-margin-left" ng-repeat="age in subrace.ageCategories"
