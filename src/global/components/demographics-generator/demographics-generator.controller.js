@@ -15,14 +15,13 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     ageSelection: angular.copy(Demographics.defaultAgeCategories),
     authoritySelection: angular.copy(Demographics.defaultAuthorities),
     classSelection: angular.copy(Demographics.defaultClasses),
-    classRaritySelection: angular.copy(Demographics.classRarity),
     climateSelection: angular.copy(Demographics.defaultClimates),
     monsterSelection: angular.copy(Demographics.defaultMonsters),
-    monsterRaritySelection: angular.copy(Demographics.defaultRarities),
     powerCenterTypesSelection: angular.copy(Demographics.defaultPowerCenterTypes),
     powerCenterSelection: angular.copy(Demographics.defaultPowerCenters),
     raceSelection: angular.copy(Demographics.defaultRaces),
     racialMixSelection: angular.copy(Demographics.defaultRacialMixtures),
+    raritySelection: angular.copy(Demographics.defaultRarities),
     settlementSizeSelection: angular.copy(Demographics.defaultSettlementTypes),
     terrainSelection: angular.copy(Demographics.defaultTerrainTypes),
     tagSelection: angular.copy(Demographics.defaultTagList),
@@ -46,7 +45,6 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
     terrainSettings: vm_.settingsTemplateBase + 'demographics-generator-terrain-settings.view.html'
   };
   vm_.settingsTemplate = '';
-  vm_.classRarityDice = angular.copy(Demographics.classRarity);
   vm_.generatorSettings = {
     settlementName: '',
     settlementType: {},
@@ -498,7 +496,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         levels: []
       };
 
-      var die = _.findWhere(vm_.classRarityDice, {key: currentClass.rarity.custom.key});
+      var die = _.findWhere(vm_.localData.raritySelection, {key: currentClass.rarity.custom.key});
       var quantity = (currentClass.isNpc) ? settlement.settlementType.classes.highLevelNPCQuantity : 1;
 
       // get each high level member of this class
@@ -507,7 +505,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
 
         // get current high level for this class
         for (var dieNum = 0; dieNum < currentClass.rolls; dieNum++) {
-          currentHighestLevel += Utilities.getRandom(1, die.dieType);
+          currentHighestLevel += Utilities.getRandom(1, die.classInfo.dieType);
         }
         currentHighestLevel += settlement.settlementType.classes.classLevelModifier;
 

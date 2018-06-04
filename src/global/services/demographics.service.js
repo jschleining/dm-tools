@@ -11,6 +11,7 @@ app.service('Demographics', function () {
     'DEFAULT': 'default',
     'CUSTOM': 'custom',
     'BASIC': 'basic',
+    'EDITION': 'edition',
     'SOURCE': 'source',
     'CREATURE_TYPE': 'creatureType',
     'CREATURE_SUBTYPE': 'creatureSubtype',
@@ -51,6 +52,61 @@ app.service('Demographics', function () {
       ],
       key: 'cust',
       id: 'tag-cust'
+    },
+    'adnd': {
+      isAllowed: true,
+      name: 'Advanced Dungeons and Dragons',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.EDITION
+      ],
+      key: 'adnd',
+      id: 'tag-edition-1'
+    },
+    'dnd3E': {
+      isAllowed: true,
+      name: 'Dungeons and Dragons 3E',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.EDITION
+      ],
+      key: 'dnd3E',
+      id: 'tag-edition-2'
+    },
+    'dnd3_5': {
+      isAllowed: true,
+      name: 'Dungeons and Dragons 3.5',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.EDITION
+      ],
+      key: 'dnd3_5',
+      id: 'tag-edition-3'
+    },
+    'dnd4E': {
+      isAllowed: true,
+      name: 'Dungeons and Dragons 4E',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.EDITION
+      ],
+      key: 'dnd4E',
+      id: 'tag-edition-4'
+    },
+    'dnd5E': {
+      isAllowed: true,
+      name: 'Dungeons and Dragons 5E',
+      type: 'tag',
+      tagTypes: [
+        service_.tagTypes.DEFAULT,
+        service_.tagTypes.EDITION
+      ],
+      key: 'dnd5E',
+      id: 'tag-edition-5'
     },
     'phb': {
       isAllowed: false,
@@ -1118,6 +1174,277 @@ app.service('Demographics', function () {
   };
 
   /**
+   * weight is not used. These are always placed either automatically or manually.
+   */
+  service_.defaultSources = {
+    'phb': {
+      isAllowed: true,
+      name: 'Player\'s Handbook',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
+        service_.defaultTagList.adnd.id,
+        service_.defaultTagList.dnd3E.id,
+        service_.defaultTagList.dnd3_5.id,
+        service_.defaultTagList.dnd4E.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'phb',
+      id: 'source-01'
+    },
+    'mm': {
+      isAllowed: true,
+      name: 'Monster Manual',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
+        service_.defaultTagList.adnd.id,
+        service_.defaultTagList.dnd3E.id,
+        service_.defaultTagList.dnd3_5.id,
+        service_.defaultTagList.dnd4E.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'mm',
+      id: 'source-02'
+    },
+    'dmg': {
+      isAllowed: true,
+      name: 'Dungeon Master\'s Guide',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
+        service_.defaultTagList.adnd.id,
+        service_.defaultTagList.dnd3E.id,
+        service_.defaultTagList.dnd3_5.id,
+        service_.defaultTagList.dnd4E.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'dmg',
+      id: 'source-03'
+    },
+    'elm': {
+      isAllowed: true,
+      name: 'Elemental Evil Player\'s Companion',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.elm.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'elm',
+      id: 'source-04'
+    },
+    'scg': {
+      isAllowed: true,
+      name: 'Sword Coast Adventure Guide',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.scg.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'scg',
+      id: 'source-05'
+    },
+    'vol': {
+      isAllowed: true,
+      name: 'Volo\'s Guide to Monsters',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.vol.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'vol',
+      id: 'source-06'
+    },
+    'xan': {
+      isAllowed: true,
+      name: 'Xanathar\'s Guide to Everything',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.xan.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'xan',
+      id: 'source-07'
+    },
+    'psz': {
+      isAllowed: true,
+      name: 'Plane Shift: Zendikar',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.psz.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'psz',
+      id: 'source-08'
+    },
+    'ttp': {
+      isAllowed: true,
+      name: 'The Tortle Package',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.ttp.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'ttp',
+      id: 'source-09'
+    },
+    'ua': {
+      isAllowed: true,
+      name: 'Unearthed Arcana',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.ua.id,
+        service_.defaultTagList.adnd.id,
+        service_.defaultTagList.dnd3_5.id,
+        service_.defaultTagList.dnd4E.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'ua',
+      id: 'source-10'
+    },
+    'uacdv': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: Class Design Variants',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uacdv.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uacdv',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA3_ClassDesignVariants.pdf',
+      id: 'source-11'
+    },
+    'uacr': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: Classics Revisited',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uacr.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uacr',
+      src: 'http://media.wizards.com/2015/downloads/dnd/04_UA_Classics_Revisited.pdf',
+      id: 'source-12'
+    },
+    'uaeb': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: Eberron',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uaeb.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uaeb',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Eberron_v1.pdf',
+      id: 'source-13'
+    },
+    'uagh': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: Gothic Heroes',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uagh.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uagh',
+      src: 'https://dnd.wizards.com/sites/default/files/media/upload/articles/UA%20Gothic%20Characters.pdf',
+      id: 'source-14'
+    },
+    'uamm': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: Modern Magic',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uamm.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uamm',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA_ModernMagic.pdf',
+      id: 'source-15'
+    },
+    'uaps': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: Psionics & The Mystic',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uaps.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uamm',
+      src: 'http://media.wizards.com/2016/downloads/Psionics_and_Mystic_V2.pdf',
+      id: 'source-16'
+    },
+    'uarmpc': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: Rune Magic Prestige Class',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uarmpc.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uarmpc',
+      src: 'http://media.wizards.com/2015/downloads/dnd/UA_Rune_Magic_Prestige_Class.pdf',
+      id: 'source-17'
+    },
+    'uaro': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: Ranger Options',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uaro.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uaro',
+      src: 'http://media.wizards.com/2015/downloads/dnd/DX_0907_UA_RangerOptions.pdf',
+      id: 'source-18'
+    },
+    'uatom': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: That Old Black Magic',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uatom.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uatom',
+      src: 'https://media.wizards.com/2015/downloads/dnd/07_UA_That_Old_Black_Magic.pdf',
+      id: 'source-19'
+    },
+    'uawb': {
+      isAllowed: true,
+      name: 'Unearthed Arcana: Waterborne Adventures',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.uawb.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      key: 'uawb',
+      src: 'https://media.wizards.com/2015/downloads/ dnd /UA_ Waterborne_v3.pdf',
+      id: 'source-20'
+    }
+  };
+
+  /**
    * weight is used to give weight to objects that have a rarity rating. 
    */
   service_.defaultRarities = {
@@ -1132,6 +1459,10 @@ app.service('Demographics', function () {
       weight: {
         default: 1,
         custom: 1
+      },
+      classInfo: {
+        isAllowed: false,
+        dieType: 0
       },
       key: 'legendary',
       id: 'rarity-001'
@@ -1148,6 +1479,10 @@ app.service('Demographics', function () {
         default: 2,
         custom: 2
       },
+      classInfo: {
+        isAllowed: false,
+        dieType: 0
+      },
       key: 'extremelyRare',
       id: 'rarity-002'
     },
@@ -1162,6 +1497,10 @@ app.service('Demographics', function () {
       weight: {
         default: 4,
         custom: 4
+      },
+      classInfo: {
+        isAllowed: true,
+        dieType: 3
       },
       key: 'veryRare',
       id: 'rarity-003'
@@ -1178,6 +1517,10 @@ app.service('Demographics', function () {
         default: 8,
         custom: 8
       },
+      classInfo: {
+        isAllowed: true,
+        dieType: 4
+      },
       key: 'rare',
       id: 'rarity-004'
     },
@@ -1192,6 +1535,10 @@ app.service('Demographics', function () {
       weight: {
         default: 16,
         custom: 16
+      },
+      classInfo: {
+        isAllowed: true,
+        dieType: 6
       },
       key: 'uncommon',
       id: 'rarity-005'
@@ -1208,6 +1555,10 @@ app.service('Demographics', function () {
         default: 32,
         custom: 32
       },
+      classInfo: {
+        isAllowed: true,
+        dieType: 8
+      },
       key: 'common',
       id: 'rarity-006'
     },
@@ -1223,56 +1574,17 @@ app.service('Demographics', function () {
         default: 64,
         custom: 64
       },
+      classInfo: {
+        isAllowed: false,
+        dieType: 0
+      },
       key: 'veryCommon',
       id: 'rarity-007'
     }
   };
 
-  service_.classRarity = {
-    'veryRare': {
-      name: 'Very Rare',
-      dieType: 3,
-      type: 'dice',
-      tagTypes: [
-        service_.tagTypes.DEFAULT
-      ],
-      key: 'veryRare',
-      id: 'dice-001'
-    },
-    'rare': {
-      name: 'Rare',
-      dieType: 4,
-      type: 'dice',
-      tagTypes: [
-        service_.tagTypes.DEFAULT
-      ],
-      key: 'rare',
-      id: 'dice-002'
-    },
-    'uncommon': {
-      name: 'Uncommon',
-      dieType: 6,
-      type: 'dice',
-      tagTypes: [
-        service_.tagTypes.DEFAULT
-      ],
-      key: 'uncommon',
-      id: 'dice-003'
-    },
-    'common': {
-      name: 'Common',
-      dieType: 8,
-      type: 'dice',
-      tagTypes: [
-        service_.tagTypes.DEFAULT
-      ],
-      key: 'common',
-      id: 'dice-004'
-    }
-  };
-
   /**
-   * weight should add up to 100. Only used as weighted random value.
+   * weight should add up to 100. Only used as weighted random value for determining power center alignment.
    */
   service_.defaultAlignments = [
     {
@@ -1650,6 +1962,9 @@ app.service('Demographics', function () {
     }
   ];
 
+  /**
+   * weight is not used.
+   */
   service_.defaultClasses = [
     {
       isAllowed: true,
@@ -1665,8 +1980,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.rare,
-        custom: service_.classRarity.rare
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
       },
       subclasses: [],
       isNpc: false,
@@ -1686,8 +2001,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.uncommon,
-        custom: service_.classRarity.uncommon
+        default: service_.defaultRarities.uncommon,
+        custom: service_.defaultRarities.uncommon
       },
       subclasses: [],
       isNpc: false,
@@ -1707,8 +2022,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.uncommon,
-        custom: service_.classRarity.uncommon
+        default: service_.defaultRarities.uncommon,
+        custom: service_.defaultRarities.uncommon
       },
       subclasses: [],
       isNpc: false,
@@ -1728,8 +2043,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.uncommon,
-        custom: service_.classRarity.uncommon
+        default: service_.defaultRarities.uncommon,
+        custom: service_.defaultRarities.uncommon
       },
       subclasses: [],
       isNpc: false,
@@ -1749,8 +2064,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.common,
-        custom: service_.classRarity.common
+        default: service_.defaultRarities.common,
+        custom: service_.defaultRarities.common
       },
       subclasses: [],
       isNpc: false,
@@ -1770,8 +2085,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.rare,
-        custom: service_.classRarity.rare
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
       },
       subclasses: [],
       isNpc: false,
@@ -1791,8 +2106,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.veryRare,
-        custom: service_.classRarity.veryRare
+        default: service_.defaultRarities.veryRare,
+        custom: service_.defaultRarities.veryRare
       },
       subclasses: [],
       isNpc: false,
@@ -1812,8 +2127,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.veryRare,
-        custom: service_.classRarity.veryRare
+        default: service_.defaultRarities.veryRare,
+        custom: service_.defaultRarities.veryRare
       },
       subclasses: [],
       isNpc: false,
@@ -1833,8 +2148,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.common,
-        custom: service_.classRarity.common
+        default: service_.defaultRarities.common,
+        custom: service_.defaultRarities.common
       },
       subclasses: [],
       isNpc: false,
@@ -1854,8 +2169,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.rare,
-        custom: service_.classRarity.rare
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
       },
       subclasses: [],
       isNpc: false,
@@ -1875,8 +2190,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.rare,
-        custom: service_.classRarity.rare
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
       },
       subclasses: [],
       isNpc: false,
@@ -1896,8 +2211,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.uncommon,
-        custom: service_.classRarity.uncommon
+        default: service_.defaultRarities.uncommon,
+        custom: service_.defaultRarities.uncommon
       },
       subclasses: [],
       isNpc: true,
@@ -1917,8 +2232,8 @@ app.service('Demographics', function () {
       },
       rolls: 1,
       rarity: {
-        default: service_.classRarity.rare,
-        custom: service_.classRarity.rare
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
       },
       subclasses: [],
       isNpc: true,
@@ -1938,8 +2253,8 @@ app.service('Demographics', function () {
       },
       rolls: 4,
       rarity: {
-        default: service_.classRarity.rare,
-        custom: service_.classRarity.rare
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
       },
       subclasses: [],
       isNpc: true,
@@ -1959,8 +2274,8 @@ app.service('Demographics', function () {
       },
       rolls: 3,
       rarity: {
-        default: service_.classRarity.rare,
-        custom: service_.classRarity.rare
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
       },
       subclasses: [],
       isNpc: true,
@@ -1980,8 +2295,8 @@ app.service('Demographics', function () {
       },
       rolls: 2,
       rarity: {
-        default: service_.classRarity.rare,
-        custom: service_.classRarity.rare
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
       },
       subclasses: [],
       isNpc: true,
@@ -2067,20 +2382,7 @@ app.service('Demographics', function () {
 
   /**
    * when rolling up a monstrous power center, alignment is rolled first. monsters are 
-   * divided up here by alignment, then type alphabetically. weight is calculated by alignment,
-   * and should reach 100 for each individual alignment. Originally I was going to keep it more
-   * generic and just use basic monster type, but then I decided to allow for terrain type and
-   * creature subtypes, so the user could see goblinoid or gnoll instead of just humanoid, and 
-   * could filter based on terrain. If they wanted a city in an arctic tundra it wouldnt make
-   * sense to randomly generate a creature that couldnt survive there. There will be an option 
-   * to turn off terrain and climate filters so any monster could appear anywhere. This could
-   * make for some interesting stories. The default weights assume the filters are off. If the
-   * filters are on, and there is more than one option available, it will randomly choose 
-   * without taking into account weight. The last few monsters have weight: 0.
-   *
-   * After adding in rarity, Im not really constrained to alignment. I can filter by climate,
-   * terrain, or alignment in any combination. it so happens i filter by alignment by default,
-   * but that is no longer required. Could also probably filter by type.
+   * divided up here by alignment, then type alphabetically.
    *
    * TODO Need to clean up rarity on each. Make it more sensible with the rarities Ive chosen.
    */
@@ -4056,6 +4358,8 @@ app.service('Demographics', function () {
   /**
    * weight should add up to 100. Only used as weighted random value. use tags to pick out 
    * sets first! Conventional/Nonstandard/Magical. Weights will only match up within groups.
+   *
+   * TODO: Maybe change over method to be similar to Monsters, using rarity
    */
   service_.defaultPowerCenters = [
     {
@@ -4368,7 +4672,7 @@ app.service('Demographics', function () {
 
   /**
    * weight should add up to 100. They can be used as a percentage OR weighted random value.
-   * this primarily applies to subraces.
+   * this only applies to subraces, as races are selected manually.
    */
   service_.defaultRaces = [
     {
