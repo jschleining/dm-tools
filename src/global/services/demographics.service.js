@@ -75,7 +75,7 @@ app.service('Demographics', function () {
       key: 'dnd3E',
       id: 'tag-edition-2'
     },
-    'dnd3_5': {
+    'dnd35': {
       isAllowed: true,
       name: 'Dungeons and Dragons 3.5',
       type: 'tag',
@@ -83,7 +83,7 @@ app.service('Demographics', function () {
         service_.tagTypes.DEFAULT,
         service_.tagTypes.EDITION
       ],
-      key: 'dnd3_5',
+      key: 'dnd35',
       id: 'tag-edition-3'
     },
     'dnd4E': {
@@ -1177,53 +1177,77 @@ app.service('Demographics', function () {
    * weight is not used. These are always placed either automatically or manually.
    */
   service_.defaultSources = {
-    'phb': {
+    'phb35e': {
       isAllowed: true,
-      name: 'Player\'s Handbook',
+      name: 'Player\'s Handbook (DnD 3.5E)',
       type: 'source',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.phb.id,
-        service_.defaultTagList.adnd.id,
-        service_.defaultTagList.dnd3E.id,
-        service_.defaultTagList.dnd3_5.id,
-        service_.defaultTagList.dnd4E.id,
+        service_.defaultTagList.dnd35.id
+      ],
+      key: 'phb35e',
+      id: 'source-01a'
+    },
+    'phb5e': {
+      isAllowed: true,
+      name: 'Player\'s Handbook (DnD 5E)',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.phb.id,
         service_.defaultTagList.dnd5E.id
       ],
-      key: 'phb',
-      id: 'source-01'
+      key: 'phb5e',
+      id: 'source-01b'
     },
-    'mm': {
+    'mm35e': {
       isAllowed: true,
-      name: 'Monster Manual',
+      name: 'Monster Manual (DnD 3.5E)',
       type: 'source',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.mm.id,
-        service_.defaultTagList.adnd.id,
-        service_.defaultTagList.dnd3E.id,
-        service_.defaultTagList.dnd3_5.id,
-        service_.defaultTagList.dnd4E.id,
+        service_.defaultTagList.dnd35e.id
+      ],
+      key: 'mm35e',
+      id: 'source-02a'
+    },
+    'mm5e': {
+      isAllowed: true,
+      name: 'Monster Manual (DnD 5E)',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.mm.id,
         service_.defaultTagList.dnd5E.id
       ],
-      key: 'mm',
-      id: 'source-02'
+      key: 'mm5e',
+      id: 'source-02b'
     },
-    'dmg': {
+    'dmg35e': {
       isAllowed: true,
-      name: 'Dungeon Master\'s Guide',
+      name: 'Dungeon Master\'s Guide (DnD 3.5E)',
       type: 'source',
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.dmg.id,
-        service_.defaultTagList.adnd.id,
-        service_.defaultTagList.dnd3E.id,
-        service_.defaultTagList.dnd3_5.id,
-        service_.defaultTagList.dnd4E.id,
+        service_.defaultTagList.dnd35.id
+      ],
+      key: 'dmg35e',
+      id: 'source-03a'
+    },
+    'dmg5e': {
+      isAllowed: true,
+      name: 'Dungeon Master\'s Guide (DnD 5E)',
+      type: 'source',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dmg.id,
         service_.defaultTagList.dnd5E.id
       ],
-      key: 'dmg',
-      id: 'source-03'
+      key: 'dmg5e',
+      id: 'source-03b'
     },
     'elm': {
       isAllowed: true,
@@ -1304,9 +1328,7 @@ app.service('Demographics', function () {
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.ua.id,
-        service_.defaultTagList.adnd.id,
         service_.defaultTagList.dnd3_5.id,
-        service_.defaultTagList.dnd4E.id,
         service_.defaultTagList.dnd5E.id
       ],
       key: 'ua',
@@ -1972,7 +1994,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -1993,7 +2018,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2014,7 +2042,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2035,7 +2066,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2056,7 +2090,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2077,7 +2114,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2098,7 +2138,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2119,7 +2162,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2140,7 +2186,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2161,7 +2210,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2182,7 +2234,10 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
@@ -2203,7 +2258,8 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultTagList.dmg35e.id,
+        service_.defaultTagList.dnd35.id
       ],
       weight: {
         default: 1,
@@ -2224,7 +2280,8 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultTagList.dmg35e.id,
+        service_.defaultTagList.dnd35.id
       ],
       weight: {
         default: 1,
@@ -2245,7 +2302,8 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultTagList.dmg35e.id,
+        service_.defaultTagList.dnd35.id
       ],
       weight: {
         default: 182,
@@ -2266,7 +2324,8 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultTagList.dmg35e.id,
+        service_.defaultTagList.dnd35.id
       ],
       weight: {
         default: 6,
@@ -2287,7 +2346,8 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultTagList.dmg35e.id,
+        service_.defaultTagList.dnd35.id
       ],
       weight: {
         default: 10,
