@@ -206,8 +206,19 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
       });
 
       if (Utilities.getRandom(1, 100) <= powerCenterType.chanceForExtraMonstrous) {
-        // need to tweak so that monstrous alignment weights don't correspond to other power center alignment weights.
-        // maybe make it so that the monstrous alignment has a higher chance of being opposing alignment
+
+        // loop through power center tags, find alignment 1 and alignment 2 tag. do following:
+        // create array of the 3 choices in order (LNC, GNE). if alignment 1 matches an element in the array, set that
+        // one to have a weight of 20. if it is the first element, set the second element to 30 and the third element
+        // to 50. Reverse if it is the last element. If it is the middle element, set the other two to 40 each. repeat
+        // this for alignemnt 2. Generate weighted values for each. Pick a random one of each. Finally, loop through the
+        // alignment array and retrieve the one with both parts. Caveat: If both parts are neutral, find the one that has
+        // the true neutral tag on it.
+        
+        // This will result in a monster that has a higher chance of being an opposed alignment than the power center
+        // it is selected for and is a better way to do it than just using the same alignemnt weights or figuring
+        // out how to change them
+
         var monsterAlignment = angular.copy(Utilities.getItemFromWeightedObjectArray(vm_.localData.alignmentSelection));
         vm_.updateFilteredTags(vm_.localData.tagTypeSelection.ALIGNMENT);
 

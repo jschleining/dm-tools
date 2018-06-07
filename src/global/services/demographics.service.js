@@ -1173,6 +1173,7 @@ app.service('Demographics', function () {
     }
   };
 
+  // TODO: Separate all sources out into editions and update appropriate tags accordingly
   /**
    * weight is not used. These are always placed either automatically or manually.
    */
@@ -1328,7 +1329,7 @@ app.service('Demographics', function () {
       tags: [
         service_.defaultTagList.dflt.id,
         service_.defaultTagList.ua.id,
-        service_.defaultTagList.dnd3_5.id,
+        service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
       key: 'ua',
@@ -1615,7 +1616,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.law.id,
         service_.defaultTagList.god.id,
         service_.defaultTagList.lg.id
@@ -1632,7 +1632,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.god.id,
         service_.defaultTagList.ng.id
@@ -1649,7 +1648,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.cht.id,
         service_.defaultTagList.god.id,
         service_.defaultTagList.cg.id
@@ -1666,7 +1664,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.law.id,
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.ln.id
@@ -1683,7 +1680,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.tn.id
       ],
@@ -1699,7 +1695,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.cht.id,
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.cn.id
@@ -1716,7 +1711,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.law.id,
         service_.defaultTagList.evl.id,
         service_.defaultTagList.le.id
@@ -1733,7 +1727,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ne.id
@@ -1750,7 +1743,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.cht.id,
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ce.id
@@ -1767,7 +1759,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.ntr.id,
         service_.defaultTagList.an.id
       ],
@@ -1783,7 +1774,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.law.id,
         service_.defaultTagList.al.id
       ],
@@ -1799,7 +1789,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.cht.id,
         service_.defaultTagList.ac.id
       ],
@@ -1815,7 +1804,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.god.id,
         service_.defaultTagList.ag.id
       ],
@@ -1831,7 +1819,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.evl.id,
         service_.defaultTagList.ae.id
       ],
@@ -1847,7 +1834,6 @@ app.service('Demographics', function () {
       type: 'alignment',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.aa.id
       ],
       weight: {
@@ -1868,8 +1854,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'age',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 50,
@@ -1886,8 +1871,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'age',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 35,
@@ -1904,8 +1888,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'age',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 13,
@@ -1922,8 +1905,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'age',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.phb.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 2,
@@ -1946,8 +1928,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'authority',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 60,
@@ -1960,8 +1941,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'authority',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 20,
@@ -1974,8 +1954,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'authority',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 20,
@@ -1994,8 +1973,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2003,6 +1980,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.rare,
@@ -2018,8 +1999,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2027,6 +2006,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.uncommon,
@@ -2042,8 +2025,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2051,6 +2032,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.uncommon,
@@ -2066,8 +2051,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2075,6 +2058,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.uncommon,
@@ -2090,8 +2077,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2099,6 +2084,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.common,
@@ -2114,8 +2103,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2123,6 +2110,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.rare,
@@ -2138,8 +2129,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2147,6 +2136,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.veryRare,
@@ -2162,8 +2155,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2171,6 +2162,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.veryRare,
@@ -2186,8 +2181,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2195,6 +2188,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.common,
@@ -2210,8 +2207,6 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
         service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
@@ -2219,6 +2214,10 @@ app.service('Demographics', function () {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.rare,
@@ -2230,23 +2229,23 @@ app.service('Demographics', function () {
     },
     {
       isAllowed: true,
-      name: 'Wizard',
+      name: 'Warlock',
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultSources.phb35e.id,
-        service_.defaultSources.phb5e.id,
-        service_.defaultTagList.dnd35.id,
         service_.defaultTagList.dnd5E.id
       ],
       weight: {
         default: 0,
         custom: 0
       },
+      sources: [
+        service_.defaultSources.phb5e.id
+      ],
       rolls: 1,
       rarity: {
-        default: service_.defaultRarities.rare,
-        custom: service_.defaultRarities.rare
+        default: service_.defaultRarities.veryRare,
+        custom: service_.defaultRarities.veryRare
       },
       subclasses: [],
       isNpc: false,
@@ -2254,17 +2253,45 @@ app.service('Demographics', function () {
     },
     {
       isAllowed: true,
+      name: 'Wizard',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dnd35.id,
+        service_.defaultTagList.dnd5E.id
+      ],
+      weight: {
+        default: 0,
+        custom: 0
+      },
+      sources: [
+        service_.defaultSources.phb35e.id,
+        service_.defaultSources.phb5e.id
+      ],
+      rolls: 1,
+      rarity: {
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
+      },
+      subclasses: [],
+      isNpc: false,
+      id: 'class-012'
+    },
+    {
+      isAllowed: true,
       name: 'Adept',
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg35e.id,
         service_.defaultTagList.dnd35.id
       ],
       weight: {
         default: 1,
         custom: 1
       },
+      sources: [
+        service_.defaultSources.dmg35e.id
+      ],
       rolls: 1,
       rarity: {
         default: service_.defaultRarities.uncommon,
@@ -2272,7 +2299,7 @@ app.service('Demographics', function () {
       },
       subclasses: [],
       isNpc: true,
-      id: 'class-012'
+      id: 'class-013'
     },
     {
       isAllowed: true,
@@ -2280,36 +2307,16 @@ app.service('Demographics', function () {
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg35e.id,
         service_.defaultTagList.dnd35.id
       ],
       weight: {
         default: 1,
         custom: 1
       },
-      rolls: 1,
-      rarity: {
-        default: service_.defaultRarities.rare,
-        custom: service_.defaultRarities.rare
-      },
-      subclasses: [],
-      isNpc: true,
-      id: 'class-013'
-    },
-    {
-      isAllowed: true,
-      name: 'Commoner',
-      type: 'class',
-      tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg35e.id,
-        service_.defaultTagList.dnd35.id
+      sources: [
+        service_.defaultSources.dmg35e.id
       ],
-      weight: {
-        default: 182,
-        custom: 182
-      },
-      rolls: 4,
+      rolls: 1,
       rarity: {
         default: service_.defaultRarities.rare,
         custom: service_.defaultRarities.rare
@@ -2320,18 +2327,20 @@ app.service('Demographics', function () {
     },
     {
       isAllowed: true,
-      name: 'Expert',
+      name: 'Commoner',
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg35e.id,
         service_.defaultTagList.dnd35.id
       ],
       weight: {
-        default: 6,
-        custom: 6
+        default: 182,
+        custom: 182
       },
-      rolls: 3,
+      sources: [
+        service_.defaultSources.dmg35e.id
+      ],
+      rolls: 4,
       rarity: {
         default: service_.defaultRarities.rare,
         custom: service_.defaultRarities.rare
@@ -2342,18 +2351,20 @@ app.service('Demographics', function () {
     },
     {
       isAllowed: true,
-      name: 'Warrior',
+      name: 'Expert',
       type: 'class',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg35e.id,
         service_.defaultTagList.dnd35.id
       ],
       weight: {
-        default: 10,
-        custom: 10
+        default: 6,
+        custom: 6
       },
-      rolls: 2,
+      sources: [
+        service_.defaultSources.dmg35e.id
+      ],
+      rolls: 3,
       rarity: {
         default: service_.defaultRarities.rare,
         custom: service_.defaultRarities.rare
@@ -2361,6 +2372,30 @@ app.service('Demographics', function () {
       subclasses: [],
       isNpc: true,
       id: 'class-016'
+    },
+    {
+      isAllowed: true,
+      name: 'Warrior',
+      type: 'class',
+      tags: [
+        service_.defaultTagList.dflt.id,
+        service_.defaultTagList.dnd35.id
+      ],
+      weight: {
+        default: 10,
+        custom: 10
+      },
+      sources: [
+        service_.defaultSources.dmg35e.id
+      ],
+      rolls: 2,
+      rarity: {
+        default: service_.defaultRarities.rare,
+        custom: service_.defaultRarities.rare
+      },
+      subclasses: [],
+      isNpc: true,
+      id: 'class-017'
     }
   ];
 
@@ -2440,6 +2475,7 @@ app.service('Demographics', function () {
     },
   ];
 
+  // TODO: Update for Sources
   /**
    * when rolling up a monstrous power center, alignment is rolled first. monsters are 
    * divided up here by alignment, then type alphabetically.
@@ -4671,7 +4707,6 @@ app.service('Demographics', function () {
       type: 'powerCenterType',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.pccn.id
       ],
       weight: {
@@ -4692,7 +4727,6 @@ app.service('Demographics', function () {
       type: 'powerCenterType',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.pcns.id
       ],
       weight: {
@@ -4713,7 +4747,6 @@ app.service('Demographics', function () {
       type: 'powerCenterType',
       tags: [
         service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id,
         service_.defaultTagList.pcmg.id
       ],
       weight: {
@@ -4730,6 +4763,7 @@ app.service('Demographics', function () {
     }
   ];
 
+  // TODO: Update for Sources
   /**
    * weight should add up to 100. They can be used as a percentage OR weighted random value.
    * this only applies to subraces, as races are selected manually.
@@ -7709,8 +7743,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'mixture',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 25,
@@ -7723,8 +7756,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 96,
@@ -7738,8 +7770,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 2,
@@ -7753,8 +7784,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 1,
@@ -7827,8 +7857,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'mixture',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 60,
@@ -7841,8 +7870,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 78,
@@ -7856,8 +7884,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 9,
@@ -7871,8 +7898,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 5,
@@ -7886,8 +7912,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 3,
@@ -7901,8 +7926,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 2,
@@ -7916,8 +7940,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 1,
@@ -7931,8 +7954,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 1,
@@ -7977,8 +7999,7 @@ app.service('Demographics', function () {
       isAllowed: true,
       type: 'mixture',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 10,
@@ -7991,8 +8012,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 36,
@@ -8006,8 +8026,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 19,
@@ -8021,8 +8040,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 17,
@@ -8036,8 +8054,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 10,
@@ -8051,8 +8068,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 7,
@@ -8066,8 +8082,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 5,
@@ -8081,8 +8096,7 @@ app.service('Demographics', function () {
           isAllowed: true,
           type: 'mixture',
           tags: [
-            service_.defaultTagList.dflt.id,
-            service_.defaultTagList.dmg.id
+            service_.defaultTagList.dflt.id
           ],
           weight: {
             default: 3,
@@ -8132,8 +8146,7 @@ app.service('Demographics', function () {
       name: 'Thorp',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 10,
@@ -8160,8 +8173,7 @@ app.service('Demographics', function () {
       name: 'Hamlet',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 20,
@@ -8188,8 +8200,7 @@ app.service('Demographics', function () {
       name: 'Village',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 20,
@@ -8216,8 +8227,7 @@ app.service('Demographics', function () {
       name: 'Small Town',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 20,
@@ -8244,8 +8254,7 @@ app.service('Demographics', function () {
       name: 'Large Town',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 15,
@@ -8272,8 +8281,7 @@ app.service('Demographics', function () {
       name: 'Small City',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 10,
@@ -8300,8 +8308,7 @@ app.service('Demographics', function () {
       name: 'Large City',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 4,
@@ -8328,8 +8335,7 @@ app.service('Demographics', function () {
       name: 'Metropolis',
       type: 'settlement',
       tags: [
-        service_.defaultTagList.dflt.id,
-        service_.defaultTagList.dmg.id
+        service_.defaultTagList.dflt.id
       ],
       weight: {
         default: 1,
