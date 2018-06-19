@@ -214,7 +214,7 @@ function ($scope, $mdComponentRegistry, $mdSidenav, $filter, Utilities, Demograp
         // this for alignemnt 2. Generate weighted values for each. Pick a random one of each. Finally, loop through the
         // alignment array and retrieve the one with both parts. Caveat: If both parts are neutral, find the one that has
         // the true neutral tag on it.
-        
+
         // This will result in a monster that has a higher chance of being an opposed alignment than the power center
         // it is selected for and is a better way to do it than just using the same alignemnt weights or figuring
         // out how to change them
